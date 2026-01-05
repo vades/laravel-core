@@ -19,6 +19,8 @@ docker compose up -d
 - `php artisan make:livewire dir.component-name --inline` Create a new inline Livewire component
 - `php artisan livewire:stubs` Publish Livewire stubs
 - `php artisan livewire:layout` Create a new layout file
+- `php artisan make:migration create_flights_table` Create a new migration file
+- `php artisan make:migration add_status_to_flights_table --table=flights` Create a new migration file to modify an existing table
 - `php artisan make:seeder SeederName` Create a new middleware
 - `php artisan migrate:reset`
 - `php artisan migrate:refresh`
