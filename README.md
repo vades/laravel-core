@@ -23,8 +23,10 @@ docker compose up -d
 - `php artisan make:migration add_status_to_flights_table --table=flights` Create a new migration file to modify an existing table
 - `php artisan make:seeder SeederName` Create a new middleware
 - `php artisan migrate:reset`
-- `php artisan migrate:refresh`
-- `php artisan migrate:refresh --seed --force`
+- `php artisan migrate:rollback`
+- `php artisan migrate:fresh` Drop all tables and re-run all migrations
+- `php artisan migrate:refresh` Rollback and re-run all migrations
+- `php artisan migrate:refresh --seed --force` Rollback and re-run all migrations and seed the database
 - `php artisan db:seed`
 - `php artisan cache:clear`
 - `php artisan view:clear`

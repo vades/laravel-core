@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('role', 50)->default('user')->index()->after('password');
             $table->string('account_type', 50)->default('free')->index()->after('role');
+            $table->json('metadata')->nullable();
         });
     }
 
@@ -25,7 +26,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['project_id']);
-            $table->dropColumn(['project_id', 'role', 'account_type']);
+            $table->dropColumn(['project_id', 'role', 'account_type', 'metadata']);
         });
     }
 };
