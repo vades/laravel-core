@@ -6,26 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
             // Identifiers
             $table->id();
-            $table->string('uuid', 64)->unique();
-            $table->string('slug', 255)->index();
+            $table->uuid('uuid')->unique(); // Standard 36 chars
+            $table->string('slug', 255);
 
             // Relationships
-            // BEST PRACTICE: Use nullable() instead of default(0) for optional relationships
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->bigInteger('parent_id')->default(null);
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('parent_id')->nullable()->constrained('posts')->nullOnDelete();
 
             // Flags & Status
-            $table->boolean('is_featured')->default(0)->index();
-            $table->string('post_type', 20)->default('article')->index();
-            $table->string('status', 50)->default('draft')->index();
-            $table->string('visibility', 50)->default('public')->index();
+            $table->boolean('is_featured')->default(false);
+            $table->string('post_type', 20)->default('article');
+            $table->string('status', 20)->default('draft');
+            $table->string('visibility', 20)->default('public')->index();
             $table->integer('position')->default(0);
             $table->unsignedBigInteger('views_count')->default(0);
             $table->string('lang', 10)->default('en');
@@ -41,17 +39,15 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            // Performance Indexes
-            // Composite index for common filtering (e.g., "Show me Public, Featured prompts")
-            $table->index(['status', 'visibility', 'post_type', 'is_featured', 'slug']);
-
+            // Constraints & Performance
+            // Unique slug per project (Multi-tenancy support)
             $table->unique(['project_id', 'slug']);
+
+            // Composite index for fetching public posts within a project (Very common query)
+            $table->index(['project_id', 'status', 'visibility', 'is_featured']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('posts');
