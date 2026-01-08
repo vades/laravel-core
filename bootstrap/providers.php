@@ -2,7 +2,7 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    App\Providers\FortifyServiceProvider::class,
+    App\Providers\MultiDomainServiceProvider::class,
     App\Providers\TelescopeServiceProvider::class,
     App\Providers\VoltServiceProvider::class,
 ];
