@@ -8,17 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('post_tag', function (Blueprint $table) {
+        Schema::create('content_tag', function (Blueprint $table) {
             // No 'id()'. Use composite primary key for pivot tables.
-            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('content_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
 
-            $table->primary(['post_id', 'tag_id']);
+            $table->primary(['content_id', 'tag_id']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('content_tag');
     }
 };

@@ -27,8 +27,8 @@ class Project extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'description',
+        'slug',
+        'excerpt',
         'metadata',
     ];
 
@@ -40,4 +40,29 @@ class Project extends Model
     protected $casts = [
         'metadata' => 'array',
     ];
+
+    public function contents()
+    {
+        return $this->hasMany(Content::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    public function inquiries()
+    {
+        return $this->hasMany(Inquiry::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

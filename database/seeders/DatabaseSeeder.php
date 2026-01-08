@@ -17,33 +17,33 @@ class DatabaseSeeder extends Seeder
         // 1. Define the projects data
         $projects = [
             [
-                'name' => 'ivnbg',
-                'description' => 'ivnbg.com project',
+               'slug' => 'ivnbg',
+                'excerpt' => 'ivnbg.com project',
                 'metadata' => ['url' => 'www.ivnbg.com'],
             ],
             [
-                'name' => 'martinvach',
-                'description' => 'martinvach.com project',
+               'slug' => 'martinvach',
+                'excerpt' => 'martinvach.com project',
                 'metadata' => ['url' => 'www.martinvach.com'],
             ],
             [
-                'name' => 'myprompties',
-                'description' => 'myprompties.com project',
+               'slug' => 'myprompties',
+                'excerpt' => 'myprompties.com project',
                 'metadata' => ['url' => 'www.myprompties.com'],
             ],
             [
-                'name' => 'vades.dev',
-                'description' => 'vades.dev project',
+               'slug' => 'vades',
+                'excerpt' => 'vades.dev project',
                 'metadata' => ['url' => 'www.vades.dev'],
             ],
             [
-                'name' => 'aitomatix.com',
-                'description' => 'aitomatix.com project',
+               'slug' => 'aitomatix',
+                'excerpt' => 'aitomatix.com project',
                 'metadata' => ['url' => 'www.aitomatix.com'],
             ],
             [
-                'name' => 'laravel-core.test',
-                'description' => 'laravel-core.test project. Only for local testing purposes.',
+               'slug' => 'laravel-core',
+                'excerpt' => 'laravel-core.test project. Only for local testing purposes.',
                 'metadata' => null,
             ],
         ];
@@ -51,9 +51,9 @@ class DatabaseSeeder extends Seeder
         // 2. Loop and use firstOrCreate for each project
         foreach ($projects as $projectData) {
             Project::firstOrCreate(
-                ['name' => $projectData['name']], // Search key (Unique)
+                ['slug' => $projectData['slug']], // Search key (Unique)
                 [
-                    'description' => $projectData['description'],
+                    'excerpt' => $projectData['excerpt'],
                     'metadata' => $projectData['metadata'] ?? null,
                 ]
             );
@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'test@example.com'], // Search key (Unique)
             [
                 'name' => 'Test User',
-                'project_id' => Project::where('name', 'laravel-core.test')->first()->id,
+                'project_id' => Project::where('slug', 'laravel-core.test')->first()->id,
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]

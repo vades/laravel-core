@@ -10,11 +10,9 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
             $table->foreignId('project_id')->constrained()->cascadeOnDelete();
 
-            $table->boolean('is_published')->default(false);
-            $table->string('tag_type', 20)->default('post');
+            $table->string('content_type', 20);
             $table->string('lang', 10)->default('en');
             $table->unsignedBigInteger('views_count')->default(0);
             $table->string('name', 255);
@@ -22,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['project_id', 'name']);
+            $table->unique(['project_id', 'name', 'lang']);
         });
     }
 

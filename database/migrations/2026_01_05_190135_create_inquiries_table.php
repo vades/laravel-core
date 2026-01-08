@@ -20,13 +20,13 @@ return new class extends Migration
             // Using 'string' status is often better than multiple booleans for workflow
             // (e.g., 'new', 'read', 'replied', 'spam', 'archived')
             // But if you prefer booleans, keep them:
-            $table->boolean('is_read')->default(false)->index();
-            $table->boolean('is_spam')->default(false)->index();
+            $table->boolean('is_read')->default(false);
+            $table->boolean('is_spam')->default(false);
             $table->boolean('is_archived')->default(false);
 
             // 3. Sender Info
             $table->string('name', 255);
-            $table->string('email', 255)->index();
+            $table->string('email', 255);
 
             // 4. Message Content
             $table->string('subject', 255)->nullable(); // Missing in original
@@ -41,6 +41,8 @@ return new class extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index(['is_read', 'is_spam', 'email']);
         });
     }
 
