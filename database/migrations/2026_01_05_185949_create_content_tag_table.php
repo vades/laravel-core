@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('content_tag', function (Blueprint $table) {
+            // No 'id()'. Use composite primary key for pivot tables.
+            $table->foreignId('content_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+
+            $table->primary(['content_id', 'tag_id']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('content_tag');
+    }
+};
