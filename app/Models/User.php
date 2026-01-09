@@ -19,12 +19,20 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'project_id',   // Ensure this is here
+        'role',         // Ensure this is here
+        'account_type', // Ensure this is here
+        'metadata',     // Ensure this is here
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -47,6 +55,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'metadata' => 'array',
         ];
     }
 

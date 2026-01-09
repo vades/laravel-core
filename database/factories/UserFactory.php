@@ -1,7 +1,10 @@
 <?php
+// Path: database/factories/UserFactory.php
 
 namespace Database\Factories;
 
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -11,6 +14,13 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
     /**
      * The current password being used by the factory.
      */
@@ -24,14 +34,34 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => $this->faker->unique()->uuid(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'two_factor_secret' => Str::random(10),
-            'two_factor_recovery_codes' => Str::random(10),
-            'two_factor_confirmed_at' => now(),
+
+            // --- New Schema Fields ---
+
+            // Automatically create a project if one isn't passed in
+            'project_id' => Project::inRandomOrder()->first()->id ?? Project::factory(),
+
+            // Match your 'role' default ('user') but allow randomness
+            'role' => fake()->randomElement(['user', 'admin', 'editor']),
+
+            // Match your 'account_type' default ('free') but allow randomness
+            'account_type' => fake()->randomElement(['free', 'pro', 'enterprise']),
+
+            // Nullable JSON metadata
+            'metadata' => fake()->boolean(70) ? [
+                'theme' => fake()->randomElement(['light', 'dark']),
+                'notifications' => fake()->boolean(),
+                'last_login_ip' => fake()->ipv4(),
+            ] : null,
+
+            // Standard timestamps
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
@@ -42,18 +72,6 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
-        ]);
-    }
-
-    /**
-     * Indicate that the model does not have two-factor authentication configured.
-     */
-    public function withoutTwoFactor(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'two_factor_secret' => null,
-            'two_factor_recovery_codes' => null,
-            'two_factor_confirmed_at' => null,
         ]);
     }
 }
