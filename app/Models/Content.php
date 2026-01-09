@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FilterByProject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -42,6 +43,7 @@ class Content extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use FilterByProject;
 
     /**
      * The attributes that are mass assignable.
