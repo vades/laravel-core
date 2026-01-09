@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\FilterByProject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,6 +33,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Inquiry extends Model
 {
     use SoftDeletes;
+    use FilterByProject;
 
     /**
      * The attributes that are mass assignable.
