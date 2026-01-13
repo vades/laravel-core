@@ -5,6 +5,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Project;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -14,13 +15,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        $projectId = Project::where('slug', 'laravel-core')->first()->id;
 
         Category::factory()->count(3)->create([
-            'project_id' => 6,
-            'content_type' => 'post',
-            'status' => 'published',
-            'visibility' => 'public',
-            'lang' => 'en',
-        ]);
+                                                  'project_id' => $projectId,
+                                                  'content_type' => 'post',
+                                                  'status' => 'published',
+                                                  'visibility' => 'public',
+                                                  'lang' => 'en',
+                                              ]);
     }
 }

@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 
                 // Specific fields for your login testing
                 // In database/factories/UserFactory.php
-                'project_id' => Project::where('slug', 'laravel-core')->first()->id || Project::inRandomOrder()->first()->id,
+                'project_id' => Project::where('slug', 'laravel-core')->first()->id,
                 'role' => 'admin',     // Override random factory default
                 'account_type' => 'pro', // Override random factory default
                 'metadata' => ['is_super_admin' => true],
