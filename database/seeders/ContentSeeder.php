@@ -1,28 +1,23 @@
 <?php
 
-// Path: database/seeders/CategorySeeder.php
-
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Project;
 use Illuminate\Database\Seeder;
+use App\Models\Content;
+use App\Models\Project;
 
-class CategorySeeder extends Seeder
+class ContentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $projectId = Project::where('slug', 'laravel-core')->first()->id;
+        $projectId = Project::query()->where('slug', 'laravel-core')->value('id');
 
-        Category::factory()->count(10)->create([
+        Content::factory()->count(50)->create([
                                                   'project_id' => $projectId,
                                                   'content_type' => 'article',
                                                   'status' => 'published',
                                                   'visibility' => 'public',
                                                   'lang' => 'en',
-                                              ]);
+        ]);
     }
 }

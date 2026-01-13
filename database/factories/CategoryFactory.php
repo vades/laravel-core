@@ -41,7 +41,7 @@ class CategoryFactory extends Factory
             'visibility' => $this->faker->randomElement(['public', 'private', 'restricted']),
 
             // Constraint Note: Input requested 'post' for mockup.
-            'content_type' => 'post',
+            'content_type' => $this->faker->randomElement(['article', 'page', 'place','tutorial','prompt']),
 
             'position' => $this->faker->numberBetween(0, 100),
 
