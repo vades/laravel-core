@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,6 +28,7 @@ class Tag extends Model
 {
     use SoftDeletes;
     use FilterByProject;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -63,4 +65,3 @@ class Tag extends Model
         return $this->belongsTo(Project::class);
     }
 }
-
