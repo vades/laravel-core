@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
                             TagSeeder::class,
                             InquirySeeder::class,
                             ContentSeeder::class,
+                            CategoryContentSeeder::class,
+                            ContentTagSeeder::class,
 
                         ]);
 

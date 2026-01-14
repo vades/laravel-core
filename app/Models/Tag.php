@@ -64,4 +64,9 @@ class Tag extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class);
+    }
 }

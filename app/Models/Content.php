@@ -110,4 +110,14 @@ class Content extends Model
     {
         return $this->belongsTo(Content::class, 'parent_id');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_content');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'content_tag');
+    }
 }
