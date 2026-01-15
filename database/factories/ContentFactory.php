@@ -17,15 +17,15 @@ class ContentFactory extends Factory
     {
         // We define the title here so we can use it for the slug immediately
         $title = $this->faker->unique()->sentence(6, true);
-
+        $projectId = Project::where('slug', 'laravel-core')->first()->id;
         return [
             'uuid' => $this->faker->uuid(),
             // Use lazy() or closures so these only execute if no value is provided
-            'project_id' => Project::factory(),
-            'user_id' => User::factory(),
-            'author_id' => $this->faker->boolean(80) ? User::factory() : null,
+            'project_id' => $projectId,
+            'user_id' => 1,
+            'author_id' => $this->faker->boolean(80) ? 1 : null,
 
-            'parent_id' => $this->faker->boolean(20) ? Content::factory() : null,
+            'parent_id' => $this->faker->boolean(20) ? 1: null,
 
             'content_type' => $this->faker->randomElement(['article', 'page', 'place', 'tutorial', 'prompt']),
             'status' => $this->faker->randomElement(['draft', 'published', 'archived']),

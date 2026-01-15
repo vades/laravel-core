@@ -19,9 +19,10 @@ class InquiryFactory extends Factory
      */
     public function definition(): array
     {
+        $projectId = Project::where('slug', 'laravel-core')->first()->id;
         return [
-            'project_id' => Project::factory(),
-            'user_id' => $this->faker->boolean(80) ? User::factory() : null,
+            'project_id' =>$projectId,
+            'user_id' => $this->faker->boolean(80) ? 1 : null,
             'is_read' => $this->faker->boolean(),
             'is_spam' => $this->faker->boolean(10),
             'is_archived' => $this->faker->boolean(10),

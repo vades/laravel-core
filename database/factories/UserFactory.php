@@ -33,6 +33,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $projectId = Project::where('slug', 'laravel-core')->first()->id;
         return [
             'uuid' => $this->faker->unique()->uuid(),
             'name' => fake()->name(),
@@ -44,7 +45,7 @@ class UserFactory extends Factory
             // --- New Schema Fields ---
 
             // Automatically create a project if one isn't passed in
-            'project_id' => Project::inRandomOrder()->first()->id ?? Project::factory(),
+            'project_id' =>$projectId,
 
             // Match your 'role' default ('user') but allow randomness
             'role' => fake()->randomElement(['user', 'admin', 'editor']),

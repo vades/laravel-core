@@ -34,11 +34,5 @@ class UserSeeder extends Seeder
                 'metadata' => ['is_super_admin' => true],
             ]
         );
-
-        // 3. Generate 4 additional random users
-        // These will use the Factory defaults (random roles, random new projects)
-        User::factory()
-            ->count(4)
-            ->create();
     }
 }

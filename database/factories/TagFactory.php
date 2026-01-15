@@ -18,8 +18,9 @@ class TagFactory extends Factory
      */
     public function definition(): array
     {
+        $projectId = Project::where('slug', 'laravel-core')->first()->id;
         return [
-            'project_id' => Project::factory(),
+            'project_id' => $projectId,
             'content_type' => $this->faker->randomElement(['article', 'video', 'image', 'audio']),
             'lang' => $this->faker->randomElement(['en', 'es', 'fr', 'de']),
             'name' => $this->faker->unique()->words(2, true),
