@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
                         ProjectSeeder::class,
                         UserSeeder::class,
-
+                        CategorySeederProject::class,
                     ]);
 
         if (app()->environment('local')) {
