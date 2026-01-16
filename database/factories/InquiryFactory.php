@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppProject;
 use App\Models\Inquiry;
 use App\Models\Project;
 use App\Models\User;
@@ -19,7 +20,7 @@ class InquiryFactory extends Factory
      */
     public function definition(): array
     {
-        $projectId = Project::where('slug', 'laravel-core')->first()->id;
+        $projectId = Project::where('slug', AppProject::LaravelCore->value)->first()->id;
         return [
             'project_id' =>$projectId,
             'user_id' => $this->faker->boolean(80) ? 1 : null,

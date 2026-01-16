@@ -3,11 +3,16 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppProject;
 use App\Models\Content;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
+use App\Enums\ContentVisibility;
+use App\Enums\Language;
 
 class ContentFactory extends Factory
 {
@@ -17,7 +22,7 @@ class ContentFactory extends Factory
     {
         // We define the title here so we can use it for the slug immediately
         $title = $this->faker->unique()->sentence(6, true);
-        $projectId = Project::where('slug', 'laravel-core')->first()->id;
+        $projectId = Project::where('slug', AppProject::LaravelCore->value)->first()->id;
         return [
             'uuid' => $this->faker->uuid(),
             // Use lazy() or closures so these only execute if no value is provided
@@ -27,10 +32,11 @@ class ContentFactory extends Factory
 
             'parent_id' => $this->faker->boolean(20) ? 1: null,
 
-            'content_type' => $this->faker->randomElement(['article', 'page', 'place', 'tutorial', 'prompt']),
-            'status' => $this->faker->randomElement(['draft', 'published', 'archived']),
-            'visibility' => $this->faker->randomElement(['public', 'private', 'unlisted']),
-            'lang' => $this->faker->randomElement(['en', 'es', 'fr', 'de']),
+            'content_type' => $this->faker->randomElement(array_column(ContentContentType::cases(), 'value')),
+            'status' => $this->faker->randomElement(array_column(ContentStatus::cases(), 'value')),
+            'visibility' => $this->faker->randomElement(array_column(ContentVisibility::cases(), 'value')),
+            'lang' => $this->faker->randomElement(array_column(Language::cases(), 'value')),
+
             'title' => $title,
             'slug' => Str::slug($title),
             'subtitle' => $this->faker->boolean(60) ? $this->faker->sentence(8, true) : null,

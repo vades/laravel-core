@@ -3,6 +3,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\AppProject;
+use App\Enums\UserRole;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -28,8 +30,8 @@ class UserSeeder extends Seeder
 
                 // Specific fields for your login testing
                 // In database/factories/UserFactory.php
-                'project_id' => Project::where('slug', 'laravel-core')->first()->id,
-                'role' => 'admin',     // Override random factory default
+                'project_id' => Project::where('slug', AppProject::LaravelCore->value)->first()->id,
+                'role' =>UserRole::User->value,     // Override random factory default
                 'account_type' => 'pro', // Override random factory default
                 'metadata' => ['is_super_admin' => true],
             ]

@@ -3,6 +3,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppProject;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -33,7 +34,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $projectId = Project::where('slug', 'laravel-core')->first()->id;
+        $projectId = Project::where('slug', AppProject::LaravelCore->value)->first()->id;
         return [
             'uuid' => $this->faker->unique()->uuid(),
             'name' => fake()->name(),
