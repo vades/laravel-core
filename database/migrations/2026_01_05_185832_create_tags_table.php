@@ -14,8 +14,7 @@ return new class extends Migration
 
             $table->string('content_type', 20);
             $table->string('lang', 10)->default('en');
-            $table->unsignedBigInteger('views_count')->default(0);
-            $table->string('name', 255);
+             $table->string('name', 255);
 
             $table->timestamps();
             $table->softDeletes();

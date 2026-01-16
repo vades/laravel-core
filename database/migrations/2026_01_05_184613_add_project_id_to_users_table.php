@@ -9,6 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->uuid('uuid')->after('id')->unique();
             // We use 'after' to position columns logically, though not strictly required by SQL
             $table->foreignId('project_id')
                 //->nullable() // Nullable initially to handle existing users, remove if fresh DB
