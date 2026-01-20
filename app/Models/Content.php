@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
 use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * App\Models\Content
@@ -119,5 +125,113 @@ class Content extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class,'content_tag');
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+                          ->generateSlugsFrom('slug')
+                          ->saveSlugsTo('slug')
+                          ->doNotGenerateSlugsOnUpdate();
+    }
+    /**
+     * Get the featured image URL from metadata.
+     */
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['featuredImage'] ?? null,
+        );
+    }
+
+    /**
+     * Get the address from metadata.
+     */
+    protected function address(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['address'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Google Map Embed URL from metadata.
+     */
+    protected function googleMapEmbedUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['googleMapEmbedUrl'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Meta Title from metadata.
+     */
+    protected function metaTitle(): Attribute
+    {
+        return aAttribute::make(
+            get: fn () => $this->metadata['metaTitle'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Meta Description from metadata.
+     */
+    protected function metaDescription(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['metaDescription'] ?? null,
+        );
+    }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('status', ContentStatus::Published->value);
+    }
+
+    public function scopePublishedByType(Builder $query, string $contentType = ContentContentType::Article->value): void
+    {
+        $query->where('status', ContentStatus::Published->value)
+              ->where('content_type', $contentType)
+        ;
+    }
+    public function scopeIsFeatured(Builder $query): void
+    {
+        $query->where('is_featured', 1);
+    }
+
+    public function scopeNotFeatured(Builder $query): void
+    {
+        $query->where('is_featured', 0);
+    }
+
+    public function scopeFilter(Builder $query, Request $request): void
+    {
+        $query->when($request->filled('category'), function ($q) use ($request) {
+            $q->whereHas('categories', function ($q) use ($request) {
+                $q->where('slug', '=', $request->input('category'));
+            });
+        });
+        $query->when($request->filled('tag'), function ($q) use ($request) {
+            $q->whereHas('tags', function ($q) use ($request) {
+                $q->where('name', '=', $request->input('tag'));
+            });
+        });
+    }
+
+    public function nextPublishedByType(string $contentType =ContentContentType::Article->value)
+    {
+        return $this->publishedByType($contentType)
+                    ->where('id', '>', $this->id)
+                    ->orderBy('id')
+                    ->first();
+    }
+
+    public function previousPublishedByType(string $contentType = ContentContentType::Article->value)
+    {
+        return $this->publishedByType($contentType)
+                    ->where('id', '<', $this->id)
+                    ->orderByDesc('id')
+                    ->first();
     }
 }
