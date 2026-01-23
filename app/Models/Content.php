@@ -169,7 +169,7 @@ class Content extends Model
      */
     protected function metaTitle(): Attribute
     {
-        return aAttribute::make(
+        return Attribute::make(
             get: fn () => $this->metadata['metaTitle'] ?? null,
         );
     }
