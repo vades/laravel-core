@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
+use App\Enums\ContentVisibility;
 use App\Traits\FilterByProject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -58,6 +59,10 @@ class Content extends Model
      */
     protected $fillable = [
         'uuid',
+        'project_id',
+        'user_id',
+        'author_id',
+        'parent_id',
         'content_type',
         'status',
         'visibility',
@@ -71,6 +76,7 @@ class Content extends Model
         'position',
         'is_featured',
         'published_at',
+
     ];
 
     /**
@@ -79,6 +85,9 @@ class Content extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'status' => ContentStatus::class,
+        'content_type' => ContentContentType::class,
+        'visibility' => ContentVisibility::class,
         'metadata' => 'array',
         'is_featured' => 'boolean',
         'position' => 'integer',

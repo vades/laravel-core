@@ -14,14 +14,25 @@ use App\Enums\Language;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Tag;
+use App\Services\DomainManagerService;
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Spatie\YamlFrontMatter\Document;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
+/**
+ * Project Content Import Service
+ *
+ * - Traverses complex directories (projects -> content -> type).
+ * - Resolves Project IDs dynamically by using the folder name as a slug via the DomainManagerService.
+ * - Parses YAML Front Matter reliably using Spatie\YamlFrontMatter.
+ * - Uses DTOs for data integrity with automatic snake_case mapping to match your database columns.
+ * - Handles Mass Assignment safely by ensuring the Content model's $fillable array is correctly configured.
+ * - Captures Metadata that doesn't fit into standard columns into a JSON blob.
+ */
 class ProjectContentService
 {
     private string $basePath;
@@ -38,7 +49,7 @@ class ProjectContentService
         return $this->success;
     }
 
-    public function __construct()
+    public function __construct(protected DomainManagerService $domainManager)
     {
         $this->basePath = storage_path('app/imports/projects');
     }
@@ -79,7 +90,8 @@ class ProjectContentService
         }
 
         // Get the project ID from config based on folder name
-        $projectId = 6;//config("myapp.projects.{$projectName}");
+        $this->domainManager->setSlug($projectName);
+        $projectId = $this->domainManager->getProjectId();
 
         if (!$projectId) {
             $this->errors[] = "Project configuration missing for: {$projectName}";
@@ -142,58 +154,61 @@ class ProjectContentService
         try {
             // Map YAML to ContentData DTO
             $data = [
-                'uuid' => $object->matter('uuid') ?? (string) Str::uuid(),
+                'uuid' => $object->matter('uuid') ?? (string)Str::uuid(),
                 'projectId' => $projectId,
                 'userId' => $object->matter('user_id') ?? 1,
                 'authorId' => $object->matter('author_id'),
-                'parentId' => $object->matter('parent_id'),
+                'parentId' => $this->getParentId($object->matter('parent_id'), $contentTypeStr),
                 'contentType' => ContentContentType::tryFrom($contentTypeStr) ?? ContentContentType::Article,
                 'status' => $object->matter('is_published') ? ContentStatus::Published : ContentStatus::Draft,
                 'visibility' => ContentVisibility::tryFrom($object->matter('visibility') ?? 'public') ?? ContentVisibility::Public,
                 'lang' => $object->matter('lang') ?? 'en',
                 'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
-                'title' => (string) $object->matter('title'),
+                'title' => (string)$object->matter('title'),
                 'subtitle' => $object->matter('subtitle'),
                 'excerpt' => $object->matter('description') ?? $object->matter('excerpt'),
                 'content' => $object->body(),
                 'metadata' => $this->extractMetadata($object, ['title', 'slug', 'description', 'is_published']),
-                'position' => (int) ($object->matter('position') ?? 0),
-                'isFeatured' => (bool) ($object->matter('is_featured') ?? false),
+                'position' => (int)($object->matter('position') ?? 0),
+                'isFeatured' => (bool)($object->matter('is_featured') ?? false),
                 'publishedAt' => $object->matter('published_at') ? Carbon::parse($object->matter('published_at')) : null,
             ];
+            $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent']);
+
 
             $dto = ContentData::from($data);
 
-            Content::updateOrCreate(
+            $createdContent = Content::updateOrCreate(
                 ['slug' => $dto->slug, 'project_id' => $dto->projectId],
                 $dto->toArray()
             );
-
+            dd( $createdContent );
             $this->success[] = "Imported Content: {$dto->title}";
         } catch (Exception $e) {
             $this->errors[] = "Content Save Error [{$object->matter('title')}]: " . $e->getMessage();
         }
     }
 
-    private function storeContent(ContentData $dto): void
+    private function getParentId(string|null $parentSlug, string $contentType): ?int
     {
+        if (empty($parentSlug)) {
+            return null;
+        }
 
+        // Safely get the ID. If first() returns null, ?->id is null.
+        // If the ID is found but is 0 (unlikely for IDs), ?? 0 handles it.
+        return Content::where('slug', $parentSlug)
+                      ->publishedByType($contentType)
+            ->value('id');
     }
 
-    private function createCategoryContent()
-    {
+    private function storeContent(ContentData $dto): void {}
 
-    }
+    private function createCategoryContent() {}
 
-    private function creatTag()
-    {
+    private function creatTag() {}
 
-    }
-
-    private function createContentTag()
-    {
-
-    }
+    private function createContentTag() {}
 
     /**
      * Handle Category specific import
@@ -202,19 +217,19 @@ class ProjectContentService
     {
         try {
             $data = [
-                'uuid' => $object->matter('uuid') ?? (string) Str::uuid(),
+                'uuid' => $object->matter('uuid') ?? (string)Str::uuid(),
                 'projectId' => $projectId,
                 'parentId' => $object->matter('parent_id'),
                 'status' => $object->matter('is_published') ? ContentStatus::PUBLISHED : ContentStatus::DRAFT,
                 'visibility' => ContentVisibility::PUBLIC,
                 'contentType' => ContentContentType::CATEGORY,
-                'position' => (int) ($object->matter('position') ?? 0),
+                'position' => (int)($object->matter('position') ?? 0),
                 'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
                 'lang' => Language::tryFrom($object->matter('lang') ?? 'en') ?? Language::EN,
-                'title' => (string) $object->matter('title'),
+                'title' => (string)$object->matter('title'),
                 'excerpt' => $object->matter('description'),
-                'metadata' => $this->extractMetadata($object, ['title', 'slug']),
             ];
+            $data['metadata'] = $this->extractMetadata($object, array_keys($data));
 
             $dto = CategoryData::from($data);
 
@@ -254,13 +269,19 @@ class ProjectContentService
     }
 
     /**
-     * Extracts keys from YAML that aren't part of the primary DTO properties.
+     * Extracts metadata from YAML front matter.
+     *
+     * @param Document $object The parsed markdown document
+     * @param array $excludeKeys Keys already mapped to DTO/Database columns (e.g., 'title', 'slug')
+     * @param array $ignoreKeys Keys that should be completely discarded (e.g., 'internal_note', 'temp_id')
+     * @return array
      */
-    private function extractMetadata(Document $object, array $excludeKeys): array
+    private function extractMetadata(Document $object, array $excludeKeys, array $ignoreKeys = []): array
     {
-        return array_filter($object->matter(), function ($key) use ($excludeKeys) {
-            return !in_array($key, $excludeKeys);
-        }, ARRAY_FILTER_USE_KEY);
+        return array_filter($object->matter(), function ($key) use ($excludeKeys, $ignoreKeys) {
+            // The key is kept ONLY if it is NOT in excludeKeys AND NOT in ignoreKeys
+            return !in_array($key, $excludeKeys) && !in_array($key, $ignoreKeys);
+        },                  ARRAY_FILTER_USE_KEY);
     }
 
     /**

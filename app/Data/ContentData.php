@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Data;
 use Illuminate\Support\Carbon;
 use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
+#[MapOutputName(SnakeCaseMapper::class)]
 class ContentData extends Data
 {
     /**
