@@ -174,11 +174,14 @@ class ProjectContentService
                 'authorId' => $object->matter('author_id'),
                 'parentId' => $this->getParentId($object->matter('parent_id'), $contentTypeStr),
                 'contentType' => ContentContentType::tryFrom($contentTypeStr) ?? ContentContentType::Article->value,
-                'status' => ContentStatus::tryFrom($object->matter('status') ?? 'draft') ??
-                    ContentStatus::Draft->value,
-                'visibility' => ContentVisibility::tryFrom($object->matter('visibility') ?? 'public') ??
-                    ContentVisibility::Public->value,
-               'lang' => $object->matter('lang') ?? Language::EN->value,
+                'status' => ContentStatus::tryFrom($object->matter('status') ?? '')
+                    ?? ContentStatus::Draft,
+
+                'visibility' => ContentVisibility::tryFrom($object->matter('visibility') ?? '')
+                    ?? ContentVisibility::Public,
+
+                'lang' => Language::tryFrom($object->matter('lang') ?? '')
+                    ?? Language::EN,
                 'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
                 'title' => (string)$object->matter('title'),
                 'subtitle' => $object->matter('subtitle'),

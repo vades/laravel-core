@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use App\Enums\Language;
 use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Data;
 use Illuminate\Support\Carbon;
@@ -43,7 +44,7 @@ class ContentData extends Data
         public ContentContentType $contentType,
         public ContentStatus $status,
         public ContentVisibility $visibility,
-        public string $lang,
+        public Language $lang,
         public string $slug,
         public string $title,
         public ?string $subtitle,
