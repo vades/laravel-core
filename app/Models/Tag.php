@@ -37,11 +37,13 @@ class Tag extends Model
      */
     protected $fillable = [
         'uuid',
+        'content_type',
         'is_published',
         'tag_type',
         'lang',
         'views_count',
         'name',
+        'project_id',
     ];
 
     /**

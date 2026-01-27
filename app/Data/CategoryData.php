@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 namespace App\Data;
 
+use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Data;
 use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\ContentContentType;
 use App\Enums\Language;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
+#[MapOutputName(SnakeCaseMapper::class)]
 class CategoryData extends Data
 {
     /**

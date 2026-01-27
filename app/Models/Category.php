@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
+use App\Enums\ContentVisibility;
 use App\Traits\FilterByProject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -65,6 +66,9 @@ class Category extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'status' => ContentStatus::class,
+        'content_type' => ContentContentType::class,
+        'visibility' => ContentVisibility::class,
         'metadata' => 'array',
         'position' => 'integer',
     ];
@@ -90,10 +94,11 @@ class Category extends Model
         return $this->belongsToMany(Content::class);
     }
 
-    public function scopePublishedByType(Builder $query, string $contentType =ContentContentType::Article->value): void
+    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType =ContentContentType::Article->value): void
     {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
         $query->where('status', ContentStatus::Published->value)
-              ->where('content_type', $contentType);
+              ->where('content_type',$value);
     }
     public function getSlugOptions() : SlugOptions
     {

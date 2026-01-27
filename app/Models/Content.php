@@ -198,10 +198,12 @@ class Content extends Model
         $query->where('status', ContentStatus::Published->value);
     }
 
-    public function scopePublishedByType(Builder $query, string $contentType = ContentContentType::Article->value): void
+    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType = ContentContentType::Article->value):
+    void
     {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
         $query->where('status', ContentStatus::Published->value)
-              ->where('content_type', $contentType)
+              ->where('content_type', $value)
         ;
     }
     public function scopeIsFeatured(Builder $query): void
@@ -228,16 +230,18 @@ class Content extends Model
         });
     }
 
-    public function nextPublishedByType(string $contentType =ContentContentType::Article->value)
+    public function nextPublishedByType(string|ContentContentType $contentType =ContentContentType::Article->value)
     {
-        return $this->publishedByType($contentType)
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        return $this->publishedByType( $value)
                     ->where('id', '>', $this->id)
                     ->orderBy('id')
                     ->first();
     }
 
-    public function previousPublishedByType(string $contentType = ContentContentType::Article->value)
+    public function previousPublishedByType(string|ContentContentType $contentType = ContentContentType::Article->value)
     {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
         return $this->publishedByType($contentType)
                     ->where('id', '<', $this->id)
                     ->orderByDesc('id')

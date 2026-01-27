@@ -143,14 +143,28 @@ class ProjectContentService
             throw new Exception("Missing required YAML front matter (title or slug).");
         }
 
-        $this->handleContentImport($projectId, $contentTypeStr, $object);
+        $content = $this->handleContentImport($projectId, $contentTypeStr, $object);
+        if(!$content) {
+            return;
+        }
+        if($object->matter('tags')) {
+            $tagIds = $this->createTag($object->matter('tags'), $content);
+            if (count($tagIds) > 0) {
+                $content->tags()->sync($tagIds);
+            }
+            $categoryIds = $this->getCategories($object->matter('categories'), $content);
+            if (count($categoryIds) > 0) {
+                $content->categories()->sync($categoryIds);
+            }
+        }
     }
 
     /**
      * Handle generic content (articles, posts, etc.)
      */
-    private function handleContentImport(int $projectId, string $contentTypeStr, Document $object): void
+    private function handleContentImport(int $projectId, string $contentTypeStr, Document $object): ?Content
     {
+        $content = null;
         try {
             // Map YAML to ContentData DTO
             $data = [
@@ -178,15 +192,16 @@ class ProjectContentService
 
             $dto = ContentData::from($data);
 
-            $createdContent = Content::updateOrCreate(
+            $content = Content::updateOrCreate(
                 ['slug' => $dto->slug, 'project_id' => $dto->projectId],
                 $dto->toArray()
             );
-            dd( $createdContent );
+            //dd( $createdContent );
             $this->success[] = "Imported Content: {$dto->title}";
         } catch (Exception $e) {
             $this->errors[] = "Content Save Error [{$object->matter('title')}]: " . $e->getMessage();
         }
+        return $content;
     }
 
     private function getParentId(string|null $parentSlug, string $contentType): ?int
@@ -204,11 +219,58 @@ class ProjectContentService
 
     private function storeContent(ContentData $dto): void {}
 
-    private function createCategoryContent() {}
+    private function getCategories(string $categories, Content $content):array {
+        $categorySlugs = array_map('trim', explode(',', $categories));
+        $categoryIds= [];
+        foreach ($categorySlugs as $slug) {
+            try {
+                //dd($content->content_type);
+                $category = Category::where('slug', $slug)->publishedByType($content->content_type)->first();
+                if (!$category) {
+                    continue;
+                }
+                $this->success[] = 'Found  category slug ' . $slug . ' | content slug "'.$content->slug;
+                $categoryIds[] = $category->id;
+            } catch (Exception $e) {
+                $this->errors[] = "Category Save Error: " . $e->getMessage();
+                continue;
+            }
 
-    private function creatTag() {}
 
-    private function createContentTag() {}
+        }
+        return  $categoryIds;
+    }
+
+    private function createTag(string $tags, Content $content): array
+    {
+        $tagNames = array_map('trim', explode(',', $tags));
+        $tagIds = [];
+        foreach ($tagNames as $tagName) {
+            try {
+                $dto = TagData::from([
+                                         'projectId' => $content->project_id,
+                                         'contentType' => $content->content_type,
+                                         'lang' => $content->lang,
+                                         'name' => $tagName,
+                                     ]);
+
+                $tag = Tag::updateOrCreate(
+                    ['name' => $dto->name, 'project_id' => $dto->projectId],
+                    $dto->toArray()
+                );
+
+                if ($tag) {
+                    $tagIds[] = $tag->id;
+                }
+
+                $this->success[] = "Imported Tag: {$dto->name}";
+            } catch (Exception $e) {
+                $this->errors[] = "Tag Save Error: " . $e->getMessage();
+                continue;
+            }
+        }
+        return $tagIds;
+    }
 
     /**
      * Handle Category specific import

@@ -4,8 +4,11 @@ declare(strict_types=1);
 namespace App\Data;
 
 use App\Enums\ContentContentType;
+use Spatie\LaravelData\Attributes\MapOutputName;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
+#[MapOutputName(SnakeCaseMapper::class)]
 class TagData extends Data
 {
     /**
