@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Language;
 use App\Traits\FilterByProject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -52,6 +53,7 @@ class Tag extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'lang' => Language::class,
         'is_published' => 'bool',
         'views_count'  => 'int',
         'created_at'   => 'datetime',

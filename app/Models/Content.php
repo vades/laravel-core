@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
+use App\Enums\Language;
 use App\Traits\FilterByProject;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -88,6 +89,7 @@ class Content extends Model
         'status' => ContentStatus::class,
         'content_type' => ContentContentType::class,
         'visibility' => ContentVisibility::class,
+        'lang' => Language::class,
         'metadata' => 'array',
         'is_featured' => 'boolean',
         'position' => 'integer',

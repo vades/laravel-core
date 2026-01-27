@@ -173,10 +173,12 @@ class ProjectContentService
                 'userId' => $object->matter('user_id') ?? 1,
                 'authorId' => $object->matter('author_id'),
                 'parentId' => $this->getParentId($object->matter('parent_id'), $contentTypeStr),
-                'contentType' => ContentContentType::tryFrom($contentTypeStr) ?? ContentContentType::Article,
-                'status' => $object->matter('is_published') ? ContentStatus::Published : ContentStatus::Draft,
-                'visibility' => ContentVisibility::tryFrom($object->matter('visibility') ?? 'public') ?? ContentVisibility::Public,
-                'lang' => $object->matter('lang') ?? 'en',
+                'contentType' => ContentContentType::tryFrom($contentTypeStr) ?? ContentContentType::Article->value,
+                'status' => ContentStatus::tryFrom($object->matter('status') ?? 'draft') ??
+                    ContentStatus::Draft->value,
+                'visibility' => ContentVisibility::tryFrom($object->matter('visibility') ?? 'public') ??
+                    ContentVisibility::Public->value,
+               'lang' => $object->matter('lang') ?? Language::EN->value,
                 'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
                 'title' => (string)$object->matter('title'),
                 'subtitle' => $object->matter('subtitle'),
@@ -217,8 +219,6 @@ class ProjectContentService
             ->value('id');
     }
 
-    private function storeContent(ContentData $dto): void {}
-
     private function getCategories(string $categories, Content $content):array {
         $categorySlugs = array_map('trim', explode(',', $categories));
         $categoryIds= [];
@@ -229,7 +229,7 @@ class ProjectContentService
                 if (!$category) {
                     continue;
                 }
-                $this->success[] = 'Found  category slug ' . $slug . ' | content slug "'.$content->slug;
+                $this->success[] = 'Found  category slug: ' . $slug . ' | content slug "'.$content->slug;
                 $categoryIds[] = $category->id;
             } catch (Exception $e) {
                 $this->errors[] = "Category Save Error: " . $e->getMessage();
@@ -250,7 +250,7 @@ class ProjectContentService
                 $dto = TagData::from([
                                          'projectId' => $content->project_id,
                                          'contentType' => $content->content_type,
-                                         'lang' => $content->lang,
+                                         'lang' => $content->lang->value,
                                          'name' => $tagName,
                                      ]);
 
@@ -270,64 +270,6 @@ class ProjectContentService
             }
         }
         return $tagIds;
-    }
-
-    /**
-     * Handle Category specific import
-     */
-    private function handleCategoryImport(int $projectId, Document $object): void
-    {
-        try {
-            $data = [
-                'uuid' => $object->matter('uuid') ?? (string)Str::uuid(),
-                'projectId' => $projectId,
-                'parentId' => $object->matter('parent_id'),
-                'status' => $object->matter('is_published') ? ContentStatus::PUBLISHED : ContentStatus::DRAFT,
-                'visibility' => ContentVisibility::PUBLIC,
-                'contentType' => ContentContentType::CATEGORY,
-                'position' => (int)($object->matter('position') ?? 0),
-                'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
-                'lang' => Language::tryFrom($object->matter('lang') ?? 'en') ?? Language::EN,
-                'title' => (string)$object->matter('title'),
-                'excerpt' => $object->matter('description'),
-            ];
-            $data['metadata'] = $this->extractMetadata($object, array_keys($data));
-
-            $dto = CategoryData::from($data);
-
-            Category::updateOrCreate(
-                ['slug' => $dto->slug, 'project_id' => $dto->projectId],
-                $dto->toArray()
-            );
-
-            $this->success[] = "Imported Category: {$dto->title}";
-        } catch (Exception $e) {
-            $this->errors[] = "Category Save Error: " . $e->getMessage();
-        }
-    }
-
-    /**
-     * Handle Tag specific import
-     */
-    private function handleTagImport(int $projectId, Document $object): void
-    {
-        try {
-            $dto = TagData::from([
-                                     'projectId' => $projectId,
-                                     'contentType' => ContentContentType::TAG,
-                                     'lang' => $object->matter('lang') ?? 'en',
-                                     'name' => $object->matter('title') ?? $object->matter('name'),
-                                 ]);
-
-            Tag::updateOrCreate(
-                ['name' => $dto->name, 'project_id' => $dto->projectId],
-                $dto->toArray()
-            );
-
-            $this->success[] = "Imported Tag: {$dto->name}";
-        } catch (Exception $e) {
-            $this->errors[] = "Tag Save Error: " . $e->getMessage();
-        }
     }
 
     /**
