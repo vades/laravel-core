@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
                 'metadata' => ['url' => 'www.ivnbg.com'],
             ],
             [
-                'slug' => 'Project::MartinVach->value',
+                'slug' => AppProject::MartinVach->value,
                 'excerpt' => 'martinvach.com project',
                 'metadata' => ['url' => 'www.martinvach.com'],
             ],
@@ -31,7 +31,7 @@ class ProjectSeeder extends Seeder
                 'metadata' => ['url' => 'www.myprompties.com'],
             ],
             [
-                'slug' => AppProject::MyPrompties->value,
+                'slug' => AppProject::Vades->value,
                 'excerpt' => 'vades.dev project',
                 'metadata' => ['url' => 'www.vades.dev'],
             ],
