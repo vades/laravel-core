@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
+use App\Enums\ContentVisibility;
+use App\Enums\Language;
 use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * App\Models\Category
@@ -61,6 +67,10 @@ class Category extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'status' => ContentStatus::class,
+        'content_type' => ContentContentType::class,
+        'visibility' => ContentVisibility::class,
+        'lang' => Language::class,
         'metadata' => 'array',
         'position' => 'integer',
     ];
@@ -84,5 +94,19 @@ class Category extends Model
     public function contents()
     {
         return $this->belongsToMany(Content::class);
+    }
+
+    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType =ContentContentType::Article->value): void
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        $query->where('status', ContentStatus::Published->value)
+              ->where('content_type',$value);
+    }
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+                          ->generateSlugsFrom('slug')
+                          ->saveSlugsTo('slug')
+                          ->doNotGenerateSlugsOnUpdate();
     }
 }

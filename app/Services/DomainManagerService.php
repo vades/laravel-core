@@ -9,31 +9,53 @@ use App\Models\Project;
 
 class DomainManagerService
 {
-    protected string $currentHost;
-    protected string $slug;
+    protected ?string $currentHost = null;
+    protected string $slug = 'default';
     protected ?int $projectId = null;
 
     public function __construct(Request $request)
     {
+        // In CLI mode, getHost() might return 'localhost' or an empty string.
         $this->currentHost = $request->getHost();
+
+        // Initial detection
         $this->detectSlug();
         $this->resolveProjectId();
     }
 
+    /**
+     * Manually set the slug (e.g., from an Artisan command argument).
+     * This will automatically re-resolve the project ID.
+     */
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        $this->resolveProjectId();
+
+        return $this;
+    }
+
+    /**
+     * Detect slug from host.
+     * Logic: ivnbg.com -> ivnbg, www.ivnbg.com -> ivnbg
+     */
     protected function detectSlug(): void
     {
-        // 1. Remove www.
-        $host = Str::replace('www.', '', $this->currentHost);
+        if (empty($this->currentHost) || $this->currentHost === 'localhost') {
+            return;
+        }
 
-        // 2. Explode by dot and take the first part (ivnbg.com -> ivnbg)
+        $host = Str::replace('www.', '', $this->currentHost);
         $parts = explode('.', $host);
         $this->slug = $parts[0] ?? 'default';
     }
 
+    /**
+     * Resolve the project ID based on the current slug.
+     */
     protected function resolveProjectId(): void
     {
-        // Cache the lookup forever to avoid DB queries on every request.
-        // Run 'php artisan cache:clear' if you manually change IDs in DB.
+        // We use the slug as the cache key.
         $this->projectId = Cache::rememberForever("project_id_map_{$this->slug}", function () {
             return Project::where('slug', $this->slug)->value('id');
         });
@@ -47,5 +69,14 @@ class DomainManagerService
     public function getProjectId(): ?int
     {
         return $this->projectId;
+    }
+
+    /**
+     * Allows manual override of the Project ID if needed.
+     */
+    public function setProjectId(int $projectId): self
+    {
+        $this->projectId = $projectId;
+        return $this;
     }
 }

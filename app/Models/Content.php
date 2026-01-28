@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
+use App\Enums\ContentVisibility;
+use App\Enums\Language;
 use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * App\Models\Content
@@ -52,6 +60,10 @@ class Content extends Model
      */
     protected $fillable = [
         'uuid',
+        'project_id',
+        'user_id',
+        'author_id',
+        'parent_id',
         'content_type',
         'status',
         'visibility',
@@ -65,6 +77,7 @@ class Content extends Model
         'position',
         'is_featured',
         'published_at',
+
     ];
 
     /**
@@ -73,6 +86,10 @@ class Content extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'status' => ContentStatus::class,
+        'content_type' => ContentContentType::class,
+        'visibility' => ContentVisibility::class,
+        'lang' => Language::class,
         'metadata' => 'array',
         'is_featured' => 'boolean',
         'position' => 'integer',
@@ -119,5 +136,117 @@ class Content extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class,'content_tag');
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+                          ->generateSlugsFrom('slug')
+                          ->saveSlugsTo('slug')
+                          ->doNotGenerateSlugsOnUpdate();
+    }
+    /**
+     * Get the featured image URL from metadata.
+     */
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['featuredImage'] ?? null,
+        );
+    }
+
+    /**
+     * Get the address from metadata.
+     */
+    protected function address(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['address'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Google Map Embed URL from metadata.
+     */
+    protected function googleMapEmbedUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['googleMapEmbedUrl'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Meta Title from metadata.
+     */
+    protected function metaTitle(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['metaTitle'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Meta Description from metadata.
+     */
+    protected function metaDescription(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['metaDescription'] ?? null,
+        );
+    }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('status', ContentStatus::Published->value);
+    }
+
+    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType = ContentContentType::Article->value):
+    void
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        $query->where('status', ContentStatus::Published->value)
+              ->where('content_type', $value)
+        ;
+    }
+    public function scopeIsFeatured(Builder $query): void
+    {
+        $query->where('is_featured', 1);
+    }
+
+    public function scopeNotFeatured(Builder $query): void
+    {
+        $query->where('is_featured', 0);
+    }
+
+    public function scopeFilter(Builder $query, Request $request): void
+    {
+        $query->when($request->filled('category'), function ($q) use ($request) {
+            $q->whereHas('categories', function ($q) use ($request) {
+                $q->where('slug', '=', $request->input('category'));
+            });
+        });
+        $query->when($request->filled('tag'), function ($q) use ($request) {
+            $q->whereHas('tags', function ($q) use ($request) {
+                $q->where('name', '=', $request->input('tag'));
+            });
+        });
+    }
+
+    public function nextPublishedByType(string|ContentContentType $contentType =ContentContentType::Article->value)
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        return $this->publishedByType( $value)
+                    ->where('id', '>', $this->id)
+                    ->orderBy('id')
+                    ->first();
+    }
+
+    public function previousPublishedByType(string|ContentContentType $contentType = ContentContentType::Article->value)
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        return $this->publishedByType($contentType)
+                    ->where('id', '<', $this->id)
+                    ->orderByDesc('id')
+                    ->first();
     }
 }
