@@ -1,3 +1,3 @@
 <div {{$attributes->class([])}}>
-    &copy; {{ date('Y') }} {{ config('myapp.name') }}
+    &copy; {{ date('Y') }} {{ config('app.name') }}
 </div>

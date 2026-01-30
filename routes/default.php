@@ -1,8 +1,9 @@
 <?php
 
-use App\Services\DomainManagerService;
+use App\Http\Controllers\Web\Default\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+/**
+ * Home
+ */
+Route::get('/', HomeController::class)->name('home');

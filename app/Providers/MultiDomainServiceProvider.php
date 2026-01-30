@@ -23,8 +23,8 @@ class MultiDomainServiceProvider extends ServiceProvider
 
         // 1. View System Cascade
         // Look in sites/{slug} first, then default/, then standard resources/views
-        $siteViewPath = resource_path("views/sites/{$slug}");
-        $defaultViewPath = resource_path("views/default");
+        $siteViewPath = resource_path("views/components/{$slug}");
+        $defaultViewPath = resource_path("views/components/default");
 
         if (is_dir($siteViewPath)) {
             View::getFinder()->prependLocation($siteViewPath);
