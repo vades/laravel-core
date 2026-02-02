@@ -26,16 +26,41 @@ class MultiDomainServiceProvider extends ServiceProvider
         $siteViewPath = resource_path("views/components/{$slug}");
         $defaultViewPath = resource_path("views/components/default");
 
+
         if (is_dir($siteViewPath)) {
+            View::share('globalViewPath',$siteViewPath);
             View::getFinder()->prependLocation($siteViewPath);
         }
         if (is_dir($defaultViewPath)) {
+            View::share('globalViewPath',$defaultViewPath);
             View::getFinder()->addLocation($defaultViewPath);
         }
 
         // 2. Vite Build Directory
         // Assets are served from the domain's specific build folder
         Vite::useBuildDirectory('build');
+
+
+        $customCssPath = "resources/css/{$slug}/app.css";
+        $defaultCssPath = "resources/css/default/app.css";
+
+        // We check against the absolute path to see if the file exists
+        $cssToLoad = file_exists(resource_path("css/{$slug}/app.css"))
+            ? $customCssPath
+            : $defaultCssPath;
+
+        // 2. Share it globally with all views
+        View::share('globalCssPath', $cssToLoad);
+
+        $defaultNav = $defaultViewPath . '/data/nav.php';
+        $siteNav = $siteViewPath . '/data/nav.php';
+
+        $globalNav = file_exists($siteNav)
+            ? require_once $siteNav
+            : require_once  $defaultNav;
+
+        View::share('globalNav', $globalNav);
+
 
         // 3. Routing
         // Prevent double-loading of routes

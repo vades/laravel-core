@@ -15,19 +15,12 @@
 
     <!-- Styles / Scripts -->
     <x-shared.gtag />
-
-    @php
-        $projectSlug = config('myapp.projectSlug');
-        $customCssPath = resource_path("css/{$projectSlug}/app.css");
-        $cssToLoad = file_exists($customCssPath)
-            ? "resources/css/{$projectSlug}/app.css"
-            : "resources/css/default/app.css";
-    @endphp
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite([$cssToLoad, 'resources/js/app.js'])
+        @vite([$globalCssPath, 'resources/js/app.js'])
     @else
-        @vite([$cssToLoad, 'resources/js/app.js'])
+        @vite([$globalCssPath, 'resources/js/app.js'])
     @endif
+    @livewireStyles
    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
 <body class="{{ str_replace('/', '-', request()->path()) }}">
