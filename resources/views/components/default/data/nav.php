@@ -6,28 +6,22 @@ $myAppNav = [
         'uri' => 'home',
         'isExternal' => false,
     ],
-    'blogList' => [
-        'name' => 'blogList',
-        'label' => 'blogList',
+    'articleIndex' => [
+        'name' => 'articleIndex',
+        'label' => 'articleIndex',
         'uri' => 'blog',
         'isExternal' => false,
     ],
-    'blogItem' => [
-        'name' => 'blogItem',
-        'label' => 'blogItem',
+    'articleShow' => [
+        'name' => 'articleShow',
+        'label' => 'articleShow',
         'uri' => 'blog/item-slug',
         'isExternal' => false,
-        'params' => ['postId' => 'item-slug']
+        'params' => ['slug' => 'item-slug']
     ],
-    'blogCategoryList' => [
-        'name' => 'blogCategoryList',
-        'label' => 'blogCategoryList',
-        'uri' => 'blog/categories',
-        'isExternal' => false,
-    ],
-    'blogTagList' => [
-        'name' => 'blogTagList',
-        'label' => 'blogTagList',
+    'articleTagIndex' => [
+        'name' => 'articleTagIndex',
+        'label' => 'articleTagIndex',
         'uri' => 'blog/tags',
         'isExternal' => false,
     ],
@@ -91,6 +85,7 @@ $myAppNav = [
 
 return[
     'header' => [
+        $myAppNav['articleIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
     ],

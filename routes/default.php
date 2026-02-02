@@ -18,6 +18,6 @@ Route::get('/pages/{slug}', PageController::class)->name('pageItem');
 /**
  * Blog
  */
-Route::get('/blog', [ArticleController::class, 'index'])->name('blogList');
-Route::get('/blog/tags', [ArticleController::class, 'tag'])->name('blogTagList');
-Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('blogItem');
+Route::get('/blog', [ArticleController::class, 'index'])->name('articleIndex');
+Route::get('/blog/tags', [ArticleController::class, 'tag'])->name('articleTagList');
+Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleShow');

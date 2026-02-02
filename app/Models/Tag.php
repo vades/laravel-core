@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
 use App\Enums\Language;
 use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -72,5 +75,11 @@ class Tag extends Model
     public function contents()
     {
         return $this->belongsToMany(Content::class);
+    }
+
+    public function scopeByContentType(Builder $query, string|ContentContentType $contentType =ContentContentType::Article->value): void
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        $query->where('content_type',$value);
     }
 }
