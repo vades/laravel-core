@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Project;
+use Illuminate\Support\Facades\Config;
 
 class DomainManagerService
 {
@@ -21,6 +22,7 @@ class DomainManagerService
         // Initial detection
         $this->detectSlug();
         $this->resolveProjectId();
+        Config::set('myapp.projectSlug', $this->getSlug());
     }
 
     /**
@@ -63,6 +65,10 @@ class DomainManagerService
 
     public function getSlug(): string
     {
+        $envSlug = env('MY_PROJECT_SLUG');
+        if (!empty($envSlug)) {
+            return $envSlug;
+        }
         return $this->slug;
     }
 

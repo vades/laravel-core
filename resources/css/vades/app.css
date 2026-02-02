@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@import './theme.css';
+/** 
+ * TODO Remove this file when we have a proper multi-domain architecture 
+* ! DEPRECATED
+* ? Test
+* * Test
+* @param myParam - Test parameter
+*/
+

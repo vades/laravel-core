@@ -1,15 +1,15 @@
 <?php
 
 return [
-   'myProjectSlug' => env('MY_PROJECT_SLUG'),
-    'myImportDir' => env('MY_IMPORT_DIR'),
-    'myImagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
+   'projectSlug' => env('MY_PROJECT_SLUG'),
+    'importDir' => env('MY_IMPORT_DIR'),
+    'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'projects' => [
         'ivnbg' => 1,
         'martinvach' => 2,
-        'myprompties' => 3,
+        'prompties' => 3,
     ],
-    'myAlbum' => [
+    'album' => [
         'default' => 'ivnbg',
         'dir' => [
             'source' => public_path() . '/storage/albums',

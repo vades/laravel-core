@@ -123,6 +123,4 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    require_once __DIR__.'/myapp.php',
-
 ];
