@@ -4,10 +4,14 @@ return [
    'projectSlug' => env('MY_PROJECT_SLUG'),
     'importDir' => env('MY_IMPORT_DIR'),
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
-    'projects' => [
-        'ivnbg' => 1,
-        'martinvach' => 2,
-        'prompties' => 3,
+    'image' => [
+        'featured' => 'featured.jpg',
+        'cover' => 'cover.jpg',
+        'placeholder' => [
+            'page' => 'storage/images/placeholders/page.jpg',
+            'article' => 'storage/images/placeholders/article.jpg',
+            'place' => 'storage/images/placeholders/place.jpg',
+        ],
     ],
     'album' => [
         'default' => 'ivnbg',

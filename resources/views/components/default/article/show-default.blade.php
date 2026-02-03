@@ -5,11 +5,15 @@
     <x-slot name="jumbotron">
         <x-shared.jumbotron>
             <x-shared.page-header class="text-skin-blog">
-                <x-slot name="image">
-                    <img class="md:max-w-xs border-4 border-skin-muted drop-shadow-lg"
-                         src="{{$content->image_url}}"
-                         alt="{{ $content->title }}">
-                </x-slot>
+                @if(empty($content->featured_image_url) && !empty($content->cover_image_url))
+                    <x-slot name="image">
+                        <img class="md:max-w-xs border-4 border-skin-muted drop-shadow-lg"
+                             src="{{asset($content->cover_image_url)}}"
+                             alt="{{ $content->title }}">
+                    </x-slot>
+
+                @endif
+
                 <x-slot name="title" class="text-skin-blog">
                     {{ $content->title }}
                 </x-slot>
@@ -17,7 +21,7 @@
                     {{ $content->subTitle ?? null }}
                 </x-slot>
                 <x-slot name="description">
-                    {{ $content->description ?? null }}
+                    {{ $content->excerpt ?? null }}
                 </x-slot>
                 <x-slot name="info">
                     <span class="mr-2">{{$content->user->name}}</span>
@@ -26,6 +30,14 @@
             </x-shared.page-header>
         </x-shared.jumbotron>
     </x-slot>
+
+    @if(!empty($content->featured_image_url))
+        <figure>
+            <img src="{{asset($content->featured_image_url)}}"
+                 alt="{{ $content->title }}">
+            <figcaption>The Alps in early winter.</figcaption>
+        </figure>
+    @endif
     <article class="text-skin-blog">
         {!! $markdown !!}
     </article>

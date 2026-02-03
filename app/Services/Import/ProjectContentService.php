@@ -194,9 +194,11 @@ class ProjectContentService
             ];
             $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent']);
             $data['metadata']['coverImage'] =$this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
-                                                                                   ('imageDirectory') ?? '').'/'. config('myapp.album.cover'));
+                                                                                   ('imageDirectory') ?? '').'/'.
+                                                                                   config('myapp.image.cover'));
             $data['metadata']['featuredImage'] = $this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
-                                                                                   ('imageDirectory') ?? '').'/'. config('myapp.album.featured'));
+                                                                                   ('imageDirectory') ?? '').'/'.
+                                                                                       config('myapp.image.featured'));
 
 
             $dto = ContentData::from($data);

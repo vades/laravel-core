@@ -9,11 +9,12 @@
     </x-slot>
     <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4">
         @foreach($contents as $item)
+            @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
             <a href="{{ route('articleShow',  ['slug'=>$item->slug]) }}">
                 <x-shared.card class="bg-bcg-blog sm:border border-bor-base">
                     <x-slot name="header">
                         <img class="mr-auto ml-auto"
-                             src="{{$item->image_url}}"
+                             src="{{asset($coverImage)}}"
                              alt="{{ $item->title}}">
                     </x-slot>
                     <x-slot name="body"

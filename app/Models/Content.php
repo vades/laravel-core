@@ -145,10 +145,20 @@ class Content extends Model
                           ->saveSlugsTo('slug')
                           ->doNotGenerateSlugsOnUpdate();
     }
+
+    /**
+     * Get the cover image URL from metadata.
+     */
+    protected function coverImageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['coverImage'] ?? null,
+        );
+    }
     /**
      * Get the featured image URL from metadata.
      */
-    protected function imageUrl(): Attribute
+    protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->metadata['featuredImage'] ?? null,
