@@ -200,7 +200,6 @@ class ProjectContentService
 
 
             $dto = ContentData::from($data);
-            dump($dto->toArray());
             $content = Content::updateOrCreate(
                 ['slug' => $dto->slug, 'project_id' => $dto->projectId],
                 $dto->toArray()
