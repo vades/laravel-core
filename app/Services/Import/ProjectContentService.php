@@ -102,14 +102,14 @@ class ProjectContentService
 
         foreach ($contentTypes as $typePath) {
             $contentTypeStr = basename($typePath);
-            $this->processContentType($projectId, $contentTypeStr, $typePath);
+            $this->processContentType($projectId, $contentTypeStr, $typePath, $projectName);
         }
     }
 
     /**
      * Process subdirectories like 'articles', 'categories', 'tags'.
      */
-    private function processContentType(int $projectId, string $contentTypeStr, string $path): void
+    private function processContentType(int $projectId, string $contentTypeStr, string $path,string $projectSlug): void
     {
         $files = File::files($path);
 
@@ -119,7 +119,7 @@ class ProjectContentService
             }
 
             try {
-                $this->importFile($projectId, $contentTypeStr, $file->getPathname());
+                $this->importFile($projectId, $contentTypeStr, $file->getPathname(), $projectSlug);
             } catch (Exception $e) {
                 $this->errors[] = "File error [{$file->getFilename()}]: " . $e->getMessage();
             }
@@ -129,7 +129,7 @@ class ProjectContentService
     /**
      * Parse the Markdown file and store it using the appropriate DTO.
      */
-    private function importFile(int $projectId, string $contentTypeStr, string $filePath): void
+    private function importFile(int $projectId, string $contentTypeStr, string $filePath, string $projectSlug): void
     {
         $fileContent = file_get_contents($filePath);
         if ($fileContent === false) {
@@ -143,7 +143,7 @@ class ProjectContentService
             throw new Exception("Missing required YAML front matter (title or slug).");
         }
 
-        $content = $this->handleContentImport($projectId, $contentTypeStr, $object);
+        $content = $this->handleContentImport($projectId, $contentTypeStr, $object, $projectSlug);
         if(!$content) {
             return;
         }
@@ -162,7 +162,7 @@ class ProjectContentService
     /**
      * Handle generic content (articles, posts, etc.)
      */
-    private function handleContentImport(int $projectId, string $contentTypeStr, Document $object): ?Content
+    private function handleContentImport(int $projectId, string $contentTypeStr, Document $object,string $projectSlug): ?Content
     {
         $content = null;
         try {
@@ -193,10 +193,14 @@ class ProjectContentService
                 'publishedAt' => $object->matter('published_at') ? Carbon::parse($object->matter('published_at')) : null,
             ];
             $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent']);
+            $data['metadata']['coverImage'] =$this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
+                                                                                   ('imageDirectory') ?? '').'/'. config('myapp.album.cover'));
+            $data['metadata']['featuredImage'] = $this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
+                                                                                   ('imageDirectory') ?? '').'/'. config('myapp.album.featured'));
 
 
             $dto = ContentData::from($data);
-
+            dump($dto->toArray());
             $content = Content::updateOrCreate(
                 ['slug' => $dto->slug, 'project_id' => $dto->projectId],
                 $dto->toArray()
@@ -207,6 +211,16 @@ class ProjectContentService
             $this->errors[] = "Content Save Error [{$object->matter('title')}]: " . $e->getMessage();
         }
         return $content;
+    }
+
+    private function getContentImageUrl(string $projectSlug,string $contentType,string $filename): ?string
+    {
+        $imagePath = storage_path('app/public/' . $projectSlug . '/images/' . $contentType . '/' . $filename);
+        if (File::exists($imagePath)) {
+            return 'storage/' . $projectSlug . '/images/' . $contentType . '/' . $filename;
+        }
+        return null;
+
     }
 
     private function getParentId(string|null $parentSlug, string $contentType): ?int
