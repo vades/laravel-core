@@ -8,7 +8,7 @@
         </x-shared.jumbotron>
     </x-slot>
     <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4">
-        @foreach($contents as $item)
+        @foreach($page->contents as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
             <a href="{{ route('articleShow',  ['slug'=>$item->slug]) }}">
                 <x-shared.card class="bg-bcg-blog sm:border border-bor-base">
@@ -39,7 +39,7 @@
         @endforeach
     </section>
     <section class="flex justify-center mt-8">
-        {!! $contents->links() !!}
+        {!! $page->contents->links() !!}
 
         {{-- <x-utils.pagination class="flex justify-center mt-8" /> --}}
     </section>

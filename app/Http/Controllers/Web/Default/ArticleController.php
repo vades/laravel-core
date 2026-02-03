@@ -26,12 +26,12 @@ class ArticleController extends Controller
             'metaTitle' => 'Blog List - Page Meta Title',
             'keywords' => 'Blog, List, ,Page, keywords',
             'metaDescription' => 'Blog List - Page meta description',
+            'contents' => $contents,
         ];
 
         return view(
             'article.index',
             [
-                'contents' => $contents,
                 'page' => $page
             ]
         );
@@ -44,7 +44,6 @@ class ArticleController extends Controller
     public function show(string $id): View
     {
         $content =  Content::publishedByType()->where('slug', $id)->with('user')->firstOrFail();
-        //$content =  Content::publishedByType()->where('slug', $id)->firstOrFail();
         $nextContent= $content->nextPublishedByType(ContentContentType::Article);
         $viewMode=$content['viewMode'] ?? 'default';
         $postImages = null;
@@ -54,17 +53,9 @@ class ArticleController extends Controller
         }*/
 
         $previousContent= $content->previousPublishedByType(ContentContentType::Article);
-        $page = (object)[
-            'title' => $content['title'],
-            'subtitle' => $content['subTitle'],
-            'metaTitle' => $content['metaTitle'],
-            'keywords' => $content['keywords'] ?? null,
-            'metaDescription' => $content['metaDescription'],
-        ];
         return view('article.show-' .$viewMode, [
-            'content' =>  $content,
             'markdown' =>  Str::of($content->content)->markdown(),
-            'page' => $page,
+            'page' => $content,
             'nextContent' => $nextContent? route('articleShow',  ['slug'=>$nextContent->slug]) : null,
             'previousContent' => $previousContent? route('articleShow',  ['slug'=>$previousContent->slug]) : null,
             'postImages' => $postImages
@@ -80,10 +71,10 @@ class ArticleController extends Controller
             'metaTitle' => 'Blog Tag - Page Meta Title',
             'keywords' => 'Blog, Tag, Page, keywords',
             'metaDescription' => 'Blog Tag - Page meta description',
+            'tags' => $tags,
         ];
         return view('article.tags', [
-            'page' => $page,
-            'tags' => $tags
+            'page' => $page
         ]);
     }
 }
