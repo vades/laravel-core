@@ -1,18 +1,26 @@
-<section class="flex flex-col md:flex-row md:items-start">
-    @if(isset($page->imageUrl) && !empty($page->imageUrl))
-        <figure class="mb-3 md:mr-3">
-            <img class="md:max-w-xs border-4 border-skin-muted drop-shadow-lg"
-                 src="{{$page->imageUrl}}"
-                 alt="{{ $page->title }}">
-        </figure>
+@inject('carbon', 'Carbon\Carbon')
+<x-shared.page-header>
+    @if(empty($page->featured_image_url) && !empty($page->cover_image_url))
+        <x-slot name="image">
+            <img src="{{asset($page->cover_image_url)}}"  alt="{{ $page->title }}">
+        </x-slot>
+
     @endif
-    <div>
-        <h1 class="text-3xl mb-2">{{ $page->title }}</h1>
-        @if(isset($page->subtitle) && !empty($page->subtitle))
-            <h2 class="text-xl mb-2">{{ $page->subtitle }}</h2>
+
+    <x-slot name="title">
+        {{ $page->title }}
+    </x-slot>
+    <x-slot name="subtitle">
+        {{ $page->subtitle ?? null }}
+    </x-slot>
+    <x-slot name="description">
+        {{ $page->excerpt ?? null }}
+    </x-slot>
+        @if(isset($page->user->name))
+            <x-slot name="info">
+                <span class="mr-2">{{$page->user->name}}</span>
+                <span class="posts-date">{{ $carbon::parse($page->createdAt)->format('Y-m-d') }}</span>
+            </x-slot>
         @endif
-        @if(isset($page->description) && !empty($page->description))
-            <div class="font-bold my-2">{{ $page->description }}</div>
-        @endif
-    </div>
-</section>
+
+</x-shared.page-header>

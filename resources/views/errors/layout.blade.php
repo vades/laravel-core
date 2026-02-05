@@ -3,15 +3,15 @@
 <head>
     <title>@yield('title', 'Error')</title>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/' . config('myapp.project') . '/app.css', 'resources/js/app.js'])
+        @vite([$globalCssPath, 'resources/js/app.js'])
     @else
-        @vite(['resources/css/' . config('myapp.project') . '/app.css', 'resources/js/app.js'])
+        @vite([$globalCssPath, 'resources/js/app.js'])
     @endif
 </head>
 <body class="flex items-center justify-center min-h-screen text-base bg-bcg-body">
 <section class="text-center max-w-[600px]">
     <header class="flex justify-center mb-8">
-        <x-utils.img-svg img="error" classList="logo [&>svg]:max-w-[300px] [&>svg]:max-h-[300px]" />
+        <x-shared.img-svg img="error" classList="logo [&>svg]:max-w-[300px] [&>svg]:max-h-[300px]" />
         {{-- <a href="{{ route('home') }}"> <span>{{ config('myapp.name') }}</span></a> --}}
     </header>
     <article>
