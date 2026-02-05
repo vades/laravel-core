@@ -61,20 +61,4 @@ class ArticleController extends Controller
             'postImages' => $postImages
         ]);
     }
-
-    public function tag()
-    {
-        $tags = Tag::ByContentType()->withCount('contents')->where('contents_count','>',0)->get();
-        $page = (object)[
-            'title' => 'Blog Tag title',
-            'subtitle' => 'Blog Tag subtitle',
-            'metaTitle' => 'Blog Tag - Page Meta Title',
-            'keywords' => 'Blog, Tag, Page, keywords',
-            'metaDescription' => 'Blog Tag - Page meta description',
-            'tags' => $tags,
-        ];
-        return view('article.tags', [
-            'page' => $page
-        ]);
-    }
 }
