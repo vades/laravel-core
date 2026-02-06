@@ -21,7 +21,7 @@
     @if($page->tags->isNotEmpty())
         <section class="mt-4 flex gap-2 flex-wrap">
             @foreach($page->tags as $tag)
-                <a href="{{ route('articleTagList', ['tag' => $tag->slug]) }}">
+                <a href="{{ route('articleIndex', ['tag' => $tag->name]) }}">
                     <x-shared.badge>{{ $tag->name }}</x-shared.badge>
                 </a>
             @endforeach

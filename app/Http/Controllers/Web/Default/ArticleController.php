@@ -18,21 +18,17 @@ class ArticleController extends Controller
      */
     public function index(Request $request): View
     {
+        $contentType = basename($request->path());
+        $meta =  Content::publishedByType(ContentContentType::Meta)->where('slug',$contentType)->firstOrFail();
+
         $contents = Content::publishedByType()->filter($request)->orderBy('created_at','desc')
                      ->paginate(20);
-        $page = (object)[
-            'title' =>__('blogList'),
-            'subtitle' => null,
-            'metaTitle' => 'Blog List - Page Meta Title',
-            'keywords' => 'Blog, List, ,Page, keywords',
-            'metaDescription' => 'Blog List - Page meta description',
-            'contents' => $contents,
-        ];
 
         return view(
             'article.index',
             [
-                'page' => $page
+                'page' => $meta,
+                'articles' => $contents ?? [],
             ]
         );
     }
@@ -41,21 +37,21 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): View
+    public function show(string $slug): View
     {
-        $content =  Content::publishedByType()->where('slug', $id)->with('user')->firstOrFail();
-        $nextContent= $content->nextPublishedByType(ContentContentType::Article);
-        $viewMode=$content['viewMode'] ?? 'default';
+        $article =  Content::publishedByType()->where('slug', $slug)->with('user')->firstOrFail();
+        $nextContent= $article->nextPublishedByType(ContentContentType::Article);
+        $viewMode=$article['viewMode'] ?? 'default';
         $postImages = null;
     /*    if($content['eventDirectory'] !== null){
             $postImages = collect(AlbumService::fetchPostImages())->where('directory', $content['eventDirectory'])->values()
                                                                   ->toArray();
         }*/
 
-        $previousContent= $content->previousPublishedByType(ContentContentType::Article);
+        $previousContent= $article->previousPublishedByType(ContentContentType::Article);
         return view('article.show-' .$viewMode, [
-            'markdown' =>  Str::of($content->content)->markdown(),
-            'page' => $content,
+            'markdown' =>  Str::of($article->content)->markdown(),
+            'page' => $article,
             'nextContent' => $nextContent? route('articleShow',  ['slug'=>$nextContent->slug]) : null,
             'previousContent' => $previousContent? route('articleShow',  ['slug'=>$previousContent->slug]) : null,
             'postImages' => $postImages

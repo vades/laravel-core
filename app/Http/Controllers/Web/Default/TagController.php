@@ -13,19 +13,15 @@ use Illuminate\View\View;
 class TagController extends Controller
 {
 
-    public function index(string $contentType): View
+    public function index(Request $request): View
     {
+        $contentType = basename($request->path());
+        $meta =  Content::publishedByType(ContentContentType::Meta)->where('slug','tags-'. $contentType)->firstOrFail();
         $tags = Tag::ByContentType($contentType)->withCount('contents')->where('contents_count','>',0)->get();
-        $page = (object)[
-            'title' => 'Blog Tag title',
-            'subtitle' => 'Blog Tag subtitle',
-            'metaTitle' => 'Blog Tag - Page Meta Title',
-            'keywords' => 'Blog, Tag, Page, keywords',
-            'metaDescription' => 'Blog Tag - Page meta description',
-            'tags' => $tags,
-        ];
         return view('tag.index', [
-            'page' => $page
+            'page' => $meta,
+            'tags' => $tags ?? [],
+            'routeName' => $contentType . 'Index',
         ]);
     }
 }

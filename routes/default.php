@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Default\ArticleController;
 use App\Http\Controllers\Web\Default\HomeController;
 use App\Http\Controllers\Web\Default\PageController;
+use App\Http\Controllers\Web\Default\TagController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -24,4 +25,4 @@ Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleSho
 /**
  * Tags
  */
-Route::get('/tag/article', [ArticleController::class, 'tag'])->name('tagArticle');
+Route::get('/tags/article', [TagController::class, 'index'])->name('tagArticle');
