@@ -14,10 +14,16 @@ class PageController extends Controller
      */
     public function __invoke(string $slug): View
     {
-        $content = Content::publishedByType('page')->where('slug', $slug)->firstOrFail();
+        $page = Content::publishedByType('page')->where('slug', $slug)->firstOrFail();
+        $viewData = [
+            'typee' =>'test', // This maps to :pcontentType="$typee"
+            'user'  => auth()->user(), // This would map to :user="$user"
+            'now'   => now(),
+        ];
         return view('page.index', [
-            'markdown' =>  Str::of($content->content)->markdown(),
-            'page' => $content,
+            'markdown' =>  Str::of($page->content)->markdown(),
+            'renderedBody' => $page->renderContent($viewData),
+            'page' => $page,
         ]);
     }
 }

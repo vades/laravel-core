@@ -20,7 +20,7 @@
             <figcaption>The Alps in early winter.</figcaption>
         </figure>
     @endif
-    <article>
-        {!! $markdown !!}
-    </article>
+    <div class="content-wrapper">
+        {!! $renderedBody !!}
+    </div>
 </x-default.layout>
