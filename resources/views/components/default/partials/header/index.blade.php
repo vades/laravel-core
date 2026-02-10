@@ -4,7 +4,7 @@
             <x-default.partials.header.brand class="flex items-center gap-8"/>
         </div>
         <div class="flex-1 mx-4">
-            {{-- @livewire('search-autocomplete') --}}
+            <livewire:widgets.search-suggestion :contentType="['article']" :placeholderText="'Search in blog'"/>
         </div>
         <div>
             <x-default.partials.header.nav />
