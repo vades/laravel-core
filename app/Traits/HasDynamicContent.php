@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Traits;
 
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ trait HasDynamicContent
      * @param string $column The database column name (e.g., 'content')
      * @return string
      */
-    public function renderContent(array $data = [],string $column = 'content'): string
+    public function renderContent(array $data = [], string $column = 'content'): string
     {
         $raw = $this->{$column};
 
@@ -21,7 +22,17 @@ trait HasDynamicContent
             return '';
         }
 
-        $html = Blade::render($raw , $data);
-        return Str::markdown($html);
+        // 1. Render the Blade tags first
+        $renderedBlade = Blade::render($raw, $data);
+
+        /**
+         * 2. Fix: Remove leading indentation.
+         * We use regex to remove spaces/tabs from the start of every line.
+         * This prevents Markdown from turning indented HTML into <pre><code> blocks.
+         */
+        $cleanedHtml = preg_replace('/^[ \t]+/m', '', $renderedBlade);
+
+        // 3. Render as Markdown
+        return Str::markdown($cleanedHtml);
     }
 }

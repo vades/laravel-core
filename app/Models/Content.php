@@ -167,6 +167,16 @@ class Content extends Model
     }
 
     /**
+     * Get the featured image URL from metadata.
+     */
+    protected function livewireWidget(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['livewireWidget'] ?? null,
+        );
+    }
+
+    /**
      * Get the address from metadata.
      */
     protected function address(): Attribute

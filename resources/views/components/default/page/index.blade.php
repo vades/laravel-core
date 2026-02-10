@@ -23,4 +23,7 @@
     <div class="content-wrapper">
         {!! $renderedBody !!}
     </div>
+    @if(!empty($page->livewireWidget) && $page->livewireWidget === 'contact-form')
+    <livewire:widgets.contact-form />
+    @endif
 </x-default.layout>
