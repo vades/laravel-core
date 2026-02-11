@@ -82,13 +82,16 @@ class DomainManagerService
     }
 
     /**
-     * Extract the slug from the first part of the host
+     * Extract the slug from the host with extension
+     * Replaces all dots with hyphens (e.g., domain-name.com -> domain-name-com)
      */
     private function extractSlugFromHost(string $host): string
     {
-        $parts = explode('.', $host);
+        if (empty($host)) {
+            return self::DEFAULT_SLUG;
+        }
 
-        return $parts[0] ?? self::DEFAULT_SLUG;
+        return Str::replace('.', '-', $host);
     }
 
     /**

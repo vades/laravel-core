@@ -4,6 +4,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\AppProject;
 use App\Enums\ContentContentType;
 use App\Models\Category;
 use App\Models\Project;
@@ -17,7 +18,7 @@ class CategorySeederProject extends Seeder
      */
     public function run(): void
     {
-        $vadesProjectId = Project::where('slug', 'vades')->first()->id;
+        $vadesProjectId = Project::where('slug', AppProject::Vades)->first()->id;
         $this->storeData('data/vades-article-categories.csv',  $vadesProjectId,ContentContentType::Article->value);
         /*$ivnbgProjectId = Project::where('slug', 'ivnbg')->first()->id;
         $this->storeData('data/ivnbg-categories.csv', $ivnbgProjectId,'place');*/
