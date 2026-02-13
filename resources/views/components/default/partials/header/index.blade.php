@@ -6,13 +6,13 @@
         </div>
         <div class="flex-1 mx-4">
             <livewire:widgets.search-suggestion :contentType="['article']"
-                                                :placeholderText="'Search in blog'" />
+                                                :placeholderText="__('app.search.blog')" />
 
         </div>
         <div>
             <livewire:widgets.categories-dropdown type="article"
                                                   route="articleIndex"
-                                                  label="articleCategories" />
+                                                  label="app.nav.categories" />
         </div>
         <div>
             <x-default.partials.header.nav />

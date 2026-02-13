@@ -1,5 +1,4 @@
 <nav {{$attributes->class([])}}>
-        nav
      @foreach($globalNav['header'] as $key => $val)
         <a href="{{ route($val['name'], $val['params'] ?? []) }}">{{ __($val['label'] ?? '') }}</a>
     @endforeach

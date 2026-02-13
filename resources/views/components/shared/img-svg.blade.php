@@ -1,7 +1,7 @@
 @php
 
     $img = $img ?? '';
-   $fullPath = 'assets/img/svg/' . $img . '.svg';
+   $fullPath = storage_path('app/public/images/svg/' . $img . '.svg');
 @endphp
 <span class="{{$classList ?? ''}}">
 @if(file_exists($fullPath))

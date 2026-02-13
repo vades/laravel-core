@@ -8,20 +8,20 @@ $myAppNav = [
     ],
     'articleIndex' => [
         'name' => 'articleIndex',
-        'label' => 'articleIndex',
+        'label' => 'app.nav.articleIndex',
         'uri' => 'blog',
         'isExternal' => false,
     ],
     'articleShow' => [
         'name' => 'articleShow',
-        'label' => 'articleShow',
+        'label' => 'app.nav.articleShow',
         'uri' => 'blog/item-slug',
         'isExternal' => false,
         'params' => ['slug' => 'item-slug']
     ],
-    'articleTagIndex' => [
-        'name' => 'articleTagIndex',
-        'label' => 'articleTagIndex',
+    'tagArticle' => [
+        'name' => 'tagArticle',
+        'label' => 'app.nav.tags',
         'uri' => 'blog/tags',
         'isExternal' => false,
     ],
@@ -67,7 +67,7 @@ $myAppNav = [
     ],
     'contact' => [
         'name' => 'pageItem',
-        'label' => 'contact',
+        'label' => 'app.nav.contact',
         'hasIcon' => 'contact',
         'uri' => 'contact',
         'isExternal' => false,
@@ -75,21 +75,25 @@ $myAppNav = [
     ],
     'about' => [
         'name' => 'pageItem',
-        'label' => 'about',
+        'label' => 'app.nav.about',
         'hasIcon' => 'info-circle',
-        'uri' => 'about',
+        'uri' => 'nav.about',
         'isExternal' => false,
         'params' => ['slug' => 'about'],
     ],
 ];
 
 return[
+    'slogan' => 'Laravel demo project',
     'header' => [
         $myAppNav['articleIndex'],
+        $myAppNav['tagArticle'],
         $myAppNav['about'],
         $myAppNav['contact'],
     ],
     'footer' => [
+        $myAppNav['articleIndex'],
+        $myAppNav['tagArticle'],
         $myAppNav['about'],
         $myAppNav['contact'],
     ],

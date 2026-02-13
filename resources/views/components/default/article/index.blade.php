@@ -35,7 +35,7 @@
                     <x-slot name="footer"
                             class="p-3">
                         <div class="text-center pb-3">
-                            <span class="button">{{__('readMore')}}</span>
+                            <span class="button">{{__('app.nav.readMore')}}</span>
                         </div>
                     </x-slot>
                 </x-shared.card>
