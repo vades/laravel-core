@@ -39,7 +39,6 @@ class GenerateDefaultSitemap extends Command
     public function handle(): void
     {
         $baseUrl ='http://laravel-core.test';
-        $projectSlug = AppProject::LaravelCore->value;
         $this->domainManager->setSlug(AppProject::LaravelCore->value);
         $projectId = $this->domainManager->getProjectId();
         config(['app.project_id' => $projectId]);

@@ -18,32 +18,38 @@ class ProjectSeeder extends Seeder
             [
                 'slug' =>AppProject::Ivnbg->value,
                 'excerpt' => 'ivnbg.com project',
-                'metadata' => ['url' => 'www.ivnbg.com'],
+              'url' => 'https://www.ivnbg.com',
+                'metadata' => [ ],
             ],
             [
                 'slug' => AppProject::MartinVach->value,
                 'excerpt' => 'martinvach.com project',
-                'metadata' => ['url' => 'www.martinvach.com'],
+                'url' => 'https://www.martinvach.com',
+                'metadata' => [ ],
             ],
             [
                 'slug' => AppProject::MyPrompties->value,
                 'excerpt' => 'myprompties.com project',
-                'metadata' => ['url' => 'www.myprompties.com'],
+                'url' => 'https://www.myprompties.com',
+                'metadata' => [ ],
             ],
             [
                 'slug' => AppProject::Vades->value,
                 'excerpt' => 'vades.dev project',
-                'metadata' => ['url' => 'www.vades.dev'],
+                'url' => 'https://www.vades.dev',
+                'metadata' => [ ],
             ],
             [
                 'slug' => AppProject::Aitomatix->value,
                 'excerpt' => 'aitomatix.com project',
-                'metadata' => ['url' => 'www.aitomatix.com'],
+                'url' => 'https://www.aitomatix.com',
+                'metadata' => [ ],
             ],
             [
                 'slug' => AppProject::LaravelCore->value,
                 'excerpt' => 'laravel-core.test project. Only for local testing purposes.',
-                'metadata' => null,
+                'url' => 'http://laravel-core.test',
+                    'metadata' => [ ],
             ],
         ];
 
