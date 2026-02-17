@@ -62,9 +62,3 @@ h3{
 }
 
 /* endregion */
-
-/* region Effects */
-.has-transition{
-    @apply transform transition-transform duration-300 hover:scale-110;
-}
-/* endregion */

@@ -1,4 +1,3 @@
-<div {{$attributes->class(['alert-message'])}}
-     role="alert">
-    <div class="font-medium">{{ $slot }}</div>
+<div {{$attributes->class(['alert'])}} role="alert">
+    <div class="alert-message">{{ $slot }}</div>
 </div>

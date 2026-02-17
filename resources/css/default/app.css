@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './theme.css';
 @import '../shared/base.css';
+@import '../shared/utils.css';
 @import '../shared/header.css';
 @import '../shared/supplementary.css';
 @import '../shared/footer.css';
@@ -8,6 +9,8 @@
 @import '../shared/button.css';
 @import '../shared/dropdown.css';
 @import '../shared/search.css';
+@import '../shared/badge.css';
+@import '../shared/alert.css';
 
 /* Custom styles for the default domain */
 @import '../shared/card.css';
