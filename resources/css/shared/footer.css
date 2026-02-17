@@ -1,0 +1,6 @@
+.footer-brand {
+    @apply text-sm text-footer;
+}
+.footer-nav {
+    @apply text-sm flex [&>a]:pl-2 [&>a]:pl-4 [&>a]:text-footer [&>a]:hover:text-footer-muted;
+}

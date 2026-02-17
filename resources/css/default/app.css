@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @import './theme.css';
-@import './layout.css';
+@import '../shared/layout.css';
+@import '../shared/header.css';
+@import '../shared/supplementary.css';
+@import '../shared/footer.css';
 /** 
  * TODO Remove this file when we have a proper multi-domain architecture 
 * ! DEPRECATED
