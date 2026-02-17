@@ -24,19 +24,51 @@
    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
 <body class="{{ str_replace('/', '-', request()->path()) }}">
-<div id="root" class="min-h-screen flex flex-col">
-    <x-default.partials.header />
-     @if(isset($jumbotron) && !empty($jumbotron))
-        <section>{{ $jumbotron }}</section>
-    @endif
-    <main class="container mx-auto mb-auto  p-6 mb-6">
-        {{ $slot }}
-    </main>
-    @if(config('myapp.hasSupplementary'))
-        <x-default.partials.supplementary />
-    @endif
+<div id="root">
+{{-- #region Header --}}
+<header id="header">
+    <section class="header-container">
+        <div>
+            <x-default.partials.header.brand class="header-brand" />
+        </div>
+        <div class="header-search">
+            <livewire:widgets.search-suggestion :contentType="['article']"
+                                                :placeholderText="__('app.search.blog')" />
 
-    <x-default.partials.footer />
+        </div>
+        <div>
+            <livewire:widgets.categories-dropdown type="article"
+                                                  route="articleIndex"
+                                                  label="app.nav.categories" />
+        </div>
+        <div>
+            <x-default.partials.header.nav class="header-nav"/>
+        </div>
+    </section>
+</header>
+{{-- #endregion Header --}}
+ @if(isset($jumbotron) && !empty($jumbotron))
+    <section>{{ $jumbotron }}</section>
+@endif
+<main>
+    {{ $slot }}
+</main>
+    <section id="supplementary">
+        <div class="supplementary-container">
+            suplementary
+            {{--   <x-web.ivnbg.partials.supplementary.blog />
+              <x-web.ivnbg.partials.supplementary.place />
+              <x-web.ivnbg.partials.supplementary.album /> --}}
+        </div>
+
+    </section>
+
+<footer id="footer">
+    <section class="footer-container">
+        <x-default.partials.footer.brand class="footer-brand"/>
+        <x-default.partials.footer.nav class="footer-nav" />
+    </section>
+</footer>
 
 </div>
 @livewireScripts
