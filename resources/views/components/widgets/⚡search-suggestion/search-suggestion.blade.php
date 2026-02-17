@@ -2,9 +2,9 @@
     <x-slot name="header">
 
         <div class="relative">
-            <div class="absolute inset-y-0 end-2.5 flex items-center ps-3.5 pointer-events-none">
+            <div class="search-suggestions-container">
                 <x-shared.img-svg img="search"
-                                 classList="[&>svg]:text-gray-500" />
+                                 classList="search-suggestions-icon" />
             </div>
             <input
                     type="text"
@@ -26,7 +26,7 @@
                 class="dropdown">
             <ul class="dropdown-container">
                 @foreach($results as $key => $value)
-                    <li class="dropdown-list-item {{ $selectedResult === $key ? 'bg-blue-100' : '' }}">
+                    <li class="dropdown-list-item {{ $selectedResult === $key ? 'is-selected' : '' }}">
                         <a
                                 href="#"
                                 wire:click.prevent="selectResult({{ $value->id }})"
