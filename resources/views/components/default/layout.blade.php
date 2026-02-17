@@ -41,10 +41,8 @@
     </main>
     <section id="supplementary">
         <div class="supplementary-container">
-            suplementary
-            {{--   <x-web.ivnbg.partials.supplementary.blog />
-              <x-web.ivnbg.partials.supplementary.place />
-              <x-web.ivnbg.partials.supplementary.album /> --}}
+
+            <x-default.partials.supplementary />
         </div>
 
     </section>

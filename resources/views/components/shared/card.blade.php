@@ -1,13 +1,13 @@
-<article {{$attributes->class(['flex flex-col justify-between h-full card'])}}>
+<article {{$attributes->class(['card'])}}>
     @isset($header)
-        <header {{$header->attributes->class([])}}>{{$header}}</header>
+        <div {{$header->attributes->class(['card-header'])}}>{{$header}}</div>
     @endisset
 
     @isset($body)
-        <div {{$body->attributes->class(['flex-grow'])}}>{{$body}}</div>
+        <div {{$body->attributes->class(['card-body'])}}>{{$body}}</div>
     @endisset
 
     @isset($footer)
-        <footer {{$footer->attributes->class(['mt-auto'])}}>{{$footer}}</footer>
+        <div {{$footer->attributes->class(['card-footer'])}}>{{$footer}}</div>
     @endisset
 </article>
