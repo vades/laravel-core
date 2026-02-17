@@ -10,7 +10,7 @@
 
     @isset($body)
         <!-- Dropdown menu -->
-        <div {{$body->attributes->class(['absolute left-0 top-full mt-2 w-64 bg-white shadow-lg rounded z-50 max-h-128 overflow-auto divide-y divide-gray-100'])}}
+        <div {{$body->attributes->class([''])}}
              x-show="open"
              x-transition
              style="display: none;">
