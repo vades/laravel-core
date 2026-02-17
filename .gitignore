@@ -23,3 +23,5 @@ yarn-error.log
 /.zed
 
 laradumps.yaml
+.junie
+.history

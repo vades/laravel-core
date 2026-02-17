@@ -1,8 +1,28 @@
 <?php
 
-use App\Services\DomainManagerService;
+use App\Http\Controllers\Web\Default\ArticleController;
+use App\Http\Controllers\Web\Default\HomeController;
+use App\Http\Controllers\Web\Default\PageController;
+use App\Http\Controllers\Web\Default\TagController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+/**
+ * Home
+ */
+Route::get('/', HomeController::class)->name('home');
+
+/**
+ * Pages
+ */
+Route::get('/pages/{slug}', PageController::class)->name('pageItem');
+
+/**
+ * Blog
+ */
+Route::get('/blog', [ArticleController::class, 'index'])->name('articleIndex');
+
+Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleShow');
+/**
+ * Tags
+ */
+Route::get('/tags/article', [TagController::class, 'index'])->name('tagArticle');

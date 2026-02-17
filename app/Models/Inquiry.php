@@ -43,6 +43,7 @@ class Inquiry extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'project_id',
         'is_read',
         'is_spam',
         'is_archived',

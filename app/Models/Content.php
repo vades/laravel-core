@@ -7,6 +7,7 @@ use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\Language;
 use App\Traits\FilterByProject;
+use App\Traits\HasDynamicContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,7 +53,7 @@ class Content extends Model
     use HasFactory;
     use SoftDeletes;
     use FilterByProject;
-
+    use HasDynamicContent;
     /**
      * The attributes that are mass assignable.
      *
@@ -145,13 +146,33 @@ class Content extends Model
                           ->saveSlugsTo('slug')
                           ->doNotGenerateSlugsOnUpdate();
     }
+
+    /**
+     * Get the cover image URL from metadata.
+     */
+    protected function coverImageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['coverImage'] ?? null,
+        );
+    }
     /**
      * Get the featured image URL from metadata.
      */
-    protected function imageUrl(): Attribute
+    protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->metadata['featuredImage'] ?? null,
+        );
+    }
+
+    /**
+     * Get the featured image URL from metadata.
+     */
+    protected function livewireWidget(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['livewireWidget'] ?? null,
         );
     }
 

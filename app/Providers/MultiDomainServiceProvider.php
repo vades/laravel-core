@@ -10,44 +10,139 @@ use App\Services\DomainManagerService;
 
 class MultiDomainServiceProvider extends ServiceProvider
 {
+    private string $slug;
+    private string $siteViewPath;
+    private string $defaultViewPath;
+
     public function register(): void
+    {
+        $this->registerDomainManagerService();
+    }
+
+    public function boot(DomainManagerService $domainManager): void
+    {
+        $this->initializePaths($domainManager);
+
+        $this->configureViewCascade();
+        $this->configureViteBuildDirectory();
+        $this->shareGlobalCssPath();
+        $this->shareGlobalNavigation();
+
+        // Routing is disabled due to double-loading issues
+        // $this->configureRouting();
+    }
+
+    /**
+     * Register the DomainManagerService as a singleton
+     */
+    private function registerDomainManagerService(): void
     {
         $this->app->singleton(DomainManagerService::class, function ($app) {
             return new DomainManagerService($app->request);
         });
     }
 
-    public function boot(DomainManagerService $domainManager): void
+    /**
+     * Initialize common paths used throughout the provider
+     */
+    private function initializePaths(DomainManagerService $domainManager): void
     {
-        $slug = $domainManager->getSlug();
-
-        // 1. View System Cascade
-        // Look in sites/{slug} first, then default/, then standard resources/views
-        $siteViewPath = resource_path("views/sites/{$slug}");
-        $defaultViewPath = resource_path("views/default");
-
-        if (is_dir($siteViewPath)) {
-            View::getFinder()->prependLocation($siteViewPath);
-        }
-        if (is_dir($defaultViewPath)) {
-            View::getFinder()->addLocation($defaultViewPath);
-        }
-
-        // 2. Vite Build Directory
-        // Assets are served from the domain's specific build folder
-        Vite::useBuildDirectory('build');
-
-        // 3. Routing
-        // Prevent double-loading of routes
-        /*if (!app()->has('routes_loaded_by_multidomain')) {
-            $this->registerRoutes($slug);
-            app()->instance('routes_loaded_by_multidomain', true);
-        }*/
+        $this->slug = $domainManager->getSlug();
+        $this->siteViewPath = resource_path("views/components/{$this->slug}");
+        $this->defaultViewPath = resource_path("views/components/default");
     }
-    //TODO: Does not work as expected, routes are loaded twice causing route conflicts
-    protected function registerRoutes(string $slug): void
+
+    /**
+     * Configure view cascade: site-specific → default → standard resources/views
+     */
+    private function configureViewCascade(): void
     {
-        $routeFile = base_path("routes/{$slug}.php");
+        // Add site-specific views first (highest priority)
+        if (is_dir($this->siteViewPath)) {
+            View::share('globalViewPath', $this->siteViewPath);
+            View::getFinder()->prependLocation($this->siteViewPath);
+        }
+
+        // Add default views as fallback
+        if (is_dir($this->defaultViewPath)) {
+            View::share('globalViewPath', $this->defaultViewPath);
+            View::getFinder()->addLocation($this->defaultViewPath);
+        }
+    }
+
+    /**
+     * Configure Vite to use the appropriate build directory
+     */
+    private function configureViteBuildDirectory(): void
+    {
+        Vite::useBuildDirectory('build');
+    }
+
+    /**
+     * Share the appropriate CSS path with all views
+     */
+    private function shareGlobalCssPath(): void
+    {
+        $cssPath = $this->resolveCssPath();
+        View::share('globalCssPath', $cssPath);
+    }
+
+    /**
+     * Determine which CSS file to use (site-specific or default)
+     */
+    private function resolveCssPath(): string
+    {
+        $customCssPath = "resources/css/{$this->slug}/app.css";
+        $defaultCssPath = "resources/css/default/app.css";
+
+        return file_exists(resource_path("css/{$this->slug}/app.css"))
+            ? $customCssPath
+            : $defaultCssPath;
+    }
+
+    /**
+     * Share navigation data with all views
+     */
+    private function shareGlobalNavigation(): void
+    {
+        $navigation = $this->loadNavigationData();
+        View::share('globalNav', $navigation);
+    }
+
+    /**
+     * Load navigation data from site-specific or default location
+     */
+    private function loadNavigationData(): array
+    {
+        $siteNavPath = $this->siteViewPath . '/data/nav.php';
+        $defaultNavPath = $this->defaultViewPath . '/data/nav.php';
+
+        $navPath = file_exists($siteNavPath) ? $siteNavPath : $defaultNavPath;
+
+        return require_once $navPath;
+    }
+
+    /**
+     * Configure domain-specific routing
+     *
+     * TODO: Currently disabled - routes are loaded twice causing conflicts
+     * Need to implement proper route caching or registration guard
+     */
+    private function configureRouting(): void
+    {
+        // Prevent double-loading of routes
+        if (!app()->has('routes_loaded_by_multidomain')) {
+            $this->registerRoutes();
+            app()->instance('routes_loaded_by_multidomain', true);
+        }
+    }
+
+    /**
+     * Register routes from domain-specific file or fallback to web.php
+     */
+    private function registerRoutes(): void
+    {
+        $routeFile = base_path("routes/{$this->slug}.php");
 
         if (file_exists($routeFile)) {
             ds("Loading domain route file: {$routeFile}");

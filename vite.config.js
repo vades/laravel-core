@@ -8,6 +8,7 @@ import path from 'path';
 export default defineConfig(() => {
     // Check if SITE is defined
     const site = process.env.SITE;
+    console.log(`SITE environment variable: ${site}`);
 
     // Determine the public root
     // If SITE exists, resolve to external domain. If not, use default 'public'.
@@ -15,10 +16,14 @@ export default defineConfig(() => {
         ? path.resolve(__dirname, '..', 'domains', site, 'public_html')
         : 'public';
 
+    const domainResourceDir = site || 'default';
+
+    console.log(`Using public directory: ${publicDir}`);
+
     return {
         plugins: [
             laravel({
-                input: ['resources/css/app.css', 'resources/js/app.js'],
+                input: ['resources/css/'+ domainResourceDir  + '/app.css', 'resources/js/app.js'],
                 refresh: true,
 
                 // Pass the dynamic directory here
