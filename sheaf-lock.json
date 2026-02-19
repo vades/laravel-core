@@ -1,0 +1,32 @@
+{
+    "files": {
+        "resources/js/utils.js": [
+            "dark-theme"
+        ]
+    },
+    "helpers": [],
+    "internalDependencies": {
+        "icon": [
+            "alerts",
+            "button",
+            "badge",
+            "navbar",
+            "navlist",
+            "sidebar",
+            "dropdown"
+        ],
+        "button": [
+            "badge",
+            "navbar",
+            "navlist",
+            "sidebar"
+        ],
+        "badge": [
+            "navbar",
+            "navlist"
+        ],
+        "navlist": [
+            "sidebar"
+        ]
+    }
+}

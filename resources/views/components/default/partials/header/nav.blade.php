@@ -1,5 +1,7 @@
-<nav {{$attributes->class([])}}>
-     @foreach($globalNav['header'] as $key => $val)
-        <a href="{{ route($val['name'], $val['params'] ?? []) }}">{{ __($val['label'] ?? '') }}</a>
+<x-ui.navbar class="flex-1">
+    @foreach($globalNav['header'] as $key => $val)
+        <x-ui.navbar.item icon="{{$val['icon'] ?? ''}}"
+                          label="{{ __($val['label'] ?? '') }}"
+                          href="{{ route($val['name'], $val['params'] ?? []) }}" />
     @endforeach
-</nav>
+</x-ui.navbar>

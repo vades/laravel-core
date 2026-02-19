@@ -25,3 +25,5 @@
 * * Test
 * @param myParam - Test parameter
 */
+
+@custom-variant dark (&:where(.dark, .dark *)); /* By Sheaf.dev */

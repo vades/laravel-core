@@ -1,0 +1,38 @@
+{
+    "project_hash": "719be145-7c76-47c1-8e8b-ff79c9d21513",
+    "components": {
+        "alerts": {
+            "installationTime": 1771502655
+        },
+        "icon": {
+            "installationTime": 1771502677
+        },
+        "heading": {
+            "installationTime": 1771503596
+        },
+        "badge": {
+            "installationTime": 1771503768
+        },
+        "button": {
+            "installationTime": 1771503778
+        },
+        "layout": {
+            "installationTime": 1771504877
+        },
+        "navbar": {
+            "installationTime": 1771504886
+        },
+        "sidebar": {
+            "installationTime": 1771504878
+        },
+        "navlist": {
+            "installationTime": 1771504885
+        },
+        "card": {
+            "installationTime": 1771506479
+        },
+        "dropdown": {
+            "installationTime": 1771509517
+        }
+    }
+}
