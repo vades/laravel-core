@@ -1,10 +1,10 @@
 
-    <nav  {{$attributes->class(['flex'])}}
+    <nav  {{$attributes->class(['prev-next'])}}
          aria-label="Previous and next links">
         <!-- region previous  -->
         @if(isset($prevUrl))
             <a href="{{$prevUrl}}"
-               class="button before:content-['\2039'] before::ml-2 rtl:after:rotate-180">
+               class="button prev-next-prev before:content-['\2039'] before::ml-2 rtl:after:rotate-180">
                 Previous
             </a>
         @endif
@@ -12,7 +12,7 @@
         <!-- region next  -->
         @if(isset($nextUrl))
             <a href="{{$nextUrl}}"
-               class="button after:content-['\203A'] after:ml-2 rtl:after:rotate-180">
+               class="button prev-next-prev after:content-['\203A'] after:ml-2 rtl:after:rotate-180">
                 Next
             </a>
         @endif

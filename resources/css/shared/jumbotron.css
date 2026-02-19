@@ -1,0 +1,6 @@
+.jumbotron{
+    @apply bg-bcg-jumbotron p-8;
+}
+.jumbotron-inner{
+    @apply container mx-auto px-6 ;
+}

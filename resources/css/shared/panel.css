@@ -1,0 +1,9 @@
+.panel{
+    @apply sm:flex sm:flex-row items-start gap-2 md:gap-4;
+}
+.panel-header{
+    @apply sm:w-1/3;
+}
+.panel-body{
+    @apply sm:w-2/3;
+}
