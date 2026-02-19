@@ -1,6 +1,13 @@
 <x-default.layout>
     <section>
         <h1>Home</h1>
+        <x-ui.button>
+            Button
+        </x-ui.button>
+
+        <x-ui.button variant="outline">
+            Outline
+        </x-ui.button>
 
         <x-ui.dropdown>
             <x-slot:button class="justify-center">

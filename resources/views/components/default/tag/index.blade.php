@@ -4,18 +4,18 @@
     }
 @endphp
 <x-default.layout :title="$page->metaTitle"
-                    :description="$page->metaDescription"
-                    :keywords="$page->keywords">
+                  :description="$page->metaDescription"
+                  :keywords="$page->keywords">
     <x-slot name="jumbotron">
         <x-shared.jumbotron>
             <x-default.partials.page-header :page="$page" />
         </x-shared.jumbotron>
     </x-slot>
     @foreach($tags as $tag)
-        <a href="{{ route($routeName, ['tag' => $tag->name]) }}">
-            <x-shared.badge class="block w-full sm:inline-block sm:w-1/5 mb-2 sm:mr-2" > {{ $tag->name }}
-                <x-slot name="notify">{{ $tag->contents_count }}</x-slot>
-            </x-shared.badge>
+        <a href="{{ route($routeName, ['tag' => $tag->name]) }}" class="inline-block mb-2 cursor-pointer">
+            <x-ui.badge variant="outline"
+                        size="lg"> {{ $tag->name }} ({{ $tag->contents_count }})
+            </x-ui.badge>
 
         </a>
 
