@@ -1,3 +1,3 @@
-<div {{$attributes->class([])}}>
+<x-ui.text>
     &copy; {{ date('Y') }} {{ config('app.name') }} {{ config('myapp.projectSlug') }}
-</div>
+</x-ui.text>

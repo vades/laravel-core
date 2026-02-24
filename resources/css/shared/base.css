@@ -26,12 +26,12 @@ main{
 }
 
 
-#footer{
+/*#footer{
     @apply bg-bcg-footer border-t border-bor-footer;
 }
 .footer-container{
     @apply container mx-auto text-center p-4 md:flex justify-between items-center;
-}
+}*/
 
 /* region Typo */
 h1 {

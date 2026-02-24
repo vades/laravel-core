@@ -1,1 +1,1 @@
-//import './globals/theme.js'; /* By Sheaf.dev */
+import './globals/theme.js'; /* By Sheaf.dev */

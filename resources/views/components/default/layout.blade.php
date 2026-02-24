@@ -47,13 +47,7 @@
 
     </section>
 
-    <footer id="footer">
-        <section class="footer-container">
-            <x-default.partials.footer />
-
-        </section>
-    </footer>
-
+    <x-default.partials.footer />
 </div>
 @livewireScripts
 </body>
