@@ -1,3 +1,3 @@
-<x-ui.text>
+<div>
     &copy; {{ date('Y') }} {{ config('app.name') }} {{ config('myapp.projectSlug') }}
-</x-ui.text>
+</div>

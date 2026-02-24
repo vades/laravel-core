@@ -39,13 +39,8 @@
     <main>
         {{ $slot }}
     </main>
-    <section id="supplementary">
-        <div class="supplementary-container">
 
-            <x-default.partials.supplementary />
-        </div>
-
-    </section>
+    <x-default.partials.supplementary />
 
     <x-default.partials.footer />
 </div>
