@@ -1,5 +1,5 @@
 @inject('carbon', 'Carbon\Carbon')
-<x-shared.page-header>
+<x-ui.my-page-header>
     @if(empty($page->featured_image_url) && !empty($page->cover_image_url))
         <x-slot name="image">
             <img src="{{asset($page->cover_image_url)}}"  alt="{{ $page->title }}">
@@ -23,4 +23,4 @@
             </x-slot>
         @endif
 
-</x-shared.page-header>
+</x-ui.my-page-header>

@@ -3,9 +3,9 @@
                   :description="$page->metaDescription"
                   :keywords="$page->keywords">
     <x-slot name="jumbotron">
-        <x-shared.jumbotron>
+        <x-ui.my-jumbotron>
             <x-default.partials.page-header :page="$page" />
-        </x-shared.jumbotron>
+        </x-ui.my-jumbotron>
     </x-slot>
 
     @if(!empty($page->featured_image_url))
