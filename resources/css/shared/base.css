@@ -11,13 +11,13 @@ body {
     @apply min-h-screen flex flex-col;
 }
 
-#header{
+/*#header{
     @apply text-header bg-bcg-header shadow-md;
 
-}
-.header-container{
+}*/
+/*.header-container{
     @apply container mx-auto flex justify-between items-center px-4 h-16;
-}
+}*/
 
 
 

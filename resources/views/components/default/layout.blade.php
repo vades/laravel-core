@@ -25,18 +25,15 @@
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
 <body class="{{ str_replace('/', '-', request()->path()) }}">
-<div id="root">
+<div class="min-h-screen flex flex-col bg-white dark:bg-neutral-900">
     {{-- #region Header --}}
-    <header id="header">
-        <section class="header-container">
-            <x-default.partials.header />
-        </section>
-    </header>
+    <x-default.partials.header />
+
     {{-- #endregion Header --}}
     @if(isset($jumbotron) && !empty($jumbotron))
         <section>{{ $jumbotron }}</section>
     @endif
-    <main>
+    <main class="bg-white dark:bg-neutral-900">
         {{ $slot }}
     </main>
 
