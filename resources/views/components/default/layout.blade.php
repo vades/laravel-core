@@ -24,7 +24,7 @@
     @livewireStyles
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
-<body class="{{ str_replace('/', '-', request()->path()) }}">
+<body class="m-0 text-base  {{ str_replace('/', '-', request()->path()) }}">
 <div class="min-h-screen flex flex-col bg-white dark:bg-neutral-900">
     {{-- #region Header --}}
     <x-default.partials.header />
@@ -33,7 +33,7 @@
     @if(isset($jumbotron) && !empty($jumbotron))
         <section>{{ $jumbotron }}</section>
     @endif
-    <main class="bg-white dark:bg-neutral-900">
+    <main class="container mx-auto mb-auto  p-6 mb-6 bg-white dark:bg-neutral-900">
         {{ $slot }}
     </main>
 

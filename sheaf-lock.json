@@ -13,7 +13,9 @@
             "navbar",
             "navlist",
             "sidebar",
-            "dropdown"
+            "dropdown",
+            "input",
+            "error"
         ],
         "button": [
             "badge",

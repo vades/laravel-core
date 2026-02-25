@@ -1,51 +1,49 @@
-<div class="mx-auto mt-10 bg-white p-8 rounded-lg shadow">
+<div class="mx-auto rounded-lg shadow">
     @if ($errorMessage)
-        <x-shared.alert class="is-danger" >  {{ $errorMessage }}</x-shared.alert>
+        <x-ui.alerts variant="error" icon="exclamation-circle">
+            <x-ui.alerts.description> {{ $errorMessage }}</x-ui.alerts.description>
+        </x-ui.alerts>
     @endif
     @if (session()->has('success'))
-        <x-shared.alert class="is-success" >{{ session('success') }} </x-shared.alert>
+            <x-ui.alerts variant="warning" icon="exclamation-triangle">
+                <x-ui.alerts.description>{{ session('success') }} </x-ui.alerts.description>
+            </x-ui.alerts>
     @endif
     <form wire:submit.prevent="submit">
-        <div class="form-field">
-            <label for="name" class="form-label">{{__('app.form.name')}}</label>
-            <input
-                    type="text"
-                    id="name"
+        <x-ui.fieldset>
+        <x-ui.field >
+            <x-ui.label>{{__('app.form.name')}}</x-ui.label>
+            <x-ui.input
                     wire:model="name"
+                    type="text"
                     placeholder="{{__('app.form.yourName')}}"
-                    class="form-input"
             />
-            @error('name') <span class="form-error">{{ $message }}</span> @enderror
-        </div>
-        <div class="form-field">
-            <label for="email" class="form-label">{{__('app.form.email')}}</label>
-            <input
-                    type="email"
-                    id="email"
+            <x-ui.error name="name" />
+        </x-ui.field>
+
+        <x-ui.field>
+           <x-ui.label>{{__('app.form.email')}}</x-ui.label>
+            <x-ui.input
                     wire:model="email"
+                    type="text"
                     placeholder="{{__('app.form.yourEmail')}}"
-                    class="form-input"
             />
-            @error('email') <span class="form-error">{{ $message }}</span> @enderror
-        </div>
-        <div class="form-field">
-            <label for="message" class="form-label">{{__('app.form.message')}}</label>
-            <textarea
-                    id="message"
+            <x-ui.error name="email" />
+        </x-ui.field>
+        <x-ui.field>
+            <x-ui.label>{{__('app.form.message')}}</x-ui.label>
+            <x-ui.textarea
                     wire:model="message"
                     placeholder="{{__('app.form.leaveMessage')}}"
-                    rows="5"
-                    class="form-input "
-            ></textarea>
-            @error('message') <span class="form-error">{{ $message }}</span> @enderror
+            />
+            <x-ui.error name="message" />
+        </x-ui.field>
+        </x-ui.fieldset>
+
+        <x-ui.fieldset class="mt-4">
+        <div class="flex justify-center items-center gap-4">
+            <x-ui.button type="submit" variant="outline">{{__('app.form.submit')}}</x-ui.button>
         </div>
-        <div class="form-submit">
-            <button
-                    type="submit"
-                    class="button-secondary"
-            >
-                {{__('app.form.submit')}}
-            </button>
-        </div>
+        </x-ui.fieldset>
     </form>
 </div>
