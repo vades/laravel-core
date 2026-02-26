@@ -2,10 +2,6 @@
     <x-slot name="header">
 
         <div class="relative">
-            <div class="search-suggestions-container">
-                <x-shared.img-svg img="search"
-                                 classList="search-suggestions-icon" />
-            </div>
             <x-ui.input
                     type="text"
                     class="form-input has-icon-end"
