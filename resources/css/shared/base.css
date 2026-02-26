@@ -59,8 +59,9 @@ h3{
 /* endregion */
 
 /* region Grid*/
-.base-grid{
+
+/*.base-grid{
     @apply grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4;
-}
+}*/
 
 /* endregion */

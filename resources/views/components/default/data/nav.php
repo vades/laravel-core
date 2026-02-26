@@ -3,14 +3,12 @@ $myAppNav = [
     'home' => [
         'name' => 'home',
         'label' => 'home',
-        'icon' => 'home',
         'uri' => 'home',
         'isExternal' => false,
     ],
     'articleIndex' => [
         'name' => 'articleIndex',
         'label' => 'app.nav.articleIndex',
-        'icon' => 'home',
         'uri' => 'blog',
         'isExternal' => false,
     ],
