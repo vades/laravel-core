@@ -4,7 +4,11 @@
             "dark-theme"
         ]
     },
-    "helpers": [],
+    "helpers": {
+        "popup": [
+            "autocomplete"
+        ]
+    },
     "internalDependencies": {
         "icon": [
             "alerts",
@@ -15,7 +19,8 @@
             "sidebar",
             "dropdown",
             "input",
-            "error"
+            "error",
+            "autocomplete"
         ],
         "button": [
             "badge",

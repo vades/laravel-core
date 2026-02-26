@@ -57,6 +57,12 @@
         },
         "textarea": {
             "installationTime": 1772026671
+        },
+        "autocomplete": {
+            "installationTime": 1772108775
+        },
+        "popup": {
+            "installationTime": 1772108775
         }
     }
 }
