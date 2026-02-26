@@ -28,7 +28,7 @@
         </section>
     @endif
     <section>
-        <x-shared.prev-next class="flex justify-center mt-8" :prevUrl="$previousContent" :nextUrl="$nextContent"/>
+        <x-ui.my-prev-next class="flex justify-center mt-8" :prevUrl="$previousContent" :nextUrl="$nextContent"/>
 
     </section>
 </x-default.layout>

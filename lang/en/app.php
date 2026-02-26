@@ -24,6 +24,8 @@ return [
         'address' => 'Address',
         'highlights' => 'Highlights',
         'takeMeHome' => 'Take me home',
+        'previous' => 'Previous',
+        'next' => 'Next',
     ],
 
     'search' => [
