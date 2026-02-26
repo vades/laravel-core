@@ -12,17 +12,21 @@
         <figure>
             <img src="{{asset($page->featured_image_url)}}"
                  alt="{{ $page->title }}">
-            <figcaption>The Alps in early winter.</figcaption>
+           {{--  <figcaption>The Alps in early winter.</figcaption> --}}
         </figure>
     @endif
-    <article class="text-skin-blog">
+    <div class="mb-8">
         {!! $markdown !!}
-    </article>
+    </div>
     @if($page->tags->isNotEmpty())
+        <x-ui.heading level="h2"> Tags</x-ui.heading>
         <section class="mt-4 flex gap-2 flex-wrap">
+
             @foreach($page->tags as $tag)
                 <a href="{{ route('articleIndex', ['tag' => $tag->name]) }}">
-                    <x-shared.badge>{{ $tag->name }}</x-shared.badge>
+                    <x-ui.badge variant="outline"
+                                size="lg"> {{ $tag->name }}
+                    </x-ui.badge>
                 </a>
             @endforeach
         </section>
