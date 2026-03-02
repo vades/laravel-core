@@ -1,4 +1,5 @@
 
+
 <header class="bg-white dark:bg-neutral-900 shadow-md border-b border-black/10 dark:border-white/10">
     <section class="container mx-auto flex justify-between items-center px-4 h-16">
         <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
@@ -7,13 +8,13 @@
 
         </div>
         <div>
-            <livewire:widgets.categories-dropdown type="article"
-                                                  route="articleIndex"
-                                                  label="app.nav.categories" />
+            <x-ui.my-categories-dropdown categoryType="article"
+                                        route="articleIndex"
+                                        label="app.nav.categories" />
         </div>
         <div>
             <x-default.partials.header.nav-lg />
-            <x-default.partials.header.nav-sm />
+            <x-default.partials.header.nav-sm categoryType="article"/>
         </div>
     </section>
 </header>

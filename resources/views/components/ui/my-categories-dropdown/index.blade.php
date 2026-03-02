@@ -1,3 +1,4 @@
+
 @if($categories->isNotEmpty())
     <x-ui.dropdown>
         <x-slot:button class="justify-center">
