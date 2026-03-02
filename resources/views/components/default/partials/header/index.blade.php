@@ -13,7 +13,7 @@
                                         label="app.nav.categories" />
         </div>
         <div>
-            <x-default.partials.header.nav-lg />
+            <x-default.partials.header.nav-lg tagType="article"/>
             <x-default.partials.header.nav-sm categoryType="article"/>
         </div>
     </section>

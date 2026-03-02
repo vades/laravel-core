@@ -26,6 +26,7 @@ return [
         'takeMeHome' => 'Take me home',
         'previous' => 'Previous',
         'next' => 'Next',
+        "termsAndConditions" => "Terms and Conditions",
     ],
 
     'search' => [

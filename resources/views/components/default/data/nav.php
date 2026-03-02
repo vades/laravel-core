@@ -81,6 +81,14 @@ $myAppNav = [
         'isExternal' => false,
         'params' => ['slug' => 'about'],
     ],
+    'termsAndConditions' => [
+        'name' => 'pageItem',
+        'label' => 'app.nav.termsAndConditions',
+        'hasIcon' => 'info-circle',
+        'uri' => 'nav.about',
+        'isExternal' => false,
+        'params' => ['slug' => 'terms-and-conditions'],
+    ],
 ];
 
 return[
@@ -96,5 +104,6 @@ return[
         $myAppNav['tagArticle'],
         $myAppNav['about'],
         $myAppNav['contact'],
+        $myAppNav['termsAndConditions'],
     ],
 ];
