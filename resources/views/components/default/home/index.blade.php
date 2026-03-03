@@ -1,9 +1,8 @@
 <x-default.layout>
     <x-default.home.hero />
-
     <x-default.home.features />
-    @if(isset($articless) && $articles->count() > 0)
-    <x-default.home.article-list />
+    @if($articles->isNotEmpty())
+        <x-default.home.article-list :articles="$articles"/>
     @endif
     <section>
         <h1>Home</h1>

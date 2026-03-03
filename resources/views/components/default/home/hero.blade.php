@@ -1,5 +1,6 @@
-<section {{$attributes->class([])}}>
-    <h1 class="text-4xl mb-4">Nuremberg</h1>
-    <p class="text-lg mb-4">is Bavaria’s second largest city. It is located on the Pegnitz River and it represents the cultural center of Franconia region. It used to be a place where decisions were made about numerous political events in Europe, and today is a real tourist gem.</p>
+<section {{$attributes->class(['text-center my-10'])}}>
+    <h1 class="text-4xl mb-4">The action title</h1>
+    <div class="text-lg mb-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+    <div>  <x-ui.button href="{{ route('pageItem',['slug' => 'about']) }}" variant="outline" size="lg">{{__('app.nav.readMoreAbout',['about'=> 'LARACO'])}}</x-ui.button></div>
 
 </section>

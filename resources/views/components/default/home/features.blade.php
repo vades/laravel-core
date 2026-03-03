@@ -1,4 +1,51 @@
-<section {{$attributes->class([])}}>
-    <h1 class="text-4xl mb-4">Nuremberg</h1>
-    <p class="text-lg mb-4">is Bavaria’s second largest city. It is located on the Pegnitz River and it represents the cultural center of Franconia region. It used to be a place where decisions were made about numerous political events in Europe, and today is a real tourist gem.</p>
+
+<section class="grid grid-cols-3 grid-rows-2 gap-4 my-8">
+    <x-ui.card size="xl">
+        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
+            <span>This is feature 1</span>
+        </x-ui.heading>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+    </x-ui.card>
+    <x-ui.card size="xl">
+        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
+            <span>This is feature 2</span>
+        </x-ui.heading>
+        <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+    </x-ui.card>
+    <x-ui.card size="xl">
+        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
+            <span>This is feature 3</span>
+        </x-ui.heading>
+        <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </p>
+    </x-ui.card>
+    <x-ui.card size="xl">
+        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
+            <span>This is feature 4</span>
+        </x-ui.heading>
+        <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </p>
+    </x-ui.card>
+    <x-ui.card size="xl">
+        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
+            <span>This is feature 5</span>
+        </x-ui.heading>
+        <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </p>
+    </x-ui.card>
+    <x-ui.card size="xl">
+        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
+            <span>This is feature 6</span>
+        </x-ui.heading>
+        <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </p>
+    </x-ui.card>
 </section>

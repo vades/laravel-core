@@ -1,6 +1,6 @@
-
-    <x-ui.heading level="h2" size="lg">{{__('recentPosts')}}</x-ui.heading>
-    <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4">
+@inject('carbon', 'Carbon\Carbon')
+    <x-ui.heading level="h2" size="lg" class="!text-center">{{__('app.nav.recentPosts')}}</x-ui.heading>
+    <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4 my-8">
         @foreach($articles as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
 
@@ -28,5 +28,5 @@
         @endforeach
     </section>
     <div class="text-center">
-        <x-ui.button href="{{ route('articleIndex') }}" variant="outline" class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.readMore')}}</x-ui.button>
+        <x-ui.button href="{{ route('articleIndex') }}" variant="outline" class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.allArticles')}}</x-ui.button>
        </div>
