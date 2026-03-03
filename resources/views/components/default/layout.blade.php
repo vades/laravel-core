@@ -15,7 +15,7 @@
           href="{{ rtrim(config('app.url'), '/') . '/' . ltrim(request()->getPathInfo(), '/') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" />
 
     <!-- Styles / Scripts -->
-    <x-shared.gtag />
+    <x-ui.my-gtag />
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite([$globalCssPath, 'resources/js/app.js'])
     @else
