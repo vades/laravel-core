@@ -1,6 +1,6 @@
 
 <section class="grid grid-cols-3 grid-rows-2 gap-4 my-8">
-    <x-ui.card size="xl">
+    <x-ui.card size="xl" class="my-card">
         <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
             <span>This is feature 1</span>
         </x-ui.heading>

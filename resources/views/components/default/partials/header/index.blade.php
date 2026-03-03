@@ -1,6 +1,6 @@
 
 
-<header class="bg-white dark:bg-neutral-900 shadow-md border-b border-black/10 dark:border-white/10">
+<header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10">
     <section class="container mx-auto flex justify-between items-center px-4 h-16">
         <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
         <div class="flex-1 mx-4">

@@ -1,21 +1,21 @@
 @import 'tailwindcss';
 @import './theme.css';
-@import '../shared/base.css';
-@import '../shared/utils.css';
+/*@import '../shared/base.css';
+@import '../shared/utils.css';*/
 /*@import '../shared/header.css';*/
 /*@import '../shared/supplementary.css';*/
 /*@import '../shared/footer.css';*/
 /*@import '../shared/form.css';*/
-@import '../shared/button.css';/*
+/*@import '../shared/button.css';/*
 @import '../shared/dropdown.css';*/
 /*@import '../shared/search.css';*/
 /*@import '../shared/card.css';*/
-@import '../shared/badge.css';
+/*@import '../shared/badge.css';
 @import '../shared/alert.css';
-@import '../shared/jumbotron.css';
+@import '../shared/jumbotron.css';*/
 /*@import '../shared/page-header.css';*/
-@import '../shared/prev-next.css';
-@import '../shared/panel.css';
+/*@import '../shared/prev-next.css';
+@import '../shared/panel.css';*/
 /* Custom styles for the default domain */
 
 /** 
@@ -25,5 +25,3 @@
 * * Test
 * @param myParam - Test parameter
 */
-
-@custom-variant dark (&:where(.dark, .dark *)); /* By Sheaf.dev */
