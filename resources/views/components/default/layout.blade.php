@@ -33,7 +33,7 @@
     @if(isset($jumbotron) && !empty($jumbotron))
         <section>{{ $jumbotron }}</section>
     @endif
-    <main class="container mx-auto mb-auto  p-6 mb-6 bg-white dark:bg-neutral-900">
+    <main class="container mx-auto mb-auto px-4 lg:px-0  pb-4 bg-white dark:bg-neutral-900">
         {{ $slot }}
     </main>
 

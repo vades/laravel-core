@@ -1,4 +1,4 @@
-<div class="mx-auto rounded-lg shadow">
+<div class="mx-auto mt-4">
     @if ($errorMessage)
         <x-ui.alerts variant="error" icon="exclamation-circle">
             <x-ui.alerts.description> {{ $errorMessage }}</x-ui.alerts.description>

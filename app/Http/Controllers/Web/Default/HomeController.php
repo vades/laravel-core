@@ -17,7 +17,7 @@ class HomeController extends Controller
         $articles = Content::publishedByType()
                            ->filter($request)
                            ->latest()
-                           ->take(4)
+                           ->take(6)
                            ->get();
 
         return view('home.index',  [
