@@ -13,7 +13,7 @@
         </x-ui.my-jumbotron>
     </x-slot>
     <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4">
-        @foreach($articles as $item)
+        @foreach($contents as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
 
                 <x-ui.my-card>
@@ -40,7 +40,7 @@
         @endforeach
     </section>
     <section class="flex justify-center mt-8">
-        {!! $articles->links() !!}
+        {!! $contents->links() !!}
 
         {{-- <x-utils.pagination class="flex justify-center mt-8" /> --}}
     </section>

@@ -9,7 +9,7 @@ return [
         'tags' => 'Tags',
         'search' => 'Search',
         'placeCategoryList' => 'Categories',
-        'places' => 'Places',
+        'placeIndex' => 'Places',
         'readMore' => 'Read more',
         'readMoreAbout' => 'Read more about :about',
         'articleIndex' => 'Blog',

@@ -3,7 +3,6 @@
         $page->user = null;
     }
 @endphp
-@inject('carbon', 'Carbon\Carbon')
 <x-default.layout :title="$page->metaTitle"
                   :description="$page->metaDescription"
                   :keywords="$page->keywords">
@@ -13,7 +12,7 @@
         </x-ui.my-jumbotron>
     </x-slot>
     <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4">
-        @foreach($articles as $item)
+        @foreach($contents as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.place'))
 
                 <x-ui.my-card>
@@ -25,7 +24,6 @@
                     <x-slot name="body">
 
                         <h2 class="text-2xl font-bold mb-2">  <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">{{ $item->title }} </a></h2>
-                        <p class="text-sm mb-3">{{ $carbon::parse($item->created_at)->format('Y-m-d') }}</p>
 
                         <div class="card-excerpt">
                             {{ $item->excerpt }}
@@ -40,7 +38,7 @@
         @endforeach
     </section>
     <section class="flex justify-center mt-8">
-        {!! $articles->links() !!}
+        {!! $contents->links() !!}
 
         {{-- <x-utils.pagination class="flex justify-center mt-8" /> --}}
     </section>

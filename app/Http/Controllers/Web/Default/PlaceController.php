@@ -19,14 +19,15 @@ class PlaceController extends Controller
         $contentType = basename($request->path());
         $meta =  Content::publishedByType(ContentContentType::Meta)->where('slug',$contentType)->firstOrFail();
 
-        $contents = Content::publishedByType()->filter($request)->orderBy('created_at','desc')
+        $contents = Content::publishedByType(ContentContentType::Place)->filter($request)->orderBy
+        ('created_at','desc')
                      ->paginate(20);
 
         return view(
             'place.index',
             [
                 'page' => $meta,
-                'articles' => $contents ?? [],
+                'contents' => $contents ?? [],
             ]
         );
     }
@@ -37,16 +38,16 @@ class PlaceController extends Controller
      */
     public function show(string $slug): View
     {
-        $article =  Content::publishedByType()->where('slug', $slug)->with('user')->firstOrFail();
-        $nextContent= $article->nextPublishedByType(ContentContentType::Article);
+        $content =  Content::publishedByType(ContentContentType::Place)->where('slug', $slug)->with('user')->firstOrFail();
+        $nextContent= $content->nextPublishedByType(ContentContentType::Place);
         $postImages = null;
 
-        $previousContent= $article->previousPublishedByType(ContentContentType::Article);
+        $previousContent= $content->previousPublishedByType(ContentContentType::Place);
         return view('place.show', [
-            'markdown' =>  Str::of($article->content)->markdown(),
-            'page' => $article,
-            'nextContent' => $nextContent? route('articleShow',  ['slug'=>$nextContent->slug]) : null,
-            'previousContent' => $previousContent? route('articleShow',  ['slug'=>$previousContent->slug]) : null,
+            'markdown' =>  Str::of($content->content)->markdown(),
+            'page' => $content,
+            'nextContent' => $nextContent? route('placeShow',  ['slug'=>$nextContent->slug]) : null,
+            'previousContent' => $previousContent? route('placeShow',  ['slug'=>$previousContent->slug]) : null,
             'postImages' => $postImages
         ]);
     }

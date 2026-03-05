@@ -27,9 +27,9 @@ Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleSho
 /**
  * Places
  */
-Route::get('/places', [PlaceController::class, 'index'])->name('placeIndex');
+Route::get('/place', [PlaceController::class, 'index'])->name('placeIndex');
 
-Route::get('/places/{slug}', [PlaceController::class, 'show'])->name('placeShow');
+Route::get('/place/{slug}', [PlaceController::class, 'show'])->name('placeShow');
 /**
  * Tags
  */
