@@ -1,0 +1,13 @@
+/* region Search suggestion */
+.search-suggestions {
+    @apply relative;
+}
+
+.search-suggestions-container {
+    @apply absolute inset-y-0 end-2.5 flex items-center ps-3.5 pointer-events-none;
+}
+.search-suggestions-icon {
+    @apply [&>svg]:text-gray-500;
+}
+
+/* endregion */

@@ -18,12 +18,16 @@ return [
         'seeMore' => 'See more',
         'otherPlaces' => 'Other places',
         'all' => 'All',
+        'allArticles' => 'All articles',
         'all_' => 'All :name',
         'recentPosts' => 'Recent posts',
         'listOfPlaces' => 'List of places',
         'address' => 'Address',
         'highlights' => 'Highlights',
         'takeMeHome' => 'Take me home',
+        'previous' => 'Previous',
+        'next' => 'Next',
+        "termsAndConditions" => "Terms and Conditions",
     ],
 
     'search' => [

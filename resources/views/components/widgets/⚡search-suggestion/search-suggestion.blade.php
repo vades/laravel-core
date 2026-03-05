@@ -1,12 +1,8 @@
-<x-shared.dropdown>
+<x-ui.my-dropdown>
     <x-slot name="header">
 
         <div class="relative">
-            <div class="absolute inset-y-0 end-2.5 flex items-center ps-3.5 pointer-events-none">
-                <x-shared.img-svg img="search"
-                                 classList="[&>svg]:text-gray-500" />
-            </div>
-            <input
+            <x-ui.input
                     type="text"
                     class="form-input has-icon-end"
                     placeholder="{{$placeholderText}}."
@@ -16,17 +12,17 @@
                     wire:keydown.enter="selectResult"
                     wire:keydown.arrow-down="moveSelectionDown"
                     wire:keydown.arrow-up="moveSelectionUp"
+                    suffixIcon="magnifying-glass"
             />
         </div>
     </x-slot>
     {{-- The dropdown with the search results.
             It is only shown if the query is not empty and there are search results. --}}
     @if(!empty($query) && !empty($results))
-        <x-slot name="body"
-                class="dropdown">
-            <ul class="dropdown-container">
+        <x-slot name="body" class="w-full">
+            <ul>
                 @foreach($results as $key => $value)
-                    <li class="dropdown-list-item {{ $selectedResult === $key ? 'bg-blue-100' : '' }}">
+                    <li class="block px-4 py-2 hover:dark:text-neutral-100 hover:bg-neutral-100 hover:dark:bg-neutral-700 cursor-pointer text-lg {{ $selectedResult === $key ? 'is-selected' : '' }}">
                         <a
                                 href="#"
                                 wire:click.prevent="selectResult({{ $value->id }})"
@@ -37,4 +33,4 @@
             </ul>
         </x-slot>
     @endif
-</x-shared.dropdown>
+</x-ui.my-dropdown>

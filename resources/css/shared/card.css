@@ -1,0 +1,32 @@
+.card {
+    @apply flex flex-col justify-between h-full bg-bcg-card sm:border border-bor-base;
+}
+.card-footer {
+    @apply mt-auto text-center pb-4;
+    .button{
+        @apply inline-block text-center;
+    }
+}
+.card-body{
+    @apply flex-grow px-6 py-4;
+}
+
+.card-header{
+    .card-image{
+        @apply w-full h-64 object-cover mb-4;
+    }
+}
+
+.card-title{
+    @apply  text-2xl font-bold mb-2;
+}
+
+.card-info{
+    @apply text-sm mb-3;
+}
+
+
+
+.card-excerpt{
+    @apply  mb-3;
+}

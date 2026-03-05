@@ -1,0 +1,19 @@
+#supplementary {
+    @apply p-4 bg-bcg-supplementary border-t border-bor-supplementary;
+    .supplementary-container {
+        @apply container mx-auto text-center text-sm p-4 md:flex justify-between items-center text-supplementary;
+    }
+    /* region Nav */
+    nav {
+        @apply [&>a]:pl-2;
+        .title{
+            @apply font-bold;
+        }
+        a {
+            @apply text-supplementary;
+            &:hover {
+                @apply text-supplementary-muted;
+            }
+        }
+    }
+}

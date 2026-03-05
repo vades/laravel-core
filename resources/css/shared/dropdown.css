@@ -1,0 +1,14 @@
+/* region Dropdown */
+.dropdown {
+    @apply absolute left-0 top-full mt-2 w-64 bg-white shadow-lg rounded z-50 max-h-128 overflow-auto divide-y divide-gray-100;
+    .dropdown-container {}
+    .dropdown-list-item {
+        @apply block px-4 py-2 hover:bg-gray-100 cursor-pointer text-lg;
+        &:hover {
+            @apply bg-gray-100;
+        }
+    }
+
+}
+
+/* endregion */

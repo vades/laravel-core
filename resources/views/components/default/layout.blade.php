@@ -11,33 +11,35 @@
     <title>{{ $title ??  config('myapp.metaTitle') }}</title>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{ rtrim(config('app.url'), '/') . '/' . ltrim(request()->getPathInfo(), '/') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" />
+    <link rel="canonical"
+          href="{{ rtrim(config('app.url'), '/') . '/' . ltrim(request()->getPathInfo(), '/') . (request()->getQueryString() ? '?' . request()->getQueryString() : '') }}" />
 
     <!-- Styles / Scripts -->
-    <x-shared.gtag />
+    <x-ui.my-gtag />
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite([$globalCssPath, 'resources/js/app.js'])
     @else
         @vite([$globalCssPath, 'resources/js/app.js'])
     @endif
     @livewireStyles
-   {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
+    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
-<body class="{{ str_replace('/', '-', request()->path()) }}">
-<div id="root" class="min-h-screen flex flex-col">
+<body class="m-0 text-base  {{ str_replace('/', '-', request()->path()) }}">
+<div class="min-h-screen flex flex-col bg-white dark:bg-neutral-900">
+    {{-- #region Header --}}
     <x-default.partials.header />
-     @if(isset($jumbotron) && !empty($jumbotron))
+
+    {{-- #endregion Header --}}
+    @if(isset($jumbotron) && !empty($jumbotron))
         <section>{{ $jumbotron }}</section>
     @endif
-    <main class="container mx-auto mb-auto  p-6 mb-6">
+    <main class="container mx-auto mb-auto px-4 lg:px-0  pb-4 bg-white dark:bg-neutral-900">
         {{ $slot }}
     </main>
-    @if(config('myapp.hasSupplementary'))
-        <x-default.partials.supplementary />
-    @endif
+
+    <x-default.partials.supplementary />
 
     <x-default.partials.footer />
-
 </div>
 @livewireScripts
 </body>

@@ -1,0 +1,67 @@
+/* region Layout */
+
+html, body {
+    @apply h-full max-w-full overflow-x-hidden;
+}
+
+/*body {
+    @apply m-0 text-base bg-bcg-body text-[1.2rem];
+}*/
+/*#root{
+    @apply min-h-screen flex flex-col;
+}*/
+
+/*#header{
+    @apply text-header bg-bcg-header shadow-md;
+
+}*/
+/*.header-container{
+    @apply container mx-auto flex justify-between items-center px-4 h-16;
+}*/
+
+
+/*
+
+main{
+    @apply container mx-auto mb-auto  p-6 mb-6;
+}
+*/
+
+
+/*#footer{
+    @apply bg-bcg-footer border-t border-bor-footer;
+}
+.footer-container{
+    @apply container mx-auto text-center p-4 md:flex justify-between items-center;
+}*/
+
+/* region Typo */
+/*h1 {
+    @apply text-4xl text-h1 mb-4 font-serif break-words;
+}
+
+h2{
+    @apply text-2xl text-heading mt-3 break-words;
+}
+
+h3{
+    @apply text-xl text-heading mb-1 break-words;
+}
+
+.subtitle {
+    @apply text-heading text-lg italic;
+}
+
+.perex {
+    @apply text-lg  mb-4 font-serif;
+}*/
+
+/* endregion */
+
+/* region Grid*/
+
+/*.base-grid{
+    @apply grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4;
+}*/
+
+/* endregion */

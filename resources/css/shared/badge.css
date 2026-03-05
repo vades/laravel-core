@@ -1,0 +1,11 @@
+
+/* region Button */
+.badge {
+    @apply relative inline-flex font-medium me-2 px-2.5 py-0.5 rounded border border-bor-btn;
+}
+
+.badge-notify {
+    @apply absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold bg-bcg-btn rounded-full -top-2 -end-2 border border-bor-btn;
+}
+
+/* endregion */

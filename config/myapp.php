@@ -4,9 +4,11 @@ return [
    'projectSlug' => env('MY_PROJECT_SLUG'),
     'importDir' => env('MY_IMPORT_DIR'),
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
+    'gatMeasurementId' => env('MY_GTAG_MEASUREMENT_ID'),
     'image' => [
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
+        'svgPath' => 'app/public/images/svg',
         'placeholder' => [
             'page' => 'storage/images/placeholders/page.jpg',
             'article' => 'storage/images/placeholders/article.jpg',

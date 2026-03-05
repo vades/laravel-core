@@ -1,0 +1,28 @@
+
+
+.form-field{
+    @apply mb-5;
+
+}
+.form-label{
+    @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+
+}
+.form-input {
+    @apply bg-bcg-input border focus:outline-none border-bor-input text-input text-sm rounded-sm focus:ring-blue-500 focus:border-bor-input-focus block w-full p-2.5 ;
+}
+
+.form-input.has-icon-start {
+    @apply ps-10;
+}
+.form-input.has-icon-end {
+    @apply pe-10;
+}
+
+.form-error {
+    @apply block mt-2 text-sm text-red-600 ;
+}
+
+.form-submit {
+    @apply flex justify-center items-center gap-4;
+}

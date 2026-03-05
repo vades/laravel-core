@@ -1,21 +1,20 @@
-<header id="header"
-        class="text-header bg-bcg-header shadow-md">
-    <section class="container mx-auto flex justify-between items-center px-4 h-16">
-        <div>
-            <x-default.partials.header.brand class="flex items-center gap-8" />
-        </div>
+
+
+<header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10">
+    <section class="container mx-auto flex justify-between items-center px-4 lg:px-0 h-16">
+        <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
         <div class="flex-1 mx-4">
-            <livewire:widgets.search-suggestion :contentType="['article']"
-                                                :placeholderText="__('app.search.blog')" />
+            <livewire:widgets.search-suggestion :contentType="['article']" :placeholderText="__('app.search.blog')" />
 
         </div>
-        <div>
-            <livewire:widgets.categories-dropdown type="article"
-                                                  route="articleIndex"
-                                                  label="app.nav.categories" />
+        <div class="hidden lg:inline">
+            <x-ui.my-categories-dropdown categoryType="article"
+                                        route="articleIndex"
+                                        label="app.nav.categories" />
         </div>
         <div>
-            <x-default.partials.header.nav />
+            <x-default.partials.header.nav-lg tagType="article"/>
+            <x-default.partials.header.nav-sm categoryType="article"/>
         </div>
     </section>
 </header>

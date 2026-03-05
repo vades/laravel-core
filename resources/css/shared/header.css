@@ -1,0 +1,23 @@
+.header-brand{
+    @apply flex  justify-between items-center gap-6;
+        .header-logo {
+            svg {
+                @apply w-12 h-12;
+            }
+        }
+        .header-slogan {
+            @apply hidden sm:inline text-header italic;
+        }
+
+}
+.header-search{
+    @apply flex-1 mx-4;
+}
+
+.header-nav{
+    a {
+        &:hover {
+            @apply text-link-hover;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "files": {
+        "resources/js/utils.js": [
+            "dark-theme"
+        ]
+    },
+    "helpers": {
+        "popup": [
+            "autocomplete"
+        ]
+    },
+    "internalDependencies": {
+        "icon": [
+            "alerts",
+            "button",
+            "badge",
+            "navbar",
+            "navlist",
+            "sidebar",
+            "dropdown",
+            "input",
+            "error",
+            "autocomplete"
+        ],
+        "button": [
+            "badge",
+            "navbar",
+            "navlist",
+            "sidebar"
+        ],
+        "badge": [
+            "navbar",
+            "navlist"
+        ],
+        "navlist": [
+            "sidebar"
+        ]
+    }
+}
