@@ -11,7 +11,7 @@
 <body class="flex items-center justify-center min-h-screen text-base bg-bcg-body">
 <section class="text-center max-w-[600px]">
     <header class="flex justify-center mb-8">
-        <x-shared.img-svg img="error" classList="logo [&>svg]:max-w-[300px] [&>svg]:max-h-[300px]" />
+        <x-ui.my-img-svg img="error" classList="logo [&>svg]:max-w-[300px] [&>svg]:max-h-[300px]" />
         {{-- <a href="{{ route('home') }}"> <span>{{ config('myapp.name') }}</span></a> --}}
     </header>
     <article>

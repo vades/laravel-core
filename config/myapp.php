@@ -12,7 +12,7 @@ return [
         'placeholder' => [
             'page' => 'storage/images/placeholders/page.jpg',
             'article' => 'storage/images/placeholders/article.jpg',
-            'place' => 'storage/images/placeholders/place.jpg',
+            'place' => 'storage/images/placeholders/place.webp',
         ],
     ],
     'album' => [
