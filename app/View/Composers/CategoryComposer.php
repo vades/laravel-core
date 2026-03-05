@@ -25,8 +25,8 @@ class CategoryComposer
         $currentCategory = request()->query('category', null);
 
         $view->with([
-                        'categories' => $categories,
-                        'currentCategory' => $currentCategory,
+                        'composerCategories' => $categories,
+                        'composerCurrentCategory' => $currentCategory,
                     ]);
     }
 }

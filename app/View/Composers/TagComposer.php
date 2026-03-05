@@ -25,8 +25,8 @@ class TagComposer
         $currentTag = request()->query('category', null);
 
         $view->with([
-                        'tags' => $tags,
-                        'currentTag' => $currentTag,
+                        'composerTags' => $tags,
+                        'composerCurrentTag' => $currentTag,
                     ]);
     }
 }
