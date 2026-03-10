@@ -40,7 +40,19 @@ class PlaceController extends Controller
     {
         $content =  Content::publishedByType(ContentContentType::Place)->where('slug', $slug)->with('user')->firstOrFail();
         $nextContent= $content->nextPublishedByType(ContentContentType::Place);
-        $postImages = null;
+        $images = [];
+
+        $highlights = Content::publishedByType('place')->where('parent_id',64)->inRandomOrder()->take(6)
+                                                                                                        ->get();
+        $categorySlugs = $content->categories->pluck('slug')->toArray();
+        $placesByCategory = Content::publishedByType('place')
+                                ->whereHas('categories', function ($query) use ($categorySlugs) {
+                                    $query->whereIn('slug', $categorySlugs);
+                                })
+                                ->where('slug', '!=', $slug)
+                                ->inRandomOrder()
+                                ->take(6)
+                                ->get();
 
         $previousContent= $content->previousPublishedByType(ContentContentType::Place);
         return view('place.show', [
@@ -48,7 +60,9 @@ class PlaceController extends Controller
             'page' => $content,
             'nextContent' => $nextContent? route('placeShow',  ['slug'=>$nextContent->slug]) : null,
             'previousContent' => $previousContent? route('placeShow',  ['slug'=>$previousContent->slug]) : null,
-            'postImages' => $postImages
+            'images' => $images,
+            'highlights' =>  $highlights ?? [],
+            'related' => $placesByCategory ?? [],
         ]);
     }
 }
