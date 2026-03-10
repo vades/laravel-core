@@ -80,16 +80,16 @@
                 </x-ui.my-modal>
             </div>
 
-            <div class="sm:grid sm:grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-5">
+            <div class="grid grid-cols-1 gap-2  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 my-4">
                 @foreach($images as $index => $item)
-                    <x-ui.my-card class="bg-skin-album gallery-card">
-                        <x-slot name="header">
-                            <img class="mr-auto ml-auto image-thumbnail sm:w-64 sm:h-64 sm:object-cover has-transition cursor-pointer"
-                                 src="{{$item->thumbnail}}"
-                                 alt="{{ $item->title}}"
-                                 @click="openModal(), showLightbox = true,items[activeIndex].classList.add('hidden'); activeIndex = {{ $index }}; items[activeIndex].classList.remove('hidden')">
-                        </x-slot>
-                    </x-ui.my-card>
+                    <figure class="overflow-hidden rounded-md">
+                        <img class="w-full aspect-square object-cover cursor-pointer
+                                    transition-transform duration-300 ease-in-out hover:scale-110
+                                    image-thumbnail"
+                             src="{{$item->thumbnail}}"
+                             alt="{{ $item->title}}"
+                             @click="openModal(), showLightbox = true, items[activeIndex].classList.add('hidden'); activeIndex = {{ $index }}; items[activeIndex].classList.remove('hidden')">
+                    </figure>
                 @endforeach
             </div>
 

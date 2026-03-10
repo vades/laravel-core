@@ -13,7 +13,7 @@
     </x-slot>
 
     @if(!empty($images))
-        <x-ui.my-lightbox :images="$images"/>
+        <x-ui.my-lightbox :images="$images" />
     @endif
     @if(!empty($markdown))
     <div class="mb-8">
@@ -28,7 +28,7 @@
 
     @if(count($related) > 0)
         <x-ui.heading  level="h3" size="l">{{__('app.label.placesInCategory') }} </x-ui.heading>
-        <x-default.place.show-related :related="$related" class="mb-8" />
+        <x-default.place.show-related :related="$related" class="my-4" />
     @endif
     <section>
         <x-ui.my-prev-next class="flex justify-center mt-8" :prevUrl="$previousContent" :nextUrl="$nextContent"/>

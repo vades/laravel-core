@@ -19,8 +19,8 @@ return [
         'default' => 'ivnbg',
         'storageDir' => 'app/public/albums',
         'dir' => [
-            'source' => public_path() . '/storage/albums',
-            'target' => public_path() . '/storage/albums',
+            'source' => storage_path() . '/app/public/albums',
+            'target' => storage_path() . '/app/public/albums',
         ],
         'file' => [
             'albums' => 'albums.json',
@@ -29,9 +29,6 @@ return [
 
         ],
         'url' => env('MY_ALBUM_URL'),
-        'albumsUrl' => env('MY_ALBUM_ALBUMS_URL'),
-        'eventsUrl' => env('MY_ALBUM_EVENTS_URL'),
-        'imagesUrl' => env('MY_ALBUM_IMAGES_URL'),
         'srcDir' => 'src',
         'thumbDir' => 'thumb',
         'thumbWidth' => 200,

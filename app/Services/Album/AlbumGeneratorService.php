@@ -62,8 +62,7 @@ class AlbumGeneratorService
 
         $directories = array_map('basename', $directories);
         $this->albums->data = $this->parseCoverFiles($directories, $sourceDir);
-        $filePath = config('myapp.album.dir.target') . '/' . config('myapp.album.file.album');
-
+        $filePath = config('myapp.album.dir.target') . '/' . config('myapp.album.file.albums');
         $this->storeJsonFile($this->albums, $filePath);
         //dd( 'done readAlbumDir');
     }
@@ -87,7 +86,7 @@ class AlbumGeneratorService
         }
 
         foreach ($this->events as $album => $eventList) {
-            $targetFilePath = config('myapp.album.dir.target') . '/' .$album. '/'.config('myapp.album.file.event');
+            $targetFilePath = config('myapp.album.dir.target') . '/' .$album. '/'.config('myapp.album.file.events');
             $this->storeJsonFile($eventList, $targetFilePath);
             $this->readImageDir($this->sourceDir,  $eventList->data);
         }
@@ -113,10 +112,10 @@ class AlbumGeneratorService
             }
         }
 
-        $targetFilePath = config('myapp.album.dir.target') . '/' . config('myapp.album.file.image');
+        $targetFilePath = config('myapp.album.dir.target') . '/' . config('myapp.album.file.images');
 
         foreach ($this->images as $album => $imageList) {
-            $targetFilePath = config('myapp.album.dir.target') . '/' .$album. '/'.config('myapp.album.file.image');
+            $targetFilePath = config('myapp.album.dir.target') . '/' .$album. '/'.config('myapp.album.file.images');
             $images = new AlbumDataResource();
             $images->data =$imageList;
             //dd($images);
@@ -256,14 +255,14 @@ class AlbumGeneratorService
             $return['title'] = isset($iptc['2#005'][0]) ? html_entity_decode($iptc['2#005'][0], ENT_QUOTES | ENT_XML1, 'UTF-8') : null;
             // Lightroom "caption" is stored in 2#120, which is mapped to description
             if (isset($iptc['2#120'][0])) {
-                dump( '2#120: '.$iptc['2#120'][0]);
+                //dump( '2#120: '.$iptc['2#120'][0]);
                 $return['description'] = html_entity_decode($iptc['2#120'][0], ENT_QUOTES | ENT_XML1, 'UTF-8');
             } elseif (isset($iptc['2#122'][0])) {
                 dump( '2#122');
                 // Fallback to Writer/Editor if caption is missing
                 $return['description'] = html_entity_decode($iptc['2#122'][0], ENT_QUOTES | ENT_XML1, 'UTF-8');
             } elseif (isset($iptc['2#005'][0])) {
-                dump( '2#005: ' . $iptc['2#005'][0]);
+                //dump( '2#005: ' . $iptc['2#005'][0]);
                 // Fallback to Object Name if both are missing
                 $return['description'] = html_entity_decode($iptc['2#005'][0], ENT_QUOTES | ENT_XML1, 'UTF-8');
             } else {
@@ -347,9 +346,7 @@ class AlbumGeneratorService
             $this->errors[] = 'ERROR: Failed to generate JSON from albums array.';
             return;
         }
-
-
-        if (file_put_contents($targetFilePath, $json) === false) {
+        if (@file_put_contents($targetFilePath, $json) === false) {
             $this->errors[] = 'ERROR: Failed to save JSON to file: ' . $targetFilePath;
             return;
         }
