@@ -22,13 +22,13 @@
     @endif
 
     @if(count($highlights) > 0)
-        <h2 class="text-lg mb-4 max-sm:text-center">{{ $page->title }} highlights</h2>
-        <x-default.place.show-highlights :highlights="$highlights" class="mb-8 text-skin-place" />
+        <x-ui.heading  level="h3" size="l">{{ $page->title }} {{__('app.label.highlights') }}</x-ui.heading>
+        <x-default.place.show-highlights :highlights="$highlights" class="my-4" />
     @endif
 
     @if(count($related) > 0)
-        <h2 class="max-sm:text-center">Other places in category</h2>
-        <x-default.place.show-related :related="$related" class="mb-8 text-skin-place" />
+        <x-ui.heading  level="h3" size="l">{{__('app.label.placesInCategory') }} </x-ui.heading>
+        <x-default.place.show-related :related="$related" class="mb-8" />
     @endif
     <section>
         <x-ui.my-prev-next class="flex justify-center mt-8" :prevUrl="$previousContent" :nextUrl="$nextContent"/>

@@ -1,15 +1,14 @@
 
 <section {{$attributes->class(['sm:flex justify-between gap-8 flex-wrap'])}}>
-    @if(!empty($page->cover_image_url))
+    @php($coverImage = !empty($page->cover_image_url) ? $page->cover_image_url : config('myapp.image.placeholder.place'))
+
         <div class="max-sm:w-full">
             <figure class="w-64 h-64 p-2 max-sm:mx-auto">
                 <img class="h-full w-full object-cover max-w-[300px] rounded-full border-8 border-white"
-                     src="{{ asset($page->cover_image_url)}}"
+                     src="{{ asset($coverImage)}}"
                      alt="{{  $page->title }}">
             </figure>
         </div>
-
-    @endif
 
         <div class="flex-1">
             @if(isset($page->title) && !empty($page->title))

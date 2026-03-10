@@ -1,11 +1,12 @@
 @props(['related'])
 <section {{$attributes->class(['md:grid md:grid-cols-2 md:gap-4'])}}>
     @foreach($related as $item)
+        @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.place'))
         <a class="text-skin-place" href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">
             <x-ui.my-panel class="bg-skin-place place-card">
                 <x-slot name="header">
                     <figure class="mb-3 md:mr-3">
-                        <img class="mr-auto ml-auto has-transition" src="{{$item->image_url}}"
+                        <img class="mr-auto ml-auto has-transition"  src="{{asset($coverImage)}}"
                              alt="{{ $item->title}}">
                     </figure>
 

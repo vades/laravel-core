@@ -165,6 +165,7 @@ class ProjectContentService
     private function handleContentImport(int $projectId, string $contentTypeStr, Document $object,string $projectSlug): ?Content
     {
         $content = null;
+        $slug = $object->matter('slug') ?? Str::slug($object->matter('title'));
         try {
             // Map YAML to ContentData DTO
             $data = [
@@ -182,7 +183,7 @@ class ProjectContentService
 
                 'lang' => Language::tryFrom($object->matter('lang') ?? '')
                     ?? Language::EN,
-                'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
+                'slug' => $slug,
                 'title' => (string)$object->matter('title'),
                 'subtitle' => $object->matter('subtitle'),
                 'excerpt' => $object->matter('description') ?? $object->matter('excerpt'),
@@ -192,13 +193,16 @@ class ProjectContentService
                 'isFeatured' => (bool)($object->matter('is_featured') ?? false),
                 'publishedAt' => $object->matter('published_at') ? Carbon::parse($object->matter('published_at')) : null,
             ];
-            $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent']);
+            $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent','is_featured']);
             $data['metadata']['coverImage'] =$this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
                                                                                    ('imageDirectory') ?? '').'/'.
                                                                                    config('myapp.image.cover'));
             $data['metadata']['featuredImage'] = $this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
                                                                                    ('imageDirectory') ?? '').'/'.
                                                                                        config('myapp.image.featured'));
+            if($contentTypeStr ===ContentContentType::Place->value) {
+                $data['metadata']['coverImage'] = $this->getPlaceImageUrl($projectSlug,$slug, config('myapp.image.cover'));
+            }
 
 
             $dto = ContentData::from($data);
@@ -219,6 +223,16 @@ class ProjectContentService
         $imagePath = storage_path('app/public/' . $projectSlug . '/images/' . $contentType . '/' . $filename);
         if (File::exists($imagePath)) {
             return 'storage/' . $projectSlug . '/images/' . $contentType . '/' . $filename;
+        }
+        return null;
+
+    }
+
+    private function getPlaceImageUrl(string $albumName, string $eventName, string $filename): ?string
+    {
+        $imagePath = storage_path('app/public/albums/' . $albumName . '/' . $eventName . '/' . $filename);
+        if (File::exists($imagePath)) {
+            return 'storage/albums/' . $albumName . '/' . $eventName . '/' . $filename;
         }
         return null;
 

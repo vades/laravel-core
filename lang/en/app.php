@@ -29,6 +29,10 @@ return [
         'next' => 'Next',
         "termsAndConditions" => "Terms and Conditions",
     ],
+    'label' => [
+        'placesInCategory' => 'Other places in category :category',
+        'highlights' => 'highlights',
+    ],
 
     'search' => [
         'blog' => 'Search in blog',
