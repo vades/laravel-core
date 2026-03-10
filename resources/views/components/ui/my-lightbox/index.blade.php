@@ -6,7 +6,7 @@
         <section x-data="{ activeIndex: 0, items: $el.querySelectorAll('[data-carousel-item]'), showLightbox: true }"
                  x-init="items[0].classList.remove('hidden')">
             <div class="hidden sm:block">
-                <x-utils.modal class="dark">
+                <x-ui.my-modal class="dark">
                     <x-slot name="title">
                         {{$title ??''}}
                     </x-slot>
@@ -77,19 +77,19 @@
                                  @click="closeModal()">Close (ESC)
                          </button>
                      </x-slot> --}}
-                </x-utils.modal>
+                </x-ui.my-modal>
             </div>
 
             <div class="sm:grid sm:grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-5">
                 @foreach($images as $index => $item)
-                    <x-utils.card class="bg-skin-album gallery-card">
+                    <x-ui.my-card class="bg-skin-album gallery-card">
                         <x-slot name="header">
                             <img class="mr-auto ml-auto image-thumbnail sm:w-64 sm:h-64 sm:object-cover has-transition cursor-pointer"
                                  src="{{$item->thumbnail}}"
                                  alt="{{ $item->title}}"
                                  @click="openModal(), showLightbox = true,items[activeIndex].classList.add('hidden'); activeIndex = {{ $index }}; items[activeIndex].classList.remove('hidden')">
                         </x-slot>
-                    </x-utils.card>
+                    </x-ui.my-card>
                 @endforeach
             </div>
 

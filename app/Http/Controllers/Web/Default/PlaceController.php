@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web\Default;
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Services\Album\AlbumService;
+use App\Services\DomainManagerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -36,11 +38,11 @@ class PlaceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug): View
+    public function show(string $slug, DomainManagerService $domainManager): View
     {
         $content =  Content::publishedByType(ContentContentType::Place)->where('slug', $slug)->with('user')->firstOrFail();
         $nextContent= $content->nextPublishedByType(ContentContentType::Place);
-        $images = [];
+        $images = collect(AlbumService::getImages($domainManager->getSlug()))->where('directory', $slug)->values()->toArray();
 
         $highlights = Content::publishedByType('place')->where('parent_id',64)->inRandomOrder()->take(6)
                                                                                                         ->get();

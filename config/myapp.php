@@ -17,14 +17,15 @@ return [
     ],
     'album' => [
         'default' => 'ivnbg',
+        'storageDir' => 'app/public/albums',
         'dir' => [
             'source' => public_path() . '/storage/albums',
             'target' => public_path() . '/storage/albums',
         ],
         'file' => [
-            'album' => 'albums.json',
-            'event' => 'events.json',
-            'image' => 'images.json',
+            'albums' => 'albums.json',
+            'events' => 'events.json',
+            'images' => 'images.json',
 
         ],
         'url' => env('MY_ALBUM_URL'),
