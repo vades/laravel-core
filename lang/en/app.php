@@ -19,6 +19,7 @@ return [
         'otherPlaces' => 'Other places',
         'all' => 'All',
         'allArticles' => 'All articles',
+        'allPlaces' => 'All places',
         'all_' => 'All :name',
         'recentPosts' => 'Recent posts',
         'listOfPlaces' => 'List of places',
