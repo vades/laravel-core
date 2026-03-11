@@ -4,9 +4,20 @@
     @endif
 
     <x-default.home.features />
-    @if($articles->isNotEmpty())
-        <x-default.home.article-list :articles="$articles"/>
+        @if(!empty($placesFeatured))
+            <x-default.home.places-featured :places="$placesFeatured"/>
+        @endif
+
+        @if(!empty($places))
+            <x-default.home.places :places="$places"/>
+        @endif
+    @if(!empty($articles))
+        <x-default.home.articles :articles="$articles"/>
     @endif
+
+        @if(!empty($images))
+            <x-default.home.photo-gallery :images="$images"/>
+        @endif
     <section>
         <h1>Home</h1>
         <x-ui.button>
