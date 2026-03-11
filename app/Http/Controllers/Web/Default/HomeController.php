@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Default;
 
+use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request): View
     {
+        $meta =  Content::publishedByType(ContentContentType::Meta)->where('slug','home')->first();
         $articles = Content::publishedByType()
                            ->filter($request)
                            ->latest()
@@ -21,6 +23,7 @@ class HomeController extends Controller
                            ->get();
 
         return view('home.index',  [
+            'page' => $meta ?? null,
             'articles' => $articles ?? [],
         ]);
     }

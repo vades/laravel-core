@@ -1,5 +1,8 @@
 <x-default.layout>
-    <x-default.home.hero />
+    @if(!empty($page))
+        <x-default.home.hero :page="$page"/>
+    @endif
+
     <x-default.home.features />
     @if($articles->isNotEmpty())
         <x-default.home.article-list :articles="$articles"/>
