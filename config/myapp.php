@@ -5,6 +5,7 @@ return [
     'importDir' => env('MY_IMPORT_DIR'),
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'gatMeasurementId' => env('MY_GTAG_MEASUREMENT_ID'),
+    'cacheDuration' => (int) env('MY_CACHE_DURATION', 86400),
     'image' => [
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
