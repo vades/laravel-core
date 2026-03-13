@@ -35,14 +35,14 @@
                             </div>
                             <div class="flex-1 flex items-center justify-center">
 
-                                @foreach($images as $item)
+                                @foreach($images as $image)
                                     <figure class="hidden duration-700 ease-in-out"
                                             data-carousel-item
                                             @click="items[activeIndex].classList.add('hidden'); activeIndex = (activeIndex + 1) % items.length; items[activeIndex].classList.remove('hidden')">
-                                        <img src="{{$item->src}}"
+                                        <img src="{{$image->src}}"
                                              class="max-w-full max-h-[80vh]"
-                                             alt="{{ $item->title}}">
-                                        <figcaption class="mt-4 text-gray-900 dark:text-gray-400">{{ $item->title}}</figcaption>
+                                             alt="{{ $image->title}}">
+                                        <figcaption class="mt-4 text-gray-900 dark:text-gray-400">{{ $image->title}}</figcaption>
                                     </figure>
 
                                 @endforeach
@@ -81,15 +81,10 @@
             </div>
 
             <div class="grid grid-cols-1 gap-2  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 my-4">
-                @foreach($images as $index => $item)
-                    <figure class="overflow-hidden rounded-md">
-                        <img class="w-full aspect-square object-cover cursor-pointer
-                                    transition-transform duration-300 ease-in-out hover:scale-110
-                                    image-thumbnail"
-                             src="{{$item->thumbnail}}"
-                             alt="{{ $item->title}}"
-                             @click="openModal(), showLightbox = true, items[activeIndex].classList.add('hidden'); activeIndex = {{ $index }}; items[activeIndex].classList.remove('hidden')">
-                    </figure>
+                @foreach($images as $index => $image)
+                        <x-ui.my-card.gallery :src="$image->src"
+                                              :alt="$image->title"  @click="openModal(), showLightbox = true, items[activeIndex].classList.add('hidden'); activeIndex = {{ $index }}; items[activeIndex].classList.remove('hidden')"
+                        />
                 @endforeach
             </div>
 
