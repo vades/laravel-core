@@ -12,11 +12,11 @@
         </x-ui.my-jumbotron>
     </x-slot>
     <div class="grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 my-4">
-        @foreach($images as $image)
-            <a href="{{route('photoGalleryShow',['slug' =>$image->directory])}}">
-                <x-ui.my-card.gallery :src="$image->src"
-                                      :alt="$image->title"
-                                      :title="$image->title"
+        @foreach($images as $item)
+            <a href="{{route('photoGalleryShow',['slug' =>$item->directory])}}">
+                <x-ui.my-card.gallery :src="$item->src"
+                                      :alt="$item->title"
+                                      :title="$item->title"
                 />
             </a>
         @endforeach
