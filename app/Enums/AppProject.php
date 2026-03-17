@@ -11,6 +11,7 @@ enum AppProject: string
     case Aitomatix = 'aitomatix-com';
     case AitomatixCz = 'aitomatix-cz';
     case LaravelCore = 'laravel-core-test';
+    case LaravelCoreVades = 'laravel-core-vades-dev';
 
     /**
      * Get the project URL by enum case.
@@ -27,6 +28,7 @@ enum AppProject: string
             self::Aitomatix => 'https://www.aitomatix.com',
             self::AitomatixCz => 'https://www.aitomatix.cz',
             self::LaravelCore => 'http://laravel-core.test',
+            self::LaravelCoreVades => 'https://www.laravel-core.vades.dev',
         };
     }
 }
