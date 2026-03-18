@@ -15,6 +15,13 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
         $projects = [
+
+            [
+                'slug' => AppProject::LaravelCore->value,
+                'excerpt' => 'laravel-core.test project. Only for local testing purposes.',
+                'url' => AppProject::LaravelCore->getUrl(),
+                'metadata' => [ ],
+            ],
             [
                 'slug' =>AppProject::Ivnbg->value,
                 'excerpt' => 'ivnbg.com project',
@@ -43,18 +50,6 @@ class ProjectSeeder extends Seeder
                 'slug' => AppProject::Aitomatix->value,
                 'excerpt' => 'aitomatix.com project',
                 'url' => AppProject::Aitomatix->getUrl(),
-                'metadata' => [ ],
-            ],
-            [
-                'slug' => AppProject::LaravelCore->value,
-                'excerpt' => 'laravel-core.test project. Only for local testing purposes.',
-                'url' => AppProject::LaravelCore->getUrl(),
-                    'metadata' => [ ],
-            ],
-            [
-                'slug' => AppProject::LaravelCoreVades->value,
-                'excerpt' => 'laravel-core.vades.dev project. Only for local testing purposes.',
-                'url' => AppProject::LaravelCoreVades->getUrl(),
                 'metadata' => [ ],
             ],
         ];

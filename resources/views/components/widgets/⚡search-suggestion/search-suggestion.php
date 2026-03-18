@@ -29,7 +29,7 @@ new class extends Component
         $this->results = Content::published()
                              ->where(function($query) {
                                  $query->where('title', 'like', '%' . $this->query . '%')
-                                       ->orWhere('description', 'like', '%' . $this->query . '%');
+                                       ->orWhere('excerpt', 'like', '%' . $this->query . '%');
                              })
                              ->whereIn('content_type', $this->contentType)
                              ->get();

@@ -14,6 +14,8 @@ class DomainManagerService
     private const DEFAULT_SLUG = 'laravel-core';
     private const CACHE_KEY_PREFIX = 'project_id_map_';
 
+    private const DEFAULT_PROJECT_ID = 1; // Fallback project ID if all else fails
+
     protected ?string $currentHost = null;
     protected string $slug = self::DEFAULT_SLUG;
     protected ?int $projectId = null;
@@ -104,7 +106,7 @@ class DomainManagerService
         $cacheKey = $this->getCacheKey($slug);
 
         return Cache::rememberForever($cacheKey, function () use ($slug) {
-            return $this->fetchProjectIdFromDatabase($slug);
+            return $this->fetchProjectIdFromDatabase($slug) ?? self::DEFAULT_PROJECT_ID;
         });
     }
 

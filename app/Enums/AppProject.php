@@ -4,14 +4,13 @@ namespace App\Enums;
 
 enum AppProject: string
 {
-    case Ivnbg = 'ivnbg-com';
-    case MartinVach = 'martinvach-com';
-    case MyPrompties = 'myprompties-com';
-    case Vades = 'vades-dev';
-    case Aitomatix = 'aitomatix-com';
+    case Ivnbg = 'ivnbg';
+    case MartinVach = 'martinvach';
+    case MyPrompties = 'myprompties';
+    case Vades = 'vades';
+    case Aitomatix = 'aitomatix';
     case AitomatixCz = 'aitomatix-cz';
-    case LaravelCore = 'laravel-core-test';
-    case LaravelCoreVades = 'laravel-core-vades-dev';
+    case LaravelCore = 'laravel-core';
 
     /**
      * Get the project URL by enum case.
@@ -28,7 +27,6 @@ enum AppProject: string
             self::Aitomatix => 'https://www.aitomatix.com',
             self::AitomatixCz => 'https://www.aitomatix.cz',
             self::LaravelCore => 'http://laravel-core.test',
-            self::LaravelCoreVades => 'https://www.laravel-core.vades.dev',
         };
     }
 }

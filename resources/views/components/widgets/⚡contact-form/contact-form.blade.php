@@ -5,7 +5,7 @@
         </x-ui.alerts>
     @endif
     @if (session()->has('success'))
-            <x-ui.alerts variant="warning" icon="exclamation-triangle">
+            <x-ui.alerts variant="success" icon="check-circle">
                 <x-ui.alerts.description>{{ session('success') }} </x-ui.alerts.description>
             </x-ui.alerts>
     @endif
