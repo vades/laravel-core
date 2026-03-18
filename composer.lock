@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c289ac488d3e580a6601d38e6b037f07",
+    "content-hash": "90ac30b4647a9120edd847fe44fbeaf7",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -8258,6 +8258,89 @@
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.1"
             },
             "time": "2025-03-19T14:43:43+00:00"
+        },
+        {
+            "name": "joshembling/artisan-browse",
+            "version": "v0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joshembling/artisan-browse.git",
+                "reference": "354415b6cc7700cde616749f87cb79446f816e64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joshembling/artisan-browse/zipball/354415b6cc7700cde616749f87cb79446f816e64",
+                "reference": "354415b6cc7700cde616749f87cb79446f816e64",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^11.0|^12.0|^13.0",
+                "laravel/prompts": "^0.3.0",
+                "php": "^8.3",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.8",
+                "orchestra/testbench": "^10.0.0||^9.0.0",
+                "pestphp/pest": "^4.0",
+                "pestphp/pest-plugin-arch": "^4.0",
+                "pestphp/pest-plugin-laravel": "^4.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "ArtisanBrowse": "JoshEmbling\\ArtisanBrowse\\Facades\\ArtisanBrowse"
+                    },
+                    "providers": [
+                        "JoshEmbling\\ArtisanBrowse\\ArtisanBrowseServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JoshEmbling\\ArtisanBrowse\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Embling",
+                    "email": "joshembling@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An interactive terminal UI for browsing, searching, and executing Laravel Artisan commands.",
+            "homepage": "https://github.com/joshembling/artisan-browse",
+            "keywords": [
+                "Interactive CLI",
+                "artisan",
+                "artisan-browse",
+                "browse",
+                "joshembling",
+                "laravel",
+                "laravel commands",
+                "terminal UI"
+            ],
+            "support": {
+                "issues": "https://github.com/joshembling/artisan-browse/issues",
+                "source": "https://github.com/joshembling/artisan-browse/tree/v0.0.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/joshembling",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-17T10:51:29+00:00"
         },
         {
             "name": "laradumps/laradumps",
