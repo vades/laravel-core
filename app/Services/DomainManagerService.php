@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
@@ -10,7 +11,7 @@ use App\Models\Project;
 
 class DomainManagerService
 {
-    private const DEFAULT_SLUG = 'default';
+    private const DEFAULT_SLUG = 'laravel-core';
     private const CACHE_KEY_PREFIX = 'project_id_map_';
 
     protected ?string $currentHost = null;
@@ -82,8 +83,9 @@ class DomainManagerService
     }
 
     /**
-     * Extract the slug from the host with extension
-     * Replaces all dots with hyphens (e.g., domain-name.com -> domain-name-com)
+     * Extract the slug from the host
+     * Root domain: removes extension and prefixes (e.g., domain-name.com -> domain-name)
+     * Subdomain: returns subdomain only (e.g., subdomain-name.domain.com -> subdomain-name)
      */
     private function extractSlugFromHost(string $host): string
     {
@@ -91,7 +93,7 @@ class DomainManagerService
             return self::DEFAULT_SLUG;
         }
 
-        return Str::replace('.', '-', $host);
+        return explode('.', $host)[0];
     }
 
     /**
@@ -111,7 +113,11 @@ class DomainManagerService
      */
     private function fetchProjectIdFromDatabase(string $slug): ?int
     {
-        return Project::where('slug', $slug)->value('id');
+        try {
+            return Project::where('slug', $slug)->value('id');
+        } catch (QueryException $e) {
+            return null;
+        }
     }
 
     /**
