@@ -9,7 +9,7 @@ return [
         'tags' => 'Tags',
         'search' => 'Search',
         'placeCategoryList' => 'Categories',
-        'places' => 'Places',
+        'placeIndex' => 'Places',
         'readMore' => 'Read more',
         'readMoreAbout' => 'Read more about :about',
         'articleIndex' => 'Blog',
@@ -19,6 +19,7 @@ return [
         'otherPlaces' => 'Other places',
         'all' => 'All',
         'allArticles' => 'All articles',
+        'allPlaces' => 'All places',
         'all_' => 'All :name',
         'recentPosts' => 'Recent posts',
         'listOfPlaces' => 'List of places',
@@ -28,6 +29,10 @@ return [
         'previous' => 'Previous',
         'next' => 'Next',
         "termsAndConditions" => "Terms and Conditions",
+    ],
+    'label' => [
+        'placesInCategory' => 'Other places in category :category',
+        'highlights' => 'highlights',
     ],
 
     'search' => [

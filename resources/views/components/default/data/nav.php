@@ -25,25 +25,12 @@ $myAppNav = [
         'uri' => 'blog/tags',
         'isExternal' => false,
     ],
-    'placeList' => [
-        'name' => 'placeList',
-        'label' => 'places',
+    'placeIndex' => [
+        'name' => 'placeIndex',
+        'label' => 'app.nav.placeIndex',
         'uri' => 'places',
         'isExternal' => false,
 
-    ],
-    'placeItem' => [
-        'name' => 'placeItem',
-        'label' => 'placeItem',
-        'uri' => 'places/place-item',
-        'isExternal' => false,
-        'params' => ['placeId' => 'place-item-slug'],
-    ],
-    'placeCategoryList' => [
-        'name' => 'placeCategoryList',
-        'label' => 'placeCategoryList',
-        'uri' => 'places/categories',
-        'isExternal' => false,
     ],
     'albumList' => [
         'name' => 'albumList',
@@ -96,12 +83,14 @@ return[
     'header' => [
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],
+        $myAppNav['placeIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
     ],
     'footer' => [
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],
+        $myAppNav['placeIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
         $myAppNav['termsAndConditions'],

@@ -5,6 +5,7 @@ return [
     'importDir' => env('MY_IMPORT_DIR'),
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'gatMeasurementId' => env('MY_GTAG_MEASUREMENT_ID'),
+    'cacheDuration' => (int) env('MY_CACHE_DURATION', 86400),
     'image' => [
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
@@ -12,25 +13,23 @@ return [
         'placeholder' => [
             'page' => 'storage/images/placeholders/page.jpg',
             'article' => 'storage/images/placeholders/article.jpg',
-            'place' => 'storage/images/placeholders/place.jpg',
+            'place' => 'storage/images/placeholders/place.webp',
         ],
     ],
     'album' => [
         'default' => 'ivnbg',
+        'storageDir' => 'app/public/albums',
         'dir' => [
-            'source' => public_path() . '/storage/albums',
-            'target' => public_path() . '/storage/albums',
+            'source' => storage_path() . '/app/public/albums',
+            'target' => storage_path() . '/app/public/albums',
         ],
         'file' => [
-            'album' => 'albums.json',
-            'event' => 'events.json',
-            'image' => 'images.json',
+            'albums' => 'albums.json',
+            'events' => 'events.json',
+            'images' => 'images.json',
 
         ],
         'url' => env('MY_ALBUM_URL'),
-        'albumsUrl' => env('MY_ALBUM_ALBUMS_URL'),
-        'eventsUrl' => env('MY_ALBUM_EVENTS_URL'),
-        'imagesUrl' => env('MY_ALBUM_IMAGES_URL'),
         'srcDir' => 'src',
         'thumbDir' => 'thumb',
         'thumbWidth' => 200,

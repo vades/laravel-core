@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\View\Composers;
 
+use App\Services\Cache\CacheService;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class TagComposer
 {
+
+    public function __construct(private CacheService $cache) {}
     public function compose(View $view)
     {
         // 1. Retrieve the data passed to the view
@@ -19,10 +23,15 @@ class TagComposer
 
         // 3. Use the dynamic $type variable in your query
 
-        $tags = Tag::byContentType($tagType)
-                              ->withCount('contents')->where('contents_count','>',0)->get();
+        $tags  = $this->cache->remember(
+            cacheName:   'tags',
+            callback:    fn() => Tag::byContentType($tagType)
+                                         ->withCount('contents')
+                                         ->get(),
+            contentType:    $tagType,
+        );
 
-        $currentTag = request()->query('category', null);
+        $currentTag = request()->query('tag', null);
 
         $view->with([
                         'composerTags' => $tags,

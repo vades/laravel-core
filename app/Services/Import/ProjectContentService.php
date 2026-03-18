@@ -32,6 +32,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
  * - Uses DTOs for data integrity with automatic snake_case mapping to match your database columns.
  * - Handles Mass Assignment safely by ensuring the Content model's $fillable array is correctly configured.
  * - Captures Metadata that doesn't fit into standard columns into a JSON blob.
+ *
+ * Directory structure supported:
+ *   content/{contentType}/                     → no category assigned
+ *   content/{contentType}/{category-slug}/     → category assigned via directory name
  */
 class ProjectContentService
 {
@@ -107,30 +111,66 @@ class ProjectContentService
     }
 
     /**
-     * Process subdirectories like 'articles', 'categories', 'tags'.
+     * Process a contentType directory, supporting an optional category subdirectory level.
+     *
+     * Flat structure (no category):
+     *   content/article/file.md  →  contentType=article, categorySlug=null
+     *
+     * Categorised structure:
+     *   content/article/my-category/file.md  →  contentType=article, categorySlug='my-category'
+     *
+     * Both levels can coexist inside the same contentType directory.
      */
-    private function processContentType(int $projectId, string $contentTypeStr, string $path,string $projectSlug): void
+    private function processContentType(int $projectId, string $contentTypeStr, string $path, string $projectSlug): void
     {
-        $files = File::files($path);
-
-        foreach ($files as $file) {
+        // --- Files directly inside the contentType directory (no category) ---
+        foreach (File::files($path) as $file) {
             if ($file->getExtension() !== 'md') {
                 continue;
             }
 
             try {
-                $this->importFile($projectId, $contentTypeStr, $file->getPathname(), $projectSlug);
+                $this->importFile($projectId, $contentTypeStr, $file->getPathname(), $projectSlug, null);
             } catch (Exception $e) {
                 $this->errors[] = "File error [{$file->getFilename()}]: " . $e->getMessage();
+            }
+        }
+
+        // --- Files inside category subdirectories ---
+        foreach (File::directories($path) as $categoryPath) {
+            $categorySlug = basename($categoryPath);
+
+            foreach (File::files($categoryPath) as $file) {
+                if ($file->getExtension() !== 'md') {
+                    continue;
+                }
+
+                try {
+                    $this->importFile($projectId, $contentTypeStr, $file->getPathname(), $projectSlug, $categorySlug);
+                } catch (Exception $e) {
+                    $this->errors[] = "File error [{$file->getFilename()}] (category: {$categorySlug}): " . $e->getMessage();
+                }
             }
         }
     }
 
     /**
      * Parse the Markdown file and store it using the appropriate DTO.
+     *
+     * @param int    $projectId
+     * @param string $contentTypeStr
+     * @param string $filePath
+     * @param string $projectSlug
+     * @param string|null $directoryCategorySlug  Category slug derived from the parent directory name.
+     *                                             When set, it takes precedence over the YAML 'categories' field.
      */
-    private function importFile(int $projectId, string $contentTypeStr, string $filePath, string $projectSlug): void
-    {
+    private function importFile(
+        int $projectId,
+        string $contentTypeStr,
+        string $filePath,
+        string $projectSlug,
+        ?string $directoryCategorySlug
+    ): void {
         $fileContent = file_get_contents($filePath);
         if ($fileContent === false) {
             throw new Exception("Could not read file.");
@@ -144,27 +184,34 @@ class ProjectContentService
         }
 
         $content = $this->handleContentImport($projectId, $contentTypeStr, $object, $projectSlug);
-        if(!$content) {
+        if (!$content) {
             return;
         }
-        if($object->matter('tags')) {
-            $tagIds = $this->createTag($object->matter('tags'), $content);
-            if (count($tagIds) > 0) {
-                $content->tags()->sync($tagIds);
-            }
-            $categoryIds = $this->getCategories($object->matter('categories'), $content);
-            if (count($categoryIds) > 0) {
-                $content->categories()->sync($categoryIds);
-            }
+
+        // Resolve the effective category: directory name wins over YAML front matter.
+        $effectiveCategorySlug = $directoryCategorySlug ?? $object->matter('categories');
+
+        $tagIds = $this->createTag($object->matter('tags') ?? '', $content);
+        if (count($tagIds) > 0) {
+            $content->tags()->sync($tagIds);
+        }
+
+        $categoryIds = $effectiveCategorySlug
+            ? $this->getCategories($effectiveCategorySlug, $content)
+            : [];
+
+        if (count($categoryIds) > 0) {
+            $content->categories()->sync($categoryIds);
         }
     }
 
     /**
      * Handle generic content (articles, posts, etc.)
      */
-    private function handleContentImport(int $projectId, string $contentTypeStr, Document $object,string $projectSlug): ?Content
+    private function handleContentImport(int $projectId, string $contentTypeStr, Document $object, string $projectSlug): ?Content
     {
         $content = null;
+        $slug = $object->matter('slug') ?? Str::slug($object->matter('title'));
         try {
             // Map YAML to ContentData DTO
             $data = [
@@ -182,7 +229,7 @@ class ProjectContentService
 
                 'lang' => Language::tryFrom($object->matter('lang') ?? '')
                     ?? Language::EN,
-                'slug' => $object->matter('slug') ?? Str::slug($object->matter('title')),
+                'slug' => $slug,
                 'title' => (string)$object->matter('title'),
                 'subtitle' => $object->matter('subtitle'),
                 'excerpt' => $object->matter('description') ?? $object->matter('excerpt'),
@@ -192,21 +239,18 @@ class ProjectContentService
                 'isFeatured' => (bool)($object->matter('is_featured') ?? false),
                 'publishedAt' => $object->matter('published_at') ? Carbon::parse($object->matter('published_at')) : null,
             ];
-            $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent']);
-            $data['metadata']['coverImage'] =$this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
-                                                                                   ('imageDirectory') ?? '').'/'.
-                                                                                   config('myapp.image.cover'));
-            $data['metadata']['featuredImage'] = $this->getContentImageUrl($projectSlug,$contentTypeStr, ($object->matter
-                                                                                   ('imageDirectory') ?? '').'/'.
-                                                                                       config('myapp.image.featured'));
-
+            $data['metadata'] = $this->extractMetadata($object, array_keys($data), ['categories', 'tags', 'parent', 'is_featured']);
+            $data['metadata']['coverImage'] = $this->getContentImageUrl($projectSlug, $contentTypeStr, ($object->matter('imageDirectory') ?? '') . '/' . config('myapp.image.cover'));
+            $data['metadata']['featuredImage'] = $this->getContentImageUrl($projectSlug, $contentTypeStr, ($object->matter('imageDirectory') ?? '') . '/' . config('myapp.image.featured'));
+            if ($contentTypeStr === ContentContentType::Place->value) {
+                $data['metadata']['coverImage'] = $this->getPlaceImageUrl($projectSlug, $slug, config('myapp.image.cover'));
+            }
 
             $dto = ContentData::from($data);
             $content = Content::updateOrCreate(
                 ['slug' => $dto->slug, 'project_id' => $dto->projectId],
                 $dto->toArray()
             );
-            //dd( $createdContent );
             $this->success[] = "Imported Content: {$dto->title}";
         } catch (Exception $e) {
             $this->errors[] = "Content Save Error [{$object->matter('title')}]: " . $e->getMessage();
@@ -214,14 +258,22 @@ class ProjectContentService
         return $content;
     }
 
-    private function getContentImageUrl(string $projectSlug,string $contentType,string $filename): ?string
+    private function getContentImageUrl(string $projectSlug, string $contentType, string $filename): ?string
     {
         $imagePath = storage_path('app/public/' . $projectSlug . '/images/' . $contentType . '/' . $filename);
         if (File::exists($imagePath)) {
             return 'storage/' . $projectSlug . '/images/' . $contentType . '/' . $filename;
         }
         return null;
+    }
 
+    private function getPlaceImageUrl(string $albumName, string $eventName, string $filename): ?string
+    {
+        $imagePath = storage_path('app/public/albums/' . $albumName . '/' . $eventName . '/' . $filename);
+        if (File::exists($imagePath)) {
+            return 'storage/albums/' . $albumName . '/' . $eventName . '/' . $filename;
+        }
+        return null;
     }
 
     private function getParentId(string|null $parentSlug, string $contentType): ?int
@@ -230,33 +282,29 @@ class ProjectContentService
             return null;
         }
 
-        // Safely get the ID. If first() returns null, ?->id is null.
-        // If the ID is found but is 0 (unlikely for IDs), ?? 0 handles it.
         return Content::where('slug', $parentSlug)
                       ->publishedByType($contentType)
-            ->value('id');
+                      ->value('id');
     }
 
-    private function getCategories(string $categories, Content $content):array {
+    private function getCategories(string $categories, Content $content): array
+    {
         $categorySlugs = array_map('trim', explode(',', $categories));
-        $categoryIds= [];
+        $categoryIds = [];
         foreach ($categorySlugs as $slug) {
             try {
-                //dd($content->content_type);
                 $category = Category::where('slug', $slug)->publishedByType($content->content_type)->first();
                 if (!$category) {
                     continue;
                 }
-                $this->success[] = 'Found  category slug: ' . $slug . ' | content slug "'.$content->slug;
+                $this->success[] = 'Found category slug: ' . $slug . ' | content slug "' . $content->slug;
                 $categoryIds[] = $category->id;
             } catch (Exception $e) {
                 $this->errors[] = "Category Save Error: " . $e->getMessage();
                 continue;
             }
-
-
         }
-        return  $categoryIds;
+        return $categoryIds;
     }
 
     private function createTag(string $tags, Content $content): array
@@ -264,6 +312,9 @@ class ProjectContentService
         $tagNames = array_map('trim', explode(',', $tags));
         $tagIds = [];
         foreach ($tagNames as $tagName) {
+            if ($tagName === '') {
+                continue;
+            }
             try {
                 $dto = TagData::from([
                                          'projectId' => $content->project_id,
@@ -293,17 +344,16 @@ class ProjectContentService
     /**
      * Extracts metadata from YAML front matter.
      *
-     * @param Document $object The parsed markdown document
-     * @param array $excludeKeys Keys already mapped to DTO/Database columns (e.g., 'title', 'slug')
-     * @param array $ignoreKeys Keys that should be completely discarded (e.g., 'internal_note', 'temp_id')
+     * @param Document $object      The parsed markdown document
+     * @param array $excludeKeys    Keys already mapped to DTO/Database columns (e.g., 'title', 'slug')
+     * @param array $ignoreKeys     Keys that should be completely discarded (e.g., 'internal_note', 'temp_id')
      * @return array
      */
     private function extractMetadata(Document $object, array $excludeKeys, array $ignoreKeys = []): array
     {
         return array_filter($object->matter(), function ($key) use ($excludeKeys, $ignoreKeys) {
-            // The key is kept ONLY if it is NOT in excludeKeys AND NOT in ignoreKeys
             return !in_array($key, $excludeKeys) && !in_array($key, $ignoreKeys);
-        },                  ARRAY_FILTER_USE_KEY);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     /**
@@ -313,15 +363,12 @@ class ProjectContentService
     {
         foreach ($this->success as $msg) {
             Log::info($msg);
-            // Optionally print to console if running via command
-            // echo "SUCCESS: $msg\n";
         }
 
         if (!empty($this->errors)) {
             Log::error("Import completed with errors:");
             foreach ($this->errors as $error) {
                 Log::error($error);
-                // echo "ERROR: $error\n";
             }
         }
     }

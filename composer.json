@@ -25,6 +25,7 @@
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "fruitcake/laravel-debugbar": "^4.0",
+        "joshembling/artisan-browse": "^0.0.7",
         "laradumps/laradumps": "^5.0",
         "laradumps/laradumps-core": "^4.0",
         "laravel/boost": "*",
@@ -82,6 +83,14 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "clear": [
+            "@php artisan cache:clear",
+            "@php artisan config:clear",
+            "@php artisan route:clear",
+            "@php artisan view:clear",
+            "@php artisan event:clear",
+            "@php artisan schedule:clear-cache"
         ]
     },
     "extra": {

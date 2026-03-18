@@ -28,7 +28,7 @@ class ArticleController extends Controller
             'article.index',
             [
                 'page' => $meta,
-                'articles' => $contents ?? [],
+                'contents' => $contents ?? [],
             ]
         );
     }
@@ -39,19 +39,19 @@ class ArticleController extends Controller
      */
     public function show(string $slug): View
     {
-        $article =  Content::publishedByType()->where('slug', $slug)->with('user')->firstOrFail();
-        $nextContent= $article->nextPublishedByType(ContentContentType::Article);
-        $viewMode=$article['viewMode'] ?? 'default';
+        $content =  Content::publishedByType()->where('slug', $slug)->with('user')->firstOrFail();
+        $nextContent= $content->nextPublishedByType(ContentContentType::Article);
+        $viewMode=$content['viewMode'] ?? 'default';
         $postImages = null;
     /*    if($content['eventDirectory'] !== null){
             $postImages = collect(AlbumService::fetchPostImages())->where('directory', $content['eventDirectory'])->values()
                                                                   ->toArray();
         }*/
 
-        $previousContent= $article->previousPublishedByType(ContentContentType::Article);
+        $previousContent= $content->previousPublishedByType(ContentContentType::Article);
         return view('article.show-' .$viewMode, [
-            'markdown' =>  Str::of($article->content)->markdown(),
-            'page' => $article,
+            'markdown' =>  Str::of($content->content)->markdown(),
+            'page' => $content,
             'nextContent' => $nextContent? route('articleShow',  ['slug'=>$nextContent->slug]) : null,
             'previousContent' => $previousContent? route('articleShow',  ['slug'=>$previousContent->slug]) : null,
             'postImages' => $postImages

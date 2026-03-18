@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', CategoryComposer::class);
-        View::composer('*', TagComposer::class);
+        View::composer([ 'components.ui.my-categories-dropdown.index'], CategoryComposer::class);
+        //View::composer('*', TagComposer::class);
     }
 }

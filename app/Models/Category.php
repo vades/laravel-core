@@ -100,7 +100,8 @@ class Category extends Model
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
         $query->where('status', ContentStatus::Published->value)
-              ->where('content_type',$value);
+              ->where('content_type',$value)
+            ->whereHas('contents');
     }
     public function getSlugOptions() : SlugOptions
     {
