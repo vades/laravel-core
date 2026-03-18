@@ -27,7 +27,6 @@ class TagComposer
             cacheName:   'tags',
             callback:    fn() => Tag::byContentType($tagType)
                                          ->withCount('contents')
-                                         ->where('contents_count', '>', 0)
                                          ->get(),
             contentType:    $tagType,
         );

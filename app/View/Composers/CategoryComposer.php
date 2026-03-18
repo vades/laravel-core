@@ -19,7 +19,6 @@ class CategoryComposer
             cacheName:   'categories',
             callback:    fn() => Category::publishedByType($categoryType)
                                          ->withCount('contents')
-                                         ->where('contents_count', '>', 0)
                                          ->get(),
             contentType: $categoryType ?: null,
         );
