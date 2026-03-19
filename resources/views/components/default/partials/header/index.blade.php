@@ -4,7 +4,7 @@
     <section class="container mx-auto flex justify-between items-center px-4 lg:px-0 h-16">
         <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
         <div class="flex-1 mx-4">
-            <livewire:widgets.search-suggestion :contentType="['article']" :placeholderText="__('app.search.blog')" />
+            <livewire:widgets.search-suggestion :contentType="['place,article']" :placeholderText="__('app.search.all')" />
 
         </div>
         <div class="hidden lg:inline">

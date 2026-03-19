@@ -1,0 +1,5 @@
+.header-logo{
+   svg{
+     @apply w-28 lg:w-28;
+   }
+}

@@ -36,6 +36,7 @@ return [
     ],
 
     'search' => [
+        'all' => 'Search the site',
         'blog' => 'Search in blog',
         'title' => 'Search results for ":query"',
         'noResults' => 'No results found for ":query"',

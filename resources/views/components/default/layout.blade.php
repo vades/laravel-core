@@ -37,7 +37,7 @@
         {{ $slot }}
     </main>
 
-    <x-default.partials.supplementary />
+   {{--  <x-default.partials.supplementary /> --}}
 
     <x-default.partials.footer />
 </div>

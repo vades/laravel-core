@@ -1,0 +1,5 @@
+.header-logo{
+   svg{
+     @apply w-6 lg:w-12;
+   }
+}
