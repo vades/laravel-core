@@ -18,10 +18,11 @@ class CategorySeederProject extends Seeder
      */
     public function run(): void
     {
-        $vadesProjectId = Project::where('slug', AppProject::Vades)->first()->id;
-        $this->storeData('data/vades-article-categories.csv',  $vadesProjectId,ContentContentType::Article->value);
-        /*$ivnbgProjectId = Project::where('slug', 'ivnbg')->first()->id;
-        $this->storeData('data/ivnbg-categories.csv', $ivnbgProjectId,'place');*/
+        /*$vadesProjectId = Project::where('slug', AppProject::Vades)->first()->id;
+        $this->storeData('data/vades-article-categories.csv',  $vadesProjectId,ContentContentType::Article->value);*/
+
+        $ivnbgProjectId = Project::where('slug',AppProject::Ivnbg)->first()->id;
+        $this->storeData('data/ivnbg-categories.csv', $ivnbgProjectId,ContentContentType::Place->value);
     }
 
     private function storeData(string $filePath, int $projectId, string $contentType): void
