@@ -139,6 +139,26 @@ $cache = new CacheService();
     private function updateApplicationConfig(): void
     {
         Config::set('myapp.projectSlug', $this->slug);
+
+
+        // Load project-specific config file
+        $this->loadProjectConfig($this->slug);
+    }
+
+    private function loadProjectConfig(string $slug): void
+    {
+        $path = base_path("config/projects/{$slug}.php");
+
+        if (!file_exists($path)) {
+            return;
+        }
+
+        $projectConfig = require $path;
+
+        // Merge project config into myapp config
+        $current = Config::get('myapp', []);
+        Config::set('myapp', array_replace_recursive($current, $projectConfig));
+        \Log::debug("Loaded project config for slug: {$slug}", config('myapp'));
     }
 
     /**

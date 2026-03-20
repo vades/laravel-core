@@ -26,7 +26,7 @@ class MultiDomainServiceProvider extends ServiceProvider
         $this->configureViewCascade();
         $this->configureViteBuildDirectory();
         $this->shareGlobalCssPath();
-        $this->shareGlobalNavigation();
+        //$this->shareGlobalNavigation();
 
         // Routing is disabled due to double-loading issues
         // $this->configureRouting();
@@ -101,6 +101,7 @@ class MultiDomainServiceProvider extends ServiceProvider
     }
 
     /**
+     * TODO: deprecated
      * Share navigation data with all views
      */
     private function shareGlobalNavigation(): void
@@ -110,6 +111,7 @@ class MultiDomainServiceProvider extends ServiceProvider
     }
 
     /**
+     * TODO: deprecated
      * Load navigation data from site-specific or default location
      */
     private function loadNavigationData(): array

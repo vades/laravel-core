@@ -6,6 +6,12 @@ return [
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'gatMeasurementId' => env('MY_GTAG_MEASUREMENT_ID'),
     'cacheDuration' => (int) env('MY_CACHE_DURATION', 86400),
+    'name' => 'laravel-core.test',
+    'logo' => 'laravel-core-logo',
+    'slogan' => 'Laravel demo project',
+    'searchInContentType' =>['place','article'],
+    'headerNav' => [],
+    'footerNav' => [ ],
     'image' => [
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
