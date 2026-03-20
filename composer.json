@@ -91,6 +91,13 @@
             "@php artisan view:clear",
             "@php artisan event:clear",
             "@php artisan schedule:clear-cache"
+        ],
+        "init-dev": [
+            "@clear",
+            "@php artisan migrate:fresh",
+            "@php artisan db:seed",
+            "@php artisan app:generate-album",
+            "@php artisan app:import-project-content"
         ]
     },
     "extra": {

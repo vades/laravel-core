@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Services\Cache\CacheService;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -14,7 +15,7 @@ class DomainManagerService
     private const DEFAULT_SLUG = 'laravel-core';
     private const CACHE_KEY_PREFIX = 'project_id_map_';
 
-    private const DEFAULT_PROJECT_ID = 1; // Fallback project ID if all else fails
+    private const DEFAULT_PROJECT_ID = 0; // Fallback project ID if all else fails
 
     protected ?string $currentHost = null;
     protected string $slug = self::DEFAULT_SLUG;
@@ -104,10 +105,12 @@ class DomainManagerService
     private function resolveProjectId(string $slug): ?int
     {
         $cacheKey = $this->getCacheKey($slug);
-
-        return Cache::rememberForever($cacheKey, function () use ($slug) {
-            return $this->fetchProjectIdFromDatabase($slug) ?? self::DEFAULT_PROJECT_ID;
-        });
+$cache = new CacheService();
+        return $cache->remember(
+            cacheName:   $cacheKey,
+            callback:    fn() => $this->fetchProjectIdFromDatabase($slug) ,
+            contentType: $slug,
+        );
     }
 
     /**
