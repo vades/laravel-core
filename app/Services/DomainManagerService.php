@@ -158,7 +158,6 @@ $cache = new CacheService();
         // Merge project config into myapp config
         $current = Config::get('myapp', []);
         Config::set('myapp', array_replace_recursive($current, $projectConfig));
-        \Log::debug("Loaded project config for slug: {$slug}", config('myapp'));
     }
 
     /**
