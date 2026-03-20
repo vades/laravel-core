@@ -32,25 +32,10 @@ $myAppNav = [
         'isExternal' => false,
 
     ],
-    'albumList' => [
-        'name' => 'albumList',
-        'label' => 'albumList',
-        'uri' => 'albums',
+    'photoGalleryIndex' => [
+        'name' => 'photoGalleryIndex',
+        'label' => 'app.nav.photoGallery',
         'isExternal' => false,
-    ],
-    'albumEventList' => [
-        'name' => 'albumEventList',
-        'label' => 'photoGallery',
-        'uri' => 'albums/album-id',
-        'isExternal' => false,
-        'params' => ['albumId' => env('MY_PROJECT_NAME')],
-    ],
-    'albumGallery' => [
-        'name' => 'albumGallery',
-        'label' => 'gallery',
-        'uri' => 'albums/album-id/event-id',
-        'isExternal' => false,
-        'params' => ['albumId' => 'album-id', 'eventId' => 'event-id'],
     ],
     'contact' => [
         'name' => 'pageItem',
@@ -78,14 +63,16 @@ $myAppNav = [
     ],
 ];
 
-return[
+return [
     'name' => 'laravel-core.test',
     'logo' => 'laravel-core-logo',
     'slogan' => 'Laravel demo project',
+    'searchInContentType' =>['place','article'],
     'header' => [
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],
         $myAppNav['placeIndex'],
+        $myAppNav['photoGalleryIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
     ],
@@ -93,6 +80,7 @@ return[
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],
         $myAppNav['placeIndex'],
+        $myAppNav['photoGalleryIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
         $myAppNav['termsAndConditions'],

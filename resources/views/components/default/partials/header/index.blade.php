@@ -3,10 +3,14 @@
 <header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10">
     <section class="container mx-auto flex justify-between items-center px-4 lg:px-0 h-16">
         <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
-        <div class="flex-1 mx-4">
-            <livewire:widgets.search-suggestion :contentType="['place,article']" :placeholderText="__('app.search.all')" />
+        @if(!empty($globalNav['searchInContentType']))
+            <div class="flex-1 mx-4">
+                <livewire:widgets.search-suggestion :contentType="$globalNav['searchInContentType']" :placeholderText="__('app.search.all')" />
 
-        </div>
+            </div>
+
+        @endif
+
         <div class="hidden lg:inline">
             <x-ui.my-categories-dropdown categoryType="article"
                                         route="articleIndex"

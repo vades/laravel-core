@@ -67,6 +67,7 @@ return[
     'name' => 'ivnbg.com',
     'logo' => 'ivnbg-logo',
     'slogan' => 'Small guide to Nuremberg city',
+    'searchInContentType' =>['place','article'],
     'header' => [
         /*$myAppNav['articleIndex'],
         $myAppNav['tagArticle'],*/
