@@ -15,7 +15,7 @@
            {{--  <figcaption>The Alps in early winter.</figcaption> --}}
         </figure>
     @endif
-    <div class="mb-8">
+    <div class="content-wrapper">
         {!! $markdown !!}
     </div>
     @if($page->tags->isNotEmpty())

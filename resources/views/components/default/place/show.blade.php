@@ -16,7 +16,7 @@
         <x-ui.my-lightbox :images="$images" />
     @endif
     @if(!empty($markdown))
-    <div class="mb-8">
+    <div class="content-wrapper">
         {!! $markdown !!}
     </div>
     @endif

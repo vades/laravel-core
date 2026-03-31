@@ -1,4 +1,4 @@
-<section {{$attributes->class(['flex gap-4 flex-col md:flex-row md:items-start mb-4'])}}>
+<section {{$attributes->class(['flex gap-4 flex-col md:flex-row md:items-start mb-4 page-header '])}}>
     @if(isset($image))
         <figure {{$image->attributes->class([])}}>{{$image}}</figure>
     @endif

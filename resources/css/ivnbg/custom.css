@@ -1,5 +1,33 @@
-.header-logo{
-   svg{
-     @apply w-28 lg:w-28;
-   }
+/* region Typo */
+.content-wrapper, .page-header {
+    h1 {
+        @apply text-4xl text-h1 mb-4 font-serif break-words;
+    }
+
+    h2 {
+        @apply text-2xl text-heading mt-3 break-words;
+    }
+
+    h3 {
+        @apply text-xl text-heading mb-1 break-words;
+    }
+
+    p {
+        @apply leading-[1.5] mb-6;
+    }
+}
+
+footer {
+    @apply text-footer text-sm mt-8;
+
+    a {
+        @apply no-underline font-normal text-sm text-footer hover:text-footer-muted transition-colors duration-300;
+    }
+}
+
+
+.header-logo {
+    svg {
+        @apply w-28 lg:w-28;
+    }
 }
