@@ -66,6 +66,7 @@ new class extends Component
                 $id = $this->results[$this->selectedResult]->id;
             }
             $item = Content::find($id);
+            \Fruitcake\LaravelDebugbar\Facades\Debugbar::info("Selected item: " . ($item ? $item->title : 'None'));
             if ($item) {
 
                 switch ($item->content_type->value) {
@@ -74,8 +75,10 @@ new class extends Component
                     case ContentContentType::Article->value:
 
                         return redirect()->route('articleShow', $item->slug);
-                    case ContentContentType::Tutorial->value:
                     case ContentContentType::Place->value:
+                        return redirect()->route('placeShow', $item->slug);
+                    case ContentContentType::Tutorial->value:
+
                     case ContentContentType::Guide->value:
                         break;
                     default:
