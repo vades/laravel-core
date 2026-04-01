@@ -4,8 +4,8 @@
         $page->user = null;
     }
 @endphp
-<x-default.layout :title="$page->metaTitle"
-                  :description="$page->metaDescription"
+<x-default.layout :title="$page->metaTitle ?? $page->title"
+                  :description="$page->metaDescription ?? $page->excerpt"
                   :keywords="$page->keywords">
     <x-slot name="jumbotron">
         <x-ui.my-jumbotron>
