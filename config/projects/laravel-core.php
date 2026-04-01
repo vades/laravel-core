@@ -68,6 +68,10 @@ return [
     'logo' => 'laravel-core-logo',
     'slogan' => 'Laravel demo project',
     'searchInContentType' =>['place','article'],
+    'metaTitle' => 'Laravel Core Demo Project',
+    'metaDescription' => 'A Laravel demo project showcasing a content management system with articles, places, and photo galleries.',
+    'metaKeywords' => 'Laravel, demo, project, content management, articles, places, photo galleries',
+    'gatMeasurementId' => null,
     'header' => [
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],

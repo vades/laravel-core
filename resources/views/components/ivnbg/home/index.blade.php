@@ -1,4 +1,6 @@
-<x-default.layout>
+<x-default.layout :title="$page->metaTitle"
+                  :description="$page->metaDescription"
+                  :keywords="$page->keywords">
     @if(!empty($page))
         <x-default.home.hero :page="$page" />
     @endif

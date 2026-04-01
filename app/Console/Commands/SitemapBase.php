@@ -55,8 +55,6 @@ abstract class SitemapBase extends Command
         $this->bar->start();
     }
 
-    // ── Data fetching ────────────────────────────────────────────────────────
-
     protected function fetchContents(ContentContentType $contentType): Collection
     {
         return Content::withoutGlobalScopes()
@@ -64,8 +62,6 @@ abstract class SitemapBase extends Command
                       ->publishedByType($contentType)
                       ->get();
     }
-
-    // ── Sitemap building ─────────────────────────────────────────────────────
 
     protected function addContents(Collection $contents, string $routeName = null): void
     {

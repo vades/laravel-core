@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
  * Home
  */
 Route::get('/', HomeController::class)->name('home');
+Route::permanentRedirect('/home', '/');
 
 /**
  * Pages
