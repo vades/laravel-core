@@ -10,7 +10,7 @@
             </figure>
         </div>
 
-        <div class="flex-1">
+        <div class="flex-1 page-header">
             @if(isset($page->title) && !empty($page->title))
                 <x-ui.heading level="h1" size="xl">  {{ $page->title }}</x-ui.heading>
 

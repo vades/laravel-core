@@ -20,6 +20,7 @@ return [
         'all' => 'All',
         'allArticles' => 'All articles',
         'allPlaces' => 'All places',
+        'allImages' => 'All images',
         'all_' => 'All :name',
         'recentPosts' => 'Recent posts',
         'listOfPlaces' => 'List of places',

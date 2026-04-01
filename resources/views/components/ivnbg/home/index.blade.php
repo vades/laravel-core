@@ -2,28 +2,28 @@
                   :description="$page->metaDescription ?? $page->excerpt"
                   :keywords="$page->keywords">
     @if(!empty($page))
-        <x-default.home.hero :page="$page" />
+        <x-ivnbg.home.hero :page="$page" />
     @endif
-    @if(!empty($placesFeatured))
+    @if($placesFeatured->isNotEmpty())
         <section class="mt-8">
-            <x-default.home.places-featured :places="$placesFeatured" />
+            <x-ivnbg.home.places-featured :places="$placesFeatured" />
         </section>
     @endif
 
-    @if(!empty($places))
+    @if($places->isNotEmpty())
         <section class="mt-8">
-            <x-default.home.places :places="$places" />
+            <x-ivnbg.home.places :places="$places" />
         </section>
     @endif
-    @if(!empty($articles))
+    @if($articles->isNotEmpty())
         <section class="mt-8">
-            <x-default.home.articles :articles="$articles" />
+            <x-ivnbg.home.articles :articles="$articles" />
         </section>
     @endif
 
     @if(!empty($images))
         <section class="mt-8">
-            <x-default.home.photo-gallery :images="$images" />
+            <x-ivnbg.home.photo-gallery :images="$images" />
         </section>
     @endif
 
