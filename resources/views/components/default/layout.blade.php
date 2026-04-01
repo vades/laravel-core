@@ -5,10 +5,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="{{ $description ?? config('myapp.metaDescription') }}">
+          content="{{ filled($description ?? null) ? $description : config('myapp.metaDescription') }}">
     <meta name="keywords"
-          content="{{ $keywords ?? config('myapp.metaKeywords') }}">
-    <title>{{ $title ??  config('myapp.metaTitle') }}</title>
+          content="{{ filled($keywords ?? null) ? $keywords : config('myapp.metaKeywords') }}">
+    <title>{{ filled($title ?? null) ? $title : config('myapp.metaTitle') }}</title>
 
     <!-- Canonical URL -->
     <link rel="canonical"

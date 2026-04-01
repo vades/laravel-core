@@ -117,6 +117,10 @@ abstract class SitemapBase extends Command
         $this->info('✅  Sitemap generated successfully → <comment>public/sitemap.xml</comment>');
         $this->line("    Total URLs written: <comment>{$total}</comment>");
         $this->newLine();
+
+        logger()->info('Sitemap generated successfully', [
+            'total_urls' => $total
+        ]);
     }
 
     protected function printError(Throwable $e): void
@@ -127,5 +131,12 @@ abstract class SitemapBase extends Command
         $this->line("    <fg=red>Error:</> {$e->getMessage()}");
         $this->line("    <fg=red>File:</>  {$e->getFile()} (line {$e->getLine()})");
         $this->newLine();
+
+        logger()->error('Sitemap generation failed', [
+            'message' => $e->getMessage(),
+            'file'    => $e->getFile(),
+            'line'    => $e->getLine(),
+           // 'trace'   => $e->getTraceAsString(),
+        ]);
     }
 }

@@ -13,8 +13,11 @@ class GenerateSitemap extends SitemapBase
     public function handle(): int
     {
         $project = $this->argument('project');
+        $path = $this->option('path') ?? public_path();
 
-        $this->info("🗺  Starting sitemap generation for {$project}...");
+        logger()->info("Starting sitemap generation for {$project} | {$path}/sitemap.xml");
+
+        $this->info("🗺  Starting sitemap generation for {$project} | {$path}/sitemap.xml");
         $this->newLine();
 
         try {
