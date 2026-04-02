@@ -1,6 +1,6 @@
 
 
-<header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10">
+<header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10 my-header">
     <section class="container mx-auto flex justify-between items-center px-4 lg:px-0 h-16">
         <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
         @if(!empty(config('myapp.searchInContentType')))

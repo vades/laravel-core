@@ -1,5 +1,5 @@
 
-<div {{$attributes->class(['relative overflow-hidden rounded-sm'])}}>
+<div {{$attributes->class(['relative overflow-hidden rounded-sm my-card-gallery'])}}>
                 <figure class="relative overflow-hidden rounded-sm">
                         <img class="w-full aspect-square object-cover cursor-pointer
                                     transition-transform duration-300 ease-in-out hover:scale-110

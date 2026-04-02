@@ -1,5 +1,5 @@
 @inject('carbon', 'Carbon\Carbon')
-<x-ui.my-card>
+<x-ui.my-card class="my-card-article">
     <x-slot name="header">
         <img class="w-full h-64 object-cover mb-4 rounded-t-sm"
              src="{{asset($coverImage)}}"
@@ -17,7 +17,6 @@
     </x-slot>
     <x-slot name="footer">
         <x-ui.button href="{{ route('articleShow',  ['slug'=>$item->slug]) }}"
-                     variant="outline"
-                     class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.readMore')}}</x-ui.button>
+                     variant="solid" size="lg"  iconAfter="chevron-right">{{__('app.nav.readMore')}}</x-ui.button>
     </x-slot>
 </x-ui.my-card>

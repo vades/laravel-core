@@ -1,6 +1,6 @@
 
-    <section {{$attributes->class(['bg-white dark:bg-neutral-900'])}}>
-        <section class="container mx-auto pt-4 px-4 lg:px-0">
+    <section {{$attributes->class(['bg-white dark:bg-neutral-900 my-jumbotron'])}}>
+        <section class="container mx-auto px-4 lg:px-0">
             {{$slot}}
         </section>
     </section>
