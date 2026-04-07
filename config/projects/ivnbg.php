@@ -67,15 +67,12 @@ return[
     'name' => 'ivnbg.com',
     'logo' => 'ivnbg-logo',
     'slogan' => 'Small guide to Nuremberg city',
-    'searchInContentType' =>['place','article'],
     'metaTitle' => 'Nuremberg City Guide - Explore the Best of Nuremberg with Local Insights',
     'metaDescription' => 'Explore Nuremberg through the eyes of locals. Discover photo galleries, historical stories, hidden gems, and insider tips covering everything from the Imperial Castle to off-the-beaten-path courtyards.',
     'metaKeywords' => 'Nuremberg, guide, city, travel, places, articles, photo galleries',
     'gatMeasurementId' => env('MY_IVNBG_GTAG_MEASUREMENT_ID'),
+    'headerWidgets' => ['searchInContentType'=>['place','article'],'placeCategories'=>true],
     'headerNav' => [
-        /*$myAppNav['articleIndex'],
-        $myAppNav['tagArticle'],*/
-        $myAppNav['placeIndex'],
         $myAppNav['photoGalleryIndex'],
         $myAppNav['about'],
 

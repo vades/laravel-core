@@ -22,7 +22,7 @@
                             size="lg"
                             class="w-full justify-center lg:w-auto transition-all duration-200 group-hover:scale-105 whitespace-normal break-words text-center"
                     >
-                        {{ $tag->name }} ({{ $tag->contents_count }})
+                        {{ $tag->name }} {{-- ({{ $tag->contents_count }}) --}}
                     </x-ui.badge>
                 </a>
             @endforeach
