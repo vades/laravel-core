@@ -23,7 +23,7 @@
                         <x-ui.button variant="outline" size="sm" iconAfter="x-mark" @click="drawerOpen = false"></x-ui.button>
                 </div>
                 <x-ui.navlist>
-                        @foreach(config('myapp.headerNav') as $key => $val)
+                        @foreach(config('myapp.drawerNav') as $key => $val)
                                 <x-ui.navlist.item icon="{{$val['icon'] ?? ''}}"
                                                   label="{{ __($val['label'] ?? '') }}"
                                                   href="{{ route($val['name'], $val['params'] ?? []) }}" />

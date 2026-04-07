@@ -77,6 +77,11 @@ return[
         $myAppNav['about'],
 
     ],
+    'drawerNav' => [
+        $myAppNav['placeIndex'],
+        $myAppNav['photoGalleryIndex'],
+        $myAppNav['about'],
+    ],
     'footerNav' => [
         /*$myAppNav['articleIndex'],
         $myAppNav['tagArticle'],*/
