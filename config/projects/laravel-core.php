@@ -72,7 +72,7 @@ return [
     'metaDescription' => 'A Laravel demo project showcasing a content management system with articles, places, and photo galleries.',
     'metaKeywords' => 'Laravel, demo, project, content management, articles, places, photo galleries',
     'gatMeasurementId' => null,
-    'header' => [
+    'headerNav' => [
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],
         $myAppNav['placeIndex'],
@@ -80,7 +80,7 @@ return [
         $myAppNav['about'],
         $myAppNav['contact'],
     ],
-    'footer' => [
+    'footerNav' => [
         $myAppNav['articleIndex'],
         $myAppNav['tagArticle'],
         $myAppNav['placeIndex'],

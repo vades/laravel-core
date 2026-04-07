@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Web\Default;
 
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
+use App\Http\Filters\FilterByCategory;
+use App\Http\Filters\FilterByTag;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ArticleController extends Controller
 {
@@ -21,8 +25,15 @@ class ArticleController extends Controller
         $contentType = basename($request->path());
         $meta =  Content::publishedByType(ContentContentType::Meta)->where('slug',$contentType)->firstOrFail();
 
-        $contents = Content::publishedByType()->filter($request)->orderBy('created_at','desc')
-                     ->paginate(20);
+        $contents = QueryBuilder::for(Content::publishedByType(ContentContentType::Article))
+                                ->allowedFilters(
+                                    AllowedFilter::custom('category', new FilterByCategory()),
+                                    AllowedFilter::custom('tag', new FilterByTag())
+                                )
+                                ->allowedIncludes('categories', 'tags')
+                                ->with(['categories', 'tags'])
+                                ->orderBy('created_at', 'desc')
+                                ->paginate(20);
 
         return view(
             'article.index',
