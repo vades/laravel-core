@@ -5,6 +5,7 @@ namespace App\View\Composers;
 
 use App\Models\Category;
 use App\Services\Cache\CacheService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 
 class CategoryComposer
@@ -13,14 +14,19 @@ class CategoryComposer
 
     public function compose(View $view): void
     {
-        $categoryType = $view->getData()['categoryType'] ?? '';
+        $categoryType = $view->getData()['categoryType'] ?? null;
 
         $categories = $this->cache->remember(
             cacheName:   'categories',
             callback:    fn() => Category::publishedByType($categoryType)
-                                         ->withCount('contents')
+                                         ->whereHas('contents', function (Builder $subQuery) {
+                                             $subQuery->withoutGlobalScope('project_scope');
+                                         })
+                                         ->withCount(['contents' => function (Builder $subQuery) {
+                                             $subQuery->withoutGlobalScope('project_scope');
+                                         }])
                                          ->get(),
-            contentType: $categoryType ?: null,
+            contentType: $categoryType,
         );
 
         $view->with([

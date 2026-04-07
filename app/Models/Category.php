@@ -96,12 +96,12 @@ class Category extends Model
         return $this->belongsToMany(Content::class);
     }
 
-    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType =ContentContentType::Article->value): void
+    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType = ContentContentType::Article->value): void
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+
         $query->where('status', ContentStatus::Published->value)
-              ->where('content_type',$value)
-            ->whereHas('contents');
+              ->where('content_type', $value) ;
     }
     public function getSlugOptions() : SlugOptions
     {

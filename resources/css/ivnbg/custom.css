@@ -46,7 +46,10 @@ h1, h2, h3, h4,h5, h6,p {
 
 /* region Jumbotron */
 .my-jumbotron {
-    @apply bg-bcg-jumbotron pt-6 mb-8;
+    @apply pt-6 mb-8;
+    >section {
+        @apply border-b border-black/10 ;
+    }
 }
 
 /* endregion Jumbotron */

@@ -80,6 +80,6 @@ class Tag extends Model
     public function scopeByContentType(Builder $query, string|ContentContentType $contentType =ContentContentType::Article->value): void
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
-        $query->where('content_type',$value) ->whereHas('contents');;
+        $query->where('content_type',$value);
     }
 }

@@ -6,6 +6,7 @@ namespace App\View\Composers;
 
 use App\Services\Cache\CacheService;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
@@ -19,15 +20,20 @@ class TagComposer
         $viewData = $view->getData();
 
         // 2. Extract 'type', defaulting to 'place' if missing to prevent errors
-        $tagType = $viewData['tagType'] ?? '';
+        $tagType = $viewData['tagType'] ?? null;
 
         // 3. Use the dynamic $type variable in your query
 
         $tags  = $this->cache->remember(
             cacheName:   'tags',
             callback:    fn() => Tag::byContentType($tagType)
-                                         ->withCount('contents')
-                                         ->get(),
+                ->whereHas('contents', function (Builder $subQuery) {
+                    $subQuery->withoutGlobalScope('project_scope');
+                })
+                ->withCount(['contents' => function (Builder $subQuery) {
+                    $subQuery->withoutGlobalScope('project_scope');
+                }])
+                ->get(),
             contentType:    $tagType,
         );
 

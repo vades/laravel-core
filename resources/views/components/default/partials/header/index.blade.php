@@ -12,8 +12,8 @@
         @endif
 
         <div class="hidden lg:inline">
-            <x-ui.my-categories-dropdown categoryType="article"
-                                        route="articleIndex"
+            <x-ui.my-categories-dropdown categoryType="place"
+                                        route="placeIndex"
                                         label="app.nav.categories" />
         </div>
         <div>
