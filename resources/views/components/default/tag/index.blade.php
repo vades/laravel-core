@@ -15,7 +15,7 @@
     <div class="px-4 py-6">
         <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-4 lg:inline-flex lg:flex-wrap">
             @foreach($tags as $tag)
-                <a href="{{ route($routeName, ['tag' => $tag->name]) }}"
+                <a href="{{ route($routeName, ['filter[tag]' => $tag->name]) }}"
                    class="cursor-pointer group mb-2 sm:mb-0">
                     <x-ui.badge
                             variant="outline"

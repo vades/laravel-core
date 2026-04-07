@@ -23,7 +23,7 @@
         <section class="grid gap-2 sm:grid-cols-2 md:grid-cols-4 lg:inline-flex lg:flex-wrap">
 
             @foreach($page->tags as $tag)
-                <a href="{{ route('articleIndex', ['tag' => $tag->name]) }}" class="cursor-pointer group mb-2 sm:mb-0">
+                <a href="{{ route('articleIndex', ['filter[tag]' => $tag->name]) }}" class="cursor-pointer group mb-2 sm:mb-0">
                     <x-ui.badge variant="outline"
                                 size="lg" class="w-full justify-center lg:w-auto transition-all duration-200 group-hover:scale-105 whitespace-normal break-words text-center"> {{ $tag->name }}
                     </x-ui.badge>

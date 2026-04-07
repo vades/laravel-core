@@ -6,7 +6,7 @@
         </x-slot:button>
         <x-slot:menu>
         @foreach($composerCategories as $category)
-                    <x-ui.dropdown.item href="{{ route($route, ['category' => $category->slug]) }}">
+                    <x-ui.dropdown.item href="{{ route($route, ['filter[category]' => $category->slug]) }}">
                         {{ $category->title }} ({{ $category->contents_count }})
                     </x-ui.dropdown.item>
         @endforeach
