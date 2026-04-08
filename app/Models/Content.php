@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -148,6 +149,16 @@ class Content extends Model
     }
 
     /**
+     * Get rendered content.
+     */
+    protected function renderedContent(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Str::of($this->content)->markdown(),
+        );
+    }
+
+    /**
      * Get the cover image URL from metadata.
      */
     protected function coverImageUrl(): Attribute
@@ -239,17 +250,17 @@ class Content extends Model
         $query->where('is_featured', 0);
     }
 
-    public function scopeFilter(Builder $query, Request $request): void
+    public function scopeFilterByCategory(Builder $query, string $value): void
     {
-        $query->when($request->filled('category'), function ($q) use ($request) {
-            $q->whereHas('categories', function ($q) use ($request) {
-                $q->where('slug', '=', $request->input('category'));
-            });
+        $query->whereHas('categories', function ($q) use ($value) {
+            $q->where('slug', '=', $value);
         });
-        $query->when($request->filled('tag'), function ($q) use ($request) {
-            $q->whereHas('tags', function ($q) use ($request) {
-                $q->where('name', '=', $request->input('tag'));
-            });
+    }
+
+    public function scopeFilterByTag(Builder $query, string $value): void
+    {
+        $query->whereHas('tags', function ($q) use ($value) {
+            $q->where('name', '=', $value);
         });
     }
 

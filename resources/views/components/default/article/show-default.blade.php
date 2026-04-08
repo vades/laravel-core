@@ -16,7 +16,7 @@
         </figure>
     @endif
     <div class="content-wrapper">
-        {!! $markdown !!}
+        {!! $page->rendered_content !!}
     </div>
     @if($page->tags->isNotEmpty())
         <x-ui.heading level="h2" class="mb-4"> {{__('app.nav.tags')}}</x-ui.heading>
