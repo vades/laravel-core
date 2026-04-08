@@ -250,18 +250,18 @@ class Content extends Model
         $query->where('is_featured', 0);
     }
 
-    public function scopeFilterByCategory(Builder $query, string $value): void
+    public function scopeFilterByCategory(Builder $query, array|string $value): void
     {
-        $query->whereHas('categories', function ($q) use ($value) {
-            $q->where('slug', '=', $value);
-        });
+        $query->whereHas('categories', fn($q) =>
+        $q->whereIn('slug', (array) $value)
+        );
     }
 
-    public function scopeFilterByTag(Builder $query, string $value): void
+    public function scopeFilterByTag(Builder $query, array|string $value): void
     {
-        $query->whereHas('tags', function ($q) use ($value) {
-            $q->where('name', '=', $value);
-        });
+        $query->whereHas('tags', fn($q) =>
+        $q->whereIn('name', (array) $value)
+        );
     }
 
     public function nextPublishedByType(string|ContentContentType $contentType =ContentContentType::Article->value)

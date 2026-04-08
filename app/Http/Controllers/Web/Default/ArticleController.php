@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Default;
 
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
+use App\Queries\AlbumQuery;
 use App\Queries\ContentQuery;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,7 +20,7 @@ class ArticleController extends Controller
 
         return view('article.index', [
             'page'     => $query->meta(basename($request->path())),
-            'contents' => $query->paginated(),
+            'contents' => $query->filtered(),
         ]);
     }
 
@@ -27,7 +28,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug): View
+    public function show(string $slug, AlbumQuery $album): View
     {
 
         $query   = new ContentQuery(ContentContentType::Article);
@@ -42,7 +43,7 @@ class ArticleController extends Controller
             'page'            => $content,
             'nextContent'     => $next     ? route('articleShow', ['slug' => $next->slug])     : null,
             'previousContent' => $previous ? route('articleShow', ['slug' => $previous->slug]) : null,
-            'postImages'      => $query->postImages($content),
+            'postImages'      => $album->postImages($content),
         ]);
     }
 }

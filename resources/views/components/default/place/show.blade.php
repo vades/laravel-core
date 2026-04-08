@@ -17,7 +17,7 @@
     @endif
     @if(!empty($markdown))
     <div class="content-wrapper">
-        {!! $markdown !!}
+        {!! $page->rendered_content !!}
     </div>
     @endif
 

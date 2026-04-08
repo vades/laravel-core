@@ -12,15 +12,24 @@ class AlbumQuery
 {
     public function __construct(private DomainManagerService $domainManager) {}
 
-   public  function homeImages(): array
+    public function homeImages(?int $take = null,): array
     {
         return collect(AlbumService::getImages($this->domainManager->getSlug()))
             ->shuffle()
-            ->take(6)
+            ->when($take > 0, fn($q) => $q->take($take))
             ->values()
-            ->toArray();
+            ->toArray()
+        ;
     }
 
+    public function imagesByDirectory(string $directory, ?int $take = null,): array
+    {
+        return collect(AlbumService::getImages($this->domainManager->getSlug()))
+            ->where('directory', $directory)
+            ->when($take > 0, fn($q) => $q->take($take))
+            ->values()
+            ->toArray();;
+    }
 
 
     public function postImages(Content $content): ?array
@@ -30,9 +39,9 @@ class AlbumQuery
         }
         return null;
 
-      /*  return collect(AlbumService::fetchPostImages())
-            ->where('directory', $content['eventDirectory'])
-            ->values()
-            ->toArray();*/
+        /*  return collect(AlbumService::fetchPostImages())
+              ->where('directory', $content['eventDirectory'])
+              ->values()
+              ->toArray();*/
     }
 }
