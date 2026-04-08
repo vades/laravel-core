@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Web\Default;
 
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
-use App\Models\Content;
+use App\Queries\AlbumQuery;
+use App\Queries\ContentQuery;
 use App\Services\Album\AlbumService;
 use App\Services\DomainManagerService;
 use Illuminate\Http\Request;
@@ -15,42 +16,17 @@ class HomeController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request,DomainManagerService $domainManager): View
+    public function __invoke(Request $request, AlbumQuery $album): View
     {
-        $meta = Content::publishedByType(ContentContentType::Meta)->where('slug', 'home')->first();
-        $placesFeatured = Content::publishedByType(ContentContentType::Place)
-                                 ->filter($request)
-                                 ->isFeatured()
-                                 ->latest()
-            ->inRandomOrder()
-                                 ->take(6)
-                                 ->get()
-        ;
-        $places = Content::publishedByType(ContentContentType::Place)
-                         ->filter($request)
-                         ->latest()
-                         ->notFeatured()
-            ->inRandomOrder()
-                         ->take(12)
-                         ->get()
-        ;
-
-        $articles = Content::publishedByType()
-                           ->filter($request)
-                           ->latest()
-                           ->take(6)
-                           ->get()
-        ;
-        $images = collect(AlbumService::getImages($domainManager->getSlug()))->shuffle()
-                                                                                ->take(6)->values()->toArray();
+        $places   = new ContentQuery(ContentContentType::Place);
+        $articles = new ContentQuery(ContentContentType::Article);
 
         return view('home.index', [
-            'page' => $meta,
-            'placesFeatured' => $placesFeatured ?? [],
-            'places' => $places ?? [],
-            'articles' => $articles ?? [],
-            'images' => $images ?? [],
-
+            'page'           => (new ContentQuery)->meta('home'),
+            'placesFeatured' => $places->featured(take: 6),
+            'places'         => $places->latest(take: 12, excludeFeatured: true),
+            'articles'       => $articles->latest(take: 6),
+            'images'         => $album->homeImages(),
         ]);
     }
 }
