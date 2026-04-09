@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Web\Default;
 
+use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Queries\ContentQuery;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -14,16 +16,9 @@ class PageController extends Controller
      */
     public function __invoke(string $slug): View
     {
-        $page = Content::publishedByType('page')->where('slug', $slug)->firstOrFail();
-        $viewData = [
-            'typee' =>'test', // This maps to :pcontentType="$typee"
-            'user'  => auth()->user(), // This would map to :user="$user"
-            'now'   => now(),
-        ];
+        $query = new ContentQuery(ContentContentType::Page);
         return view('page.index', [
-            'markdown' =>  Str::of($page->content)->markdown(),
-            'renderedBody' => $page->renderContent($viewData),
-            'page' => $page,
+            'page' => $query->findBySlug($slug),
         ]);
     }
 }

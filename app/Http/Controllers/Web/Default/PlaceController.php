@@ -4,18 +4,10 @@ namespace App\Http\Controllers\Web\Default;
 
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Content;
 use App\Queries\AlbumQuery;
 use App\Queries\ContentQuery;
-use App\Services\Album\AlbumService;
-use App\Services\DomainManagerService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class PlaceController extends Controller
 {

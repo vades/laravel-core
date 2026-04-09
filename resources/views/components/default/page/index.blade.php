@@ -21,7 +21,7 @@
         </figure>
     @endif
     <div class="content-wrapper">
-        {!! $renderedBody !!}
+        {!! $page->renderedContent !!}
     </div>
     @if(!empty($page->livewireWidget) && $page->livewireWidget === 'contact-form')
     <livewire:widgets.contact-form />

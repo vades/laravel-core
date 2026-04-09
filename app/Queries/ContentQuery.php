@@ -35,7 +35,7 @@ class ContentQuery
     {
         return Content::publishedByType($this->contentType)
                       ->where('slug', $slug)
-                      ->with($with)
+                      ->when(!empty($with), fn($q) => $q->with($with))
                       ->firstOrFail()
         ;
     }
