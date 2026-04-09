@@ -6,6 +6,8 @@ use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Tag;
+use App\Queries\ContentQuery;
+use App\Queries\TagQuery;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,15 +17,10 @@ class TagController extends Controller
     public function index(Request $request): View
     {
         $contentType = basename($request->path());
-        $meta =  Content::publishedByType(ContentContentType::Meta)->where('slug','tags-'. $contentType)->firstOrFail();
-        $tags = Tag::ByContentType($contentType)
-            ->withCount('contents')
-            ->where('contents_count','>',0)
-            ->orderByDesc('contents_count')
-            ->get();
+        $query = new TagQuery($contentType);
         return view('tag.index', [
-            'page' => $meta,
-            'tags' => $tags ?? [],
+            'page' => (new ContentQuery)->meta('tags-'. $contentType),
+            'tags' =>  $query->all(),
             'routeName' => $contentType . 'Index',
         ]);
     }

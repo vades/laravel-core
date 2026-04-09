@@ -15,7 +15,7 @@ class ContentQuery
 {
     private array $filters = [];
 
-    public function __construct(private ?ContentContentType $contentType = null) {}
+    public function __construct(private ContentContentType|string|null $contentType = null) {}
 
     public function setFilter(string $key, mixed $value): static
     {
