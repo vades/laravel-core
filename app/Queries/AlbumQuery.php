@@ -31,6 +31,20 @@ class AlbumQuery
             ->toArray();;
     }
 
+    public function eventByDirectory(string $directory): \stdClass|null
+    {
+        return collect(AlbumService::getEvents($this->domainManager->getSlug()))
+            ->firstWhere('directory', $directory);
+    }
+
+    public function events(?int $take = null): array
+    {
+        return collect(AlbumService::getEvents($this->domainManager->getSlug()))
+            ->when($take > 0, fn($q) => $q->take($take))
+            ->values()
+            ->toArray();;
+    }
+
 
     public function postImages(Content $content): ?array
     {
