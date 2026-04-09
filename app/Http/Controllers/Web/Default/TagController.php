@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Web\Default;
 
-use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
-use App\Models\Content;
-use App\Models\Tag;
 use App\Queries\ContentQuery;
 use App\Queries\TagQuery;
 use Illuminate\Http\Request;

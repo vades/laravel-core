@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Queries;
 
 use App\Enums\ContentContentType;
-use App\Models\Content;
 use App\Models\Tag;
+use App\Services\Cache\CacheService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class TagQuery
 {
@@ -21,11 +19,18 @@ class TagQuery
 
     public function all(): Collection
     {
-        return Tag::byContentType($this->contentType)
-                  ->withCount('contents')
-                  ->where('contents_count', '>', 0)
-                  ->orderByDesc('contents_count')
-                  ->get()
-        ;
+
+        return (new CacheService)->remember(
+            cacheName:   'tags',
+            callback:    fn() => Tag::byContentType($this->contentType)
+                                    ->whereHas('contents', function (Builder $subQuery) {
+                                        $subQuery->withoutGlobalScope('project_scope');
+                                    })
+                                    ->withCount(['contents' => function (Builder $subQuery) {
+                                        $subQuery->withoutGlobalScope('project_scope');
+                                    }])
+                                    ->get(),
+            contentType:   $this->contentType,
+        );
     }
 }

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Web\Default;
 
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
-use App\Models\Content;
 use App\Queries\ContentQuery;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class PageController extends Controller
