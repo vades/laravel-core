@@ -20,7 +20,7 @@
 
         @endif
 
-        @if(!empty(config('myapp.headerWidgets.articleCategories')))
+        @if(!empty(config('myapp.headerWidgets.placeCategories')))
             <div class="hidden lg:inline">
                 <x-ui.my-categories-dropdown categoryType="place"
                                              route="placeIndex"

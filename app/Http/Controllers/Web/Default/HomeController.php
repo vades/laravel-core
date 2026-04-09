@@ -24,7 +24,7 @@ class HomeController extends Controller
             'placesFeatured' => $places->featured(take: 6),
             'places'         => $places->latest(take: 12, excludeFeatured: true),
             'articles'       => $articles->latest(take: 6),
-            'images'         => $album->homeImages(),
+            'images'         => $album->homeImages(take: 6),
         ]);
     }
 }

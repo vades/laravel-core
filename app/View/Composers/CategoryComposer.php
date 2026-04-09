@@ -11,8 +11,8 @@ class CategoryComposer
 
     public function compose(View $view): void
     {
-        $contentType = $view->getData()['categoryType'] ?? null;
 
+        $contentType = $view->getData()['categoryType'] ?? null;
         $view->with([
                         'composerCategories'       => (new CategoryQuery($contentType))->all(),
                         'composerCurrentCategory'  => request()->query('category'),

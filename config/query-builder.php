@@ -39,19 +39,19 @@ return [
      * By default the package will throw an `InvalidFilterQuery` exception when a filter in the
      * URL is not allowed in the `allowedFilters()` method.
      */
-    'disable_invalid_filter_query_exception' => true,
+    'disable_invalid_filter_query_exception' => env('QUERY_BUILDER_DISABLE_INVALID_FILTER_QUERY_EXCEPTION', true),
 
     /*
      * By default the package will throw an `InvalidSortQuery` exception when a sort in the
      * URL is not allowed in the `allowedSorts()` method.
      */
-    'disable_invalid_sort_query_exception' => true,
+    'disable_invalid_sort_query_exception' => env('QUERY_BUILDER_DISABLE_INVALID_SORT_QUERY_EXCEPTION', true),
 
     /*
      * By default the package will throw an `InvalidIncludeQuery` exception when an include in the
      * URL is not allowed in the `allowedIncludes()` method.
      */
-    'disable_invalid_include_query_exception' => true,
+    'disable_invalid_include_query_exception' => env('QUERY_BUILDER_DISABLE_INVALID_INCLUDE_QUERY_EXCEPTION', true),
 
     /*
      * By default, the package expects relationship names to be snake case plural when using fields[relationship].

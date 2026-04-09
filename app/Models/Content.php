@@ -232,7 +232,7 @@ class Content extends Model
         $query->where('status', ContentStatus::Published->value);
     }
 
-    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType = ContentContentType::Article->value):
+    public function scopePublishedByType(Builder $query, null|string|ContentContentType $contentType = ContentContentType::Article->value):
     void
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;

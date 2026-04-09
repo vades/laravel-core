@@ -77,7 +77,7 @@ class Tag extends Model
         return $this->belongsToMany(Content::class);
     }
 
-    public function scopeByContentType(Builder $query, string|ContentContentType $contentType =ContentContentType::Article->value): void
+    public function scopeByContentType(Builder $query, null|string|ContentContentType $contentType =ContentContentType::Article->value): void
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
         $query->where('content_type',$value);

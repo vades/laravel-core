@@ -96,7 +96,7 @@ class Category extends Model
         return $this->belongsToMany(Content::class);
     }
 
-    public function scopePublishedByType(Builder $query, string|ContentContentType $contentType = ContentContentType::Article->value): void
+    public function scopePublishedByType(Builder $query, null|string|ContentContentType $contentType = ContentContentType::Article->value): void
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
 
