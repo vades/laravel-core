@@ -24,7 +24,7 @@
     @livewireStyles
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
-<body class="m-0 text-base  {{ str_replace('/', '-', request()->path()) }}">
+<body class="m-0 text-base {{ request()->is('/') ? 'home' : str_replace('/', '-', request()->path()) }}">
 <div class="min-h-screen flex flex-col bg-white dark:bg-neutral-900">
     {{-- #region Header --}}
     <x-default.partials.header />

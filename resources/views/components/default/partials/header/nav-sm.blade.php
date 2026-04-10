@@ -24,7 +24,7 @@
                 </div>
                 <x-ui.navlist>
                         @foreach(config('myapp.drawerNav') as $key => $val)
-                                <x-ui.navlist.item icon="{{$val['icon'] ?? ''}}"
+                                <x-ui.navlist.item class="{{$val['name'].'-'.$val['uri']}} item-{{$key}}" icon="{{$val['icon'] ?? ''}}"
                                                   label="{{ __($val['label'] ?? '') }}"
                                                   href="{{ route($val['name'], $val['params'] ?? []) }}" />
                         @endforeach

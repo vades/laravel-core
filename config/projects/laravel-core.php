@@ -12,13 +12,6 @@ $myAppNav = [
         'uri' => 'blog',
         'isExternal' => false,
     ],
-    'articleShow' => [
-        'name' => 'articleShow',
-        'label' => 'app.nav.articleShow',
-        'uri' => 'blog/item-slug',
-        'isExternal' => false,
-        'params' => ['slug' => 'item-slug']
-    ],
     'tagArticle' => [
         'name' => 'tagArticle',
         'label' => 'app.nav.tags',
@@ -35,6 +28,7 @@ $myAppNav = [
     'photoGalleryIndex' => [
         'name' => 'photoGalleryIndex',
         'label' => 'app.nav.photoGallery',
+        'uri' => 'photo-gallery',
         'isExternal' => false,
     ],
     'contact' => [
@@ -49,7 +43,7 @@ $myAppNav = [
         'name' => 'pageItem',
         'label' => 'app.nav.about',
         'hasIcon' => 'info-circle',
-        'uri' => 'nav.about',
+        'uri' => 'about',
         'isExternal' => false,
         'params' => ['slug' => 'about'],
     ],
@@ -57,7 +51,7 @@ $myAppNav = [
         'name' => 'pageItem',
         'label' => 'app.nav.termsAndConditions',
         'hasIcon' => 'info-circle',
-        'uri' => 'nav.about',
+        'uri' => 'terms-conditions',
         'isExternal' => false,
         'params' => ['slug' => 'terms-and-conditions'],
     ],

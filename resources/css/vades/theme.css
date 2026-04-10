@@ -1,5 +1,6 @@
 
 @theme {
+    --font-size-base: 1.2rem;
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
     --color-brand-primary: #A3160B;
@@ -20,8 +21,8 @@
     --color-input-focus: #7f1e1e;
     --color-header: #444444;
     --color-header-muted: #696969;
-    --color-footer:  #771008;
-    --color-footer-muted: #f46358;
+    --color-footer:  #444444;
+    --color-footer-muted: #696969;
     --color-supplementary: #091843;
     --color-supplementary-muted: #0f2970;
     --color-info: #1e429f;
@@ -51,6 +52,7 @@
     --color-bcg-primary-muted: #bf5e5e;
     --color-bcg-secondary:#F69A13;
     --color-bcg-secondary-muted:#faca84;
+    --color-bcg-jumbotron: #F7F8F2;
     --color-bcg-btn: #F7F8F2;
     --color-bcg-btn-hover: #FFFFFF;
     --color-bcg-input: #fef4e6;
@@ -63,10 +65,31 @@
     --color-bcg-jumbotron: #F7F8F2;
     --color-bcg-supplementary: #F7F8F2;
     --color-bcg-footer: #FFFFFF;
+    --color-bcg-card: #F7F8F2;
     --color-bcg-featured: #F7F8F2;
     --color-bcg-article: #fef4e6;
     --color-bcg-blog: #F7F8F2;
     --color-bcg-place: #F7F8F2;
     --color-bcg-album: #F7F8F2;
     --color-icon: #ffffff;
+
+    /* * SHEAF UI color scheme */
+   /* --color-primary: var(--color-red-500);
+    --color-primary-content: var(--color-blue-700);
+    --color-primary-fg: var(--color-blue-600);*/
+
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
 }
+
+
+/*
+@layer theme {
+    .dark {
+        --color-primary: var(--color-white);
+        --color-primary-content: var(--color-white);
+        --color-primary-fg:  var(--color-neutral-800);
+    }
+}*/
+
+@custom-variant dark (&:where(.dark, .dark *));

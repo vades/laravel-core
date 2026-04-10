@@ -18,19 +18,6 @@ $myAppNav = [
         'uri' => 'blog/tags',
         'isExternal' => false,
     ],
-    'placeIndex' => [
-        'name' => 'placeIndex',
-        'label' => 'app.nav.placeIndex',
-        'uri' => 'places',
-        'isExternal' => false,
-
-    ],
-    'photoGalleryIndex' => [
-        'name' => 'photoGalleryIndex',
-        'label' => 'app.nav.photoGallery',
-        'uri' => 'photo-gallery',
-        'isExternal' => false,
-    ],
     'contact' => [
         'name' => 'pageItem',
         'label' => 'app.nav.contact',
@@ -58,32 +45,26 @@ $myAppNav = [
 ];
 
 return[
-    'name' => 'martinvach.com',
-    'logo' => 'martinvach-logo',
-    'slogan' => 'See the World Differently',
-    'metaTitle' => 'Martin Vach Photography | Finding Beauty in Everyday Moments',
+    'name' => 'vades.dev',
+    'logo' => 'vades-logo',
+    'slogan' => 'Software Engineering',
+    'metaTitle' => 'VADES Software Engineering | Finding Beauty in Everyday Moments',
     'metaDescription' => 'Transform the way you see the world. Martin Vach&#039;s photography reveals hidden beauty in everyday life, creating inspiring visual stories through unique perspective and masterful lighting.',
     'metaKeywords' => 'landscape, nature, travel, fine art, photography',
-    'gatMeasurementId' => env('MY_MARTINVACH_GTAG_MEASUREMENT_ID'),
+    'gatMeasurementId' => env('MY_VADES_GTAG_MEASUREMENT_ID'),
     'headerWidgets' => ['searchInContentType'=>false,'articleCategories'=>false],
     'headerNav' => [
-        $myAppNav['photoGalleryIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
-        $myAppNav['termsAndConditions'],
 
     ],
     'drawerNav' => [
-        $myAppNav['photoGalleryIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
-        $myAppNav['termsAndConditions'],
     ],
     'footerNav' => [
         $myAppNav['home'],
-        $myAppNav['photoGalleryIndex'],
         $myAppNav['about'],
         $myAppNav['contact'],
-        $myAppNav['termsAndConditions'],
     ],
 ];
