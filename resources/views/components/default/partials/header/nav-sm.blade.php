@@ -1,5 +1,5 @@
 
-<div x-data="{ drawerOpen: false }" {{$attributes->class(['flex items-center gap-4 lg:hidden'])}}">
+<div x-data="{ drawerOpen: false }" {{$attributes->class(['flex items-center gap-4 lg:hidden my-header-navbar'])}}">
         <!-- drawer init and toggle -->
         <div class="text-center">
                 <x-ui.button variant="outline" size="sm" iconAfter="bars-3" @click="drawerOpen = true"></x-ui.button>
@@ -24,7 +24,7 @@
                 </div>
                 <x-ui.navlist>
                         @foreach(config('myapp.drawerNav') as $key => $val)
-                                <x-ui.navlist.item class="{{$val['name'].'-'.$val['uri']}} item-{{$key}}" icon="{{$val['icon'] ?? ''}}"
+                                <x-ui.navlist.item class="my-nav-list-item {{$val['name'].'-'.$val['uri']}} item-{{$key}}" icon="{{$val['icon'] ?? ''}}"
                                                   label="{{ __($val['label'] ?? '') }}"
                                                   href="{{ route($val['name'], $val['params'] ?? []) }}" />
                         @endforeach

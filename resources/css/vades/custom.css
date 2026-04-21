@@ -24,22 +24,31 @@ h1, h2, h3, h4,h5, h6,p {
 
 /* region Header */
 .my-header {
-    @apply bg-bcg-base;
+    @apply bg-bcg-secondary-muted/20  border-bor-primary/10;
 
     .header-logo {
         svg {
-            @apply h-[46px] w-auto lg:h-[64px];
+            @apply h-[36px] w-auto lg:h-[42px];
         }
     }
     .my-header-slogan {
         @apply text-sm text-header/80 italic;
+    }
+    .my-nav-list-item {
+        @apply bg-bcg-secondary-muted/20  border border-bor-secondary/30 ml-4 px-4;
+         &:hover {
+            @apply bg-bcg-secondary-muted/70 border-bor-secondary/50 text-header font-medium;
+        }
+        .text-base {
+            @apply text-brand-primary;
+        }
     }
 }
 /* endregion Header */
 
 /* region Footer */
 .my-footer {
-    @apply text-footer text-sm mt-8  border-t border-black/10 dark:border-white/10 bg-bcg-base/80;
+    @apply bg-bcg-secondary-muted/10 text-footer text-sm mt-8  border-t border-bor-primary/10 dark:border-white/10;
 
     a {
         @apply no-underline font-normal text-sm text-footer hover:text-footer-muted transition-colors duration-300;
