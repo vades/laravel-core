@@ -24,7 +24,7 @@ h1, h2, h3, h4,h5, h6,p {
 
 /* region Header */
 .my-header {
-    @apply bg-bcg-secondary-muted/20  border-bor-primary/10;
+    @apply bg-bcg-primary  border-bor-primary/10;
 
     .header-logo {
         svg {
