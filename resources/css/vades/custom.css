@@ -1,3 +1,9 @@
+body {
+
+    @apply bg-[#fef7ea] bg-repeat;
+    background-image: url('/storage/images/bcg-body.jpg');
+}
+
 /* region Typo */
 h1, h2, h3, h4,h5, h6,p {
     @apply  font-normal break-words;
@@ -24,11 +30,15 @@ h1, h2, h3, h4,h5, h6,p {
 
 /* region Header */
 .my-header {
-    @apply bg-bcg-primary  border-bor-primary/10;
+   /*@apply bg-bcg-primary  border-bor-primary/10;*/
+    @apply w-full fixed top-0 left-0;
+    @apply z-[2100] h-20 bg-white pt-[3px];
+    top: 3px !important;
+    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
 
     .header-logo {
         svg {
-            @apply h-[36px] w-auto lg:h-[42px];
+            @apply h-[1.8rem] w-auto lg:h-[2.2rem];
         }
     }
     .my-header-slogan {
@@ -44,6 +54,13 @@ h1, h2, h3, h4,h5, h6,p {
         }
     }
 }
+
+/*@media only screen and (min-width: 1200px) {
+    .my-header {
+        @apply h-28 px-8 py-4;
+    }
+}*/
+
 /* endregion Header */
 
 /* region Footer */

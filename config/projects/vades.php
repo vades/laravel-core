@@ -46,7 +46,7 @@ $myAppNav = [
 
 return[
     'name' => 'vades.dev',
-    'logo' => 'vades-logo-text-light',
+    'logo' => 'vades-logo-text',
     'slogan' => 'Software Engineering',
     'metaTitle' => 'VADES Software Engineering | Finding Beauty in Everyday Moments',
     'metaDescription' => 'Transform the way you see the world. Martin Vach&#039;s photography reveals hidden beauty in everyday life, creating inspiring visual stories through unique perspective and masterful lighting.',
