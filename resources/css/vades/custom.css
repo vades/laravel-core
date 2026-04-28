@@ -1,7 +1,6 @@
 body {
 
-    @apply bg-[#fef7ea] bg-repeat;
-    background-image: url('/storage/images/bcg-body.jpg');
+    @apply bg-[#FEF7EA];
 }
 
 /* region Typo */
@@ -29,11 +28,27 @@ h1, h2, h3, h4,h5, h6,p {
 /* endregion Typo */
 
 /* region Header */
+.header-stripe {
+    height: 5px;
+    background: repeating-linear-gradient(
+            90deg,
+            #fde9e7 0px,   #fde9e7 10%,
+            #fabcb7 10%,   #fabcb7 20%,
+            #f46358 20%,   #f46358 30%,
+            #f79088 30%,   #f79088 40%,
+            #d71d0f 40%,   #d71d0f 50%,
+            #f03728 50%,   #f03728 60%,
+            #f79088 60%,   #f79088 70%,
+            #f46358 70%,   #f46358 80%,
+            #fabcb7 80%,  #fabcb7 90%,
+            #fde9e7 90%,   #fde9e7 100%
+    );
+}
 .my-header {
    /*@apply bg-bcg-primary  border-bor-primary/10;*/
     @apply w-full fixed top-0 left-0;
-    @apply z-[2100] h-20 bg-white pt-[3px];
-    top: 3px !important;
+    @apply z-[2100] h-20 bg-white;
+    /*top: 5px !important;*/
     box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
 
     .header-logo {

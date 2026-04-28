@@ -23,8 +23,27 @@ h1, h2, h3, h4,h5, h6,p {
 /* endregion Typo */
 
 /* region Header */
+.header-stripe {
+    height: 5px;
+    background: repeating-linear-gradient(
+            90deg,
+            #e74c3c 0px,   #e74c3c 10%,
+            #3498db 10%,   #3498db 20%,
+            #2ecc71 20%,   #2ecc71 30%,
+            #f39c12 30%,   #f39c12 40%,
+            #9b59b6 40%,   #9b59b6 50%,
+            #1abc9c 50%,   #1abc9c 60%,
+            #e67e22 60%,   #e67e22 70%,
+            #e74c3c 70%,   #e74c3c 80%,
+            #34495e 80%,   #34495e 90%,
+            #f1c40f 90%,   #f1c40f 100%
+    );
+}
 .my-header {
-    @apply bg-bcg-base;
+    @apply w-full fixed top-0 left-0;
+    @apply z-[2100] h-20 bg-white;
+    /*top: 5px !important;*/
+    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
 
     .header-logo{
         svg{

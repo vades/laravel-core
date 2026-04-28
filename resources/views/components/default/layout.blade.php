@@ -23,16 +23,9 @@
     @endif
     @livewireStyles
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
-    <style>
-        body {
-            background-color: #fef6f5;
-            background-image: url('{{ asset('storage/images/bcg-body.jpg') }}');
-            background-repeat: repeat;
-        }
-    </style>
 </head>
 <body class="m-0 text-base {{ request()->is('/') ? 'home' : str_replace('/', '-', request()->path()) }}">
-<div class="min-h-screen flex flex-col bg-white dark:bg-neutral-900">
+<div class="min-h-screen flex flex-col ">
     {{-- #region Header --}}
     <x-default.partials.header />
 
