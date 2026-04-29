@@ -1,5 +1,13 @@
 
+@utility container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: 2rem; /* Optional: adds nice inner spacing */
+}
 @theme {
+
+
     --font-size-base: 1.2rem;
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
