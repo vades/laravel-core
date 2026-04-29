@@ -46,10 +46,11 @@ h1, h2, h3, h4,h5, h6,p {
 }
 .my-header {
    /*@apply bg-bcg-primary  border-bor-primary/10;*/
-    @apply w-full fixed top-0 left-0;
-    @apply z-[2100] h-20 bg-white;
+    @apply w-full fixed top-0 left-0  z-[2100] h-20 bg-white;
+    @apply text-header ;
     /*top: 5px !important;*/
     box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
+
 
     .header-logo {
         svg {
@@ -60,9 +61,9 @@ h1, h2, h3, h4,h5, h6,p {
         @apply text-sm text-header/80 italic;
     }
     .my-nav-list-item {
-        @apply bg-bcg-secondary-muted/20  border border-bor-secondary/30 ml-4 px-4;
+        @apply uppercase pl-6;
          &:hover {
-            @apply bg-bcg-secondary-muted/70 border-bor-secondary/50 text-header font-medium;
+            @apply underline text-link-hover;
         }
         .text-base {
             @apply text-brand-primary;
@@ -80,10 +81,10 @@ h1, h2, h3, h4,h5, h6,p {
 
 /* region Footer */
 .my-footer {
-    @apply bg-bcg-secondary-muted/10 text-footer text-sm mt-8  border-t border-bor-primary/10 dark:border-white/10;
+    @apply  text-footer text-sm mt-8  border-t border-bor-primary/10 dark:border-white/10;
 
     a {
-        @apply no-underline font-normal text-sm text-footer hover:text-footer-muted transition-colors duration-300;
+        @apply no-underline font-normal text-sm text-footer hover:text-footer-muted hover:underline;
     }
 }
 /* endregion Footer */
