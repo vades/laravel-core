@@ -3,7 +3,7 @@
 
 <header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10 my-header">
     <div class="header-stripe"></div>
-    <section class="container mx-auto flex justify-between items-center px-4 lg:px-0 h-16">
+    <section class="container mx-auto flex justify-between items-center px-4 xl:px-0 h-16">
         <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
         @if(!empty(config('myapp.headerWidgets.searchInContentType')))
             <div class="flex-1 mx-4">

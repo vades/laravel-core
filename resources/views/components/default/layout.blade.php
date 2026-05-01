@@ -28,12 +28,12 @@
 <div class="min-h-screen flex flex-col ">
     {{-- #region Header --}}
     <x-default.partials.header />
-
+    <div class="my-header-delimiter"></div>
     {{-- #endregion Header --}}
     @if(isset($jumbotron) && !empty($jumbotron))
-        <section>{{ $jumbotron }}</section>
+        {{ $jumbotron }}
     @endif
-    <main class="container mx-auto mb-auto px-4 lg:px-0  pb-4 bg-white dark:bg-neutral-900">
+    <main class="container mx-auto mb-auto px-4 xl:px-0  pb-4 bg-white dark:bg-neutral-900">
         {{ $slot }}
     </main>
 

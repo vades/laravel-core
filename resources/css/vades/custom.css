@@ -70,7 +70,9 @@ h1, h2, h3, h4,h5, h6,p {
         }
     }
 }
-
+.my-header-delimiter {
+    @apply pt-20;
+}
 /*@media only screen and (min-width: 1200px) {
     .my-header {
         @apply h-28 px-8 py-4;
