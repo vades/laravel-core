@@ -25,7 +25,7 @@
 }
 
 .my-header-navbar{
-    @apply g:flex lg:flex-1;
+    @apply lg:flex lg:flex-1;
 }
 
 .header-nav{
