@@ -1,10 +1,10 @@
 
 
 
-<header class="bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10 my-header">
-    <div class="header-stripe"></div>
-    <section class="container mx-auto flex justify-between items-center px-4 xl:px-0 h-16">
-        <x-default.partials.header.brand class="flex  justify-between items-center gap-6" />
+<header class="my-header">
+    <div class="my-header-stripe"></div>
+    <section class="my-header-container">
+        <x-default.partials.header.brand  />
         @if(!empty(config('myapp.headerWidgets.searchInContentType')))
             <div class="flex-1 mx-4">
                 <livewire:widgets.search-suggestion :contentType="config('myapp.headerWidgets.searchInContentType')" :placeholderText="__('app.search.all')" />

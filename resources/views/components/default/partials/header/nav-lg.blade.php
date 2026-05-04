@@ -1,4 +1,4 @@
-<nav class="lg:flex lg:flex-1 my-header-navbar">
+<nav class="lmy-header-navbar">
         @foreach(config('myapp.headerNav') as $key => $val)
                 <a class="my-nav-list-item {{$val['name'].'-'.$val['uri']}} item-{{$key}}" icon="{{$val['icon'] ?? ''}}"
                                   title="{{ __($val['label'] ?? '') }}"

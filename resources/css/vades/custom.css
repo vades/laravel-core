@@ -28,7 +28,7 @@ h1, h2, h3, h4,h5, h6,p {
 /* endregion Typo */
 
 /* region Header */
-.header-stripe {
+.my-header-stripe {
     height: 5px;
     background: repeating-linear-gradient(
             90deg,
@@ -52,22 +52,23 @@ h1, h2, h3, h4,h5, h6,p {
     box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
 
 
-    .header-logo {
-        svg {
-            @apply h-[1.8rem] w-auto lg:h-[2.2rem];
-        }
+
+}
+.my-header-logo {
+    svg {
+        @apply h-[1.8rem] w-auto lg:h-[2.2rem];
     }
-    .my-header-slogan {
-        @apply text-sm text-header/80 italic;
+}
+.my-header-slogan {
+    @apply text-sm text-header/80 italic;
+}
+.my-nav-list-item {
+    @apply uppercase pl-6;
+    &:hover {
+        @apply underline text-link-hover;
     }
-    .my-nav-list-item {
-        @apply uppercase pl-6;
-         &:hover {
-            @apply underline text-link-hover;
-        }
-        .text-base {
-            @apply text-brand-primary;
-        }
+    .text-base {
+        @apply text-brand-primary;
     }
 }
 .my-header-delimiter {

@@ -1,17 +1,31 @@
-.header-brand{
-    @apply flex  justify-between items-center gap-6;
-        .header-logo {
-            svg {
-                @apply w-12 h-12;
-            }
-        }
-        .header-slogan {
-            @apply hidden sm:inline text-header italic;
-        }
+.my-header-stripe {}
+.my-header{
+    @apply bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10;
 
 }
+.my-header-container{
+    @apply container mx-auto flex justify-between items-center px-4 xl:px-0 h-16;
+}
+.my-header-brand{
+    @apply flex  justify-between items-center gap-6;
+
+}
+
+.my-header-logo {
+    svg {
+        @apply w-12 h-12;
+    }
+}
+.my-header-slogan {
+    @apply hidden lg:inline ;
+}
+
 .header-search{
     @apply flex-1 mx-4;
+}
+
+.my-header-navbar{
+    @apply g:flex lg:flex-1;
 }
 
 .header-nav{

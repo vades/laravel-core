@@ -1,7 +1,7 @@
-<div {{$attributes->class([])}}>
-    <a class="header-logo"
+<div {{$attributes->class(['my-header-brand'])}}>
+    <a class="my-header-logo"
        href="{{ route('home') }}">
         <x-ui.my-img-svg img="{{ config('myapp.logo')}}" classList="" />
     </a>
-    <span class="hidden lg:inline my-header-slogan">{{ config('myapp.slogan') }}</span>
+    <span class="my-header-slogan">{{ config('myapp.slogan') }}</span>
 </div>
