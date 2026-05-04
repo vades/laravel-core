@@ -1,0 +1,17 @@
+/* region Layout */
+
+body {
+    @apply m-0 text-base bg-bcg-body text-[1.2rem];
+}
+#root{
+    @apply min-h-screen flex flex-col;
+}
+
+.my-header-delimiter{}
+
+
+main{
+    @apply container mx-auto mb-auto px-4 xl:px-0  pb-4 bg-white dark:bg-neutral-900;
+}
+
+/* endregion */

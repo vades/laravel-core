@@ -24,8 +24,8 @@
     @livewireStyles
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>--}}
 </head>
-<body class="m-0 text-base {{ request()->is('/') ? 'home' : str_replace('/', '-', request()->path()) }}">
-<div class="min-h-screen flex flex-col ">
+<body class="{{ request()->is('/') ? 'home' : str_replace('/', '-', request()->path()) }}">
+<div id="root">
     {{-- #region Header --}}
     <x-default.partials.header />
     <div class="my-header-delimiter"></div>
@@ -33,7 +33,7 @@
     @if(isset($jumbotron) && !empty($jumbotron))
         {{ $jumbotron }}
     @endif
-    <main class="container mx-auto mb-auto px-4 xl:px-0  pb-4 bg-white dark:bg-neutral-900">
+    <main>
         {{ $slot }}
     </main>
 
