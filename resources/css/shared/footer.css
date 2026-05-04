@@ -1,6 +1,12 @@
-.footer-brand {
-    @apply text-sm text-footer;
-}
-.footer-nav {
-    @apply text-sm flex [&>a]:pl-2 [&>a]:pl-4 [&>a]:text-footer [&>a]:hover:text-footer-muted;
+.my-footer {
+    @apply dark:bg-neutral-900;
+    .my-footer-container{
+        @apply container mx-auto text-center p-4 xl:px-0 md:flex justify-between items-center text-sm;
+    }
+    .my-footer-brand {
+        @apply hidden md:inline text-sm text-footer;
+    }
+    .my-footer-nav {
+        @apply text-center text-sm flex [&>a]:pl-2 [&>a]:pl-4 [&>a]:text-footer [&>a]:hover:text-footer-muted;
+    }
 }

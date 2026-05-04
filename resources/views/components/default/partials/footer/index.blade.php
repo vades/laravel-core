@@ -1,8 +1,6 @@
-
-
-<footer class="dark:bg-neutral-900 my-footer">
-    <section class="container mx-auto text-center p-4 xl:px-0 md:flex justify-between items-center text-sm">
-        <x-default.partials.footer.brand class="hidden md:inline"/>
+<footer class="my-footer">
+    <section class="my-footer-container">
+        <x-default.partials.footer.brand class=""/>
         <x-default.partials.footer.nav />
     </section>
 </footer>
