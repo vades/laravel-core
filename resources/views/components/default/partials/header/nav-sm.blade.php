@@ -1,5 +1,4 @@
-
-<div x-data="{ drawerOpen: false }" {{$attributes->class(['flex items-center gap-4 lg:hidden my-header-navbar'])}}">
+<div x-data="{ drawerOpen: false }" class="my-header-nav-sm">
         <!-- drawer init and toggle -->
         <div class="text-center">
                 <x-ui.button variant="outline" size="sm" iconAfter="bars-3" @click="drawerOpen = true"></x-ui.button>

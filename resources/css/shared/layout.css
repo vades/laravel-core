@@ -9,5 +9,5 @@ body {
 
 
 main{
-    @apply container mx-auto mb-auto px-4 xl:px-0  pb-4 bg-white dark:bg-neutral-900;
+    @apply container mx-auto mb-auto px-4 xl:px-0 pb-4  dark:bg-neutral-900;
 }

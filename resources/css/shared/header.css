@@ -28,6 +28,18 @@
     @apply lg:flex lg:flex-1;
 }
 
+.my-header-search {
+    @apply flex-1 mx-4;
+}
+
+.my-header-category{
+    @apply hidden lg:inline;
+}
+
+.my-header-nav-sm{
+    @apply flex items-center gap-4 lg:hidden;
+}
+
 .header-nav{
     a {
         &:hover {

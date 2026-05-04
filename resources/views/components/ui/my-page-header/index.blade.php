@@ -1,20 +1,20 @@
-<section {{$attributes->class(['flex gap-4 flex-col md:flex-row md:items-start page-header '])}}>
+<section {{$attributes->class(['my-page-header'])}}>
     @if(isset($image))
         <figure {{$image->attributes->class([])}}>{{$image}}</figure>
     @endif
     <div>
         @if(!empty($title))
-            <x-ui.heading class="{{$title->attributes->class([])}}" level="h1" size="xl">  {{ $title }}</x-ui.heading>
+            <h1 {{$title->attributes->class(['my-page-header-title'])}}>  {{ $title }}</h1>
 
         @endif
         @if(!empty($subtitle))
-                <x-ui.heading class="{{$description->attributes->class([])}}" level="h2" size="lg">{{ $subtitle }}</x-ui.heading>
+                <h2 {{$description->attributes->class(['my-page-header-subtitle'])}}>{{ $subtitle }}</h2>
         @endif
         @if(!empty($description))
-            <div {{$description->attributes->class(['font-bold my-2'])}}>{{ $description }}</div>
+            <div {{$description->attributes->class(['my-page-header-description'])}}>{{ $description }}</div>
         @endif
         @if(!empty($info))
-            <div {{$info->attributes->class(['text-sm mb-3'])}}>{{ $info }}</div>
+            <div {{$info->attributes->class(['my-page-header-info'])}}>{{ $info }}</div>
         @endif
     </div>
 

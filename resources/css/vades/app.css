@@ -4,10 +4,12 @@
 @import '../shared/header.css';
 @import '../shared/layout.css';
 @import '../shared/footer.css';
+@import '../shared/jumbotron.css';
+@import '../shared/page-header.css';
 @import './custom.css';
 
-/** 
- * TODO Remove this file when we have a proper multi-domain architecture 
+/**
+ * TODO Remove this file when we have a proper multi-domain architecture
 * ! DEPRECATED
 * ? Test
 * * Test
