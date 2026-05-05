@@ -101,3 +101,9 @@
 }*/
 
 @custom-variant dark (&:where(.dark, .dark *));
+/* DaisyUI */
+:root {
+    /* v5 Variable Name */
+    --color-primary: #A21C13;
+    --color-secondary: #F79A0F;
+}

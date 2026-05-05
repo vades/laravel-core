@@ -1,4 +1,11 @@
 @import 'tailwindcss';
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+    name: "light";
+    --color-primary: #ff5733;         /* Your new primary color */
+    --color-primary-content: #ffffff; /* Color of the text inside the button */
+}
+
 @import './theme.css';
 @import './utility.css';
 @import '../shared/header.css';

@@ -15,7 +15,6 @@
         </div>
     </x-slot>
     <x-slot name="footer">
-        <x-ui.button href="{{ route('articleShow',  ['slug'=>$item->slug]) }}"
-                     variant="solid" size="lg"  iconAfter="chevron-right">{{__('app.nav.readMore')}}</x-ui.button>
+        <a href="{{ route('articleShow',  ['slug'=>$item->slug]) }}" class="btn btn-outline btn-primary">{{__('app.nav.readMore')}} &raquo;</a>
     </x-slot>
 </x-ui.my-card>
