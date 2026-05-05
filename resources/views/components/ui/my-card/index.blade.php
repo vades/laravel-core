@@ -1,6 +1,6 @@
 <div {{$attributes->class(['my-card'])}}>
     @isset($header)
-        <div {{$header->attributes->class(['my-card-body'])}}>{{$header}}</div>
+        <div {{$header->attributes->class(['my-card-header'])}}>{{$header}}</div>
     @endisset
 
     @isset($body)
