@@ -1,13 +1,10 @@
-.card {
-    @apply flex flex-col justify-between h-full bg-bcg-card sm:border border-bor-base;
+.my-card {
+    @apply flex flex-col justify-between h-full bg-white dark:bg-neutral-900 border border-black/10 dark:border-white/10 border-bor-base rounded-sm dark:hover:bg-neutral-800 my-card;
 }
-.card-footer {
+.my-card-footer {
     @apply mt-auto text-center pb-4;
-    .button{
-        @apply inline-block text-center;
-    }
 }
-.card-body{
+.my-card-body{
     @apply flex-grow px-6 py-4;
 }
 
