@@ -7,6 +7,9 @@
 @import '../shared/jumbotron.css';
 @import '../shared/page-header.css';
 @import '../shared/card.css';
+@import '../shared/panel.css';
+@import '../shared/prev-next.css';
+@import '../shared/iframe.css';
 @import './custom.css';
 
 /**

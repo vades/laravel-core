@@ -1,7 +1,8 @@
-.prev-next {
+.my-prev-next {
  @apply flex;
 }
-.prev-next-prev {
+.my-prev-next-prev {
+    @apply mr-4;
 }
-.prev-next-next {
+.my-prev-next-next {
 }

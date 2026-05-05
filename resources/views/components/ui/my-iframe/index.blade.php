@@ -1,7 +1,7 @@
 @props(['src'])
-<div  {{$attributes->class(['relative pb-[56.25%] pt-8 h-0 overflow-hidden'])}}>
+<div  {{$attributes->class(['my-iframe-wrapper'])}}>
    <iframe
-           class="absolute top-0 left-0 w-full h-full"
+           class="my-iframe"
            allowfullscreen=""
            aria-hidden="false"
            tabindex="0"
