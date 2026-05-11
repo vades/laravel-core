@@ -12,7 +12,6 @@
         @endforeach
     </div>
     <div class="text-center">
-        <x-ui.button href="{{ route('articleIndex') }}"
-                     variant="outline"
-                     class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.allArticles')}}</x-ui.button>
+        <a href="{{ route('articleIndex') }}"
+           class="btn btn-outline btn-primary my-btn-raquo">{>{{__('app.nav.allArticles')}}</a>
     </div>

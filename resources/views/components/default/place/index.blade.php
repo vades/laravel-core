@@ -33,7 +33,7 @@
                         </div>
                     </x-slot>
                     <x-slot name="footer">
-                        <x-ui.button href="{{ route('placeShow',  ['slug'=>$item->slug]) }}" variant="ghost"  iconAfter="chevron-right">{{__('app.nav.readMore')}}</x-ui.button>
+                        <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}" class="btn btn-outline btn-primary my-btn-raquo">{{__('app.nav.readMore')}}</a>
                     </x-slot>
                 </x-ui.my-card>
 

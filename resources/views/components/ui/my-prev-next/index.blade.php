@@ -3,12 +3,12 @@
      aria-label="Previous and next links">
     <!-- region previous  -->
     @if(isset($prevUrl))
-            <x-ui.button href="{{$prevUrl}}" variant="solid"  icon="chevron-left" class="my-prev-next-prev">{{__('app.nav.previous')}}</x-ui.button>
+            <a href="{{$prevUrl}}" class="btn btn-outline btn-primary my-btn-laquo">{{__('app.nav.previous')}}</a>
     @endif
     <!-- endregion -->
     <!-- region next  -->
     @if(isset($nextUrl))
-        <x-ui.button href="{{$nextUrl}}" variant="solid"  iconAfter="chevron-right" class="my-prev-next-next">{{__('app.nav.next')}}</x-ui.button>
+        <a href="{{$nextUrl}}" class="btn btn-outline btn-primary my-btn-raquo">{{__('app.nav.next')}}</a>
     @endif
     <!-- endregion -->
 </nav>

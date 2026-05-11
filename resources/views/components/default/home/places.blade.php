@@ -18,16 +18,14 @@
                         <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">{{ $item->title }} </a></h2>
                 </x-slot>
                 <x-slot name="footer">
-                    <x-ui.button href="{{ route('placeShow',  ['slug'=>$item->slug]) }}"
-                                 variant="outline"
-                                 class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.readMore')}}</x-ui.button>
+                    <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}"
+                                 class="btn btn-outline btn-primary my-btn-raquo">{>{{__('app.nav.readMore')}}</a>
                 </x-slot>
             </x-ui.my-card>
 
         @endforeach
     </div>
     <div class="text-center">
-        <x-ui.button href="{{ route('placeIndex') }}"
-                     variant="outline"
-                     class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.allPlaces')}}</x-ui.button>
+        <a href="{{ route('placeIndex') }}"
+                     class="btn btn-outline btn-primary my-btn-raquo">{>{{__('app.nav.allPlaces')}}</a>
     </div>

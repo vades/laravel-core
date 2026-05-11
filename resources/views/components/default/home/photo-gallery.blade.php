@@ -14,7 +14,6 @@
 </div>
 
 <div class="text-center">
-    <x-ui.button href="{{ route('photoGalleryIndex') }}"
-                 variant="outline"
-                 class="after:content-['\203A'] after:ml-2 rtl:after:rotate-180">{{__('app.nav.allImages')}}</x-ui.button>
+    <a href="{{ route('photoGalleryIndex') }}"
+                 class="btn btn-outline btn-primary my-btn-raquo">{>{{__('app.nav.allImages')}}</a>
 </div>

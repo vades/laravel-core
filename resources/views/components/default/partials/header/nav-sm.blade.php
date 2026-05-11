@@ -1,7 +1,7 @@
 <div x-data="{ drawerOpen: false }" class="my-header-nav-sm">
         <!-- drawer init and toggle -->
         <div class="text-center">
-                <x-ui.button variant="outline" size="sm" iconAfter="bars-3" @click="drawerOpen = true"></x-ui.button>
+                <span class="btn btn-outline btn-primary">{ @click="drawerOpen = true"></span>
         </div>
 
         <!-- drawer component -->
@@ -19,7 +19,7 @@
                 style="display: none;">
                 <div class="flex items-center justify-between mb-4 border-b border-black/10 dark:border-white/10 pb-2">
                         <h5 id="drawer-right-label">Menu</h5>
-                        <x-ui.button variant="outline" size="sm" iconAfter="x-mark" @click="drawerOpen = false"></x-ui.button>
+                        <span class="btn btn-outline btn-primary">{ @click="drawerOpen = false"></span>
                 </div>
                 <x-ui.navlist>
                         @foreach(config('myapp.drawerNav') as $key => $val)
