@@ -12,6 +12,6 @@
         @endforeach
     </div>
     <div class="text-center">
-        <x-ui.button href="{{ route('articleIndex') }}"
-                     variant="solid" size="lg"  iconAfter="chevron-right">{{__('app.nav.allArticles')}}</x-ui.button>
+        <a href="{{ route('articleIndex') }}"
+                     class="btn btn-wide btn-outline btn-primary my-btn-raquo">{{__('app.nav.allArticles')}}</a>
     </div>

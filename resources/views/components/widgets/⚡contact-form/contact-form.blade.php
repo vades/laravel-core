@@ -42,7 +42,7 @@
 
         <x-ui.fieldset class="mt-4">
         <div class="flex justify-center items-center gap-4">
-            <x-ui.button type="submit" variant="outline">{{__('app.form.submit')}}</x-ui.button>
+            <a type="submit" class="btn btn-wide btn-primary">{{__('app.form.submit')}}</a>
         </div>
         </x-ui.fieldset>
     </form>
