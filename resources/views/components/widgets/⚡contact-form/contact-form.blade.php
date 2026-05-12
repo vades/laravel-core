@@ -1,16 +1,22 @@
 <div class="mx-auto mt-4">
     @if ($errorMessage)
-        <x-ui.alerts variant="error" icon="exclamation-circle">
-            <x-ui.alerts.description> {{ $errorMessage }}</x-ui.alerts.description>
-        </x-ui.alerts>
+        <div role="alert" class="alert alert-error alert-soft">
+            <span>{{ $errorMessage }}</span>
+        </div>
     @endif
     @if (session()->has('success'))
-            <x-ui.alerts variant="success" icon="check-circle">
-                <x-ui.alerts.description>{{ session('success') }} </x-ui.alerts.description>
-            </x-ui.alerts>
+            <div role="alert" class="alert alert-success alert-soft">
+                <span>{{ session('success') }}</span>
+            </div>
     @endif
     <form wire:submit.prevent="submit">
-        <x-ui.fieldset>
+        <fieldset class="fieldset">
+            <label class="floating-label">
+                <input type="text" placeholder="{{__('app.form.name')}}" class="input input-md"  wire:model="name" />
+                
+            </label>
+       
+      
         <x-ui.field >
             <x-ui.label>{{__('app.form.name')}}</x-ui.label>
             <x-ui.input
@@ -21,6 +27,11 @@
             <x-ui.error name="name" />
         </x-ui.field>
 
+         <label class="floating-label">
+                <input type="text" placeholder="{{__('app.form.email')}}" class="input input-md"  wire:model="email" />
+                
+            </label>
+
         <x-ui.field>
            <x-ui.label>{{__('app.form.email')}}</x-ui.label>
             <x-ui.input
@@ -30,6 +41,9 @@
             />
             <x-ui.error name="email" />
         </x-ui.field>
+         <label class="floating-label">
+        <textarea class="textarea" placeholder="{{__('app.form.message')}}" wire:model="message"></textarea>
+         </label>
         <x-ui.field>
             <x-ui.label>{{__('app.form.message')}}</x-ui.label>
             <x-ui.textarea
@@ -38,12 +52,12 @@
             />
             <x-ui.error name="message" />
         </x-ui.field>
-        </x-ui.fieldset>
+         </fieldset>
 
-        <x-ui.fieldset class="mt-4">
+         <fieldset class="fieldset">
         <div class="flex justify-center items-center gap-4">
             <a type="submit" class="btn btn-wide btn-primary">{{__('app.form.submit')}}</a>
         </div>
-        </x-ui.fieldset>
+         </fieldset>
     </form>
 </div>
