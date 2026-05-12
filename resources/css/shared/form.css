@@ -1,28 +1,26 @@
-
-
-.form-field{
-    @apply mb-5;
-
+.my-fieldset {
+    @apply border border-gray-300 rounded-md p-4 mb-4;
 }
-.form-label{
-    @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+.my-form-field {
+    @apply mb-4;
 
-}
-.form-input {
-    @apply bg-bcg-input border focus:outline-none border-bor-input text-input text-sm rounded-sm focus:ring-blue-500 focus:border-bor-input-focus block w-full p-2.5 ;
-}
+    &.has-w-full {
+        @apply w-full;
 
-.form-input.has-icon-start {
-    @apply ps-10;
-}
-.form-input.has-icon-end {
-    @apply pe-10;
+        & input,
+        & textarea,
+        & label,
+        & span {
+            @apply w-full;
+        }
+    }
 }
 
-.form-error {
+.my-form-submit {
+    @apply flex justify-center items-center gap-4;
+}
+
+.my-form-error {
     @apply block mt-2 text-sm text-red-600 ;
 }
 
-.form-submit {
-    @apply flex justify-center items-center gap-4;
-}

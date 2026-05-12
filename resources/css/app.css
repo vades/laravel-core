@@ -1,4 +1,4 @@
-@import './theme.css'; /* By Sheaf.dev */ 
+@import './theme.css'; /* By Sheaf.dev */
 
 
- @custom-variant dark (&:where(.dark, .dark *)); /* By Sheaf.dev */ 
+ /*@custom-variant dark (&:where(.dark, .dark *)); *//* By Sheaf.dev */

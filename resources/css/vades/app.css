@@ -2,12 +2,14 @@
 @plugin "daisyui";
 @plugin "daisyui/theme" {
     name: "light";
-    --color-primary: #ff5733;         /* Your new primary color */
-    --color-primary-content: #ffffff; /* Color of the text inside the button */
+    --color-primary: #A21C13;
+    --color-primary-content: #ffffff;
+    --color-secondary: #F79A0F;
 }
 
 @import './theme.css';
 @import './utility.css';
+@import '../shared/form.css';
 @import '../shared/header.css';
 @import '../shared/layout.css';
 @import '../shared/footer.css';
@@ -20,10 +22,3 @@
 @import '../shared/button.css';
 @import './custom.css';
 
-/**
- * TODO Remove this file when we have a proper multi-domain architecture
-* ! DEPRECATED
-* ? Test
-* * Test
-* @param myParam - Test parameter
-*/

@@ -1,10 +1,4 @@
 
-@utility container {
-    margin-inline: auto;
-    width: 100%;
-    max-width: 1200px;
-    padding-inline: 2rem; /* Optional: adds nice inner spacing */
-}
 @theme {
 
 
@@ -100,10 +94,16 @@
     }
 }*/
 
-@custom-variant dark (&:where(.dark, .dark *));
+/*@custom-variant dark (&:where(.dark, .dark *));*/
 /* DaisyUI */
-:root {
-    /* v5 Variable Name */
+/*:root {
+    !* v5 Variable Name *!
     --color-primary: #A21C13;
     --color-secondary: #F79A0F;
-}
+}*/
+/*:root {
+    color-scheme: light !important;
+}*/
+/* Changes dark strategy to look for a .dark class instead of system settings */
+@variant dark (&:where(.dark, .dark *));
+
