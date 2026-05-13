@@ -2,6 +2,16 @@
     <x-slot name="header">
 
         <div class="relative">
+            <label class="input">
+                 <x-ui.my-img-svg img="search" classList="my-icon" />
+                <input type="search" placeholder="{{$placeholderText}}" 
+                    wire:model.live.debounce.300ms="query"
+                    wire:keydown.escape="reset"
+                    wire:keydown.tab="reset"
+                    wire:keydown.enter="selectResult"
+                    wire:keydown.arrow-down="moveSelectionDown"
+                    wire:keydown.arrow-up="moveSelectionUp" />
+            </label>
             <x-ui.input
                     type="text"
                     class="form-input has-icon-end"
