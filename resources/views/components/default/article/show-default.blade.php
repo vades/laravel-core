@@ -24,9 +24,7 @@
 
             @foreach($page->tags as $tag)
                 <a href="{{ route('articleIndex', ['filter[tag]' => $tag->name]) }}" class="cursor-pointer group mb-2 sm:mb-0">
-                    <x-ui.badge variant="outline"
-                                size="lg" class="w-full justify-center lg:w-auto transition-all duration-200 group-hover:scale-105 whitespace-normal break-words text-center"> {{ $tag->name }}
-                    </x-ui.badge>
+                    <span class="badge badge-soft badge-primary">{{ $tag->name }}</span>
                 </a>
             @endforeach
         </section>

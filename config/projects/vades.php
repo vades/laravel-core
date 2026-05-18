@@ -52,7 +52,7 @@ return[
     'metaDescription' => 'Transform the way you see the world. Martin Vach&#039;s photography reveals hidden beauty in everyday life, creating inspiring visual stories through unique perspective and masterful lighting.',
     'metaKeywords' => 'landscape, nature, travel, fine art, photography',
     'gatMeasurementId' => env('MY_VADES_GTAG_MEASUREMENT_ID'),
-    'headerWidgets' => ['searchInContentType'=>false,'articleCategories'=>false],
+    'headerWidgets' => ['searchInContentType'=>['page','article'],'articleCategories'=>false],
     'headerNav' => [
         $myAppNav['about'],
         $myAppNav['contact'],

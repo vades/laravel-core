@@ -1,51 +1,78 @@
 
 <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 my-8">
-    <x-ui.card size="xl" class="my-card">
-        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
-            <span>This is feature 1</span>
-        </x-ui.heading>
+    <div class="card my-home-card">
+
+        <div class="card-body items-center text-center">
+            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <h2 class="card-title">This is feature 1</h2>
+            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+            <div class="card-actions">
+                <span class="badge badge-soft badge-primary">Tech 1</span> <span class="badge badge-soft badge-primary">Tech 2</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card my-home-card">
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <h2 class="card-title">This is feature 2</h2>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
-            <span>This is feature 2</span>
-        </x-ui.heading>
-        <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
-            <span>This is feature 3</span>
-        </x-ui.heading>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
-            <span>This is feature 4</span>
-        </x-ui.heading>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
-            <span>This is feature 5</span>
-        </x-ui.heading>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <x-ui.heading class="flex items-center justify-between mb-4" level="h3" size="sm">
-            <span>This is feature 6</span>
-        </x-ui.heading>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
+            <div class="card-actions">
+
+                <span class="badge badge-soft badge-primary">Tech 1</span> <span class="badge badge-soft badge-primary">Tech 2</span>
+            </div>
+        </div>
+    </div>
+    <div class="card my-home-card">
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <h2 class="card-title">This is feature 3</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="card-actions">
+                <span class="badge badge-soft badge-primary">Tech 1</span> <span class="badge badge-soft badge-primary">Tech 2</span>
+            </div>
+        </div>
+    </div>
+    <div class="card my-home-card">
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <h2 class="card-title">This is feature 4</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="card-actions">
+                <span class="badge badge-soft badge-primary">Tech 1</span> <span class="badge badge-soft badge-primary">Tech 2</span>
+            </div>
+        </div>
+    </div>
+    <div class="card my-home-card">
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <h2 class="card-title">This is feature 5</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="card-actions">
+                <span class="badge badge-soft badge-primary">Tech 1</span> <span class="badge badge-soft badge-primary">Tech 2</span>
+            </div>
+        </div>
+    </div>
+    <div class="card my-home-card">
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <h2 class="card-title">This is feature 6</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="card-actions">
+                <span class="badge badge-soft badge-primary">Tech 1</span> <span class="badge badge-soft badge-primary">Tech 2</span>
+            </div>
+        </div>
+    </div>
+
 </section>

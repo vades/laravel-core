@@ -17,13 +17,8 @@
             @foreach($tags as $tag)
                 <a href="{{ route($routeName, ['filter[tag]' => $tag->name]) }}"
                    class="cursor-pointer group mb-2 sm:mb-0">
-                    <x-ui.badge
-                            variant="outline"
-                            size="lg"
-                            class="w-full justify-center lg:w-auto transition-all duration-200 group-hover:scale-105 whitespace-normal break-words text-center"
-                    >
-                        {{ $tag->name }} {{-- ({{ $tag->contents_count }}) --}}
-                    </x-ui.badge>
+                    <span class="badge badge-soft badge-primary">{{ $tag->name }} {{-- ({{ $tag->contents_count }}) --}}</span>
+
                 </a>
             @endforeach
         </div>
