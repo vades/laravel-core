@@ -14,7 +14,7 @@
             <div class="my-form-field has-w-full">
                 <label class="floating-label">
                     <span>{{__('app.form.name')}}</span>
-                    <input type="text" id="name" placeholder="{{__('app.form.name')}}" class="input input-md"
+                    <input type="text" id="name" placeholder="{{__('app.form.name')}}" class="input input-md input-primary"
                            wire:model="name"/>
 
                 </label>
@@ -26,7 +26,7 @@
             <div class="my-form-field has-w-full">
                 <label class="floating-label">
                     <span>{{__('app.form.email')}}</span>
-                    <input type="text" id="email" placeholder="{{__('app.form.email')}}" class="input input-md"
+                    <input type="text" id="email" placeholder="{{__('app.form.email')}}" class="input input-md input-primary"
                            wire:model="email"/>
 
                 </label>

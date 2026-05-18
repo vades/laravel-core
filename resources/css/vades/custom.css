@@ -112,6 +112,12 @@ h1, h2, h3, h4,h5, h6,p {
     }
 
 }
+.my-home-card{
+    @apply bg-base-100 w-96 shadow-sm;
+    .card-body{
+        @apply items-center text-center;
+    }
+}
 .my-homepage-section {
     @apply mt-8;
     > h2 {
