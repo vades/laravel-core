@@ -28,8 +28,9 @@
 
         @endif
         <div>
-            <x-default.partials.header.nav-lg tagType="article"/>
-            <x-default.partials.header.nav-sm categoryType="article"/>
+            <x-default.partials.header.nav />
+           {{-- <x-default.partials.header.nav-lg tagType="article"/>
+            <x-default.partials.header.nav-sm categoryType="article"/>--}}
         </div>
     </section>
 </header>
