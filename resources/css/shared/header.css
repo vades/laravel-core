@@ -34,11 +34,17 @@
 
 .my-header-category{
     @apply hidden lg:inline;
+    .btn{
+        @apply btn-wide btn-outline btn-primary ;
+    }
+
 }
 
 .my-header-nav-sm{
     @apply flex items-center gap-4 lg:hidden;
 }
+
+
 
 .header-nav{
     a {

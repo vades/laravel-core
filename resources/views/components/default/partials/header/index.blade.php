@@ -1,10 +1,11 @@
 <header class="my-header">
     <div class="my-header-stripe"></div>
     <section class="my-header-container">
-        <x-default.partials.header.brand  />
+        <x-default.partials.header.brand/>
         @if(!empty(config('myapp.headerWidgets.searchInContentType')))
             <div class="my-header-search">
-                <livewire:widgets.search-suggestion :contentType="config('myapp.headerWidgets.searchInContentType')" :placeholderText="__('app.search.all')" />
+                <livewire:widgets.search-suggestion :contentType="config('myapp.headerWidgets.searchInContentType')"
+                                                    :placeholderText="__('app.search.all')"/>
 
             </div>
 
@@ -14,23 +15,21 @@
             <div class="my-header-category">
                 <x-ui.my-categories-dropdown categoryType="article"
                                              route="articleIndex"
-                                             label="{{ __('app.nav.articleIndex') }}" />
+                                             label="{{ __('app.nav.articleIndex') }}"/>
             </div>
 
         @endif
 
         @if(!empty(config('myapp.headerWidgets.placeCategories')))
-            <div class="my-header-category">
-                <x-ui.my-categories-dropdown categoryType="place"
-                                             route="placeIndex"
-                                             label="{{ __('app.nav.placeIndex') }}" />
-            </div>
 
-        @endif
+        <x-ui.my-categories-dropdown categoryType="place"
+                                     route="placeIndex"
+                                     label="{{ __('app.nav.placeIndex') }}"/>
+
+
+         @endif
         <div>
-            <x-default.partials.header.nav />
-           {{-- <x-default.partials.header.nav-lg tagType="article"/>
-            <x-default.partials.header.nav-sm categoryType="article"/>--}}
+            <x-default.partials.header.nav/>
         </div>
     </section>
 </header>
