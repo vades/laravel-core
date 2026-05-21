@@ -22,12 +22,12 @@
     @endif
 
     @if(count($highlights) > 0)
-        <x-ui.heading  level="h3" size="l">{{ $page->title }} {{__('app.label.highlights') }}</x-ui.heading>
+        <h1>{{ $page->title }} {{__('app.label.highlights') }}</h1>
         <x-default.place.show-highlights :highlights="$highlights" class="my-4" />
     @endif
 
     @if(count($related) > 0)
-        <x-ui.heading  level="h3" size="l">{{__('app.label.placesInCategory') }} </x-ui.heading>
+        <h2>{{__('app.label.placesInCategory') }} </h2>
         <x-default.place.show-related :related="$related" class="my-4" />
     @endif
     <section>

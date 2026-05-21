@@ -1,7 +1,5 @@
 
-    <x-ui.heading level="h2"
-                  size="lg"
-                  class="!text-center">{{__('app.nav.otherPlaces')}}</x-ui.heading>
+    <h2>{{__('app.nav.otherPlaces')}}</h2>
     <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3 2xl:grid-cols-6 xl:gap-4 mb-4">
         @foreach($places as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.place'))
@@ -21,15 +19,12 @@
                     @endif
                 </x-slot>
                 <x-slot name="footer">
-                    <x-ui.button href="{{ route('placeShow',  ['slug'=>$item->slug]) }}"
-                                 variant="ghost"
-                                 iconAfter="chevron-right">{{__('app.nav.readMore')}}</x-ui.button>
+                    <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}" class="btn btn-wide btn-outline btn-primary my-btn-raquo">{{__('app.nav.readMore')}}</a>
                 </x-slot>
             </x-ui.my-card>
 
         @endforeach
     </div>
     <div class="text-center">
-        <x-ui.button href="{{ route('placeIndex') }}"
-                     variant="solid" size="lg"  iconAfter="chevron-right">{{__('app.nav.allPlaces')}}</x-ui.button>
+        <a href="{{ route('placeIndex') }}" class="btn btn-wide btn-outline btn-primary my-btn-raquo">{{__('app.nav.allPlaces')}}</a>
     </div>

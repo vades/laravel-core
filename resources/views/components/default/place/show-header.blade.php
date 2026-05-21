@@ -12,12 +12,12 @@
 
         <div class="flex-1 page-header">
             @if(isset($page->title) && !empty($page->title))
-                <x-ui.heading level="h1" size="xl">  {{ $page->title }}</x-ui.heading>
+                <h1>{{ $page->title }}</h1>
 
             @endif
 
             @if(isset($page->subtitle) && !empty($page->subtitle))
-                    <x-ui.heading  level="h2" size="lg">{{ $page->subtitle }}</x-ui.heading>
+                    <h2>{{ $page->subtitle }}</h2>
             @endif
 
             @if(isset($page->excerpt) && !empty($page->excerpt))

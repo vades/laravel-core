@@ -1,6 +1,4 @@
-<x-ui.heading level="h2"
-              size="lg"
-              class="!text-center">{{__('app.nav.photoGallery')}}</x-ui.heading>
+<h2>{{__('app.nav.photoGallery')}}</h2>
 
 <div class="grid grid-cols-1 gap-2  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 mb-4">
     @foreach($images as  $item)
@@ -13,6 +11,5 @@
     @endforeach
 </div>
 <div class="text-center">
-    <x-ui.button href="{{ route('photoGalleryIndex') }}"
-                 variant="solid" size="lg"  iconAfter="chevron-right">{{__('app.nav.allImages')}}</x-ui.button>
+    <a href="{{ route('photoGalleryIndex') }}" class="btn btn-wide btn-outline btn-primary my-btn-raquo">{{__('app.nav.allImages')}}</a>
 </div>

@@ -1,7 +1,5 @@
 
-    <x-ui.heading level="h2"
-                  size="lg"
-                  class="!text-center mb-4">{{__('app.nav.bestPlacesToVisitIn',['name'=>'Nuremberg'])}}</x-ui.heading>
+    <h2>{{__('app.nav.bestPlacesToVisitIn',['name'=>'Nuremberg'])}}</h2>
     <div class="md:grid  gap-2 md:grid-cols-2 lg:grid-cols-3  my-8">
         @foreach($places as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.place'))

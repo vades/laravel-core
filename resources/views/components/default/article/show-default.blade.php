@@ -19,7 +19,7 @@
         {!! $page->rendered_content !!}
     </div>
     @if($page->tags->isNotEmpty())
-        <x-ui.heading level="h2" class="mb-4"> {{__('app.nav.tags')}}</x-ui.heading>
+        <h2 class="mb-4"> {{__('app.nav.tags')}}</h2>
         <section class="grid gap-2 sm:grid-cols-2 md:grid-cols-4 lg:inline-flex lg:flex-wrap">
 
             @foreach($page->tags as $tag)

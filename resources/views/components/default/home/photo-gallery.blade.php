@@ -1,6 +1,4 @@
-<x-ui.heading level="h2"
-              size="lg"
-              class="!text-center">{{__('app.nav.photoGallery')}}</x-ui.heading>
+<h2>{{__('app.nav.photoGallery')}}</h2>
 
 <div class="grid grid-cols-1 gap-2  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 my-4">
     @foreach($images as  $item)
