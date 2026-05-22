@@ -1,0 +1,26 @@
+
+h1 {
+  @apply text-4xl text-h1 mb-4 font-serif break-words;
+}
+
+h2{
+  @apply text-2xl text-heading mt-3 break-words;
+}
+
+h3{
+  @apply text-xl text-heading mb-1 break-words;
+}
+h4,h5,h6{}
+
+.my-subtitle {
+  @apply text-heading text-lg italic;
+}
+
+.my-perex {
+  @apply text-lg  mb-4 font-serif;
+}
+
+main{
+    a{}
+    p{}
+}

@@ -9,11 +9,13 @@
 
 @import './theme.css';
 @import './utility.css';
+@import '../shared/typo.css';
 @import '../shared/form.css';
 @import '../shared/header.css';
 @import '../shared/layout.css';
 @import '../shared/footer.css';
 @import '../shared/drawer.css';
+@import '../shared/grid.css';
 @import '../shared/jumbotron.css';
 @import '../shared/page-header.css';
 @import '../shared/dropdown.css';
