@@ -1,16 +1,30 @@
+body{
+  @apply text-base-content;
+}
 
 h1 {
   @apply text-4xl text-h1 mb-4 font-serif break-words;
 }
 
-h2{
+h2 {
   @apply text-2xl text-heading mt-3 break-words;
 }
 
-h3{
+h3 {
   @apply text-xl text-heading mb-1 break-words;
 }
-h4,h5,h6{}
+
+h4 {
+  @apply text-lg text-heading mb-1 break-words;
+}
+
+h5 {
+  @apply text-base text-heading mb-1 break-words;
+}
+
+h6 {
+  @apply text-sm text-heading mb-1 break-words;
+}
 
 .my-subtitle {
   @apply text-heading text-lg italic;
@@ -21,6 +35,10 @@ h4,h5,h6{}
 }
 
 main{
-    a{}
-    p{}
+    a {
+      @apply text-primary underline hover:text-primary/70 hover:no-underline;
+    }
+    p {
+  @apply leading-[1.2rem];
+}
 }
