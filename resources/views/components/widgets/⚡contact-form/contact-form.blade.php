@@ -37,7 +37,7 @@
             <div class="my-form-field has-w-full">
                 <label class="floating-label">
                     <span>{{__('app.form.message')}}</span>
-                    <textarea class="textarea"  id="message" placeholder="{{__('app.form.message')}}" wire:model="message"></textarea>
+                    <textarea class="textarea input-primary"  id="message" placeholder="{{__('app.form.message')}}" wire:model="message"></textarea>
                 </label>
                 @error('message')
                 <span class="my-form-error">{{ $message }}</span>

@@ -35,9 +35,9 @@ h6 {
 }
 
 main{
-    a {
+   /* a {
       @apply text-primary underline hover:text-primary/70 hover:no-underline;
-    }
+    }*/
     p {
   @apply leading-[1.2rem];
 }
