@@ -1,6 +1,10 @@
-.my-fieldset {
-    @apply border border-gray-300 rounded-md p-4 mb-4;
+
+.my-form {
+    @apply bg-bcg-form rounded-md p-4 mb-4;
 }
+/*.my-fieldset {
+    @apply bg-bcg-jumbotron rounded-md p-4 mb-4;
+}*/
 .my-form-field {
     @apply mb-4;
 

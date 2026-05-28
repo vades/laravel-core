@@ -54,7 +54,6 @@
     --color-bcg-primary-muted: #bf5e5e;
     --color-bcg-secondary:#F69A13;
     --color-bcg-secondary-muted:#faca84;
-    --color-bcg-jumbotron: #F7F8F2;
     --color-bcg-btn: #F7F8F2;
     --color-bcg-btn-hover: #FFFFFF;
     --color-bcg-input: #fef4e6;
@@ -64,7 +63,7 @@
     --color-bcg-danger: #fdf2f2;
     --color-bcg-accent: #e9eefc;
     --color-bcg-header: #FFFFFF;
-    --color-bcg-jumbotron: #F7F8F2;
+    --color-bcg-jumbotron: #f4e9d4;
     --color-bcg-supplementary: #F7F8F2;
     --color-bcg-footer: #FFFFFF;
     --color-bcg-card: #F7F8F2;
@@ -73,6 +72,7 @@
     --color-bcg-blog: #F7F8F2;
     --color-bcg-place: #F7F8F2;
     --color-bcg-album: #F7F8F2;
+    --color-bcg-form: #f4e9d4;
     --color-icon: #ffffff;
 
     /* * SHEAF UI color scheme */

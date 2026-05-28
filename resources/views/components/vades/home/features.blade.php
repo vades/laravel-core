@@ -3,7 +3,7 @@
     <div class="card my-home-card">
 
         <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
             <h2 class="card-title">Architecture Built to Last</h2>
             <p>Systems designed around your actual growth — not yesterday's assumptions or tomorrow's rewrites.</p>
             <div class="card-actions">
@@ -18,7 +18,7 @@
     </div>
     <div class="card my-home-card">
         <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <x-ui.my-img-svg img="vades-feature-full-stack" classList="my-icon" />
             <h2 class="card-title">Full-Stack, Zero Gaps</h2>
         <p>
             I ship the whole thing. Frontend, backend, infrastructure — no external handoffs, no broken context.
@@ -33,7 +33,7 @@
     </div>
     <div class="card my-home-card">
         <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <x-ui.my-img-svg img="vades-feature-ai" classList="my-icon" />
             <h2 class="card-title">AI That Ships Faster</h2>
             <p>
                 Embedded AI tooling that removes friction from the build cycle — without compromising what goes out the door.
@@ -48,7 +48,7 @@
     </div>
     <div class="card my-home-card">
         <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <x-ui.my-img-svg img="vades-feature-db" classList="my-icon" />
             <h2 class="card-title">Databases That Hold Up</h2>
             <p>
                 Performant schemas and query strategies that stay fast as your data grows — not just on launch day.
@@ -62,7 +62,7 @@
     </div>
     <div class="card my-home-card">
         <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <x-ui.my-img-svg img="vades-feature-api" classList="my-icon" />
             <h2 class="card-title">APIs That Don't Break</h2>
             <p>
                 Clean, stable REST interfaces designed for concurrency, integrations, and teams that depend on them.
@@ -76,7 +76,7 @@
     </div>
     <div class="card my-home-card">
         <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-1" classList="my-icon" />
+            <x-ui.my-img-svg img="vades-feature-iot" classList="my-icon" />
             <h2 class="card-title">IoT From Prototype to Production</h2>
             <p>
                 Hardware integration, network design, and device reliability — built for real-world deployment, not just demos.

@@ -3,7 +3,7 @@
                   :keywords="$page->keywords">
     @if(!empty($page))
         <x-slot name="jumbotron">
-            <x-ui.my-jumbotron class="my-home-jumbotron">
+            <x-ui.my-jumbotron class="">
                 <x-vades.home.hero :page="$page" />
             </x-ui.my-jumbotron>
         </x-slot>

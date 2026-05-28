@@ -9,7 +9,7 @@
             <span>{{ session('success') }}</span>
         </div>
     @endif
-    <form wire:submit="submit">
+    <form class="my-form" wire:submit="submit">
         <fieldset class="my-fieldset">
             <div class="my-form-field has-w-full">
                 <label class="floating-label">

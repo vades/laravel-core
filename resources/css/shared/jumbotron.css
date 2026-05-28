@@ -1,5 +1,5 @@
 .my-jumbotron{
-    @apply px-4 xl:px-0;
+    @apply px-4 xl:px-0 bg-bcg-jumbotron;
 }
 .my-jumbotron-container{
     @apply container mx-auto px-4 lg:px-0;

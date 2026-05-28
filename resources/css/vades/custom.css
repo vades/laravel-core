@@ -95,21 +95,39 @@ h1, h2, h3, h4,h5, h6,p {
 /* region Jumbotron */
 .my-jumbotron {
     @apply pt-6 mb-8;
-    >section {
+   /* >section {
         @apply border-b border-black/10 ;
-    }
+    }*/
 }
 
 /* endregion Jumbotron */
 
 /* region Homepage */
-.my-home-jumbotron{
-    h1{
-        @apply text-heading sm:text-[2.8rem] uppercase font-serif sm:tracking-[1rem] sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
-    }
+.my-home-hero{
+    @apply flex items-center justify-between;
     > div{
+        @apply w-1/2;
+    }
+    > div:last-child {
+        @apply flex justify-end;
+    }
+    h1{
+        @apply text-heading sm:text-[2.8rem] font-serif sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+    }
+    p{
         @apply text-[1.4rem] my-8;
     }
+    .home-hero-svg svg{
+        @apply h-[300px] !w-[100%];
+
+
+    }
+   /* h1{
+        @apply text-heading sm:text-[2.8rem] font-serif sm:tracking-[1rem] sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+    }*/
+    /*> div{
+        @apply text-[1.4rem] my-8;
+    }*/
 
 }
 .my-home-card{
@@ -125,8 +143,12 @@ h1, h2, h3, h4,h5, h6,p {
     }
 }
 
-/* endregion Homepage */
-
-/* region Card */
-
-/* endregion card */
+.my-icon svg_{
+    @apply fill-blue-100 stroke-blue-600 stroke-2;
+    rect{
+        @apply stroke-blue-500 stroke-2 fill-none;
+    }
+    path_{
+        @apply fill-gray-700;
+    }
+}

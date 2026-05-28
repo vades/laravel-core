@@ -1,6 +1,11 @@
-<section {{$attributes->class(['text-center'])}}>
-    <h1 class="text-4xl mb-4">{{$page->title}}</h1>
-    <div class="text-lg mb-4">{{$page->excerpt}}</div>
-    <div>  <a href="{{ route('pageItem',['slug' => 'about']) }}" class="btn btn-wide btn-outline btn-primary my-btn-raquo">Who's Building This</a></div>
-
+<section class="my-home-hero">
+    <div>
+        <h1>{{$page->title}}</h1>
+        <p>{{$page->excerpt}}</p>
+        <a href="{{ route('pageItem',['slug' => 'about']) }}"
+                class="btn btn-wide btn-outline btn-primary my-btn-raquo">Who's Building This</a>
+    </div>
+    <div>
+        <x-ui.my-img-svg img="vades-hero" classList="home-hero-svg" />
+    </div>
 </section>
