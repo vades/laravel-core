@@ -1,0 +1,4 @@
+.my-icon svg{
+    @apply stroke-icon-primary;
+
+}

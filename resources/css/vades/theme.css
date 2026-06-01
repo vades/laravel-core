@@ -73,7 +73,8 @@
     --color-bcg-place: #F7F8F2;
     --color-bcg-album: #F7F8F2;
     --color-bcg-form: #f4e9d4;
-    --color-icon: #ffffff;
+    --color-icon-primary: #A21C13;
+    --color-icon-secondary: #F79A0F;
 
     /* * SHEAF UI color scheme */
    /* --color-primary: var(--color-red-500);

@@ -1,6 +1,6 @@
 
 <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 my-8">
-    <div class="card my-home-card">
+    <div class="card my-home-feature">
 
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
@@ -16,7 +16,7 @@
 
         </div>
     </div>
-    <div class="card my-home-card">
+    <div class="card my-home-feature">
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-full-stack" classList="my-icon" />
             <h2 class="card-title">Full-Stack, Zero Gaps</h2>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="card my-home-card">
+    <div class="card my-home-feature">
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-ai" classList="my-icon" />
             <h2 class="card-title">AI That Ships Faster</h2>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div class="card my-home-card">
+    <div class="card my-home-feature">
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-db" classList="my-icon" />
             <h2 class="card-title">Databases That Hold Up</h2>
@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="card my-home-card">
+    <div class="card my-home-feature">
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-api" classList="my-icon" />
             <h2 class="card-title">APIs That Don't Break</h2>
@@ -74,7 +74,7 @@
             </div>
         </div>
     </div>
-    <div class="card my-home-card">
+    <div class="card my-home-feature">
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-iot" classList="my-icon" />
             <h2 class="card-title">IoT From Prototype to Production</h2>
