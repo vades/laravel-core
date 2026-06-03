@@ -2,10 +2,11 @@
 <section class="lg:grid gap-2 lg:grid-cols-2 my-8">
     <div>
         <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 1</span>
+            <span>Not sure where to start?</span>
         </h3>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+           
+That's fine. Drop a few lines about your project or challenge and I will take it from there.
         </p>
     </div>
 
