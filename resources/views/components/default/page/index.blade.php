@@ -20,10 +20,12 @@
             <figcaption>The Alps in early winter.</figcaption>
         </figure>
     @endif
+    <div class="content-container">
     <div class="content-wrapper">
         {!! $page->renderedContent !!}
     </div>
     @if(!empty($page->livewireWidget) && $page->livewireWidget === 'contact-form')
     <livewire:widgets.contact-form />
     @endif
+    </div>
 </x-default.layout>

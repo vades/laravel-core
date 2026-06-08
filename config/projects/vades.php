@@ -47,10 +47,10 @@ $myAppNav = [
 return[
     'name' => 'vades.dev',
     'logo' => 'vades-logo-text',
-    'slogan' => 'Software Engineering',
-    'metaTitle' => 'VADES Software Engineering | Finding Beauty in Everyday Moments',
-    'metaDescription' => 'Transform the way you see the world. Martin Vach&#039;s photography reveals hidden beauty in everyday life, creating inspiring visual stories through unique perspective and masterful lighting.',
-    'metaKeywords' => 'landscape, nature, travel, fine art, photography',
+    'slogan' => 'The Whole Stack. One Engineer.',
+    'metaTitle' => 'Martin Vach — From IoT to AI: 20 Years of Shipping Software',
+    'metaDescription' => 'Most engineers own one layer. Martin Vach has spent 20 years working across all of them — infrastructure, frontend, and AI — on projects that could not afford to fail.',
+    'metaKeywords' => 'php, typescript, angular, laravel, symfony, mysql, postgresql, ai',
     'gatMeasurementId' => env('MY_VADES_GTAG_MEASUREMENT_ID'),
     'headerWidgets' => ['searchInContentType'=>false,'articleCategories'=>false],
     'headerNav' => [

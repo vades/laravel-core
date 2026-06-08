@@ -167,3 +167,14 @@ h1, h2, h3, h4, h5, h6, p {
         @apply text-2xl text-heading uppercase mb-4;
     }
 }
+
+.pages-contact{
+    .content-container{
+        @apply flex flex-wrap gap-4;
+    }
+
+    .content-container > * {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}

@@ -1,5 +1,5 @@
 .my-page-header {
-    @apply flex gap-4 flex-col md:flex-row md:items-start;
+    @apply flex gap-4 flex-col md:flex-row md:items-start py-4;
 }
 .my-page-header-title {
     @apply text-3xl mb-2;
