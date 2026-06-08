@@ -11,11 +11,9 @@
         popover id="popoverHeaderCategories" style="position-anchor:--anchor-1">
         @foreach($composerCategories as $category)
             <li><a href="{{ route($route, ['filter[category]' => $category->slug]) }}">
-                    {{ $category->title }} >
+                    {{ $category->title }}
                 </a></li>
         @endforeach
-        <li><a>Item 1</a></li>
-        <li><a>Item 2</a></li>
     </ul>
 </div>
 

@@ -1,51 +1,100 @@
 
 <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 my-8">
-    <x-ui.card size="xl" class="my-card">
-        <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 1</span>
-        </h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 2</span>
-        </h3>
-        <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 3</span>
-        </h3>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 4</span>
-        </h3>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 5</span>
-        </h3>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
-    <x-ui.card size="xl">
-        <h3 class="flex items-center justify-between mb-4">
-            <span>This is feature 6</span>
-        </h3>
-        <p>
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-    </x-ui.card>
+    <div class="card my-home-feature">
+
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
+            <h2 class="card-title">This is feature 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="card-actions">
+
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card my-home-feature">
+
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
+            <h2 class="card-title">This is feature 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="card-actions">
+
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card my-home-feature">
+
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
+            <h2 class="card-title">This is feature 3</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="card-actions">
+
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card my-home-feature">
+
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
+            <h2 class="card-title">This is feature 4</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="card-actions">
+
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card my-home-feature">
+
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
+            <h2 class="card-title">This is feature 5</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="card-actions">
+
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card my-home-feature">
+
+        <div class="card-body">
+            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
+            <h2 class="card-title">This is feature 6</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="card-actions">
+
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+                <span class="my-badge">HashTag</span>
+            </div>
+
+
+        </div>
+    </div>
+
 </section>
