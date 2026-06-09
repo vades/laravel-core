@@ -1,28 +1,30 @@
 
 @theme {
+
+
     --font-size-base: 1.2rem;
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-brand-primary: #A3160B;
+    --color-brand-primary: #A21C13;
     --color-brand-primary-muted: #f46358;
-    --color-brand-secondary: #F69A13;
+    --color-brand-secondary: #F79A0F;
     --color-brand-secondary-muted: #faca84;
     --color-base: #444444;
     --color-muted: #696969;
     --color-inverted: #e9ebfc;
     --color-accent: #000000;
-    --color-heading: #A3160B;
-    --color-h1: #A3160B;
-    --color-link: #A3160B;
-    --color-link-hover: #7f1e1e;
-    --color-btn: #A3160B;
+    --color-heading: #A21C13;
+    --color-h1: #A21C13;
+    --color-link: #A21C13;
+    --color-link-hover: #f46358;
+    --color-btn: #A21C13;
     --color-btn-hover: #A3160B;
     --color-input: #000000;
-    --color-input-focus: #7f1e1e;
-    --color-header: #444444;
-    --color-header-muted: #696969;
-    --color-footer:  #444444;
-    --color-footer-muted: #696969;
+    --color-input-focus: #A21C13;
+    --color-header: #A21C13;
+    --color-header-muted: #f46358;
+    --color-footer:  #A21C13;
+    --color-footer-muted: #f46358;
     --color-supplementary: #091843;
     --color-supplementary-muted: #0f2970;
     --color-info: #1e429f;
@@ -33,10 +35,10 @@
     --color-blog: #0a0a0a;
     --color-place: #0a0a0a;
     --color-album: #0a0a0a;
-    --color-bor-base: #dbdbdb;
+    --color-bor-base: #FEF9F2;
     --color-bor-muted: #f4f6fd;
     --color-bor-primary: #A3160B;
-    --color-bor-secondary:#023859;
+    --color-bor-secondary:#F79A0F;
     --color-bor-btn: #dbdbdb;
     --color-bor-input: #dbdbdb;
     --color-bor-input-focus: #A3160B;
@@ -52,7 +54,6 @@
     --color-bcg-primary-muted: #bf5e5e;
     --color-bcg-secondary:#F69A13;
     --color-bcg-secondary-muted:#faca84;
-    --color-bcg-jumbotron: #F7F8F2;
     --color-bcg-btn: #F7F8F2;
     --color-bcg-btn-hover: #FFFFFF;
     --color-bcg-input: #fef4e6;
@@ -62,7 +63,7 @@
     --color-bcg-danger: #fdf2f2;
     --color-bcg-accent: #e9eefc;
     --color-bcg-header: #FFFFFF;
-    --color-bcg-jumbotron: #F7F8F2;
+    --color-bcg-jumbotron: #f4e9d4;
     --color-bcg-supplementary: #F7F8F2;
     --color-bcg-footer: #FFFFFF;
     --color-bcg-card: #F7F8F2;
@@ -71,12 +72,14 @@
     --color-bcg-blog: #F7F8F2;
     --color-bcg-place: #F7F8F2;
     --color-bcg-album: #F7F8F2;
-    --color-icon: #ffffff;
+    --color-bcg-form: #f4e9d4;
+    --color-icon-primary: #A21C13;
+    --color-icon-secondary: #F79A0F;
 
     /* * SHEAF UI color scheme */
-   /* --color-primary: var(--color-red-500);
-    --color-primary-content: var(--color-blue-700);
-    --color-primary-fg: var(--color-blue-600);*/
+    /* --color-primary: var(--color-red-500);
+     --color-primary-content: var(--color-blue-700);
+     --color-primary-fg: var(--color-blue-600);*/
 
     --radius-field: 0.25rem;
     --radius-box: 0.5rem;
@@ -92,4 +95,16 @@
     }
 }*/
 
-@custom-variant dark (&:where(.dark, .dark *));
+/*@custom-variant dark (&:where(.dark, .dark *));*/
+/* DaisyUI */
+/*:root {
+    !* v5 Variable Name *!
+    --color-primary: #A21C13;
+    --color-secondary: #F79A0F;
+}*/
+/*:root {
+    color-scheme: light !important;
+}*/
+/* Changes dark strategy to look for a .dark class instead of system settings */
+@variant dark (&:where(.dark, .dark *));
+

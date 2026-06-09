@@ -1,7 +1,13 @@
-/* region Typo */
-h1, h2, h3, h4,h5, h6,p {
-    @apply  font-normal break-words;
+body {
+
+    @apply bg-bcg-body;
 }
+
+/* region Typo */
+h1, h2, h3, h4, h5, h6, p {
+    @apply font-normal break-words;
+}
+
 .content-wrapper, .page-header {
     h1 {
         @apply text-4xl text-heading mb-4 font-serif;
@@ -23,53 +29,156 @@ h1, h2, h3, h4,h5, h6,p {
 /* endregion Typo */
 
 /* region Header */
-.my-header {
-    @apply bg-bcg-base;
+.my-header-stripe {
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #fde9e7 0px, #fde9e7 10%,
+        #fabcb7 10%, #fabcb7 20%,
+        #f46358 20%, #f46358 30%,
+        #f79088 30%, #f79088 40%,
+        #d71d0f 40%, #d71d0f 50%,
+        #f03728 50%, #f03728 60%,
+        #f79088 60%, #f79088 70%,
+        #f46358 70%, #f46358 80%,
+        #fabcb7 80%, #fabcb7 90%,
+        #fde9e7 90%, #fde9e7 100%
+    );
+}
 
-.header-logo {
+.my-header {
+    /*@apply bg-bcg-primary  border-bor-primary/10;*/
+    @apply w-full fixed top-0 left-0  z-[2100] h-20 bg-white;
+    @apply text-header ;
+    /*top: 5px !important;*/
+    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
+
+
+}
+
+.my-header-logo {
     svg {
-        @apply w-28 lg:w-28;
+        @apply h-[1.8rem] w-auto lg:h-[2.2rem];
     }
 }
+
+.my-header-slogan {
+    @apply text-sm text-header/80 italic;
 }
+
+.my-nav-list-item {
+    @apply uppercase pl-6;
+
+    &:hover {
+        @apply underline text-link-hover;
+    }
+
+    .text-base {
+        @apply text-brand-primary;
+    }
+}
+
+.my-header-delimiter {
+    @apply pt-20;
+}
+
+/*@media only screen and (min-width: 1200px) {
+    .my-header {
+        @apply h-28 px-8 py-4;
+    }
+}*/
+
 /* endregion Header */
 
 /* region Footer */
 .my-footer {
-    @apply text-footer text-sm mt-8  border-t border-black/10 dark:border-white/10 bg-bcg-base/80;
+    @apply text-footer text-sm mt-8  border-t border-bor-primary/10 dark:border-white/10;
 
     a {
-        @apply no-underline font-normal text-sm text-footer hover:text-footer-muted transition-colors duration-300;
+        @apply no-underline font-normal text-sm text-footer hover:text-footer-muted hover:underline;
     }
 }
+
 /* endregion Footer */
 
 /* region Jumbotron */
 .my-jumbotron {
     @apply pt-6 mb-8;
-    >section {
-        @apply border-b border-black/10 ;
-    }
+    /* >section {
+         @apply border-b border-black/10 ;
+     }*/
 }
 
 /* endregion Jumbotron */
 
 /* region Homepage */
-.my-home-jumbotron{
-    h1{
-        @apply text-heading sm:text-[2.8rem] uppercase font-serif sm:tracking-[1rem] sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+.my-home-hero {
+    @apply flex items-center justify-between;
+
+    > div {
+        @apply w-1/2;
     }
-    > div{
+
+    > div:last-child {
+        @apply flex justify-end;
+    }
+
+    h1 {
+        @apply text-heading sm:text-[2.8rem] font-serif sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+    }
+
+    p {
         @apply text-[1.4rem] my-8;
     }
 
+    .home-hero-svg svg {
+        @apply h-[200px] md:h-[400px] w-full ;
+    }
+
+    /* h1{
+         @apply text-heading sm:text-[2.8rem] font-serif sm:tracking-[1rem] sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+     }*/
+    /*> div{
+        @apply text-[1.4rem] my-8;
+    }*/
+
 }
+
+.my-home-feature {
+    @apply bg-base-100 w-96 shadow-sm;
+
+    .card-body {
+        @apply items-center text-center;
+
+        .my-icon {
+            svg {
+                @apply w-[46px] h-[46px];
+            }
+        }
+    }
+
+
+}
+
 .my-homepage-section {
     @apply mt-8;
+
     > h2 {
         @apply text-2xl text-heading uppercase mb-4;
     }
 }
+
+.pages-contact{
+    .content-container{
+        @apply flex flex-wrap gap-4;
+    }
+
+    .content-container > * {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}
+
 
 /* endregion Homepage */
 

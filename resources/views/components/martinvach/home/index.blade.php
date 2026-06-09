@@ -5,22 +5,11 @@
         <x-slot name="jumbotron">
             <x-ui.my-jumbotron class="my-home-jumbotron">
                 <x-ivnbg.home.hero :page="$page" />
-                @if($placesFeatured->isNotEmpty())
-                    <section class="my-homepage-section pb-4">
-                        <x-ivnbg.home.places-featured :places="$placesFeatured" />
-                    </section>
-                @endif
             </x-ui.my-jumbotron>
         </x-slot>
 
     @endif
 
-
-    @if($places->isNotEmpty())
-        <section class="my-homepage-section">
-            <x-ivnbg.home.places :places="$places" />
-        </section>
-    @endif
     @if($articles->isNotEmpty())
         <section class="my-homepage-section border border-gray-200">
             <x-ivnbg.home.articles :articles="$articles" />
