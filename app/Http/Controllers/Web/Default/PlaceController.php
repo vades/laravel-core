@@ -44,8 +44,8 @@ class PlaceController extends Controller
         $categorySlugs = $content->categories->pluck('slug')->toArray();
         return view('place.show', [
             'page'            => $content,
-            'nextContent'     => $next     ? route('articleShow', ['slug' => $next->slug])     : null,
-            'previousContent' => $previous ? route('articleShow', ['slug' => $previous->slug]) : null,
+            'nextContent'     => $next     ? route('placeShow', ['slug' => $next->slug])     : null,
+            'previousContent' => $previous ? route('placeShow', ['slug' => $previous->slug]) : null,
             'images' => $album->imagesByDirectory($slug),
             'highlights' => $query->byParentId(parentId:$content->id,take: 6, random: true),
             'related' =>  $query->setFilter('category',$categorySlugs)->filtered(),
