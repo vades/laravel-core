@@ -9,7 +9,7 @@
     </button>
     <ul class="dropdown menu"
         popover id="popoverHeaderCategories" style="position-anchor:--anchor-1">
-        @foreach($composerCategories as $category)
+        @foreach($composerCategory[categoryType] ?? [] as $category)
             <li><a href="{{ route($route, ['filter[category]' => $category->slug]) }}">
                     {{ $category->title }}
                 </a></li>

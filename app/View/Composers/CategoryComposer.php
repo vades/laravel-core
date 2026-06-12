@@ -5,6 +5,7 @@ namespace App\View\Composers;
 
 use App\Queries\CategoryQuery;
 use Illuminate\View\View;
+use App\Enums\ContentContentType;
 
 class CategoryComposer
 {
@@ -14,8 +15,11 @@ class CategoryComposer
 
         $contentType = $view->getData()['categoryType'] ?? null;
         $view->with([
-                        'composerCategories'       => (new CategoryQuery($contentType))->all(),
                         'composerCurrentCategory'  => request()->query('category'),
+                        'composerCategory'       => [
+                            'article' => (new CategoryQuery(ContentContentType::Article->value))->all(),
+                            'place' => (new CategoryQuery(ContentContentType::Place->value))->all(),
+                        ],
                     ]);
     }
 }
