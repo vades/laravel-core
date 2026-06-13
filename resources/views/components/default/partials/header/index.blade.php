@@ -12,11 +12,11 @@
         @endif
 
         @if(!empty(config('myapp.headerWidgets.articleCategories')))
-            <div class="my-header-category">
+
                 <x-ui.my-categories-dropdown categoryType="article"
                                              route="articleIndex"
                                              label="{{ __('app.nav.articleIndex') }}"/>
-            </div>
+
 
         @endif
 
