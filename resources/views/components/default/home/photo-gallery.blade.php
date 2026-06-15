@@ -13,5 +13,5 @@
 
 <div class="text-center">
     <a href="{{ route('photoGalleryIndex') }}"
-                 class="btn btn-outline btn-primary my-btn-raquo">{{__('app.nav.allImages')}}</a>
+                 class="btn btn-wide btn-ghost btn-primary my-btn-raquo">{{__('app.nav.allImages')}}</a>
 </div>

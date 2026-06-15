@@ -1,5 +1,4 @@
-@inject('carbon', 'Carbon\Carbon')
-<x-ui.my-card class="my-card my-card-article">
+<x-ui.my-card class="my-card my-card-place">
     <x-slot name="header">
         <img class="my-card-img"
              src="{{asset($coverImage)}}"
@@ -8,7 +7,9 @@
     <x-slot name="body">
         <div class="my-card-title">
             <a href="{{ route('articleShow',  ['slug'=>$item->slug]) }}">{{ $item->title }} </a></div>
-        <div class="my-card-date">{{ $carbon::parse($item->created_at)->format('Y-m-d') }}</div>
+        @if (filled($item->subtitle))
+            <div class="my-card-subtitle">{{ $item->subtitle }}</div>
+        @endif
 
         <div class="my-card-excerpt">
             {{ $item->excerpt }}

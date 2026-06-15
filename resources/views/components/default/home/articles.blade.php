@@ -11,5 +11,5 @@
 </div>
 <div class="text-center">
     <a href="{{ route('articleIndex') }}"
-       class="btn btn-wide btn-outline btn-primary my-btn-raquo">{{__('app.nav.allArticles')}}</a>
+       class="btn btn-wide btn-ghost btn-primary my-btn-raquo">{{__('app.nav.allArticles')}}</a>
 </div>
