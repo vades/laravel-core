@@ -1,19 +1,23 @@
 @props(['highlights'])
-<section {{$attributes->class(['grid grid-cols-2 gap-2 md:grid-cols-6 lg:grid-cols-8'])}}>
+<ul class="list my-list lg:grid gap-4  lg:grid-cols-2">
     @foreach($highlights as $item)
         @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.place'))
-        <a class="text-skin-place" href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">
-            <x-ui.my-card class="bg-skin-place place-card">
-                <x-slot name="header">
-                    <img class="mr-auto ml-auto has-transition"
-                         src="{{asset($coverImage)}}"
-                         alt="{{ $item->title}}">
-                </x-slot>
-                <x-slot name="body"
-                        class="p-2 text-center">
-                    <h3 class="text-lg mb-3">{{ $item->title }}</h3>
-                </x-slot>
-            </x-ui.my-card>
-        </a>
+        <li class="list-row my-list-row-highlight">
+            <div>
+                <img class="my-list-img"  src="{{asset($coverImage)}}" alt="{{ $item->title}}"/>
+            </div>
+            <div>
+                <div class="my-list-title" ><a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">{{ $item->title }}</a></div>
+                @if (filled($item->subtitle))
+                <div class="my-list-subtitle">{{ $item->subtitle }}</div>
+                @endif
+                @if (filled($item->excerpt ))
+                <div class="my-excerpt">{{ $item->excerpt }}</div>
+                @endif
+            </div>
+            <a class="btn btn-square btn-ghost" href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">
+                <x-ui.my-img-svg img="circle-chevron-right" classList="my-icon"/>
+            </a>
+        </li>
     @endforeach
-</section>
+</ul>

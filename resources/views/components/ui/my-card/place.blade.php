@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="body">
         <div class="my-card-title">
-            <a href="{{ route('articleShow',  ['slug'=>$item->slug]) }}">{{ $item->title }} </a></div>
+            <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}">{{ $item->title }} </a></div>
         @if (filled($item->subtitle))
             <div class="my-card-subtitle">{{ $item->subtitle }}</div>
         @endif
@@ -16,6 +16,6 @@
         </div>
     </x-slot>
     <x-slot name="footer">
-        <a href="{{ route('articleShow',  ['slug'=>$item->slug]) }}" class="btn btn-outline btn-primary my-btn-raquo">{{__('app.nav.readMore')}}</a>
+        <a href="{{ route('placeShow',  ['slug'=>$item->slug]) }}" class="btn btn-outline btn-primary my-btn-raquo">{{__('app.nav.readMore')}}</a>
     </x-slot>
 </x-ui.my-card>
