@@ -30,6 +30,12 @@
 .my-card-excerpt{
     @apply  mb-3;
 }
+
+.my-card-article{
+    .my-card-img{
+        @apply h-64;
+    }
+}
 /* region Featured Card Styles */
 .my-card-featured{
     @apply relative overflow-hidden rounded-sm;
