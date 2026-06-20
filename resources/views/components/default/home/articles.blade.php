@@ -1,14 +1,15 @@
 @inject('carbon', 'Carbon\Carbon')
 
 <h2>{{__('app.nav.recentPosts')}}</h2>
-<div class="md:grid  gap-2 md:grid-cols-2 lg:grid-cols-3 mb-4 my-grid-article">
+
+<section class="list my-list lg:grid gap-4  lg:grid-cols-2">
     @foreach($articles as $item)
         @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
 
-        <x-ui.my-card.article :item="$item" :coverImage="$coverImage" />
+        <x-ui.my-list class="my-list-row" :item="$item" :coverImage="$coverImage" />
 
     @endforeach
-</div>
+</section>
 <div class="text-center">
     <a href="{{ route('articleIndex') }}"
        class="btn btn-wide btn-ghost btn-primary my-btn-raquo">{{__('app.nav.allArticles')}}</a>

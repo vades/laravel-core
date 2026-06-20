@@ -14,7 +14,7 @@
 }
 
 .my-card-title{
-    @apply  text-2xl leading-[1.2] mb-2 text-h1;
+    @apply  text-xl leading-[1.2] mb-2 text-h1;
 }
 .my-card-subtitle{
     @apply text-lg mb-2 italic;
@@ -30,13 +30,25 @@
 .my-card-excerpt{
     @apply  mb-3;
 }
+/* region Featured Card Styles */
+.my-card-featured{
+    @apply relative overflow-hidden rounded-sm;
+    figure {
+        @apply relative overflow-hidden rounded-sm;
+        img {
+            @apply w-full max-h-64 object-cover cursor-pointer
+            transition-transform duration-300 ease-in-out hover:scale-110
+            rounded-sm;
+        }
+        figcaption {
+            @apply absolute bottom-0 left-0 right-0 p-2 bg-[rgba(255,255,255,0.6)] mt-2 text-center text-sm;
+        }
+    }
+}
+/* endregion Featured Card Styles */
 
 
 /* region Gallery Card Styles */
-.my-card-gallery{
-    @apply relative overflow-hidden rounded-sm;
-}
-
 .my-card-gallery{
     @apply relative overflow-hidden rounded-sm;
     figure {
