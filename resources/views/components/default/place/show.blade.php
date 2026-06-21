@@ -22,12 +22,12 @@
     @endif
 
     @if(count($highlights) > 0)
-        <h1>{{ $page->title }} {{__('app.label.highlights') }}</h1>
+        <h2>{{ $page->title }} {{__('app.label.highlights') }}</h2>
         <x-default.place.show-highlights :highlights="$highlights" class="my-4" />
     @endif
 
     @if(count($related) > 0)
-        <h2>{{__('app.label.placesInCategory') }} </h2>
+        <h2>{{__('app.label.relatedPlaces')}} </h2>
         <x-default.place.show-related :related="$related" class="my-4" />
     @endif
     <section>

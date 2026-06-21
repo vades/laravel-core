@@ -33,6 +33,7 @@ return [
     ],
     'label' => [
         'placesInCategory' => 'Other places in category :category',
+        'relatedPlaces' => 'Related places',
         'highlights' => 'highlights',
     ],
 

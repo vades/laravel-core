@@ -96,8 +96,8 @@
         "init-dev": [
             "@clear",
             "@php artisan migrate:fresh",
-            "@php artisan db:seed",
             "@php artisan app:generate-album",
+            "@php artisan db:seed",
             "@php artisan app:import-project-content"
         ]
     },

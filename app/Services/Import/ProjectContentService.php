@@ -244,6 +244,7 @@ class ProjectContentService
             $data['metadata']['featuredImage'] = $this->getContentImageUrl($projectSlug, $contentTypeStr, ($object->matter('imageDirectory') ?? '') . '/' . config('myapp.image.featured'));
             if ($contentTypeStr === ContentContentType::Place->value) {
                 $data['metadata']['coverImage'] = $this->getPlaceImageUrl($projectSlug, $slug, config('myapp.image.cover'));
+                $data['metadata']['featuredImage'] = $this->getPlaceImageUrl($projectSlug, $slug, config('myapp.image.featured'));
             }
 
             $dto = ContentData::from($data);

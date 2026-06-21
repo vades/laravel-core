@@ -6,27 +6,27 @@
     @endif
 
     <x-default.home.features/>
-    @if(!empty($placesFeatured))
-        <section class="mt-8">
-            <x-default.home.places-featured :places="$placesFeatured"/>
-        </section>
-    @endif
+        @if(count($placesFeatured) > 0)
+            <section class="mt-8">
+                <x-default.home.places-featured :placesFeatured="$placesFeatured"/>
+            </section>
+        @endif
 
-    @if(!empty($places))
-        <section class="mt-8">
-            <x-default.home.places :places="$places"/>
-        </section>
-    @endif
-    @if(!empty($articles))
-        <section class="mt-8">
-            <x-default.home.articles :articles="$articles"/>
-        </section>
-    @endif
+        @if(count($places) > 0)
+            <section class="mt-8">
+                <x-default.home.places :places="$places"/>
+            </section>
+        @endif
+        @if(count($articles) > 0)
+            <section class="mt-8">
+                <x-default.home.articles :articles="$articles"/>
+            </section>
+        @endif
 
-    @if(!empty($images))
-        <section class="mt-8">
-            <x-default.home.photo-gallery :images="$images"/>
-        </section>
-    @endif
+        @if(count($images) > 0)
+            <section class="mt-8">
+                <x-default.home.photo-gallery :images="$images"/>
+            </section>
+        @endif
 
 </x-default.layout>

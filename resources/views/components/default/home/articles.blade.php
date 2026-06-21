@@ -6,7 +6,7 @@
     @foreach($articles as $item)
         @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
 
-        <x-ui.my-list class="my-list-row" :item="$item" :coverImage="$coverImage" />
+        <x-ui.my-list class="my-list-row" :item="$item" :coverImage="$coverImage" routeName="articleShow" />
 
     @endforeach
 </section>
