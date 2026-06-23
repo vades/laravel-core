@@ -14,10 +14,10 @@
 }
 
 .my-card-title{
-    @apply  text-xl leading-[1.2] mb-2 text-h1;
+    @apply  text-lg leading-[1.2] mb-2 text-h1;
 }
 .my-card-subtitle{
-    @apply text-lg mb-2 italic;
+    @apply mb-2 italic;
 }
 
 .my-card-date{

@@ -3,6 +3,7 @@
     <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3 2xl:grid-cols-6 xl:gap-4 my-8 my-grid-place">
         @foreach($places as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.place'))
+        @php($item->excerpt = null)
 
             <x-ui.my-card.place :item="$item" :coverImage="$coverImage" />
 

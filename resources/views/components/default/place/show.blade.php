@@ -15,7 +15,7 @@
     @if(!empty($images))
         <x-ui.my-lightbox :images="$images" />
     @endif
-    @if(!empty($markdown))
+    @if(!empty($page->rendered_content))
     <div class="content-wrapper">
         {!! $page->rendered_content !!}
     </div>

@@ -1,5 +1,5 @@
 body {
-    @apply m-0 text-base bg-bcg-body text-[1.2rem];
+    @apply m-0 text-base-content bg-bcg-body;
 }
 #root{
     @apply min-h-screen flex flex-col;
