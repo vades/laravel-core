@@ -2,9 +2,9 @@
 @plugin "daisyui";
 @plugin "daisyui/theme" {
     name: "light";
-    --color-primary: #A21C13;
+    --color-primary: #023859;
     --color-primary-content: #ffffff;
-    --color-secondary: #F79A0F;
+    --color-secondary: #696969;
 }
 
 @import './theme.css';

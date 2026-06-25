@@ -5,26 +5,26 @@
     --font-size-base: 1.2rem;
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-brand-primary: #A21C13;
-    --color-brand-primary-muted: #f46358;
-    --color-brand-secondary: #F79A0F;
-    --color-brand-secondary-muted: #faca84;
+    --color-brand-primary: #023859;
+    --color-brand-primary-muted: #005d9f;
+    --color-brand-secondary: #023859;
+    --color-brand-secondary-muted: #005d9f;
     --color-base: #444444;
     --color-muted: #696969;
     --color-inverted: #e9ebfc;
     --color-accent: #000000;
-    --color-heading: #A21C13;
-    --color-h1: #A21C13;
-    --color-link: #A21C13;
-    --color-link-hover: #f46358;
-    --color-btn: #A21C13;
-    --color-btn-hover: #A3160B;
+    --color-heading: #444444;
+    --color-h1: #444444;
+    --color-link: #005d9f;
+    --color-link-hover:#023859;
+    --color-btn: #023859;
+    --color-btn-hover: #005d9f;
     --color-input: #000000;
-    --color-input-focus: #A21C13;
-    --color-header: #A21C13;
-    --color-header-muted: #f46358;
-    --color-footer:  #A21C13;
-    --color-footer-muted: #f46358;
+    --color-input-focus: #005d9f;
+    --color-header: #414141;
+    --color-header-muted: #8fa8f0;
+    --color-footer:  #414141;
+    --color-footer-muted: #9f9f9f;
     --color-supplementary: #091843;
     --color-supplementary-muted: #0f2970;
     --color-info: #1e429f;
@@ -35,13 +35,13 @@
     --color-blog: #0a0a0a;
     --color-place: #0a0a0a;
     --color-album: #0a0a0a;
-    --color-bor-base: #FEF9F2;
+    --color-bor-base: #d7d7d7;
     --color-bor-muted: #f4f6fd;
-    --color-bor-primary: #A3160B;
-    --color-bor-secondary:#F79A0F;
+    --color-bor-primary: #005d9f;
+    --color-bor-secondary:#023859;
     --color-bor-btn: #dbdbdb;
     --color-bor-input: #dbdbdb;
-    --color-bor-input-focus: #A3160B;
+    --color-bor-input-focus: #005d9f;
     --color-bor-footer:#fde9e7;
     --color-bor-supplementary: #f4f6fd;
     --color-bor-info: #a4cafe;
@@ -50,10 +50,10 @@
     --color-bor-danger: #f8b4b4;
     --color-bcg-body: #FFFFFF;
     --color-bcg-base: #F7F8F2;
-    --color-bcg-primary:#A3160B;
-    --color-bcg-primary-muted: #bf5e5e;
-    --color-bcg-secondary:#F69A13;
-    --color-bcg-secondary-muted:#faca84;
+    --color-bcg-primary:#005d9f;
+    --color-bcg-primary-muted: #299ff1;
+    --color-bcg-secondary:#023859;
+    --color-bcg-secondary-muted:#005d9f;
     --color-bcg-btn: #F7F8F2;
     --color-bcg-btn-hover: #FFFFFF;
     --color-bcg-input: #fef4e6;
@@ -65,7 +65,7 @@
     --color-bcg-header: #FFFFFF;
     --color-bcg-jumbotron: #f4e9d4;
     --color-bcg-supplementary: #F7F8F2;
-    --color-bcg-footer: #FFFFFF;
+    --color-bcg-footer: #fff;
     --color-bcg-card: #F7F8F2;
     --color-bcg-featured: #F7F8F2;
     --color-bcg-article: #fef4e6;
@@ -73,38 +73,10 @@
     --color-bcg-place: #F7F8F2;
     --color-bcg-album: #F7F8F2;
     --color-bcg-form: #f4e9d4;
-    --color-icon-primary: #A21C13;
-    --color-icon-secondary: #F79A0F;
-
-    /* * SHEAF UI color scheme */
-    /* --color-primary: var(--color-red-500);
-     --color-primary-content: var(--color-blue-700);
-     --color-primary-fg: var(--color-blue-600);*/
+    --color-icon-primary: #023859;
+    --color-icon-secondary: #023859;
 
     --radius-field: 0.25rem;
     --radius-box: 0.5rem;
 }
-
-
-/*
-@layer theme {
-    .dark {
-        --color-primary: var(--color-white);
-        --color-primary-content: var(--color-white);
-        --color-primary-fg:  var(--color-neutral-800);
-    }
-}*/
-
-/*@custom-variant dark (&:where(.dark, .dark *));*/
-/* DaisyUI */
-/*:root {
-    !* v5 Variable Name *!
-    --color-primary: #A21C13;
-    --color-secondary: #F79A0F;
-}*/
-/*:root {
-    color-scheme: light !important;
-}*/
-/* Changes dark strategy to look for a .dark class instead of system settings */
 @variant dark (&:where(.dark, .dark *));
-

@@ -2,23 +2,28 @@
                   :description="$page->metaDescription ?? $page->excerpt"
                   :keywords="$page->keywords">
     @if(!empty($page))
-        <x-slot name="jumbotron">
-            <x-ui.my-jumbotron class="my-home-jumbotron">
-                <x-ivnbg.home.hero :page="$page" />
-            </x-ui.my-jumbotron>
-        </x-slot>
-
+        <x-ivnbg.home.hero :page="$page"/>
     @endif
-
-    @if($articles->isNotEmpty())
-        <section class="my-homepage-section border border-gray-200">
-            <x-ivnbg.home.articles :articles="$articles" />
+    @if(count($placesFeatured) > 0)
+        <section class="my-home-section">
+            <x-default.home.places-featured :placesFeatured="$placesFeatured"/>
         </section>
     @endif
 
-    @if(!empty($images))
-        <section class="my-homepage-section border border-black/10 dark:border-white/10 bg-bcg-base/80 p-4 rounded">
-            <x-ivnbg.home.photo-gallery :images="$images" />
+    @if(count($places) > 0)
+        <section class="my-home-section">
+            <x-default.home.places :places="$places"/>
+        </section>
+    @endif
+    @if(count($articles) > 0)
+        <section class="my-home-section">
+            <x-default.home.articles :articles="$articles"/>
+        </section>
+    @endif
+
+    @if(count($images) > 0)
+        <section class="my-home-section">
+            <x-default.home.photo-gallery :images="$images"/>
         </section>
     @endif
 
