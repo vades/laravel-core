@@ -25,6 +25,7 @@
     },
     "devDependencies": {
         "cross-env": "^10.1.0",
-        "daisyui": "^5.5.19"
+        "daisyui": "^5.5.19",
+        "dotenv": "^17.4.2"
     }
 }

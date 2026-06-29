@@ -4,10 +4,14 @@ import {
 import laravel from 'laravel-vite-plugin';
 import tailwindcss from "@tailwindcss/vite";
 import path from 'path';
+import dotenv from 'dotenv';
 
+// Load .env into process.env before anything else
+dotenv.config();
 export default defineConfig(() => {
     // Check if SITE is defined
-    const site = process.env.SITE;
+    //const site = process.env.MY_PROJECT_SLUG;
+    const site = process.env.npm_config_site || process.env.MY_PROJECT_SLUG || undefined;
     console.log(`SITE environment variable: ${site}`);
 
     // Determine the public root
