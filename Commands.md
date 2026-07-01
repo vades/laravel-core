@@ -57,11 +57,13 @@ php artisan github:download-publish-files --dry-run
 php artisan github:download-publish-files
 
 - `php artisan app:db-test` Run database connection/integrity test
-- `php artisan app:import-project --name [name]` Import specific project data
+- `php artisan app:import-project-content` Import project content data
 - `php artisan app:generate-album --url [url]` Generate album from storage URL
+- `php artisan  app:generate-sitemap ivnbg --path=../domains/ivnbg.com/public_html ` Generate sitemap for ivnbg.com
+- `php artisan  app:generate-sitemap martinvach --path=../domains/martinvach.com/public_html ` Generate sitemap for martinvach.com
+- `php artisan  app:generate-sitemap vades --path=../domains/vades.dev/public_html ` Generate sitemap for vades.dev
+- 
 - `php artisan app:csv-to-md` Convert CSV files to Markdown
-- `php artisan app:generate-ivnbg-sitemap` Generate sitemap for ivnbg.com
-- `php artisan app:generate-martinvach-sitemap` Generate sitemap for martinvach.com
 - `php artisan app:sync-drive-to-local [path] [target]` Sync Google Drive folder to local
 - `php artisan app:google-drive-synchronize [folder] [target]` Synchronize Google Drive assets
 - `php artisan app:google-drive-download-files [src] [dest]` Download specific files from Google Drive
