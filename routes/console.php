@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command('app:generate-album')->dailyAt('01:00');
+Schedule::command('app:import-project-content')->dailyAt('02:00');
+//Schedule::command('app:generate-sitemap')->dailyAt('04:00');
