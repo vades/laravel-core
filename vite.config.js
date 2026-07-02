@@ -14,10 +14,25 @@ export default defineConfig(() => {
     const site = process.env.npm_config_site || process.env.MY_PROJECT_SLUG || undefined;
     console.log(`SITE environment variable: ${site}`);
 
-    // Determine the public root
-    // If SITE exists, resolve to external domain. If not, use default 'public'.
-    const publicDir = site
-        ? path.resolve(__dirname, '..', 'domains', site, 'public_html')
+    let mappedDomain;
+
+    switch (site) {
+        case 'ivnbg':
+            mappedDomain = 'ivnbg.com';
+            break;
+        case 'vades':
+            mappedDomain = 'vades.dev';
+            break;
+        case 'martinvach':
+            mappedDomain = 'martinvach.com';
+            break;
+        default:
+            mappedDomain = site;
+            break;
+    }
+
+    const publicDir = mappedDomain
+        ? path.resolve(__dirname, '..', 'domains', mappedDomain, 'public_html')
         : 'public';
 
     const domainResourceDir = site || 'default';
