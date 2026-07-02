@@ -164,7 +164,7 @@ class Content extends Model
     protected function coverImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['coverImage'] ?? null,
+            get: fn () => !empty($this->metadata['coverImage']) ? config('myapp.image.domain').'/'.$this->metadata['coverImage'] : null,
         );
     }
     /**
@@ -173,7 +173,7 @@ class Content extends Model
     protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['featuredImage'] ?? null,
+            get: fn () => !empty($this->metadata['featuredImage']) ? config('myapp.image.domain').'/'. $this->metadata['featuredImage'] : null,
         );
     }
 

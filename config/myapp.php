@@ -6,6 +6,7 @@ return [
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'cacheDuration' => (int) env('MY_CACHE_DURATION', 86400),
     'image' => [
+        'domain' => env('MY_IMAGE_DOMAIN'),
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
         'svgPath' => 'app/public/images/svg',
