@@ -2,6 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
+use App\Enums\Language;
+use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -25,6 +31,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Tag extends Model
 {
     use SoftDeletes;
+    use FilterByProject;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -33,11 +41,13 @@ class Tag extends Model
      */
     protected $fillable = [
         'uuid',
+        'content_type',
         'is_published',
         'tag_type',
         'lang',
         'views_count',
         'name',
+        'project_id',
     ];
 
     /**
@@ -46,6 +56,7 @@ class Tag extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'lang' => Language::class,
         'is_published' => 'bool',
         'views_count'  => 'int',
         'created_at'   => 'datetime',
@@ -60,5 +71,15 @@ class Tag extends Model
     {
         return $this->belongsTo(Project::class);
     }
-}
 
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class);
+    }
+
+    public function scopeByContentType(Builder $query, null|string|ContentContentType $contentType =ContentContentType::Article->value): void
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        $query->where('content_type',$value);
+    }
+}

@@ -4,7 +4,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "build:vades": "cross-env SITE=vades.dev vite build",
+        "build:myprompties": "cross-env SITE=mypromties.com vite build",
+        "build:all": "npm run build:vades && npm run build:myprompties"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.1.11",
@@ -19,5 +22,10 @@
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
         "lightningcss-linux-x64-gnu": "^1.29.1"
+    },
+    "devDependencies": {
+        "cross-env": "^10.1.0",
+        "daisyui": "^5.5.19",
+        "dotenv": "^17.4.2"
     }
 }

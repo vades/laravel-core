@@ -1,0 +1,55 @@
+.my-header-stripe {}
+.my-header{
+    @apply bg-white dark:bg-neutral-900 border-b border-black/10 dark:border-white/10;
+
+}
+.my-header-container{
+    @apply container mx-auto flex justify-between items-center px-4 xl:px-0 h-16;
+}
+.my-header-brand{
+    @apply flex  justify-between items-center gap-6;
+
+}
+
+.my-header-logo {
+    svg {
+        @apply w-12 h-12;
+    }
+}
+.my-header-slogan {
+    @apply hidden lg:inline ;
+}
+
+.header-search{
+    @apply flex-1 mx-4;
+}
+
+.my-header-navbar{
+    @apply lg:flex lg:flex-1;
+}
+
+.my-header-search {
+    @apply flex-1 mx-4;
+}
+
+.my-header-category{
+    @apply hidden lg:inline;
+    .btn{
+        @apply btn-wide btn-outline btn-primary ;
+    }
+
+}
+
+.my-header-nav-sm{
+    @apply flex items-center gap-4 lg:hidden;
+}
+
+
+
+.header-nav{
+    a {
+        &:hover {
+            @apply text-link-hover;
+        }
+    }
+}

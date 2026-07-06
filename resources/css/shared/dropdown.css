@@ -1,0 +1,9 @@
+.dropdown{
+    @apply min-w-32 w-auto rounded-box bg-base-100 shadow-sm;
+}
+.my-search-dropdown{
+    @apply !w-full;
+    .dropdown-content{
+        @apply menu bg-base-100 rounded-box z-1 w-full p-2 shadow-sm  menu;
+    }
+}

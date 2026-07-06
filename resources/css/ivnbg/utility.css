@@ -1,0 +1,7 @@
+
+@utility container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: 2rem; /* Optional: adds nice inner spacing */
+}

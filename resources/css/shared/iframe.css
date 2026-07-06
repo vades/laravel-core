@@ -1,0 +1,6 @@
+.my-iframe-wrapper {
+    @apply relative pb-[56.25%] pt-8 h-0 overflow-hidden;
+}
+.my-iframe {
+    @apply absolute top-0 left-0 w-full h-full;
+}

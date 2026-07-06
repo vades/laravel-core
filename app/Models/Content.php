@@ -2,10 +2,21 @@
 
 namespace App\Models;
 
+use App\Enums\ContentContentType;
+use App\Enums\ContentStatus;
+use App\Enums\ContentVisibility;
+use App\Enums\Language;
+use App\Traits\FilterByProject;
+use App\Traits\HasDynamicContent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * App\Models\Content
@@ -42,7 +53,8 @@ class Content extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    use FilterByProject;
+    use HasDynamicContent;
     /**
      * The attributes that are mass assignable.
      *
@@ -50,6 +62,10 @@ class Content extends Model
      */
     protected $fillable = [
         'uuid',
+        'project_id',
+        'user_id',
+        'author_id',
+        'parent_id',
         'content_type',
         'status',
         'visibility',
@@ -63,6 +79,7 @@ class Content extends Model
         'position',
         'is_featured',
         'published_at',
+
     ];
 
     /**
@@ -71,6 +88,10 @@ class Content extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'status' => ContentStatus::class,
+        'content_type' => ContentContentType::class,
+        'visibility' => ContentVisibility::class,
+        'lang' => Language::class,
         'metadata' => 'array',
         'is_featured' => 'boolean',
         'position' => 'integer',
@@ -107,5 +128,157 @@ class Content extends Model
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Content::class, 'parent_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_content');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'content_tag');
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+                          ->generateSlugsFrom('slug')
+                          ->saveSlugsTo('slug')
+                          ->doNotGenerateSlugsOnUpdate();
+    }
+
+    /**
+     * Get rendered content.
+     */
+    protected function renderedContent(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Str::of($this->content)->markdown(),
+        );
+    }
+
+    /**
+     * Get the cover image URL from metadata.
+     */
+    protected function coverImageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => !empty($this->metadata['coverImage']) ? config('myapp.image.domain').'/'.$this->metadata['coverImage'] : null,
+        );
+    }
+    /**
+     * Get the featured image URL from metadata.
+     */
+    protected function featuredImageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => !empty($this->metadata['featuredImage']) ? config('myapp.image.domain').'/'. $this->metadata['featuredImage'] : null,
+        );
+    }
+
+    /**
+     * Get the featured image URL from metadata.
+     */
+    protected function livewireWidget(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['livewireWidget'] ?? null,
+        );
+    }
+
+    /**
+     * Get the address from metadata.
+     */
+    protected function address(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['address'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Google Map Embed URL from metadata.
+     */
+    protected function googleMapEmbedUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['googleMapEmbedUrl'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Meta Title from metadata.
+     */
+    protected function metaTitle(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['metaTitle'] ?? null,
+        );
+    }
+
+    /**
+     * Get the Meta Description from metadata.
+     */
+    protected function metaDescription(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->metadata['metaDescription'] ?? null,
+        );
+    }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('status', ContentStatus::Published->value);
+    }
+
+    public function scopePublishedByType(Builder $query, null|string|ContentContentType $contentType = ContentContentType::Article->value):
+    void
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        $query->where('status', ContentStatus::Published->value)
+              ->where('content_type', $value)
+        ;
+    }
+    public function scopeIsFeatured(Builder $query): void
+    {
+        $query->where('is_featured', 1);
+    }
+
+    public function scopeNotFeatured(Builder $query): void
+    {
+        $query->where('is_featured', 0);
+    }
+
+    public function scopeFilterByCategory(Builder $query, array|string $value): void
+    {
+        $query->whereHas('categories', fn($q) =>
+        $q->whereIn('slug', (array) $value)
+        );
+    }
+
+    public function scopeFilterByTag(Builder $query, array|string $value): void
+    {
+        $query->whereHas('tags', fn($q) =>
+        $q->whereIn('name', (array) $value)
+        );
+    }
+
+    public function nextPublishedByType(string|ContentContentType $contentType =ContentContentType::Article->value)
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        return $this->publishedByType( $value)
+                    ->where('id', '>', $this->id)
+                    ->orderBy('id')
+                    ->first();
+    }
+
+    public function previousPublishedByType(string|ContentContentType $contentType = ContentContentType::Article->value)
+    {
+        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+        return $this->publishedByType($contentType)
+                    ->where('id', '<', $this->id)
+                    ->orderByDesc('id')
+                    ->first();
     }
 }

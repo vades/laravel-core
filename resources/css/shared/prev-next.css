@@ -1,0 +1,8 @@
+.my-prev-next {
+ @apply flex gap-4;
+}
+.my-prev-next-prev {
+    @apply mr-4;
+}
+.my-prev-next-next {
+}

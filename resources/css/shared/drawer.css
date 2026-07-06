@@ -1,0 +1,20 @@
+
+.my-drawer {
+    .drawer-content {
+        @apply  flex flex-col;
+    }
+    .navbar{
+        @apply  w-full;
+    }
+    .my-drawer-btn-wrapper {
+        @apply lg:hidden;
+    }
+    .my-drawer-menu-horizontal {
+        @apply  hidden flex-none lg:block;
+    }
+    .drawer-side {
+        .menu{
+            @apply  bg-base-200 min-h-full w-80 p-4;
+        }
+    }
+}

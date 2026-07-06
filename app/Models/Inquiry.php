@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\FilterByProject;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,6 +34,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Inquiry extends Model
 {
     use SoftDeletes;
+    use FilterByProject;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +43,7 @@ class Inquiry extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'project_id',
         'is_read',
         'is_spam',
         'is_archived',
@@ -84,4 +89,3 @@ class Inquiry extends Model
         return $this->belongsTo(User::class);
     }
 }
-

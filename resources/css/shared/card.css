@@ -1,0 +1,72 @@
+/* region Card Component Styles */
+.my-card {
+    @apply flex flex-col justify-between h-full bg-bcg-card dark:bg-neutral-900 border border-black/10 dark:border-white/10 border-bor-base dark:hover:bg-neutral-800  mb-3;
+}
+.my-card-footer {
+    @apply mt-auto text-center pb-2;
+}
+.my-card-body{
+    @apply flex-grow px-6 text-sm ;
+}
+
+.my-card-img{
+    @apply mr-auto ml-auto object-cover mb-4;
+}
+
+.my-card-title{
+    @apply  text-lg leading-[1.2] mb-2 text-h1;
+}
+.my-card-subtitle{
+    @apply mb-2 italic;
+}
+
+.my-card-date{
+    @apply text-sm mb-2 italic;
+}
+
+.my-card-info{
+    @apply text-sm mb-3;
+}
+.my-card-excerpt{
+    @apply  mb-3;
+}
+
+.my-card-article{
+    .my-card-img{
+        @apply h-64;
+    }
+}
+/* region Featured Card Styles */
+.my-card-featured{
+    @apply relative overflow-hidden rounded-sm;
+    figure {
+        @apply relative overflow-hidden rounded-sm;
+        img {
+            @apply w-full max-h-64 object-cover cursor-pointer
+            transition-transform duration-300 ease-in-out hover:scale-110
+            rounded-sm;
+        }
+        figcaption {
+            @apply absolute bottom-0 left-0 right-0 p-2 bg-[rgba(255,255,255,0.6)] mt-2 text-center text-sm;
+        }
+    }
+}
+/* endregion Featured Card Styles */
+
+
+/* region Gallery Card Styles */
+.my-card-gallery{
+    @apply relative overflow-hidden rounded-sm;
+    figure {
+        @apply relative overflow-hidden rounded-sm;
+        img {
+            @apply w-full aspect-square object-cover cursor-pointer
+            transition-transform duration-300 ease-in-out hover:scale-110
+            rounded-sm;
+        }
+        figcaption {
+            @apply absolute bottom-0 left-0 right-0 p-2 bg-[rgba(255,255,255,0.6)] mt-2 text-center text-sm;
+        }
+    }
+}
+/* endregion Gallery Card Styles */

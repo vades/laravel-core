@@ -1,0 +1,15 @@
+
+.my-btn-raquo::after {
+    content: '\00BB';
+    @apply inline-block ml-1;
+}
+
+.my-btn-laquo::before {
+    content: '\00AB';
+    @apply inline-block mr-1;
+}
+
+.my-btn-triangle-down::after {
+    content: '\25BE';
+    @apply inline-block ml-1;
+}

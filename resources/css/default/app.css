@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+    name: "light";
+    --color-primary: #A21C13;
+    --color-primary-content: #ffffff;
+    --color-secondary: #F79A0F;
+}
+
+@import './theme.css';
+@import './utility.css';
+@import '../shared/typo.css';
+@import '../shared/form.css';
+@import '../shared/header.css';
+@import '../shared/layout.css';
+@import '../shared/footer.css';
+@import '../shared/drawer.css';
+@import '../shared/grid.css';
+@import '../shared/list.css';
+@import '../shared/jumbotron.css';
+@import '../shared/page-header.css';
+@import '../shared/dropdown.css';
+@import '../shared/card.css';
+@import '../shared/list.css';
+@import '../shared/badge.css';
+@import '../shared/panel.css';
+@import '../shared/prev-next.css';
+@import '../shared/iframe.css';
+@import '../shared/button.css';
+@import '../shared/icon.css';
+@import './custom.css';
+

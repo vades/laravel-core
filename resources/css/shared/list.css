@@ -1,0 +1,23 @@
+.my-list{
+    .list-row{
+        @apply bg-bcg-card rounded-box shadow-md;
+        .my-list-title{
+            @apply text-lg text-h1 mb-2;
+        }
+        .my-list-subtitle{
+    @apply  text-xs uppercase font-semibold opacity-80 mb-2;
+        }
+        .my-list-date{
+            @apply  text-xs italic opacity-80 mb-2;
+        }
+        .my-list-excerpt{
+
+        }
+        .my-list-img{
+            @apply size-20 rounded-box;
+        }
+    }
+    .my-list-row-highlight{
+    }
+
+}

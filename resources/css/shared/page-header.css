@@ -1,0 +1,15 @@
+.my-page-header {
+    @apply flex gap-4 flex-col md:flex-row md:items-start py-4;
+}
+.my-page-header-title {
+    @apply text-3xl mb-2;
+}
+.my-page-header-subtitle {
+    @apply  text-xl mb-2;
+}
+.my-page-header-description {
+    @apply font-bold my-2;
+}
+.my-page-header-info {
+    @apply text-sm mb-3;
+}

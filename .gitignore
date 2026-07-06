@@ -23,3 +23,8 @@ yarn-error.log
 /.zed
 
 laradumps.yaml
+.junie
+.history
+/temp
+/public/sitemap.xml
+_project

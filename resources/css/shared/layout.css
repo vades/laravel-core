@@ -1,0 +1,13 @@
+body {
+    @apply m-0 text-base-content bg-bcg-body;
+}
+#root{
+    @apply min-h-screen flex flex-col;
+}
+
+.my-header-delimiter{}
+
+
+main{
+    @apply container mx-auto mb-auto px-4 xl:px-0 pb-4  dark:bg-neutral-900;
+}

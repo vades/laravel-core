@@ -1,0 +1,132 @@
+
+
+/* region Header */
+.my-header-stripe {
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #f5f5f5 0px, #f5f5f5 10%,
+        #e0e0e0 10%, #e0e0e0 20%,
+        #a0a0a0 20%, #a0a0a0 30%,
+        #c2c2c2 30%, #c2c2c2 40%,
+        #4a4a4a 40%, #4a4a4a 50%,
+        #6e6e6e 50%, #6e6e6e 60%,
+        #c2c2c2 60%, #c2c2c2 70%,
+        #a0a0a0 70%, #a0a0a0 80%,
+        #e0e0e0 80%, #e0e0e0 90%,
+        #f5f5f5 90%, #f5f5f5 100%
+    );
+}
+
+.my-header {
+    /*@apply bg-bcg-primary  border-bor-primary/10;*/
+    @apply w-full fixed top-0 left-0  z-[2100] h-20 bg-white;
+    @apply text-header ;
+    /*top: 5px !important;*/
+    box-shadow: 0 3px 10px 0 rgba(50, 50, 50, 0.2);
+
+
+}
+
+.my-header-logo {
+    svg {
+        @apply h-[2.2rem] w-auto lg:h-[3.2rem];
+    }
+}
+
+.my-header-slogan {
+    @apply text-sm text-header/80 italic;
+}
+
+.my-nav-list-item {
+    @apply uppercase pl-6;
+
+    &:hover {
+        @apply underline text-link-hover;
+    }
+
+    .text-base {
+        @apply text-brand-primary;
+    }
+}
+
+.my-header-delimiter {
+    @apply pt-20;
+}
+
+.my-footer {
+    @apply border-t border-bor-base;
+}
+
+
+.my-home-hero {
+    @apply flex items-center justify-between;
+
+    > div {
+        @apply w-1/2;
+    }
+
+    > div:last-child {
+        @apply flex justify-end;
+    }
+
+    h1 {
+        @apply text-heading sm:text-[2.8rem] font-serif sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+    }
+
+    p {
+        @apply text-[1.4rem] my-8;
+    }
+
+    .home-hero-svg svg {
+        @apply h-[200px] md:h-[400px] w-full ;
+    }
+
+}
+
+.my-home-feature {
+    @apply bg-base-100 w-96 shadow-sm;
+
+    .card-body {
+        @apply items-center text-center;
+
+        .my-icon {
+            svg {
+                @apply w-[46px] h-[46px];
+            }
+        }
+    }
+
+
+}
+
+.my-home-section {
+    @apply mt-8 border-t border-gray-100;
+
+    > h2 {
+        @apply text-2xl text-heading uppercase mb-4 text-center;
+    }
+}
+
+.home{
+    .my-card-title, .my-card-subtitle{
+        @apply text-center;
+    }
+}
+
+.my-grid-place-related{
+    .my-card-title, .my-card-subtitle{
+        @apply text-center;
+    }
+}
+
+.pages-contact{
+    .content-container{
+        @apply flex flex-wrap gap-4;
+    }
+
+    .content-container > * {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+}

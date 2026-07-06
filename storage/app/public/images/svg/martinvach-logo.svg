@@ -1,0 +1,14 @@
+<svg width="400" height="150" viewBox="30 40 265 75" xmlns="http://www.w3.org/2000/svg">
+  <!-- Square Frame Box -->
+  <rect x="40" y="45" width="60" height="60" rx="4" fill="#4d4d4d" />
+  <text x="70" y="88" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="32" font-weight="900" fill="#ffffff">V</text>
+
+  <!-- Text Side -->
+  <text x="115" y="75" font-family="Helvetica, sans-serif" font-size="26" font-weight="bold" fill="#1a1a1a">MARTIN VACH</text>
+
+  <!-- Separator Line -->
+  <path d="M115 85 H280" stroke="#808080" stroke-width="1" />
+
+  <!-- Updated Subtitle -->
+  <text x="115" y="105" font-family="Helvetica, sans-serif" font-size="12" fill="#808080" style="letter-spacing: 7px; text-transform: uppercase;">Photography</text>
+</svg>

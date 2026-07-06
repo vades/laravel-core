@@ -1,0 +1,30 @@
+
+.my-form {
+    @apply bg-bcg-form rounded-md p-4 mb-4;
+}
+/*.my-fieldset {
+    @apply bg-bcg-jumbotron rounded-md p-4 mb-4;
+}*/
+.my-form-field {
+    @apply mb-4;
+
+    &.has-w-full {
+        @apply w-full;
+
+        & input,
+        & textarea,
+        & label,
+        & span {
+            @apply w-full;
+        }
+    }
+}
+
+.my-form-submit {
+    @apply flex justify-center items-center gap-4;
+}
+
+.my-form-error {
+    @apply block mt-2 text-sm text-red-600 ;
+}
+
