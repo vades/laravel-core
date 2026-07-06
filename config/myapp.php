@@ -5,6 +5,11 @@ return [
     'importDir' => env('MY_IMPORT_DIR'),
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'cacheDuration' => (int) env('MY_CACHE_DURATION', 86400),
+    'auth'=>[
+        'userName' => env('MY_USER_NAME'),
+        'userEmail' => env('MY_USER_EMAIL'),
+        'userPassword' => env('MY_USER_PASSWORD'),
+    ],
     'image' => [
         'domain' => env('MY_IMAGE_DOMAIN'),
         'featured' => 'featured.jpg',

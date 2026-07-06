@@ -2,6 +2,7 @@
 // Path: database/seeders/UserSeeder.php
 
 namespace Database\Seeders;
+use Illuminate\Support\Facades\Schema;
 
 use App\Enums\AppProject;
 use App\Enums\UserRole;
@@ -19,13 +20,17 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
+        Schema::disableForeignKeyConstraints();
+        User::truncate();
+        Schema::enableForeignKeyConstraints();
+
         // We manually assign the project_id we just found/created.
         User::firstOrCreate(
-            ['email' => 'test@example.com'], // Search Key
+            ['email' => config('myapp.auth.userEmail')], // Search Key
             [
                 'uuid' => Str::uuid()->toString(),
-                'name' => 'Test User',
-                'password' => Hash::make('password'),
+                'name' => config('myapp.auth.userName'),
+                'password' => Hash::make(config('myapp.auth.userPassword')),
                 'email_verified_at' => now(),
 
                 // Specific fields for your login testing

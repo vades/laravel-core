@@ -15,6 +15,7 @@
 - `php artisan migrate:refresh --seed --force` Rollback, re-run migrations, and seed the database in production
 - `php artisan make:seeder SeederName` Create a new seeder class
 - `php artisan db:seed` Seed the database with records
+- `php artisan db:seed --class=Database\Seeders\UserSeeder` Seed just specifics table
 
 ## Generators (Controllers, Classes & Components)
 - `php artisan make:controller ControllerName` Create a new controller
