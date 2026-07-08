@@ -16,10 +16,11 @@ class InquiryForm
         return $schema
             ->components([
                 Select::make('project_id')
-                    ->relationship('project', 'id')
-                    ->required(),
+                    ->relationship('project', 'slug')
+                    ->disabled(),
                 Select::make('user_id')
-                    ->relationship('user', 'name'),
+                    ->relationship('user', 'name')
+                    ->disabled(),
                 Toggle::make('is_read')
                     ->required(),
                 Toggle::make('is_spam')
@@ -27,20 +28,19 @@ class InquiryForm
                 Toggle::make('is_archived')
                     ->required(),
                 TextInput::make('name')
-                    ->required(),
+                    ->disabled(),
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
-                    ->required(),
-                TextInput::make('subject'),
+                    ->disabled(),
+                TextInput::make('subject')->disabled(),
                 Textarea::make('message')
-                    ->required()
+                    ->disabled()
                     ->columnSpanFull(),
-                TextInput::make('ip_address'),
-                TextInput::make('user_agent'),
-                DateTimePicker::make('terms_accepted_at'),
-                Textarea::make('metadata')
-                    ->columnSpanFull(),
+                TextInput::make('ip_address')->disabled(),
+                TextInput::make('user_agent')->disabled(),
+                TextInput::make('terms_accepted_at')->disabled(),
+
             ]);
     }
 }

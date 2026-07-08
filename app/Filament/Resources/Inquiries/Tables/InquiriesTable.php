@@ -9,6 +9,7 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -18,34 +19,38 @@ class InquiriesTable
     {
         return $table
             ->columns([
-                TextColumn::make('project.id')
-                    ->searchable(),
-                TextColumn::make('user.name')
-                    ->searchable(),
-                IconColumn::make('is_read')
-                    ->boolean(),
-                IconColumn::make('is_spam')
-                    ->boolean(),
-                IconColumn::make('is_archived')
-                    ->boolean(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('subject')
-                    ->searchable(),
-                TextColumn::make('ip_address')
-                    ->searchable(),
-                TextColumn::make('user_agent')
-                    ->searchable(),
-                TextColumn::make('terms_accepted_at')
-                    ->dateTime()
+                TextColumn::make('project.slug')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('created_at')
+                TextColumn::make('user.name')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                ToggleColumn::make('is_read')->sortable(),
+                ToggleColumn::make('is_spam'),
+                ToggleColumn::make('is_archived')->toggleable(isToggledHiddenByDefault: true),
+
+
+                TextColumn::make('subject')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('ip_address')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('user_agent')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('terms_accepted_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -67,6 +72,7 @@ class InquiriesTable
                     ForceDeleteBulkAction::make(),
                     RestoreBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 }
