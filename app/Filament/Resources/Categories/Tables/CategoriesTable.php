@@ -17,10 +17,12 @@ class CategoriesTable
     {
         return $table
             ->columns([
-                TextColumn::make('uuid')
+                /*TextColumn::make('uuid')
                     ->label('UUID')
+                    ->searchable(),*/
+                TextColumn::make('title')
                     ->searchable(),
-                TextColumn::make('project.id')
+                TextColumn::make('project.slug')
                     ->searchable(),
                 TextColumn::make('parent.title')
                     ->searchable(),
@@ -33,16 +35,15 @@ class CategoriesTable
                 TextColumn::make('content_type')
                     ->badge()
                     ->searchable(),
-                TextColumn::make('position')
+               /* TextColumn::make('position')
                     ->numeric()
-                    ->sortable(),
-                TextColumn::make('slug')
-                    ->searchable(),
+                    ->sortable(),*/
+                /*TextColumn::make('slug')
+                    ->searchable(),*/
                 TextColumn::make('lang')
                     ->badge()
                     ->searchable(),
-                TextColumn::make('title')
-                    ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
