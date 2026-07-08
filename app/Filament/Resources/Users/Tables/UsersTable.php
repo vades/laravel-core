@@ -14,11 +14,12 @@ class UsersTable
     {
         return $table
             ->columns([
+
+                TextColumn::make('name')
+                    ->searchable(),
                 TextColumn::make('project.slug')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('name')
-                    ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
@@ -26,14 +27,14 @@ class UsersTable
                     ->searchable(),
                 TextColumn::make('account_type')
                     ->searchable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
                 TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()

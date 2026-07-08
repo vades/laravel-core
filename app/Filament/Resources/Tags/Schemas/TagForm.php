@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Tags\Schemas;
 
+use App\Enums\ContentContentType;
 use App\Enums\Language;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -14,13 +15,15 @@ class TagForm
         return $schema
             ->components([
                 Select::make('project_id')
-                    ->relationship('project', 'id')
+                    ->relationship('project', 'slug')
                     ->required(),
-                TextInput::make('content_type')
+                Select::make('content_type')
+                    ->options(ContentContentType::class)
+                    ->default(ContentContentType::Article)
                     ->required(),
                 Select::make('lang')
                     ->options(Language::class)
-                    ->default('en')
+                    ->default(Language::EN)
                     ->required(),
                 TextInput::make('name')
                     ->required(),

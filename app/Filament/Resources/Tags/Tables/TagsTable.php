@@ -17,19 +17,20 @@ class TagsTable
     {
         return $table
             ->columns([
-                TextColumn::make('project.id')
-                    ->searchable(),
-                TextColumn::make('content_type')
-                    ->searchable(),
-                TextColumn::make('lang')
-                    ->badge()
-                    ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('project.slug')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('content_type')
+                    ->searchable(),
+               /* TextColumn::make('lang')
+                    ->badge()
+                    ->searchable(),*/
+
                 TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
