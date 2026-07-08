@@ -28,3 +28,8 @@ laradumps.yaml
 /temp
 /public/sitemap.xml
 _project
+/storage/app/public/images/laravel-core
+/storage/app/public/images/ivnbg
+/storage/app/public/images/vades
+/storage/app/public/images/martinvach
+

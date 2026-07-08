@@ -6,7 +6,9 @@ use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\Language;
+use App\Models\Project;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -27,11 +29,13 @@ class ContentForm
 
                         Select::make('project_id')
                             ->relationship('project', 'slug')
-                            ->required(),
+                            ->required()
+                            ->live(),
 
                         Select::make('content_type')
                             ->options(ContentContentType::class)
                             ->required()
+                            ->live()
                             ->live(),
                         Select::make('status')
                             ->options(ContentStatus::class)
@@ -73,11 +77,53 @@ class ContentForm
                 Section::make('Images')
                     ->schema([
 
-                        TextInput::make('metadata.coverImage')
-                            ->label('Cover Image Path'),
+                        FileUpload::make('metadata.coverImage')
+                            ->label('Cover Image')
+                            ->image()
+                            ->disk('public')
+                            ->directory(function (Get $get): string {
+                                $projectSlug = Project::find($get('project_id'))?->slug ?? 'unknown';
 
-                        TextInput::make('metadata.featuredImage')
-                            ->label('Featured Image Path'),
+                                $contentType = $get('content_type');
+                                $contentType = $contentType instanceof ContentContentType
+                                    ? $contentType->value
+                                    : ($contentType ?? 'unknown');
+
+                                return "images/{$projectSlug}/{$contentType}";
+                            })
+                            ->visibility('public'),
+
+                        FileUpload::make('metadata.featuredImage')
+                            ->label('Featured Image')
+                            ->image()
+                            ->disk('public')
+                            ->directory(function (Get $get): string {
+                                $projectSlug = Project::find($get('project_id'))?->slug ?? 'unknown';
+
+                                $contentType = $get('content_type');
+                                $contentType = $contentType instanceof ContentContentType
+                                    ? $contentType->value
+                                    : ($contentType ?? 'unknown');
+
+                                return "images/{$projectSlug}/{$contentType}";
+                            })
+                            ->visibility('public'),
+
+                        /*TextInput::make('metadata.coverImage')
+                            ->label('Cover Image Path'),*/
+                       /* FileUpload::make('metadata.coverImage')
+                            ->label('Cover Image')
+                            ->image()
+                            ->directory('imagetest'),*/
+                       /* FileUpload::make('metadata.coverImage')
+                            ->label('Cover Image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('articles')
+                            ->visibility('public'),*/
+
+                        /*TextInput::make('metadata.featuredImage')
+                            ->label('Featured Image Path'),*/
                     ])
                     ->columns(2)
                     ->columnSpanFull(),
@@ -104,12 +150,6 @@ class ContentForm
                             ->label('Google Map Embed URL')
                             ->url()
                             ->columnSpanFull(),
-
-                        TextInput::make('metadata.coverImage')
-                            ->label('Cover Image Path'),
-
-                        TextInput::make('metadata.featuredImage')
-                            ->label('Featured Image Path'),
                     ])
                     ->columns(2)
                     ->columnSpanFull()

@@ -261,9 +261,9 @@ class ProjectContentService
 
     private function getContentImageUrl(string $projectSlug, string $contentType, string $filename): ?string
     {
-        $imagePath = storage_path('app/public/' . $projectSlug . '/images/' . $contentType . '/' . $filename);
+        $imagePath = storage_path('app/public/images/' . $projectSlug . '/' . $contentType . '/' . $filename);
         if (File::exists($imagePath)) {
-            return 'storage/' . $projectSlug . '/images/' . $contentType . '/' . $filename;
+            return 'images/' . $projectSlug.'/'.$contentType . '/' . $filename;
         }
         return null;
     }
@@ -272,7 +272,7 @@ class ProjectContentService
     {
         $imagePath = storage_path('app/public/albums/' . $albumName . '/' . $eventName . '/' . $filename);
         if (File::exists($imagePath)) {
-            return 'storage/albums/' . $albumName . '/' . $eventName . '/' . $filename;
+            return 'albums/' . $albumName . '/' . $eventName . '/' . $filename;
         }
         return null;
     }
