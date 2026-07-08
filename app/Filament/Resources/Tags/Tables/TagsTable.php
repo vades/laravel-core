@@ -30,11 +30,12 @@ class TagsTable
 
                 TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable(),
-                TextColumn::make('updated_at')
-                    ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable(),
+
                 TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()

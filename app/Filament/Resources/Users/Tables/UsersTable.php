@@ -29,11 +29,12 @@ class UsersTable
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('email_verified_at')
+                    ->dateTime()
+                    ->sortable(),
+
 
                 TextColumn::make('updated_at')
                     ->dateTime()

@@ -17,22 +17,26 @@ class CategoriesTable
     {
         return $table
             ->columns([
-                TextColumn::make('project.slug')
-                    ->searchable(),
+
                 TextColumn::make('title')
                     ->searchable(),
-
-                TextColumn::make('parent.title')
+                TextColumn::make('project.slug')
                     ->searchable(),
+                TextColumn::make('parent.title')
+                    ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('content_type')
+                    ->badge()
+                    ->searchable(),
+
                 TextColumn::make('status')
                     ->badge()
                     ->searchable(),
                 TextColumn::make('visibility')
                     ->badge()
-                    ->searchable(),
-                TextColumn::make('content_type')
-                    ->badge()
-                    ->searchable(),
+                    ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+
                /* TextColumn::make('position')
                     ->numeric()
                     ->sortable(),*/
@@ -40,7 +44,9 @@ class CategoriesTable
                     ->searchable(),*/
                 TextColumn::make('lang')
                     ->badge()
-                    ->searchable(),
+                    ->searchable()
+                    ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -48,8 +54,8 @@ class CategoriesTable
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
+
                 TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()

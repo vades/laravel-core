@@ -17,11 +17,8 @@ class CategoryForm
     {
         return $schema
             ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->required(),
                 Select::make('project_id')
-                    ->relationship('project', 'id')
+                    ->relationship('project', 'slug')
                     ->required(),
                 Select::make('parent_id')
                     ->relationship('parent', 'title'),
@@ -50,8 +47,8 @@ class CategoryForm
                     ->required(),
                 Textarea::make('excerpt')
                     ->columnSpanFull(),
-                Textarea::make('metadata')
-                    ->columnSpanFull(),
+                /*Textarea::make('metadata')
+                    ->columnSpanFull(),*/
             ]);
     }
 }
