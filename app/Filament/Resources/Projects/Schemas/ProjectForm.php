@@ -19,8 +19,8 @@ class ProjectForm
                     ->required(),
                 Textarea::make('excerpt')
                     ->columnSpanFull(),
-                Textarea::make('metadata')
-                    ->columnSpanFull(),
+                /*Textarea::make('metadata')
+                    ->columnSpanFull(),*/
             ]);
     }
 }

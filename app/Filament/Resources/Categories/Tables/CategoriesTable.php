@@ -17,13 +17,11 @@ class CategoriesTable
     {
         return $table
             ->columns([
-                /*TextColumn::make('uuid')
-                    ->label('UUID')
-                    ->searchable(),*/
-                TextColumn::make('title')
-                    ->searchable(),
                 TextColumn::make('project.slug')
                     ->searchable(),
+                TextColumn::make('title')
+                    ->searchable(),
+
                 TextColumn::make('parent.title')
                     ->searchable(),
                 TextColumn::make('status')
