@@ -20,10 +20,12 @@ class InquiriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('email')
                     ->label('Email address')
-                    ->searchable(),
+                    ->searchable()
+            ->sortable(),
                 TextColumn::make('project.slug')
                     ->searchable()
                     ->sortable(),
@@ -31,7 +33,7 @@ class InquiriesTable
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 ToggleColumn::make('is_read')->sortable(),
-                ToggleColumn::make('is_spam'),
+                ToggleColumn::make('is_spam')->sortable(),
                 ToggleColumn::make('is_archived')->toggleable(isToggledHiddenByDefault: true),
 
 

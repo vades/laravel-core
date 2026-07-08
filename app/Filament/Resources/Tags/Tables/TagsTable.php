@@ -18,12 +18,14 @@ class TagsTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('project.slug')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('content_type')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                /* TextColumn::make('lang')
                     ->badge()
                     ->searchable(),*/

@@ -19,19 +19,23 @@ class CategoriesTable
             ->columns([
 
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('project.slug')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('parent.title')
                     ->searchable()
             ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('content_type')
                     ->badge()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
 
                 TextColumn::make('status')
                     ->badge()
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('visibility')
                     ->badge()
                     ->searchable()
