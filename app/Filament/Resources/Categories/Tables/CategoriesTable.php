@@ -20,7 +20,9 @@ class CategoriesTable
 
                 TextColumn::make('title')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->limit(30)
+                    ->tooltip(fn ($record) => $record->title),
                 TextColumn::make('project.slug')
                     ->searchable()
                     ->sortable(),

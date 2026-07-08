@@ -7,10 +7,13 @@ use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\Language;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
 class ContentForm
@@ -19,52 +22,129 @@ class ContentForm
     {
         return $schema
             ->components([
-                TextInput::make('uuid')
-                    ->label('UUID')
-                    ->required(),
-                Select::make('project_id')
-                    ->relationship('project', 'id')
-                    ->required(),
-                Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
-                Select::make('author_id')
-                    ->relationship('author', 'name'),
-                Select::make('parent_id')
-                    ->relationship('parent', 'title'),
-                Select::make('content_type')
-                    ->options(ContentContentType::class)
-                    ->required(),
-                Select::make('status')
-                    ->options(ContentStatus::class)
-                    ->default('draft')
-                    ->required(),
-                Select::make('visibility')
-                    ->options(ContentVisibility::class)
-                    ->default('public')
-                    ->required(),
-                Select::make('lang')
-                    ->options(Language::class)
-                    ->default('en')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
+                Section::make('Basic settings')
+                    ->schema([
+
+                        Select::make('project_id')
+                            ->relationship('project', 'slug')
+                            ->required(),
+
+                        Select::make('content_type')
+                            ->options(ContentContentType::class)
+                            ->required()
+                            ->live(),
+                        Select::make('status')
+                            ->options(ContentStatus::class)
+                            ->default('draft')
+                            ->required(),
+                        Select::make('parent_id')
+                            ->relationship('parent', 'title'),
+
+                    ])
+                    ->columns(4)
+                    ->columnSpanFull(),
+                Section::make('Main content')
+                    ->schema([
+
                 TextInput::make('title')
                     ->required(),
                 TextInput::make('subtitle'),
                 Textarea::make('excerpt')
                     ->columnSpanFull(),
-                Textarea::make('content')
+                MarkdownEditor::make('content')
                     ->columnSpanFull(),
-                Textarea::make('metadata')
+                        Toggle::make('is_featured')
+                            ->required(),
+                        DateTimePicker::make('published_at'),
+                    ])
+                    ->columns(2)
                     ->columnSpanFull(),
-                TextInput::make('position')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Toggle::make('is_featured')
-                    ->required(),
-                DateTimePicker::make('published_at'),
+                Section::make('SEO')
+                    ->schema([
+
+                        TextInput::make('metadata.metaTitle')
+                            ->label('Meta title'),
+
+                        Textarea::make('metadata.metaDescription')
+                            ->label('Meta description')->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->columnSpanFull(),
+                Section::make('Images')
+                    ->schema([
+
+                        TextInput::make('metadata.coverImage')
+                            ->label('Cover Image Path'),
+
+                        TextInput::make('metadata.featuredImage')
+                            ->label('Featured Image Path'),
+                    ])
+                    ->columns(2)
+                    ->columnSpanFull(),
+                Section::make('Location')
+                    ->schema([
+                        TextInput::make('metadata.address')
+                            ->label('Address')
+                            ->columnSpanFull(),
+
+                        TextInput::make('metadata.latitude')
+                            ->label('Latitude')
+                            ->numeric(),
+
+                        TextInput::make('metadata.longitude')
+                            ->label('Longitude')
+                            ->numeric(),
+
+                        TextInput::make('metadata.googleMapUrl')
+                            ->label('Google Map URL')
+                            ->url()
+                            ->columnSpanFull(),
+
+                        TextInput::make('metadata.googleMapEmbedUrl')
+                            ->label('Google Map Embed URL')
+                            ->url()
+                            ->columnSpanFull(),
+
+                        TextInput::make('metadata.coverImage')
+                            ->label('Cover Image Path'),
+
+                        TextInput::make('metadata.featuredImage')
+                            ->label('Featured Image Path'),
+                    ])
+                    ->columns(2)
+                    ->columnSpanFull()
+                    ->visible(fn (Get $get): bool => $get('content_type') === ContentContentType::Place)
+                    ->dehydrated(fn (Get $get): bool => $get('content_type') === ContentContentType::Place),
+                Section::make('Settings')
+                    ->schema([
+                        Select::make('user_id')
+                            ->relationship('user', 'name')
+                            ->required(),
+                        Select::make('author_id')
+                            ->relationship('author', 'name'),
+
+
+                        Select::make('visibility')
+                            ->options(ContentVisibility::class)
+                            ->default('public')
+                            ->required(),
+                        Select::make('lang')
+                            ->options(Language::class)
+                            ->default('en')
+                            ->required(),
+                        TextInput::make('slug')
+                            ->required(),
+
+                        TextInput::make('position')
+                            ->required()
+                            ->numeric()
+                            ->default(0),
+                    ])
+                    ->columns(3)
+                    ->columnSpanFull(),
+
+
+
             ]);
     }
 }
