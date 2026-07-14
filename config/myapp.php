@@ -12,6 +12,7 @@ return [
     ],
     'image' => [
         'domain' => env('MY_IMAGE_DOMAIN'),
+        'storage' => env('MY_IMAGE_STORAGE'),
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
         'svgPath' => 'app/public/images/svg',
@@ -23,10 +24,10 @@ return [
     ],
     'album' => [
         'default' => 'ivnbg',
-        'storageDir' => 'app/public/albums',
+        'storageDir' => env('MY_IMAGE_STORAGE').'/albums',
         'dir' => [
-            'source' => storage_path() . '/app/public/albums',
-            'target' => storage_path() . '/app/public/albums',
+            'source' => env('MY_IMAGE_STORAGE').'/albums',
+            'target' => env('MY_IMAGE_STORAGE') . '/albums',
         ],
         'file' => [
             'albums' => 'albums.json',
@@ -35,6 +36,7 @@ return [
 
         ],
         'url' => env('MY_ALBUM_URL'),
+        'storage' => env('MY_IMAGE_STORAGE'),
         'srcDir' => 'src',
         'thumbDir' => 'thumb',
         'thumbWidth' => 200,

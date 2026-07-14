@@ -59,6 +59,13 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'external_images' => [
+            'driver' => 'local',
+            'root' => env('MY_IMAGE_STORAGE', base_path('../admin/public/images')),
+            'url' => env('MY_IMAGE_DOMAIN'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
     ],
 

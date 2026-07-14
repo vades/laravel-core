@@ -4,6 +4,7 @@ namespace App\Services\Album;
 
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumGeneratorService
 {
@@ -34,8 +35,11 @@ class AlbumGeneratorService
 
     public function __construct(string $url)
     {
-        $this->sourceDir = config('myapp.album.dir.source');
-        $this->targetDir = config('myapp.album.dir.target');
+        $this->sourceDir = Storage::disk('external_images')->path('albums');
+        $this->targetDir = Storage::disk('external_images')->path('albums');
+       /* $this->sourceDir = config('myapp.album.dir.source');
+        $this->targetDir = config('myapp.album.dir.target');*/
+
         $this->url = $url;
         $this->albums = new AlbumDataResource();
 
