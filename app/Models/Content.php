@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\SlugOptions;
 
@@ -161,10 +162,13 @@ class Content extends Model
     /**
      * Get the cover image URL from metadata.
      */
+
     protected function coverImageUrl(): Attribute
     {
-        return Attribute::make(
-            get: fn () => !empty($this->metadata['coverImage']) ? config('myapp.image.domain').'/'.$this->metadata['coverImage'] : null,
+       return Attribute::make(
+            get: fn () => !empty($this->metadata['coverImage'])
+                ? Storage::disk('external_images')->url($this->metadata['coverImage'])
+                : null,
         );
     }
     /**
@@ -173,7 +177,9 @@ class Content extends Model
     protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn () => !empty($this->metadata['featuredImage']) ? config('myapp.image.domain').'/'. $this->metadata['featuredImage'] : null,
+            get: fn () => !empty($this->metadata['featuredImage'])
+                ? Storage::disk('external_images')->url($this->metadata['featuredImage'])
+                : null,
         );
     }
 
