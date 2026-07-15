@@ -270,27 +270,16 @@ class ProjectContentService
         }
 
         return null;
-       /* $imagePath = config('myapp.image.storage').'/'  . $projectSlug . '/' . $contentType . '/' . $filename;
-        if (File::exists($imagePath)) {
-            return $projectSlug.'/'.$contentType . '/' . $filename;
-        }
-        return null;*/
     }
 
     private function getPlaceImageUrl(string $albumName, string $eventName, string $filename): ?string
     {
         $relativePath = "albums/{$albumName}/{$eventName}/{$filename}";
-        //$imagePath = config('myapp.album.storage').'/' . $albumName . '/' . $eventName . '/' . $filename;
         if (Storage::disk('external_images')->exists($relativePath)) {
             return $relativePath;
         }
 
         return null;
-       /* $imagePath = config('myapp.album.storage').'/' . $albumName . '/' . $eventName . '/' . $filename;
-        if (File::exists($imagePath)) {
-            return $albumName . '/' . $eventName . '/' . $filename;
-        }
-        return null;*/
     }
 
     private function getParentId(string|null $parentSlug, string $contentType): ?int

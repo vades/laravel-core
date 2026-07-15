@@ -11,7 +11,7 @@ class AlbumService
     public static function getData($path): array
     {
 
-        $fullPath = storage_path(config('myapp.album.storageDir').'/' . $path);
+        $fullPath = config('myapp.album.storageDir').'/' . $path;
         if (!file_exists($fullPath)) {
             Log::error("File not found: {$fullPath}");
             return [];
