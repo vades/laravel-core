@@ -5,8 +5,14 @@ return [
     'importDir' => env('MY_IMPORT_DIR'),
     'imagePlaceholder' => env('MY_IMAGE_PLACEHOLDER'),
     'cacheDuration' => (int) env('MY_CACHE_DURATION', 86400),
+    'auth'=>[
+        'userName' => env('MY_USER_NAME'),
+        'userEmail' => env('MY_USER_EMAIL'),
+        'userPassword' => env('MY_USER_PASSWORD'),
+    ],
     'image' => [
         'domain' => env('MY_IMAGE_DOMAIN'),
+        'storage' => env('MY_IMAGE_STORAGE'),
         'featured' => 'featured.jpg',
         'cover' => 'cover.jpg',
         'svgPath' => 'app/public/images/svg',
@@ -18,10 +24,10 @@ return [
     ],
     'album' => [
         'default' => 'ivnbg',
-        'storageDir' => 'app/public/albums',
+        'storageDir' => env('MY_IMAGE_STORAGE').'/albums',
         'dir' => [
-            'source' => storage_path() . '/app/public/albums',
-            'target' => storage_path() . '/app/public/albums',
+            'source' => env('MY_IMAGE_STORAGE').'/albums',
+            'target' => env('MY_IMAGE_STORAGE') . '/albums',
         ],
         'file' => [
             'albums' => 'albums.json',
@@ -30,6 +36,7 @@ return [
 
         ],
         'url' => env('MY_ALBUM_URL'),
+        'storage' => env('MY_IMAGE_STORAGE'),
         'srcDir' => 'src',
         'thumbDir' => 'thumb',
         'thumbWidth' => 200,

@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Filament\Resources\Categories\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreBulkAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Table;
+
+class CategoriesTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+
+                TextColumn::make('title')
+                    ->searchable()
+                    ->sortable()
+                    ->limit(30)
+                    ->tooltip(fn ($record) => $record->title),
+                TextColumn::make('project.slug')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('parent.title')
+                    ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('content_type')
+                    ->badge()
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('status')
+                    ->badge()
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('visibility')
+                    ->badge()
+                    ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+
+               /* TextColumn::make('position')
+                    ->numeric()
+                    ->sortable(),*/
+                /*TextColumn::make('slug')
+                    ->searchable(),*/
+                TextColumn::make('lang')
+                    ->badge()
+                    ->searchable()
+                    ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable(),
+
+                TextColumn::make('deleted_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                TrashedFilter::make(),
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                ]),
+            ]);
+    }
+}

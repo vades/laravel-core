@@ -2,7 +2,7 @@
                   :description="$page->metaDescription ?? $page->excerpt"
                   :keywords="$page->keywords">
     @if(!empty($page))
-        <x-ivnbg.home.hero :page="$page"/>
+        <x-martinvach.home.hero :page="$page"/>
     @endif
     @if(count($placesFeatured) > 0)
         <section class="my-home-section">

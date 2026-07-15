@@ -19,6 +19,7 @@ use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\YamlFrontMatter\Document;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -261,19 +262,23 @@ class ProjectContentService
 
     private function getContentImageUrl(string $projectSlug, string $contentType, string $filename): ?string
     {
-        $imagePath = storage_path('app/public/' . $projectSlug . '/images/' . $contentType . '/' . $filename);
-        if (File::exists($imagePath)) {
-            return 'storage/' . $projectSlug . '/images/' . $contentType . '/' . $filename;
+
+        $relativePath = "{$projectSlug}/{$contentType}/{$filename}";
+
+        if (Storage::disk('external_images')->exists($relativePath)) {
+            return $relativePath;
         }
+
         return null;
     }
 
     private function getPlaceImageUrl(string $albumName, string $eventName, string $filename): ?string
     {
-        $imagePath = storage_path('app/public/albums/' . $albumName . '/' . $eventName . '/' . $filename);
-        if (File::exists($imagePath)) {
-            return 'storage/albums/' . $albumName . '/' . $eventName . '/' . $filename;
+        $relativePath = "albums/{$albumName}/{$eventName}/{$filename}";
+        if (Storage::disk('external_images')->exists($relativePath)) {
+            return $relativePath;
         }
+
         return null;
     }
 

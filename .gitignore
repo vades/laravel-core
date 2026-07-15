@@ -28,3 +28,12 @@ laradumps.yaml
 /temp
 /public/sitemap.xml
 _project
+# Ignore all uploaded/project image folders
+/storage/app/public/images/*
+
+# But keep static assets like logos and graphics
+!/storage/app/public/images/placeholders
+!/storage/app/public/images/placeholders/**
+!/storage/app/public/images/svg
+!/storage/app/public/images/svg/**
+
