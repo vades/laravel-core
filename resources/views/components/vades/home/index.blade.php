@@ -10,6 +10,10 @@
 
     @endif
 
+    <section class="my-homepage-section">
+            <x-ui.my-carousel />
+        </section>
+
         <section class="my-homepage-section">
             <x-vades.home.features />
         </section>
