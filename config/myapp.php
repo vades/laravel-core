@@ -20,6 +20,7 @@ return [
             'page' => 'storage/images/placeholders/page.jpg',
             'article' => 'storage/images/placeholders/article.jpg',
             'place' => 'storage/images/placeholders/place.webp',
+             'reference' => 'storage/images/placeholders/reference.webp',
         ],
     ],
     'album' => [

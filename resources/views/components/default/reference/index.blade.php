@@ -13,9 +13,9 @@
     </x-slot>
     <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4 my-grid-article">
         @foreach($contents as $item)
-            @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
+            @php($featuredImage = !empty($item->featured_image_url) ? $item->featured_image_url : config('myapp.image.placeholder.reference'))
 
-            <x-ui.my-card.reference :item="$item" :coverImage="$coverImage" />
+            <x-ui.my-card.reference :item="$item" :featuredImage="$featuredImage" />
 
 
         @endforeach

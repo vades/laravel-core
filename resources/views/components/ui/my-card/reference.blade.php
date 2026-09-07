@@ -2,13 +2,12 @@
 <x-ui.my-card class="my-card my-card-article">
     <x-slot name="header">
         <img class="my-card-img"
-             src="{{asset($coverImage)}}"
+             src="{{asset($featuredImage)}}"
              alt="{{ $item->title}}">
     </x-slot>
     <x-slot name="body">
         <div class="my-card-title">
             <a href="{{ route('referenceShow',  ['slug'=>$item->slug]) }}">{{ $item->title }} </a></div>
-        <div class="my-card-date">{{ $carbon::parse($item->created_at)->format('Y-m-d') }}</div>
 
         <div class="my-card-excerpt">
             {{ $item->excerpt }}
