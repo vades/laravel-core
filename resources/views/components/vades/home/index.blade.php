@@ -10,9 +10,13 @@
 
     @endif
 
-    <section class="my-homepage-section">
-            <x-ui.my-carousel />
-        </section>
+     @if(count($references) > 0)
+            <section class="mt-8">
+                <x-default.home.references :references="$references"/>
+            </section>
+        @endif
+
+    
 
         <section class="my-homepage-section">
             <x-vades.home.features />

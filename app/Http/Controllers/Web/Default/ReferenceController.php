@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web\Default;
 
 use App\Enums\ContentContentType;
 use App\Http\Controllers\Controller;
-use App\Queries\AlbumQuery;
 use App\Queries\ContentQuery;
 use Illuminate\Http\Request;
 use Illuminate\View\View;

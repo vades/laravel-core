@@ -18,6 +18,7 @@ class HomeController extends Controller
     {
         $places   = new ContentQuery(ContentContentType::Place);
         $articles = new ContentQuery(ContentContentType::Article);
+        $references = new ContentQuery(ContentContentType::Reference);
 
         return view('home.index', [
             'page'           => (new ContentQuery)->meta('home'),
@@ -25,6 +26,7 @@ class HomeController extends Controller
             'places'         => $places->latest(take: 12, excludeFeatured: true),
             'articles'       => $articles->latest(take: 6),
             'images'         => $album->homeImages(take: 6),
+            'references'       => $references->latest(take: 6),
         ]);
     }
 }
