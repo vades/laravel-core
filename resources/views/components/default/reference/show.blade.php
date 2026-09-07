@@ -22,8 +22,20 @@
     <div class="content-wrapper">
         {!! $page->rendered_content !!}
     </div>
-    <section>
+    @if(count($references) > 0)
+    <h2 class="text-center">{{__('app.nav.otherReferences')}}</h2>
+    <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-3 2xl:grid-cols-4 xl:gap-4 my-grid-article">
+        @foreach($references as $item)
+            @php($featuredImage = !empty($item->featured_image_url) ? $item->featured_image_url : config('myapp.image.placeholder.reference'))
+
+            <x-ui.my-card.reference :item="$item" :featuredImage="$featuredImage" />
+
+
+        @endforeach
+    </section>
+    @endif
+    {{-- <section>
         <x-ui.my-prev-next class="flex justify-center mt-8" :prevUrl="$previousContent" :nextUrl="$nextContent"/>
 
-    </section>
+    </section> --}}
 </x-default.layout>

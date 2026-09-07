@@ -31,6 +31,8 @@ return [
         'next' => 'Next',
         "termsAndConditions" => "Terms and Conditions",
         "references" => "References",
+        "allReferences" => "All references",
+        "otherReferences" => "Other references",
     ],
     'label' => [
         'placesInCategory' => 'Other places in category :category',
