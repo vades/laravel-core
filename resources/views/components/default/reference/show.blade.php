@@ -1,0 +1,24 @@
+
+<x-default.layout :title="$page->metaTitle ?? $page->title"
+                  :description="$page->metaDescription ?? $page->excerpt"
+                  :keywords="$page->keywords">
+    <x-slot name="jumbotron">
+        <x-ui.my-jumbotron>
+            <x-default.partials.page-header :page="$page" />
+        </x-ui.my-jumbotron>
+    </x-slot>
+
+    @if(!empty($page->featured_image_url))
+        <figure>
+            <img src="{{asset($page->featured_image_url)}}"
+                 alt="{{ $page->title }}">
+        </figure>
+    @endif
+    <div class="content-wrapper">
+        {!! $page->rendered_content !!}
+    </div>
+    <section>
+        <x-ui.my-prev-next class="flex justify-center mt-8" :prevUrl="$previousContent" :nextUrl="$nextContent"/>
+
+    </section>
+</x-default.layout>
