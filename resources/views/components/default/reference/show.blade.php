@@ -1,4 +1,9 @@
 
+@php
+    if(isset($page->user)){
+        $page->user = null;
+    }
+@endphp
 <x-default.layout :title="$page->metaTitle ?? $page->title"
                   :description="$page->metaDescription ?? $page->excerpt"
                   :keywords="$page->keywords">

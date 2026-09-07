@@ -19,7 +19,6 @@ class ReferenceController extends Controller
 
         $query = new ContentQuery(ContentContentType::Reference);
 
-
         return view(
             'reference.index',
             [

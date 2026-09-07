@@ -18,6 +18,13 @@ $myAppNav = [
         'uri' => 'blog/tags',
         'isExternal' => false,
     ],
+    'reference' => [
+        'name' => 'referenceIndex',
+        'label' => 'app.nav.references',
+        'hasIcon' => 'reference',
+        'uri' => 'rference',
+        'isExternal' => false,
+    ],
     'contact' => [
         'name' => 'pageItem',
         'label' => 'app.nav.contact',
@@ -55,16 +62,19 @@ return[
     'headerWidgets' => ['searchInContentType'=>false,'articleCategories'=>false],
     'headerNav' => [
         $myAppNav['about'],
+        $myAppNav['reference'],
         $myAppNav['contact'],
 
     ],
     'drawerNav' => [
         $myAppNav['about'],
+         $myAppNav['reference'],
         $myAppNav['contact'],
     ],
     'footerNav' => [
         $myAppNav['home'],
         $myAppNav['about'],
+         $myAppNav['reference'],
         $myAppNav['contact'],
     ],
 ];

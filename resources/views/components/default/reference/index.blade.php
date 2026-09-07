@@ -15,7 +15,7 @@
         @foreach($contents as $item)
             @php($coverImage = !empty($item->cover_image_url) ? $item->cover_image_url : config('myapp.image.placeholder.article'))
 
-            <x-ui.my-card.article :item="$item" :coverImage="$coverImage" />
+            <x-ui.my-card.reference :item="$item" :coverImage="$coverImage" />
 
 
         @endforeach

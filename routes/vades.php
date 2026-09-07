@@ -24,7 +24,7 @@ Route::get('/pages/{slug}', PageController::class)->name('pageItem');
 /**
  * References
  */
-Route::get('/refrence', [ReferenceController::class, 'index'])->name('referenceIndex');
+Route::get('/reference', [ReferenceController::class, 'index'])->name('referenceIndex');
 Route::get('/rference/{slug}', [ReferenceController::class, 'show'])->name('referenceShow');
 
 /**
