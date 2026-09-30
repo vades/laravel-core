@@ -33,6 +33,9 @@ return [
         "references" => "References",
         "allReferences" => "All references",
         "otherReferences" => "Other references",
+        "services" => "Services",
+        "allServices" => "All services",
+        "otherServices" => "Other services",
     ],
     'label' => [
         'placesInCategory' => 'Other places in category :category',

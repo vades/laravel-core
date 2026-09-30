@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\Default\PageController;
 use App\Http\Controllers\Web\Default\PhotoGalleryController;
 use App\Http\Controllers\Web\Default\PlaceController;
 use App\Http\Controllers\Web\Default\ReferenceController;
+use App\Http\Controllers\Web\Default\ServiceController;
 use App\Http\Controllers\Web\Default\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,3 +49,9 @@ Route::get('/photo-gallery/{slug}', [PhotoGalleryController::class,'show'])->nam
  */
 Route::get('/refrence', [ReferenceController::class, 'index'])->name('referenceIndex');
 Route::get('/rference/{slug}', [ReferenceController::class, 'show'])->name('referenceShow');
+
+/**
+ * Services
+ */
+Route::get('/service', [ServiceController::class, 'index'])->name('serviceIndex');
+Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('serviceShow');

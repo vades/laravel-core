@@ -57,3 +57,12 @@ main {
         @apply leading-[1.2rem];
     }
 }
+
+.content-wrapper {
+    ul,
+    ol {
+        list-style: revert;
+        margin: revert;
+        padding: revert;
+    }
+}

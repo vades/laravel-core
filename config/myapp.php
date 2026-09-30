@@ -17,10 +17,11 @@ return [
         'cover' => 'cover.jpg',
         'svgPath' => 'app/public/images/svg',
         'placeholder' => [
-            'page' => 'storage/images/placeholders/page.jpg',
-            'article' => 'storage/images/placeholders/article.jpg',
-            'place' => 'storage/images/placeholders/place.webp',
-             'reference' => 'storage/images/placeholders/reference.webp',
+            'page' => 'storage/images/placeholders/placeholder.webp',
+            'article' => 'storage/images/placeholders/placeholder.webp',
+            'place' => 'storage/images/placeholders/placeholder.webp',
+             'reference' => 'storage/images/placeholders/placeholder.webp',
+             'service' => 'storage/images/placeholders/placeholder.webp',
         ],
     ],
     'album' => [
