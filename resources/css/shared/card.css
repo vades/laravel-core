@@ -5,39 +5,39 @@
 .my-card-footer {
     @apply mt-auto text-center pb-2;
 }
-.my-card-body{
-    @apply flex-grow px-6 text-sm ;
+.my-card-body {
+    @apply flex-grow px-6 text-sm;
 }
 
-.my-card-img{
+.my-card-img {
     @apply mr-auto ml-auto object-cover mb-4;
 }
 
-.my-card-title{
-    @apply  text-lg leading-[1.2] mb-2 text-h1;
+.my-card-title {
+    @apply text-lg leading-[1.2] mb-2 text-h1;
 }
-.my-card-subtitle{
+.my-card-subtitle {
     @apply mb-2 italic;
 }
 
-.my-card-date{
+.my-card-date {
     @apply text-sm mb-2 italic;
 }
 
-.my-card-info{
+.my-card-info {
     @apply text-sm mb-3;
 }
-.my-card-excerpt{
-    @apply  mb-3;
+.my-card-excerpt {
+    @apply mb-3;
 }
 
-.my-card-article{
-    .my-card-img{
+.my-card-article {
+    .my-card-img {
         @apply h-64;
     }
 }
 /* region Featured Card Styles */
-.my-card-featured{
+.my-card-featured {
     @apply relative overflow-hidden rounded-sm;
     figure {
         @apply relative overflow-hidden rounded-sm;
@@ -53,9 +53,8 @@
 }
 /* endregion Featured Card Styles */
 
-
 /* region Gallery Card Styles */
-.my-card-gallery{
+.my-card-gallery {
     @apply relative overflow-hidden rounded-sm;
     figure {
         @apply relative overflow-hidden rounded-sm;
