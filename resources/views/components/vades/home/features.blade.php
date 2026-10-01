@@ -1,8 +1,8 @@
 
 <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 my-8">
-     {!! widget('architecture-built-to-last') !!}
+     {!! widget('vades-feature-1') !!}
 
-       {!! widget('architecture-built-to-last') !!}
+       {!! widget('vades-feature-1') !!}
     
     <div class="card my-home-feature">
         <div class="card-body">

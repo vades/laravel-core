@@ -4,13 +4,13 @@
     @if(!empty($page))
         <x-slot name="jumbotron">
             <x-ui.my-jumbotron class="">
-                <x-vades.home.hero :page="$page" />
+                 {!! widget('vades-home-hero',['view' =>'widget-home-hero']) !!}
             </x-ui.my-jumbotron>
         </x-slot>
 
     @endif
 
-      {!! widget('test-widget') !!}
+    {!! widget('references') !!}
 
      @if(count($references) > 0)
             <section class="mt-8">
@@ -27,8 +27,10 @@
         </section>
 
         <section class="my-homepage-section">
-            <x-vades.home.contact />
+             {!! widget('contact-form') !!}
         </section>
+
+         {!! widget('articles') !!}
 
     @if($articles->isNotEmpty())
         <section class="my-homepage-section">

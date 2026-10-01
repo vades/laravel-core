@@ -4,13 +4,13 @@ namespace App\Services\Widgets\Renderers;
 
 use App\Models\Widget;
 
-class WidgetRenderer extends AbstractWidgetRenderer
+class PlaceRenderer extends AbstractWidgetRenderer
 {
     public function render(
         Widget $widget,
         array $options = []
     ): string {
-        $view = $options['view'] ?? 'widget';
+        $view = $options['view'] ?? 'place';
         return view("widgets.$view", [
             'widget' => $widget,
             'options' => $options,
