@@ -33,7 +33,7 @@ class Widget extends Model
      */
     protected $fillable = [
         'project_id',
-        'widget_type',
+        'content_type',
         'status',
         'lang',
         'slug',
@@ -91,14 +91,25 @@ class Widget extends Model
      * Get the cover image URL from metadata.
      */
 
-    protected function hasIcon(): Attribute
+    /* protected function hasIcon(): Attribute
     {
        return Attribute::make(
-            get: fn () => !empty($this->metadata['coverImage'])
-                ? Storage::disk('external_images')->url($this->metadata['coverImage'])
-                : null,
+            get: function () {
+            if (empty($this->has_icon)) {
+                return null;
+            }
+            $fullPath = storage_path(config('myapp.image.svgPath').'/' . $this->has_icon . '.svg');
+            dump($fullPath);
+
+            if(!file_exists($fullPath)){
+                return null;
+            }
+
+            return file_get_contents($fullPath);
+        },
         );
     }
+        */
     
     public function scopePublishedByType(Builder $query):
     void

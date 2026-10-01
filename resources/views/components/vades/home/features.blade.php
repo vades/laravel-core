@@ -1,21 +1,9 @@
 
 <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 my-8">
-    <div class="card my-home-feature">
+     {!! widget('architecture-built-to-last') !!}
 
-        <div class="card-body">
-            <x-ui.my-img-svg img="vades-feature-architecture" classList="my-icon" />
-            <h2 class="card-title">Architecture Built to Last</h2>
-            <p>Systems designed around your actual growth — not yesterday's assumptions or tomorrow's rewrites.</p>
-            <div class="card-actions">
-
-                <span class="my-badge">EnterpriseEngineering</span>
-                <span class="my-badge">TechDebt</span>
-                <span class="my-badge">SystemDesign</span>
-            </div>
-
-
-        </div>
-    </div>
+       {!! widget('architecture-built-to-last') !!}
+    
     <div class="card my-home-feature">
         <div class="card-body">
             <x-ui.my-img-svg img="vades-feature-full-stack" classList="my-icon" />

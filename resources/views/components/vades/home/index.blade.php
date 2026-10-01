@@ -10,11 +10,15 @@
 
     @endif
 
+      {!! widget('test-widget') !!}
+
      @if(count($references) > 0)
             <section class="mt-8">
                 <x-default.home.references :references="$references"/>
             </section>
         @endif
+
+       
 
     
 

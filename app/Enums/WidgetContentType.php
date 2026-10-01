@@ -2,25 +2,27 @@
 
 namespace App\Enums;
 
+use App\Services\Widgets\Renderers\FeatureRenderer;
+use App\Services\Widgets\Renderers\LivewireRenderer;
+use App\Services\Widgets\Renderers\WidgetRenderer;
+
 enum WidgetContentType: string
 {
     case Widget = 'widget';
-    case Livewire = 'liveware';
+    case Livewire = 'livewire';
     case Feature = 'feature';
 
-    /**
-     * Get all enum values as array
-     */
+    public function renderer(): string
+    {
+        return match ($this) {
+            self::Widget => WidgetRenderer::class,
+            self::Livewire => LivewireRenderer::class,
+            self::Feature => FeatureRenderer::class,
+        };
+    }
+
     public static function values(): array
     {
         return array_column(self::cases(), 'value');
-    }
-
-    /**
-     * Get all enum names as array
-     */
-    public static function names(): array
-    {
-        return array_column(self::cases(), 'name');
     }
 }
