@@ -11,20 +11,16 @@ class ShortcodeParser
     ) {
     }
 
-    public function parse(string $content): string
+   public function parse(string $content): string
     {
         return preg_replace_callback(
-            '/\[([a-zA-Z0-9\-_]+)(.*?)\]/',
+            '/\{%\s*([a-zA-Z0-9\-_]+)(.*?)\s*%\}/',
             function ($matches) {
-
                 $slug = $matches[1];
 
-                $options = $this->parseAttributes(
-                    $matches[2]
-                );
+                $options = $this->parseAttributes($matches[2]);
 
-                return $this->widgetManager
-                    ->render($slug, $options);
+                return $this->widgetManager->render($slug, $options);
             },
             $content
         );
