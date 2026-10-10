@@ -6,6 +6,7 @@ use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\Language;
+use App\Services\Content\ContentRenderer;
 use App\Traits\FilterByProject;
 use App\Traits\HasDynamicContent;
 use Illuminate\Database\Eloquent\Builder;
@@ -154,8 +155,13 @@ class Content extends Model
      */
     protected function renderedContent(): Attribute
     {
-        return Attribute::make(
-            get: fn () => Str::of($this->content)->markdown(),
+
+    return Attribute::make(
+            get: fn () => app(
+                ContentRenderer::class
+            )->render(
+                $this->content ?? ''
+            )
         );
     }
 

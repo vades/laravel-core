@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use App\Enums\WidgetContentType;
 use App\Enums\ContentStatus;
 use App\Enums\Language;
-use App\Traits\HasDynamicContent;
+use App\Enums\WidgetContentType;
+use App\Services\Content\ContentRenderer;
 use App\Traits\FilterByProject;
+use App\Traits\HasDynamicContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -67,7 +66,7 @@ class Widget extends Model
         return $this->belongsTo(Project::class);
     }
 
-    
+
 
     public function getSlugOptions() : SlugOptions
     {
@@ -82,9 +81,16 @@ class Widget extends Model
      */
     protected function renderedContent(): Attribute
     {
-        return Attribute::make(
-            get: fn () => Str::of($this->content)->markdown(),
+         return Attribute::make(
+            get: fn () => app(
+                ContentRenderer::class
+            )->render(
+                $this->content ?? ''
+            )
         );
+        // return Attribute::make(
+        //     get: fn () => Str::of($this->content)->markdown(),
+        // );
     }
 
     /**
@@ -110,7 +116,7 @@ class Widget extends Model
         );
     }
         */
-    
+
     public function scopePublishedByType(Builder $query):
     void
     {

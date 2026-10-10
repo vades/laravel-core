@@ -428,3 +428,63 @@ app(WidgetManager::class)
 ```
 
 so there is only **one widget system**, one renderer pipeline, and one place to maintain widget logic.
+
+The fix has to go in `ContentRenderer`, not in the model. The indentation is removed after the shortcodes are parsed and before markdown runs, and the model only calls the renderer, so it can't insert a step in between.
+
+**`app/Services/Content/ContentRenderer.php`**
+
+```php
+<?php
+
+namespace App\Services\Content;
+
+use Illuminate\Support\Str;
+
+class ContentRenderer
+{
+    public function render(string $content): string
+    {
+        $content = app(ShortcodeParser::class)->parse($content);
+
+        // Remove leading whitespace so markdown doesn't treat
+        // indented HTML as a code block
+        $content = preg_replace('/^[ \t]+/m', '', $content);
+
+        return Str::of($content)->markdown();
+    }
+}
+```
+
+**Model** (cleaned up, with the commented-out code removed):
+
+```php
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Services\Content\ContentRenderer;
+
+/**
+ * Get rendered content.
+ */
+protected function renderedContent(): Attribute
+{
+    return Attribute::make(
+        get: fn () => app(ContentRenderer::class)->render($this->content ?? '')
+    );
+}
+```
+
+Use it in Blade with unescaped output, otherwise the HTML is shown as text:
+
+```blade
+{!! $page->rendered_content !!}
+```
+
+**Limitations of this quick fix:**
+
+- It strips indentation from all lines, so markdown code blocks (indented or inside fenced blocks) and nested lists lose their indentation. If your content uses those, switch to the placeholder approach from my previous message.
+- A blank line inside the widget HTML still ends the HTML block in markdown. If the output is still wrapped in `<p>` tags or code, remove blank lines inside the widget HTML as well:
+
+```php
+$content = preg_replace('/\n\s*\n(?=\s*<)/', "\n", $content);
+```
+
+Only add that line if you actually see this problem, because it also removes blank lines between normal paragraphs and HTML tags.
