@@ -1,4 +1,3 @@
-<div class="widget">
-    <p>LiveWire widget</p>
+<x-ui.my-widget :widget="$widget">
     {!! $widget->rendered_content !!}
-</div>
+</x-ui.my-widget>
