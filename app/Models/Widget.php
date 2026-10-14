@@ -68,12 +68,12 @@ class Widget extends Model
 
 
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-                          ->generateSlugsFrom('title')
-                          ->saveSlugsTo('slug')
-                          ->doNotGenerateSlugsOnUpdate();
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
     }
 
     /**
@@ -81,8 +81,8 @@ class Widget extends Model
      */
     protected function renderedContent(): Attribute
     {
-         return Attribute::make(
-            get: fn () => app(
+        return Attribute::make(
+            get: fn() => app(
                 ContentRenderer::class
             )->render(
                 $this->content ?? ''
@@ -91,6 +91,20 @@ class Widget extends Model
         // return Attribute::make(
         //     get: fn () => Str::of($this->content)->markdown(),
         // );
+    }
+
+    protected function hasHeader(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => filled($this->title) || filled($this->has_icon),
+        );
+    }
+
+    protected function hasFooter(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => filled($this->footer),
+        );
     }
 
     /**
@@ -117,8 +131,7 @@ class Widget extends Model
     }
         */
 
-    public function scopePublishedByType(Builder $query):
-    void
+    public function scopePublishedByType(Builder $query): void
     {
         $query->where('status', ContentStatus::Published->value);
     }

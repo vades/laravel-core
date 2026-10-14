@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('status', 20)->default('draft');
             $table->string('has_icon', 255)->nullable();
             $table->integer('position')->default(0);
-            $table->string('title', 255);
+            $table->string('title', 255)->nullable();
             $table->longText('content')->nullable();
             $table->longText('footer')->nullable();
             $table->json('metadata')->nullable();

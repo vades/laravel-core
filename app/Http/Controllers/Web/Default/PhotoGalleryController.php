@@ -26,18 +26,17 @@ class PhotoGalleryController extends Controller
         ]);
     }
 
-    public function show(string $slug,DomainManagerService $domainManager,AlbumQuery $album): View
+    public function show(string $slug, DomainManagerService $domainManager, AlbumQuery $album): View
     {
         $meta =  (new ContentQuery)->meta('photo-gallery');
         $event =  $album->eventByDirectory($slug);
-        debug($event);
 
-                           if(!empty($event->title)){
-                               $meta->title = $meta->title .'  - ' .$event->title;
-                           }
+        if (!empty($event->title)) {
+            $meta->title = $meta->title . '  - ' . $event->title;
+        }
 
         return view('photo-gallery.show', [
-            'page' =>  $meta ,
+            'page' =>  $meta,
             'images' => $album->imagesByDirectory($slug),
         ]);
     }
