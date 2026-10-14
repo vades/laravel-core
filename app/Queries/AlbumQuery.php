@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -22,13 +23,13 @@ class AlbumQuery
         ;
     }
 
-    public function imagesByDirectory(string $directory, ?int $take = null,): array
+    public function imagesByDirectory(string $directory, ?int $take = null): array
     {
         return collect(AlbumService::getImages($this->domainManager->getSlug()))
             ->where('directory', $directory)
             ->when($take > 0, fn($q) => $q->take($take))
             ->values()
-            ->toArray();;
+            ->toArray();
     }
 
     public function eventByDirectory(string $directory): \stdClass|null
