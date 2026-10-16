@@ -215,7 +215,7 @@ class Content extends Model
     protected function hasAlbumEvent(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->metadata['hasAlbumEvent'] ?? $this->content,
+            get: fn() => $this->metadata['hasAlbumEvent'] ?? $this->slug,
         );
     }
 
