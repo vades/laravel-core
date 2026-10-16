@@ -7,6 +7,7 @@ use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\Language;
 use App\Services\Content\ContentRenderer;
+use App\Traits\FilterByLang;
 use App\Traits\FilterByProject;
 use App\Traits\HasDynamicContent;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,9 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -56,6 +55,7 @@ class Content extends Model
     use HasFactory;
     use SoftDeletes;
     use FilterByProject;
+    use FilterByLang;
     use HasDynamicContent;
     /**
      * The attributes that are mass assignable.
@@ -254,12 +254,20 @@ class Content extends Model
         $query->where('status', ContentStatus::Published->value);
     }
 
-    public function scopePublishedByType(Builder $query, null|string|ContentContentType $contentType = ContentContentType::Article->value): void
-    {
-        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+    public function scopePublishedByType(
+        Builder $query,
+        null|string|ContentContentType $contentType = ContentContentType::Article->value
+    ): void {
+        $value = $contentType instanceof ContentContentType
+            ? $contentType->value
+            : $contentType;
+
         $query->where('status', ContentStatus::Published->value)
             ->where('content_type', $value)
-        ;
+            ->where(function (Builder $query) {
+                $query->whereNull('published_at')
+                    ->orWhere('published_at', '<=', now());
+            });
     }
     public function scopeIsFeatured(Builder $query): void
     {
