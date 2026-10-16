@@ -1,7 +1,6 @@
 @props(['widget' => null])
 @if ($widget)
     <div class="my-widget my-widget-{{ $widget->content_type }} my-widget-slug-{{ $widget->slug }}">
-        Test template {{ $widget->content_type }}
         @if ($widget->has_header)
             <header>
                 @if ($widget->has_icon)

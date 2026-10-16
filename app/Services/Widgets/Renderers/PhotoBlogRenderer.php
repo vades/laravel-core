@@ -26,7 +26,6 @@ class PhotoBlogRenderer extends AbstractWidgetRenderer
 
         [$album, $event] = $parts;
 
-        $view = $options['view'] ?? 'photo-blog';
         $take = (int) ($options['take'] ?? 0);
 
         $images = collect(AlbumService::getImages($album))
