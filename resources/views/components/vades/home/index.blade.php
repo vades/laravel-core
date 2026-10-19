@@ -14,7 +14,7 @@
     </section>
 
     <section class="my-homepage-section">
-        {!! widget('photo-gallery', ['path' => 'ivnbg/hauptmarkt']) !!}
+        {!! widget('photo-gallery', ['path' => 'ivnbg/hauptmarkt', 'take' => 6, 'schuffle' => true]) !!}
     </section>
 
     {{-- <section class="my-homepage-section">
