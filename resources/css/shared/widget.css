@@ -29,6 +29,17 @@
 }
 
 .my-widget-feature {
+    @apply bg-base-100 w-96 shadow-sm;
+
+    .card-body {
+        @apply items-center text-center;
+
+        .my-icon {
+            svg {
+                @apply w-[46px] h-[46px];
+            }
+        }
+    }
 }
 
 .my-widget-contact-form {

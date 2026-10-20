@@ -18,7 +18,7 @@ $myAppNav = [
         'uri' => 'blog/tags',
         'isExternal' => false,
     ],
-     'service' => [
+    'service' => [
         'name' => 'serviceIndex',
         'label' => 'app.nav.services',
         'hasIcon' => 'service',
@@ -58,15 +58,15 @@ $myAppNav = [
     ],
 ];
 
-return[
+return [
     'name' => 'vades.dev',
     'logo' => 'vades-logo-text',
-    'slogan' => 'The Whole Stack. One Engineer.',
-    'metaTitle' => 'Martin Vach — From IoT to AI: 20 Years of Shipping Software',
-    'metaDescription' => 'Most engineers own one layer. Martin Vach has spent 20 years working across all of them — infrastructure, frontend, and AI — on projects that could not afford to fail.',
-    'metaKeywords' => 'php, typescript, angular, laravel, symfony, mysql, postgresql, ai',
+    'slogan' => 'Solid software and AI that works',
+    'metaTitle' => 'Martin Vach | Solid software and AI that works',
+    'metaDescription' => 'Senior software engineer with 20 years of experience. I help companies modernize their systems and add AI securely, with clear control of costs.',
+    'metaKeywords' => 'software engineering, AI implementation, AI integration, legacy modernization, software consulting',
     'gatMeasurementId' => env('MY_VADES_GTAG_MEASUREMENT_ID'),
-    'headerWidgets' => ['searchInContentType'=>false,'articleCategories'=>false],
+    'headerWidgets' => ['searchInContentType' => false, 'articleCategories' => false],
     'headerNav' => [
         $myAppNav['about'],
         $myAppNav['service'],
@@ -75,17 +75,17 @@ return[
 
     ],
     'drawerNav' => [
-         $myAppNav['home'],
+        $myAppNav['home'],
         $myAppNav['service'],
-         $myAppNav['reference'],
-          $myAppNav['about'],
+        $myAppNav['reference'],
+        $myAppNav['about'],
         $myAppNav['contact'],
     ],
     'footerNav' => [
         $myAppNav['home'],
         $myAppNav['service'],
-         $myAppNav['reference'],
-          $myAppNav['about'],
+        $myAppNav['reference'],
+        $myAppNav['about'],
         $myAppNav['contact'],
     ],
 ];

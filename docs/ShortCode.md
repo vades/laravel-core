@@ -12,9 +12,9 @@ Below is a complete minimal solution that supports:
 and inside CMS content:
 
 ```markdown
-[gallery]
+{% gallery %}
 
-[gallery id="123" size="medium"]
+{% gallery id="123" size="medium"% }
 ```
 
 Both use the **same WidgetManager and renderer classes**.
@@ -413,11 +413,11 @@ protected function renderedContent(): Attribute
 ```markdown
 Welcome to our website.
 
-[gallery]
+{% gallery %}
 
-[gallery id="123" size="medium"]
+{% gallery id="123" size="medium" %}
 
-[gallery id="456" size="large"]
+{% gallery id="456" size="large" %}
 ```
 
 All of these ultimately execute:

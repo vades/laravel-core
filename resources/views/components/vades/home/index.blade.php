@@ -8,13 +8,17 @@
     <section class="mt-8">
         {!! widget('references') !!}
     </section>
-    <section class="my-homepage-section">
+    <section class="my-homepage-section my-homepage-features">
         {!! widget('vades-home-features') !!}
-        <section class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 my-8">
+        {{-- <x-vades.home.features /> --}}
+    </section>
 
+    <section class="my-homepage-section my-homepage-reference">
+        {!! widget('vades-home-reference') !!}
+    </section>
 
-        </section>
-        <x-vades.home.features />
+    <section class="my-homepage-section my-homepage-contact-form">
+        {!! widget('home-contact-form') !!}
     </section>
 
     <section class="my-homepage-section">
