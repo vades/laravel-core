@@ -25,35 +25,35 @@ Route::get('/pages/{slug}', PageController::class)->name('pageItem');
 /**
  * References
  */
-Route::get('/reference', [ReferenceController::class, 'index'])->name('referenceIndex');
-Route::get('/rference/{slug}', [ReferenceController::class, 'show'])->name('referenceShow');
+Route::get('/references', [ReferenceController::class, 'index'])->name('referenceIndex');
+Route::get('/rferences/{slug}', [ReferenceController::class, 'show'])->name('referenceShow');
 
 /**
  * Services
  */
-Route::get('/service', [ServiceController::class, 'index'])->name('serviceIndex');
-Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('serviceShow');
+Route::get('/services', [ServiceController::class, 'index'])->name('serviceIndex');
+Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('serviceShow');
 
 /**
  * Blog
  */
-Route::get('/blog', [ArticleController::class, 'index'])->name('articleIndex') ->middleware(AbortWithNotFound::class);
+Route::get('/blog', [ArticleController::class, 'index'])->name('articleIndex')->middleware(AbortWithNotFound::class);
 
-Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleShow') ->middleware(AbortWithNotFound::class);
+Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleShow')->middleware(AbortWithNotFound::class);
 
 /**
  * Places
  */
-Route::get('/place', [PlaceController::class, 'index'])->name('placeIndex') ->middleware(AbortWithNotFound::class);
+Route::get('/place', [PlaceController::class, 'index'])->name('placeIndex')->middleware(AbortWithNotFound::class);
 
-Route::get('/place/{slug}', [PlaceController::class, 'show'])->name('placeShow') ->middleware(AbortWithNotFound::class);
+Route::get('/place/{slug}', [PlaceController::class, 'show'])->name('placeShow')->middleware(AbortWithNotFound::class);
 /**
  * Tags
  */
-Route::get('/tags/article', [TagController::class, 'index'])->name('tagArticle') ->middleware(AbortWithNotFound::class);
+Route::get('/tags/article', [TagController::class, 'index'])->name('tagArticle')->middleware(AbortWithNotFound::class);
 
 /**
  * Photo Gallery
  */
-Route::get('/photo-gallery', [PhotoGalleryController::class,'index'])->name('photoGalleryIndex') ->middleware(AbortWithNotFound::class);
-Route::get('/photo-gallery/{slug}', [PhotoGalleryController::class,'show'])->name('photoGalleryShow');
+Route::get('/photo-gallery', [PhotoGalleryController::class, 'index'])->name('photoGalleryIndex')->middleware(AbortWithNotFound::class);
+Route::get('/photo-gallery/{slug}', [PhotoGalleryController::class, 'show'])->name('photoGalleryShow');
