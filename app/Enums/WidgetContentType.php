@@ -7,6 +7,7 @@ use App\Services\Widgets\Renderers\ArticleRenderer;
 use App\Services\Widgets\Renderers\ContactFormRenderer;
 use App\Services\Widgets\Renderers\FeatureRenderer;
 use App\Services\Widgets\Renderers\GalleryRenderer;
+use App\Services\Widgets\Renderers\HeroRenderer;
 use App\Services\Widgets\Renderers\LivewireRenderer;
 use App\Services\Widgets\Renderers\PageRenderer;
 use App\Services\Widgets\Renderers\PhotoBlogRenderer;
@@ -28,6 +29,7 @@ enum WidgetContentType: string
     case PhotoBlog = 'photo-blog';
 
     case Gallery = 'gallery';
+    case Hero = 'hero';
 
     public function renderer(): string
     {
@@ -43,6 +45,7 @@ enum WidgetContentType: string
             self::Album => AlbumRenderer::class,
             self::PhotoBlog => PhotoBlogRenderer::class,
             self::Gallery => GalleryRenderer::class,
+            self::Hero => HeroRenderer::class,
         };
     }
 

@@ -1,2 +1,55 @@
 .my-widget {
 }
+
+.my-widget-widget {
+}
+
+.my-widget-hero {
+    @apply flex items-center justify-between;
+
+    > div {
+        @apply w-1/2;
+    }
+
+    > div:last-child {
+        @apply flex justify-end;
+    }
+
+    h1 {
+        @apply text-heading sm:text-[2.8rem] font-serif sm:[text-shadow:2px_2px_2px_rgba(150,150,150,0.8)];
+    }
+
+    p {
+        @apply text-[1.4rem] my-8;
+    }
+
+    .home-hero-svg svg {
+        @apply h-[200px] md:h-[400px] w-full;
+    }
+}
+
+.my-widget-feature {
+}
+
+.my-widget-contact-form {
+}
+
+.my-widget-reference {
+}
+
+.my-widget-article {
+}
+
+.my-widget-page {
+}
+.my-widget-place {
+}
+
+.my-widget-album {
+}
+
+.my-widget-photo-blog {
+}
+
+.my-widget-gallery {
+}
