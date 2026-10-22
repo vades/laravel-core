@@ -13,11 +13,11 @@
         {{-- <x-vades.home.features /> --}}
     </section>
 
-    <section class="my-homepage-section my-homepage-reference">
-        {!! widget('vades-home-reference') !!}
+    <section class="my-homepage-section">
+        {!! widget('vades-home-reference', ['class' => 'my-homepage-experience']) !!}
     </section>
 
-    <section class="my-homepage-section my-homepage-contact-form">
+    <section class="my-homepage-section">
         {!! widget('home-contact-form', ['class' => 'my-homepage-contact-form']) !!}
     </section>
 

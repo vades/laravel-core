@@ -199,10 +199,9 @@ p {
     }
 }
 
-.my-homepage-reference {
-    .my-widget {
-        @apply bg-base-100 shadow-sm p-4;
-    }
+.my-homepage-experience {
+    @apply bg-base-100 shadow-sm p-4;
+
     .my-widget-body {
         @apply text-center;
     }

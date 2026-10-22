@@ -40,6 +40,9 @@
             }
         }
     }
+    footer {
+        @apply p-4 flex flex-wrap justify-center gap-2;
+    }
 }
 
 .my-widget-contact-form {
