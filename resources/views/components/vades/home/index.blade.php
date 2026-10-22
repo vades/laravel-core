@@ -18,7 +18,7 @@
     </section>
 
     <section class="my-homepage-section my-homepage-contact-form">
-        {!! widget('home-contact-form') !!}
+        {!! widget('home-contact-form', ['class' => 'my-homepage-contact-form']) !!}
     </section>
 
     <section class="my-homepage-section">

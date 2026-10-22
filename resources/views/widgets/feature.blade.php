@@ -1,4 +1,4 @@
-<div class="card my-widget-feature">
+<div class="card my-widget-{{ $widget->content_type->value }} {{ $options['class'] ?? '' }}">
 
     <div class="card-body">
         @if ($widget->has_icon)

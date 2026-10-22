@@ -1,4 +1,4 @@
-<section class="my-widget my-widget-hero">
+<section class="my-widget my-widget-{{ $widget->content_type->value }} {{ $options['class'] ?? '' }}">
     <div>
         <h1>{{ $widget->title }}</h1>
         <div class="my-widget-body"> {!! $widget->rendered_content !!}</div>

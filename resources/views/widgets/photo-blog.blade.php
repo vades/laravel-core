@@ -1,4 +1,4 @@
-<x-ui.my-widget :widget="$widget">
+<x-ui.my-widget :widget="$widget" :class="$options['class'] ?? ''">
     <div class="my-widget-photo-rendered-content">
         {!! $widget->rendered_content !!}
     </div>
