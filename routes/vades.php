@@ -37,9 +37,9 @@ Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('servic
 /**
  * Blog
  */
-Route::get('/blog', [ArticleController::class, 'index'])->name('articleIndex')->middleware(AbortWithNotFound::class);
+Route::get('/blog', [ArticleController::class, 'index'])->name('articleIndex');
 
-Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleShow')->middleware(AbortWithNotFound::class);
+Route::get('/blog/{slug}', [ArticleController::class, 'show'])->name('articleShow');
 
 /**
  * Places
