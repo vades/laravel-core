@@ -22,7 +22,7 @@ class ReferenceController extends Controller
             'reference.index',
             [
                 'page'     => $query->meta(basename($request->path())),
-                'contents' => $query->filtered(orderBy:['position','asc']),
+                'contents' => $query->filtered(orderBy: ['published_at', 'desc']),
             ]
         );
     }
@@ -38,7 +38,7 @@ class ReferenceController extends Controller
         $next     = $content->nextPublishedByType(ContentContentType::Reference);
         $previous = $content->previousPublishedByType(ContentContentType::Reference);
 
-       return view('reference.show', [
+        return view('reference.show', [
             'page'            => $content,
             'references' => $query->latest(take: 6)->whereNotIn('slug', [$slug])->sortByDesc('position'),
             'nextContent'     => $next     ? route('referenceShow', ['slug' => $next->slug])     : null,

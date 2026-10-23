@@ -1,0 +1,13 @@
+.content-wrapper table {
+    @apply w-full border-collapse text-left bg-bcg-base;
+    tr {
+        @apply border-b border-bor-base;
+    }
+    th,
+    td {
+        @apply p-2;
+    }
+    th {
+        @apply font-semibold;
+    }
+}
