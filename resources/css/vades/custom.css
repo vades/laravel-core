@@ -217,3 +217,9 @@ p {
         min-width: 0;
     }
 }
+
+.my-card-article {
+    .my-card-title {
+        @apply text-3xl font-serif;
+    }
+}

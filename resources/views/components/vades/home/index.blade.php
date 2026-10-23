@@ -17,6 +17,13 @@
         {!! widget('vades-home-reference', ['class' => 'my-homepage-experience']) !!}
     </section>
 
+    @if ($articles->isNotEmpty())
+        <section class="my-homepage-section">
+            <x-vades.home.articles :articles="$articles" />
+        </section>
+    @endif
+
+
     <section class="my-homepage-section">
         {!! widget('home-contact-form', ['class' => 'my-homepage-contact-form']) !!}
     </section>
@@ -31,11 +38,6 @@
 
     {!! widget('articles') !!}
 
-    @if ($articles->isNotEmpty())
-        <section class="my-homepage-section">
-            <x-vades.home.articles :articles="$articles" />
-        </section>
-    @endif
 
 
 </x-default.layout>

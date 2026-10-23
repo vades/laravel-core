@@ -1,12 +1,12 @@
 /* region Card Component Styles */
 .my-card {
-    @apply flex flex-col justify-between h-full bg-bcg-card dark:bg-neutral-900 border border-black/10 dark:border-white/10 border-bor-base dark:hover:bg-neutral-800  mb-3;
+    @apply flex flex-col justify-between h-full bg-bcg-card mb-3;
 }
 .my-card-footer {
     @apply mt-auto text-center pb-2;
 }
 .my-card-body {
-    @apply flex-grow px-6 text-sm;
+    @apply flex-grow text-sm;
 }
 
 .my-card-img {
@@ -33,7 +33,7 @@
 
 .my-card-article {
     .my-card-img {
-        @apply h-64;
+        @apply w-full aspect-[4/3] object-cover;
     }
 }
 /* region Featured Card Styles */
