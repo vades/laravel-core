@@ -223,3 +223,11 @@ p {
         @apply text-3xl font-serif;
     }
 }
+
+.content-wrapper {
+    pre {
+        code {
+            @apply rounded-md;
+        }
+    }
+}

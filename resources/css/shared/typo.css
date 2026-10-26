@@ -65,4 +65,9 @@ main {
         margin: revert;
         padding: revert;
     }
+    pre {
+        code {
+            @apply block p-4 bg-bcg-base border-1 border-bor-base;
+        }
+    }
 }

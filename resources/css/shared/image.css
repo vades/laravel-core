@@ -8,3 +8,7 @@
 .my-card-img {
     @apply w-full aspect-[4/3] object-cover max-h-[300px];
 }
+
+.my-carousel-image {
+    @apply w-full aspect-[4/3] object-cover max-h-[300px];
+}
