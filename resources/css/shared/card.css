@@ -32,9 +32,6 @@
 }
 
 .my-card-article {
-    .my-card-img {
-        @apply w-full aspect-[4/3] object-cover;
-    }
 }
 /* region Featured Card Styles */
 .my-card-featured {

@@ -11,9 +11,9 @@
     </x-slot>
 
     @if (!empty($page->featured_image_url))
-        <figure>
-            <img src="{{ asset($page->featured_image_url) }}" alt="{{ $page->title }}">
-            <figcaption>The Alps in early winter.</figcaption>
+        <figure class="my-featured-image-container">
+            <img class="my-featured-image" src="{{ asset($page->featured_image_url) }}" alt="{{ $page->title }}">
+            {{--  <figcaption>The Alps in early winter.</figcaption> --}}
         </figure>
     @endif
     <div class="content-container">
