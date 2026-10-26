@@ -175,7 +175,7 @@ p {
     @apply mt-8;
 
     > h2 {
-        @apply text-2xl text-heading uppercase mb-4;
+        @apply text-2xl text-heading uppercase mb-4 text-center;
     }
     .my-widget {
         header {
@@ -183,12 +183,12 @@ p {
         }
     }
     .my-widget-contact-form {
+        @apply bg-bcg-base p-4 rounded-md;
         .my-widget-body {
             @apply flex flex-wrap gap-4;
         }
         .my-widget-body > * {
-            flex: 1 1 0;
-            min-width: 0;
+            @apply flex-1 min-w-0;
         }
     }
 }
