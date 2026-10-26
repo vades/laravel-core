@@ -11,18 +11,18 @@ class WidgetManager
         string $slug,
         array $options = []
     ): string {
-        /* $widget = Cache::remember(
+        $widget = Cache::remember(
             "widget:{$slug}",
             now()->addHour(),
-            fn () => Widget::query()
+            fn() => Widget::query()
                 ->publishedByType()
                 ->where('slug', $slug)
                 ->first()
-        ); */
+        );
 
-        $widget = Widget::publishedByType()
+        /*  $widget = Widget::publishedByType()
                 ->where('slug', $slug)
-                ->first();
+                ->first(); */
 
         if (!$widget) {
             return '';
