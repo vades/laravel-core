@@ -25,6 +25,7 @@ yarn-error.log
 laradumps.yaml
 .junie
 .history
+.vscode
 /temp
 /public/sitemap.xml
 _project
@@ -36,4 +37,6 @@ _project
 !/storage/app/public/images/placeholders/**
 !/storage/app/public/images/svg
 !/storage/app/public/images/svg/**
+
+TODO.md
 

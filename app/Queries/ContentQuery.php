@@ -73,7 +73,7 @@ class ContentQuery
         ;
     }
 
-    public function filtered(int $perPage = 20): LengthAwarePaginator|Collection
+    public function filtered(int $perPage = 20, array $orderBy = ['created_at', 'desc']): LengthAwarePaginator|Collection
     {
         $query = QueryBuilder::for(Content::publishedByType($this->contentType))
                              ->allowedFilters(
@@ -98,7 +98,7 @@ class ContentQuery
                                          : [$this->filters['tag']]
                                  )
                              )
-                             ->orderBy('created_at', 'desc')
+                             ->orderBy(...$orderBy)
         ;
 
         return $perPage > 0

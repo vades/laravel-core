@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\View\Composers\CarouselComposer;
 use App\View\Composers\CategoryComposer;
-use App\View\Composers\TagComposer;
+//use App\View\Composers\TagComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer([ 'components.ui.my-categories-dropdown.index'], CategoryComposer::class);
-        //View::composer('*', TagComposer::class);
+        View::composer(['components.ui.my-categories-dropdown.index'], CategoryComposer::class);
+        View::composer(['components.ui.my-carousel.index'], CarouselComposer::class);
+        // View::composer('*', TagComposer::class);
+        // View::composer('*', TagComposer::class);
     }
 }

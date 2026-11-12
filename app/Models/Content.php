@@ -6,6 +6,8 @@ use App\Enums\ContentContentType;
 use App\Enums\ContentStatus;
 use App\Enums\ContentVisibility;
 use App\Enums\Language;
+use App\Services\Content\ContentRenderer;
+use App\Traits\FilterByLang;
 use App\Traits\FilterByProject;
 use App\Traits\HasDynamicContent;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,9 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -55,6 +55,7 @@ class Content extends Model
     use HasFactory;
     use SoftDeletes;
     use FilterByProject;
+    use FilterByLang;
     use HasDynamicContent;
     /**
      * The attributes that are mass assignable.
@@ -138,15 +139,15 @@ class Content extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class,'content_tag');
+        return $this->belongsToMany(Tag::class, 'content_tag');
     }
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-                          ->generateSlugsFrom('slug')
-                          ->saveSlugsTo('slug')
-                          ->doNotGenerateSlugsOnUpdate();
+            ->generateSlugsFrom('slug')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
     }
 
     /**
@@ -154,8 +155,13 @@ class Content extends Model
      */
     protected function renderedContent(): Attribute
     {
+
         return Attribute::make(
-            get: fn () => Str::of($this->content)->markdown(),
+            get: fn() => app(
+                ContentRenderer::class
+            )->render(
+                $this->content ?? ''
+            )
         );
     }
 
@@ -165,8 +171,8 @@ class Content extends Model
 
     protected function coverImageUrl(): Attribute
     {
-       return Attribute::make(
-            get: fn () => !empty($this->metadata['coverImage'])
+        return Attribute::make(
+            get: fn() => !empty($this->metadata['coverImage'])
                 ? Storage::disk('external_images')->url($this->metadata['coverImage'])
                 : null,
         );
@@ -177,7 +183,7 @@ class Content extends Model
     protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn () => !empty($this->metadata['featuredImage'])
+            get: fn() => !empty($this->metadata['featuredImage'])
                 ? Storage::disk('external_images')->url($this->metadata['featuredImage'])
                 : null,
         );
@@ -189,7 +195,7 @@ class Content extends Model
     protected function livewireWidget(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['livewireWidget'] ?? null,
+            get: fn() => $this->metadata['livewireWidget'] ?? null,
         );
     }
 
@@ -199,7 +205,17 @@ class Content extends Model
     protected function address(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['address'] ?? null,
+            get: fn() => $this->metadata['address'] ?? null,
+        );
+    }
+
+    /**
+     * Get the address from metadata.
+     */
+    protected function hasAlbumEvent(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->metadata['hasAlbumEvent'] ?? null,
         );
     }
 
@@ -209,7 +225,7 @@ class Content extends Model
     protected function googleMapEmbedUrl(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['googleMapEmbedUrl'] ?? null,
+            get: fn() => $this->metadata['googleMapEmbedUrl'] ?? null,
         );
     }
 
@@ -219,7 +235,7 @@ class Content extends Model
     protected function metaTitle(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['metaTitle'] ?? null,
+            get: fn() => $this->metadata['metaTitle'] ?? null,
         );
     }
 
@@ -229,7 +245,7 @@ class Content extends Model
     protected function metaDescription(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->metadata['metaDescription'] ?? null,
+            get: fn() => $this->metadata['metaDescription'] ?? null,
         );
     }
 
@@ -238,13 +254,20 @@ class Content extends Model
         $query->where('status', ContentStatus::Published->value);
     }
 
-    public function scopePublishedByType(Builder $query, null|string|ContentContentType $contentType = ContentContentType::Article->value):
-    void
-    {
-        $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
+    public function scopePublishedByType(
+        Builder $query,
+        null|string|ContentContentType $contentType = ContentContentType::Article->value
+    ): void {
+        $value = $contentType instanceof ContentContentType
+            ? $contentType->value
+            : $contentType;
+
         $query->where('status', ContentStatus::Published->value)
-              ->where('content_type', $value)
-        ;
+            ->where('content_type', $value)
+            ->where(function (Builder $query) {
+                $query->whereNull('published_at')
+                    ->orWhere('published_at', '<=', now());
+            });
     }
     public function scopeIsFeatured(Builder $query): void
     {
@@ -258,33 +281,37 @@ class Content extends Model
 
     public function scopeFilterByCategory(Builder $query, array|string $value): void
     {
-        $query->whereHas('categories', fn($q) =>
-        $q->whereIn('slug', (array) $value)
+        $query->whereHas(
+            'categories',
+            fn($q) =>
+            $q->whereIn('slug', (array) $value)
         );
     }
 
     public function scopeFilterByTag(Builder $query, array|string $value): void
     {
-        $query->whereHas('tags', fn($q) =>
-        $q->whereIn('name', (array) $value)
+        $query->whereHas(
+            'tags',
+            fn($q) =>
+            $q->whereIn('name', (array) $value)
         );
     }
 
-    public function nextPublishedByType(string|ContentContentType $contentType =ContentContentType::Article->value)
+    public function nextPublishedByType(string|ContentContentType $contentType = ContentContentType::Article->value)
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
-        return $this->publishedByType( $value)
-                    ->where('id', '>', $this->id)
-                    ->orderBy('id')
-                    ->first();
+        return $this->publishedByType($value)
+            ->where('id', '>', $this->id)
+            ->orderBy('id')
+            ->first();
     }
 
     public function previousPublishedByType(string|ContentContentType $contentType = ContentContentType::Article->value)
     {
         $value = $contentType instanceof ContentContentType ? $contentType->value : $contentType;
         return $this->publishedByType($contentType)
-                    ->where('id', '<', $this->id)
-                    ->orderByDesc('id')
-                    ->first();
+            ->where('id', '<', $this->id)
+            ->orderByDesc('id')
+            ->first();
     }
 }

@@ -8,8 +8,10 @@ enum ContentContentType: string
     case Page = 'page';
     case Meta = 'meta';
     case Place = 'place';
+    case Reference = 'reference';
+    case Service = 'service';
+    // Not used
     case Tutorial = 'tutorial';
-
     case Guide= 'guide';
     case Aiprompt = 'aiprompt';
 
