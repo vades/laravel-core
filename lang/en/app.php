@@ -30,6 +30,12 @@ return [
         'previous' => 'Previous',
         'next' => 'Next',
         "termsAndConditions" => "Terms and Conditions",
+        "references" => "References",
+        "allReferences" => "All references",
+        "otherReferences" => "Other references",
+        "services" => "Services",
+        "allServices" => "All services",
+        "otherServices" => "Other services",
     ],
     'label' => [
         'placesInCategory' => 'Other places in category :category',

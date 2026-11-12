@@ -1,12 +1,12 @@
 /* region Utils */
-.has-transition{
+.has-transition {
     @apply transform transition-transform duration-300 hover:scale-110;
 }
 
-.iframe{
+.iframe {
     @apply relative pb-[56.25%] pt-8 h-0 overflow-hidden;
 }
-.iframe iframe{
+.iframe iframe {
     @apply absolute top-0 left-0 w-full h-full;
 }
 /* endregion */

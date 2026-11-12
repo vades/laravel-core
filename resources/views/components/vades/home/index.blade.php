@@ -1,28 +1,44 @@
-<x-default.layout :title="$page->metaTitle ?? $page->title"
-                  :description="$page->metaDescription ?? $page->excerpt"
-                  :keywords="$page->keywords">
-    @if(!empty($page))
-        <x-slot name="jumbotron">
-            <x-ui.my-jumbotron class="">
-                <x-vades.home.hero :page="$page" />
-            </x-ui.my-jumbotron>
-        </x-slot>
+<x-default.layout :title="$page->metaTitle ?? $page->title" :description="$page->metaDescription ?? $page->excerpt" :keywords="$page->keywords">
 
-    @endif
+    <x-slot name="jumbotron">
+        <x-ui.my-jumbotron class="">
+            {!! widget('vades-home-hero') !!}
+        </x-ui.my-jumbotron>
+    </x-slot>
 
-        <section class="my-homepage-section">
-            <x-vades.home.features />
-        </section>
+    <section class="my-homepage-section my-homepage-features">
+        {!! widget('vades-home-features') !!}
+        {{-- <x-vades.home.features /> --}}
+    </section>
 
-        <section class="my-homepage-section">
-            <x-vades.home.contact />
-        </section>
 
-    @if($articles->isNotEmpty())
+    <section class="my-homepage-section">
+        {!! widget('vades-home-reference', ['class' => 'my-homepage-experience']) !!}
+    </section>
+
+    <section class="my-homepage-section">
+        {!! widget('vades-reference-carousel') !!}
+    </section>
+
+
+
+    @if ($articles->isNotEmpty())
         <section class="my-homepage-section">
             <x-vades.home.articles :articles="$articles" />
         </section>
     @endif
+
+
+    <section class="my-homepage-section">
+        {!! widget('home-contact-form', ['class' => 'my-homepage-contact-form']) !!}
+    </section>
+
+    {{-- <section class="my-homepage-section">
+        {!! widget('photo-gallery', ['path' => 'ivnbg/hauptmarkt', 'take' => 6, 'schuffle' => true]) !!}
+    </section> --}}
+
+    {!! widget('articles') !!}
+
 
 
 </x-default.layout>
