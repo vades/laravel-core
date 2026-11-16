@@ -2,22 +2,21 @@
 
     <x-slot name="jumbotron">
         <x-ui.my-jumbotron class="">
-            {!! widget('vades-home-hero') !!}
+            {!! widget('home-hero') !!}
         </x-ui.my-jumbotron>
     </x-slot>
 
     <section class="my-homepage-section my-homepage-features">
-        {!! widget('vades-home-features') !!}
-        {{-- <x-vades.home.features /> --}}
+        {!! widget('home-features') !!}
     </section>
 
 
     <section class="my-homepage-section">
-        {!! widget('vades-home-reference', ['class' => 'my-homepage-experience']) !!}
+        {!! widget('home-reference', ['class' => 'my-homepage-experience']) !!}
     </section>
 
     <section class="my-homepage-section">
-        {!! widget('vades-reference-carousel') !!}
+        {!! widget('home-reference-carousel') !!}
     </section>
 
 
