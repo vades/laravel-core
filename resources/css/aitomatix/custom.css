@@ -107,7 +107,7 @@ p {
 
 /* region Footer */
 .my-footer {
-    @apply text-footer text-sm mt-8  border-t border-bor-primary/10 dark:border-white/10;
+    @apply text-footer text-sm mt-8  border-t border-bor-footer;
 
     a {
         @apply no-underline font-normal text-sm text-footer hover:text-footer-muted hover:underline;

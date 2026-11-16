@@ -32,12 +32,6 @@
         {!! widget('home-contact-form', ['class' => 'my-homepage-contact-form']) !!}
     </section>
 
-    {{-- <section class="my-homepage-section">
-        {!! widget('photo-gallery', ['path' => 'ivnbg/hauptmarkt', 'take' => 6, 'schuffle' => true]) !!}
-    </section> --}}
-
-    {!! widget('articles') !!}
-
 
 
 </x-default.layout>
