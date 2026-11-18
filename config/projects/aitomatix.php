@@ -61,7 +61,7 @@ $myAppNav = [
 return [
     'name' => 'aitomatix.com',
     'logo' => 'aitomatix-logo',
-    'slogan' => 'AI that fits',
+    'slogan' => 'AI without the noise',
     'metaTitle' => 'Aitomatix | Practical AI for Small and Mid-Sized Companies',
     'metaDescription' => 'Practical AI services for small and mid-sized companies: integration, private knowledge search, workflow automation, prompt skills and advice.',
     'metaKeywords' => 'AI services, AI integration, private AI, workflow automation, prompt engineering',
