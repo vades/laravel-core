@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1981 513" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;">
+    <g transform="matrix(1,0,0,1,-992.728917,-1300.250521)">
+        <g transform="matrix(1,0,0,1,514.018862,110.774943)">
+            <text x="1045.276px" y="1544.136px" style="font-family:'Calibri-Bold', 'Calibri', sans-serif;font-weight:700;font-size:300px;">AIT<tspan x="1447.522px 1650.403px 1912.61px 2070.959px 2219.494px " y="1544.136px 1544.136px 1544.136px 1544.136px 1544.136px ">OMATI</tspan>X</text>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,1198.741107,1506.26271)">
+            <path d="M10,2L12,2" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,744.58868,1052.110284)">
+            <path d="M10,20L12,20" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,1072.587655,1178.263736)">
+            <path d="M12,11L18,11" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,1324.894559,1380.109259)">
+            <path d="M15,2L17,2" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,870.742132,925.956832)">
+            <path d="M15,20L17,20" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1279.186497)">
+            <path d="M1,11L3,11" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1531.493401)">
+            <path d="M1,6L3,6" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1026.879593)">
+            <path d="M1,16L3,16" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1279.186497)">
+            <path d="M19,11L21,11" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1531.493401)">
+            <path d="M19,6L21,6" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1026.879593)">
+            <path d="M19,16L21,16" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,1072.587655,1632.416162)">
+            <path d="M5,2L7,2" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,25.23069,25.23069,0,618.435228,1178.263736)">
+            <path d="M5,20L7,20" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1329.647878)">
+            <path d="M7,10L11,10" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(0,-25.23069,-25.23069,0,1476.278701,1783.800304)">
+            <path d="M6,13L10,13C11.097,13 12,12.097 12,11C12,9.903 11.097,9 10,9L6,9" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+        <g transform="matrix(25.23069,0,0,25.23069,971.664894,1279.186497)">
+            <path d="M17,3C18.104,3 19,3.896 19,5L19,17C19,18.104 18.104,19 17,19L5,19C3.896,19 3,18.104 3,17L3,5C3,3.896 3.896,3 5,3L17,3Z" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.33px;"/>
+        </g>
+    </g>
+</svg>
