@@ -17,7 +17,7 @@
     </section>
 
     <section class="my-homepage-section">
-        {!! widget('vades-reference-carousel') !!}
+        {!! widget('home-reference-carousel', ['view' => 'reference-carousel']) !!}
     </section>
 
 

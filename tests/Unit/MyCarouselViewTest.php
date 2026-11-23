@@ -1,37 +1,47 @@
 <?php
 
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 uses(TestCase::class);
 
-it('renders carousel slide ids and navigation links from image indexes', function () {
-    Storage::fake('public');
-    Storage::disk('public')->put('images/vades/portfolio/one.jpg', 'image');
-    Storage::disk('public')->put('images/vades/portfolio/two.jpg', 'image');
-    Storage::disk('public')->put('images/vades/portfolio/three.jpg', 'image');
+it('renders reference slides in Blade and uses Alpine only to toggle visibility', function () {
+    $references = collect([
+        (object) [
+            'slug' => 'first-reference',
+            'title' => 'First Reference',
+            'featured_image_url' => 'https://example.test/first.jpg',
+        ],
+        (object) [
+            'slug' => 'second-reference',
+            'title' => 'Second Reference',
+            'featured_image_url' => 'https://example.test/second.jpg',
+        ],
+    ]);
 
-    $html = view('components.ui.my-carousel.index')->render();
+    $html = view('components.ui.my-carousel.index', ['images' => $references])->render();
 
-    expect($html)->toContain('id="slide1"');
-    expect($html)->toContain('id="slide2"');
-    expect($html)->toContain('id="slide3"');
-
-    expect($html)->toContain('href="#slide3" class="btn btn-circle">❮</a>');
-    expect($html)->toContain('href="#slide2" class="btn btn-circle">❯</a>');
-
-    expect($html)->toContain('href="#slide1" class="btn btn-circle">❮</a>');
-    expect($html)->toContain('href="#slide3" class="btn btn-circle">❯</a>');
-
-    expect($html)->toContain('href="#slide2" class="btn btn-circle">❮</a>');
-    expect($html)->toContain('href="#slide1" class="btn btn-circle">❯</a>');
+    expect($html)
+        ->toContain('src="https://example.test/first.jpg"')
+        ->toContain('alt="First Reference"')
+        ->toContain('First Reference')
+        ->toContain('href="'.route('referenceShow', ['slug' => 'first-reference']).'"')
+        ->toContain('bg-black/50')
+        ->toContain('x-show="current === 0"')
+        ->toContain('x-show="current === 1"')
+        ->not->toContain('x-for')
+        ->not->toContain(':src');
 });
 
-it('does not render carousel when there is one image or less', function () {
-    Storage::fake('public');
-    Storage::disk('public')->put('images/vades/portfolio/one.jpg', 'image');
+it('does not render a carousel with one or fewer references', function () {
+    $html = view('components.ui.my-carousel.index', [
+        'images' => collect([
+            (object) [
+                'slug' => 'only-reference',
+                'title' => 'Only Reference',
+                'featured_image_url' => 'https://example.test/only.jpg',
+            ],
+        ]),
+    ])->render();
 
-    $html = view('components.ui.my-carousel.index')->render();
-
-    expect($html)->not->toContain('class="carousel w-full"');
+    expect(trim($html))->toBeEmpty();
 });

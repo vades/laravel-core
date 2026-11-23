@@ -16,7 +16,7 @@
     </section>
 
     <section class="my-homepage-section">
-        {!! widget('home-reference-carousel') !!}
+        {!! widget('home-reference-carousel', ['view' => 'reference-carousel']) !!}
     </section>
 
 
