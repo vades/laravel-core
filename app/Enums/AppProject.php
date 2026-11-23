@@ -14,8 +14,6 @@ enum AppProject: string
 
     /**
      * Get the project URL by enum case.
-     *
-     * @return string
      */
     public function getUrl(): string
     {
@@ -28,5 +26,27 @@ enum AppProject: string
             self::AitomatixCz => 'https://www.aitomatix.cz',
             self::LaravelCore => 'http://laravel-core.test',
         };
+    }
+
+    public static function fromHost(string $host): ?self
+    {
+        $normalizedHost = self::normalizeHost($host);
+
+        foreach (self::cases() as $project) {
+            $projectHost = parse_url($project->getUrl(), PHP_URL_HOST);
+
+            if (is_string($projectHost) && self::normalizeHost($projectHost) === $normalizedHost) {
+                return $project;
+            }
+        }
+
+        return null;
+    }
+
+    private static function normalizeHost(string $host): string
+    {
+        $host = strtolower($host);
+
+        return str_starts_with($host, 'www.') ? substr($host, 4) : $host;
     }
 }

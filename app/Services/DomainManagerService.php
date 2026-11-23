@@ -2,23 +2,26 @@
 
 namespace App\Services;
 
+use App\Enums\AppProject;
+use App\Models\Project;
 use App\Services\Cache\CacheService;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
-use App\Models\Project;
 
 class DomainManagerService
 {
     private const DEFAULT_SLUG = 'laravel-core';
+
     private const CACHE_KEY_PREFIX = 'project_id_map_';
 
     private const DEFAULT_PROJECT_ID = 0; // Fallback project ID if all else fails
 
     protected ?string $currentHost = null;
+
     protected string $slug = self::DEFAULT_SLUG;
+
     protected ?int $projectId = null;
 
     public function __construct(Request $request)
@@ -44,59 +47,23 @@ class DomainManagerService
      */
     private function determineSlug(): string
     {
-        // Environment variable takes precedence
-        $envSlug = env('MY_PROJECT_SLUG');
-        if (!empty($envSlug)) {
-            return $envSlug;
+        $configuredSlug = Config::get('myapp.projectSlug');
+        if (is_string($configuredSlug) && $configuredSlug !== '') {
+            return $configuredSlug;
         }
 
-        // Otherwise, detect from host
         return $this->detectSlugFromHost();
     }
 
-    /**
-     * Extract slug from the current host
-     * Logic: ivnbg.com -> ivnbg, www.ivnbg.com -> ivnbg
-     */
     private function detectSlugFromHost(): string
     {
-        if ($this->isLocalOrEmptyHost()) {
-            return self::DEFAULT_SLUG;
+        $project = AppProject::fromHost($this->currentHost ?? '');
+
+        if ($project !== null) {
+            return $project->value;
         }
 
-        $normalizedHost = $this->normalizeHost($this->currentHost);
-
-        return $this->extractSlugFromHost($normalizedHost);
-    }
-
-    /**
-     * Check if running in CLI mode or localhost
-     */
-    private function isLocalOrEmptyHost(): bool
-    {
-        return empty($this->currentHost) || $this->currentHost === 'localhost';
-    }
-
-    /**
-     * Normalize host by removing www prefix
-     */
-    private function normalizeHost(string $host): string
-    {
-        return Str::replace('www.', '', $host);
-    }
-
-    /**
-     * Extract the slug from the host
-     * Root domain: removes extension and prefixes (e.g., domain-name.com -> domain-name)
-     * Subdomain: returns subdomain only (e.g., subdomain-name.domain.com -> subdomain-name)
-     */
-    private function extractSlugFromHost(string $host): string
-    {
-        if (empty($host)) {
-            return self::DEFAULT_SLUG;
-        }
-
-        return explode('.', $host)[0];
+        return self::DEFAULT_SLUG;
     }
 
     /**
@@ -105,10 +72,11 @@ class DomainManagerService
     private function resolveProjectId(string $slug): ?int
     {
         $cacheKey = $this->getCacheKey($slug);
-$cache = new CacheService();
+        $cache = new CacheService;
+
         return $cache->remember(
-            cacheName:   $cacheKey,
-            callback:    fn() => $this->fetchProjectIdFromDatabase($slug) ,
+            cacheName: $cacheKey,
+            callback: fn () => $this->fetchProjectIdFromDatabase($slug),
             contentType: $slug,
         );
     }
@@ -130,7 +98,7 @@ $cache = new CacheService();
      */
     private function getCacheKey(string $slug): string
     {
-        return self::CACHE_KEY_PREFIX . $slug;
+        return self::CACHE_KEY_PREFIX.$slug;
     }
 
     /**
@@ -140,7 +108,6 @@ $cache = new CacheService();
     {
         Config::set('myapp.projectSlug', $this->slug);
 
-
         // Load project-specific config file
         $this->loadProjectConfig($this->slug);
     }
@@ -149,7 +116,7 @@ $cache = new CacheService();
     {
         $path = base_path("config/projects/{$slug}.php");
 
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             return;
         }
 
