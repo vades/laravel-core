@@ -38,7 +38,7 @@ $myAppNav = [
         'hasIcon' => 'contact',
         'uri' => 'contact',
         'isExternal' => false,
-        'params' => ['slug' => 'contact'],
+        'params' => ['slug' => 'kontakt'],
     ],
     'about' => [
         'name' => 'pageItem',
@@ -46,7 +46,7 @@ $myAppNav = [
         'hasIcon' => 'info-circle',
         'uri' => 'about',
         'isExternal' => false,
-        'params' => ['slug' => 'about'],
+        'params' => ['slug' => 'profil'],
     ],
     'termsAndConditions' => [
         'name' => 'pageItem',

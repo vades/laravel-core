@@ -20,26 +20,26 @@ Route::permanentRedirect('/home', '/');
 /**
  * Pages
  */
-Route::get('/pages/{slug}', PageController::class)->name('pageItem');
+Route::get('/stranky/{slug}', PageController::class)->name('pageItem');
 
 /**
  * References
  */
-Route::get('/references', [ReferenceController::class, 'index'])->name('referenceIndex');
-Route::get('/references/{slug}', [ReferenceController::class, 'show'])->name('referenceShow');
+Route::get('/projekty', [ReferenceController::class, 'index'])->name('referenceIndex');
+Route::get('/projekty/{slug}', [ReferenceController::class, 'show'])->name('referenceShow');
 
 /**
  * Services
  */
-Route::get('/services', [ServiceController::class, 'index'])->name('serviceIndex');
-Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('serviceShow');
+Route::get('/sluzby', [ServiceController::class, 'index'])->name('serviceIndex');
+Route::get('/sluzby/{slug}', [ServiceController::class, 'show'])->name('serviceShow');
 
 /**
  * Blog
  */
-Route::get('/academy', [ArticleController::class, 'index'])->name('articleIndex');
+Route::get('/akademie', [ArticleController::class, 'index'])->name('articleIndex');
 
-Route::get('/academy/{slug}', [ArticleController::class, 'show'])->name('articleShow');
+Route::get('/akademie/{slug}', [ArticleController::class, 'show'])->name('articleShow');
 
 /**
  * Places
